@@ -1849,3 +1849,36 @@ footer a:hover {
     animation: none;
   }
 }
+
+/* Detail Page Hero overrides */
+.hero.detail-page-hero {
+  display: block;
+  min-height: auto;
+  height: auto;
+  max-height: none;
+  padding: 150px 1.5rem 60px;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(21, 30, 54, 0.8) 0%, var(--night-deep) 100%);
+}
+.hero.detail-page-hero .hero-copy {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.hero.detail-page-hero .eyebrow {
+  justify-content: center;
+}
+.hero.detail-page-hero .lead {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+.hero.detail-page-hero .hero-actions {
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .hero.detail-page-hero {
+    padding: 110px 1.2rem 40px;
+  }
+}

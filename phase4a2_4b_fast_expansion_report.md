@@ -58,4 +58,5 @@ Aşağıdaki dört yeni statik HTML sayfası oluşturulmuş ve birbirleriyle zen
 
 * **Faz 4A-2 Commit ID**: `0070829` (phase4a2 calculation engine rollout)
 * **Faz 4B Commit ID**: `0b91afb` (phase4b static content expansion start)
-* **Bu Raporun Commit ID'si**: `f9a565b` (docs: add phase4a2 and phase4b fast expansion report)
+* **Ayar / Düzeltme Commit ID**: `1745f72` (fix: center align detail page heroes)
+* **Bu Raporun Commit ID'si**: `bf0f5db` (docs: add phase4a2 and phase4b fast expansion report)
