@@ -98,12 +98,78 @@ if (document.getElementById("liveMoonPhaseName")) {
 }
 
 
-// PWA Service Worker Kaydı
-if ('serviceWorker' in navigator) {
+// PWA Service Worker Kaydı (Development ve file:// protokolünde engellenir)
+const isLocalhost = Boolean(
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '[::1]' ||
+  window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+);
+const isFileProtocol = window.location.protocol === 'file:';
+
+if ('serviceWorker' in navigator && !isLocalhost && !isFileProtocol) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('Service Worker registered.'))
-      .catch(err => console.log('Service Worker registration failed.'));
+      .then(reg => {
+        console.log('Service Worker registered.');
+
+        // Yeni güncelleme kontrolü
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateToast(reg);
+            }
+          });
+        });
+
+        if (reg.waiting) {
+          showUpdateToast(reg);
+        }
+      })
+      .catch(err => console.log('Service Worker registration failed:', err));
+  });
+
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!refreshing) {
+      window.location.reload();
+      refreshing = true;
+    }
+  });
+}
+
+function showUpdateToast(registration) {
+  if (document.getElementById('pwa-update-toast')) return;
+
+  const toast = document.createElement('div');
+  toast.id = 'pwa-update-toast';
+  toast.style.position = 'fixed';
+  toast.style.bottom = '20px';
+  toast.style.right = '20px';
+  toast.style.background = 'rgba(11, 15, 25, 0.95)';
+  toast.style.border = '1px solid #d4af37';
+  toast.style.color = '#fff';
+  toast.style.padding = '15px 20px';
+  toast.style.borderRadius = '8px';
+  toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+  toast.style.zIndex = '10000';
+  toast.style.fontFamily = "'Outfit', sans-serif";
+  toast.style.display = 'flex';
+  toast.style.alignItems = 'center';
+  toast.style.gap = '15px';
+  toast.style.backdropFilter = 'blur(10px)';
+  toast.style.transition = 'all 0.3s ease';
+
+  toast.innerHTML = `
+    <span style="font-size: 0.95rem; font-weight: 500;">Yeni bir sürüm mevcut!</span>
+    <button id="pwa-update-btn" style="background: #d4af37; border: none; color: #030610; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; transition: all 0.2s;">GÜNCELLE</button>
+  `;
+  document.body.appendChild(toast);
+
+  document.getElementById('pwa-update-btn').addEventListener('click', () => {
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+    }
   });
 }
 

@@ -25,3 +25,19 @@ Zodyak Atlası portalı, statik yapısı korunarak dünyanın en kapsamlı inter
   - 🤝 **Arkadaşlık & İletişim**: İletişim tarzı ve dostluk bağı.
   - 💼 **İş & Ortaklık**: Finansal işbirliği ve kariyer ortaklığı dinamiği.
   - ⚡ **Çatışmalar & Tavsiyeler**: İlişkiyi iyileştirecek kozmik tavsiyeler listesi.
+
+## Faz 4A-0: Temel Doğruluk ve PWA Alt Yapısı (Başarıyla Tamamlandı)
+
+* **Git Geri Dönüş Noktası**: Projede git init yapılarak ilk commit alındı (`cbe618b`) ve tüm kaynak kodlar koruma altına alındı.
+* **UTF-8 Güvenlik Kontrolü**: Tüm kod dosyaları byte düzeyinde PowerShell betikleri ile tarandı ve hiçbir `\uFFFD` (replacement) bozulması olmadığı doğrulandı.
+* **PWA Cache-Lock Çözümü**:
+  - `sw.js` güncellenerek HTML ve dinamik veriler için **Network-First**, statik dosyalar için **Stale-While-Revalidate** yapısına geçildi.
+  - Çevrimdışı durumlar için şık bir `offline.html` fallback sayfası eklendi.
+  - `script.js` güncellenerek yerel çalışma (`file://` ve `localhost`) durumlarında önbellek kilitlenmesi engellendi ve yeni sürüm bulunduğunda kullanıcıyı uyaran güncelleme banner'ı eklendi.
+* **Astronomy Engine Adapter (`astro-adapter.js`)**:
+  - Resmî MIT lisanslı `astronomy.browser.min.js` indirildi ve local olarak `astronomy.min.js` adıyla kaydedildi.
+  - Gezegen retro durumlarını dinamik hız değişimleriyle bulan ve koordinatlarıtropikal ekinoksa precess eden adapter modülü yazıldı.
+* **Test Altyapısı (`scratch/test-harness.html` & `golden-dataset.js`)**:
+  - İlk 5 profili içeren doğrulanmış Golden Dataset formatı oluşturuldu.
+  - Eski ve yeni motor hesaplamalarını side-by-side kıyaslayıp sapmaları raporlayan görsel test paneli geliştirildi.
+
