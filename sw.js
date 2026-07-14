@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'zodiac-atlas-v1.5.0';
+﻿const CACHE_NAME = 'zodiac-atlas-v1.6.0';
 const OFFLINE_URL = '/offline.html';
 
 const ASSETS = [
@@ -25,6 +25,11 @@ const ASSETS = [
   '/burclar-ve-para.html',
   '/burclar-ve-saglik.html',
   '/burclar-ve-aile.html',
+  '/astroloji-takvimi.html',
+  '/ay-takvimi.html',
+  '/retro-takvimi.html',
+  '/burc-tarihleri.html',
+  '/astrolojik-olaylar.html',
   '/element-nitelik-hesaplayici.html',
   '/ay-burcu-hesaplayici.html',
   '/yukselen-burc-hesaplayici.html',
