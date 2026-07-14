@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doğum tarihinize, kesin doğum saatinize ve doğum yerinize göre yükselen burcunuzu (ASC), tam derece ve dakikasını, element ve nitelik yapısını hesaplayın.">
+  <meta property="og:title" content="Yükselen Burç Hesaplayıcı — Zodyak Atlası">
+  <meta property="og:description" content="Doğum tarihi, saati ve yerinizi girerek yükselen burcunuzu (ASC) boylam hassasiyetinde hesaplayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/yukselen-burc-hesaplayici.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/yukselen-burc-hesaplayici.html">
+  <title>Yükselen Burç Hesaplayıcı — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .calc-container {
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .calc-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .calc-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+    }
+    .calc-hero p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .calc-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .input-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .input-control {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-control:focus {
+      border-color: var(--gold);
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 1.1rem;
+      background: linear-gradient(135deg, #d4af37, #967012);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: #030610;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--gold-glow);
+    }
+    .calc-btn:disabled {
+      background: #1f2937;
+      color: var(--muted);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .warning-banner {
+      display: none;
+      background: rgba(231, 76, 60, 0.08);
+      border: 1px solid #e74c3c;
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #e74c3c;
+    }
+    .lat-banner {
+      display: none;
+      background: rgba(243, 156, 18, 0.08);
+      border: 1px solid #f39c12;
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f39c12;
+    }
+    .result-section {
+      display: none;
+      margin-top: 3rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .result-card {
+      background: rgba(212, 175, 55, 0.03);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .rising-glyph {
+      font-size: 4rem;
+      color: var(--gold-bright);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .rising-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: #fff;
+      margin: 0 0 0.5rem;
+    }
+    .rising-deg {
+      font-size: 1.1rem;
+      color: var(--gold-bright);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .trait-badges {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      padding: 0.5rem 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .desc-box {
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #cbd5e1;
+      text-align: left;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+    }
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .cta-btn {
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .cta-btn.primary {
+      background: var(--gold);
+      color: #030610;
+    }
+    .cta-btn.primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+    .cta-btn.secondary {
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      background: rgba(255,255,255,0.02);
+    }
+    .cta-btn.secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hesaplayıcılar",
+      "item": "https://zodyakatlasi.com/hesaplayicilar.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Yükselen Burç Hesaplayıcı",
+      "item": "https://zodyakatlasi.com/yukselen-burc-hesaplayici.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Yükselen Burç Hesaplayıcı",
+    "operatingSystem": "All",
+    "applicationCategory": "LifestyleApplication",
+    "browserRequirements": "requires HTML5, CSS3, JavaScript support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "TRY"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <!-- Menü standardize_menus.ps1 ile doldurulacaktır -->
+    </nav>
+  </header>
+
+  <main class="calc-container">
+    <section class="calc-hero">
+      <h1>Yükselen Burç Hesaplayıcı</h1>
+      <p>Doğum tarihi, kesin doğum saati ve doğum yeri koordinatlarını kullanarak doğum anında doğu ufkunda yükselen zodyak burcunu (ASC) derece hassasiyetinde bulun.</p>
+    </section>
+
+    <div class="calc-card">
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="birthDate">Doğum Tarihi</label>
+          <input type="date" id="birthDate" class="input-control" value="2000-01-01">
+        </div>
+        <div class="input-group" id="timeInputGroup">
+          <label for="birthTime">Doğum Saati</label>
+          <input type="time" id="birthTime" class="input-control" value="12:00">
+        </div>
+        <div class="input-group">
+          <label for="birthCity">Doğum Yeri</label>
+          <select id="birthCity" class="input-control">
+            <option value="">Yükleniyor...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="unknownTime" onchange="toggleTimeField()">
+        <label for="unknownTime">Doğum saatimi bilmiyorum</label>
+      </div>
+
+      <div class="checkbox-group" id="dstGroup">
+        <input type="checkbox" id="dst" checked>
+        <label for="dst">Doğum tarihimde Yaz Saati (DST) uygulanıyordu (+1 Saat ekle)</label>
+      </div>
+
+      <button class="calc-btn" id="calcBtn" onclick="calculateRisingSign()">Yükselen Burcu Hesapla</button>
+    </div>
+
+    <!-- Saat Bilinmiyor Bannerı -->
+    <div class="warning-banner" id="warningBanner">
+      ❌ <strong>Hesaplama Yapılamıyor:</strong> Yükselen burç (ASC), Dünya'nın kendi ekseni etrafındaki dönüşüne bağlı olarak yaklaşık 2 saatte bir değişir. Bu nedenle doğum saatiniz olmadan yükselen burç hesaplaması yapılması teknik olarak mümkün değildir. Lütfen saatinizi girip kutucuktaki işareti kaldırın.
+    </div>
+
+    <!-- Yüksek Enlem Bannerı -->
+    <div class="lat-banner" id="latBanner">
+      ⚠️ <strong>Yüksek Enlem Notu:</strong> Seçtiğiniz doğum yeri kutup dairesine yakın bir konumdadır (65° üstü enlem). Bu bölgelerde ekliptiğin ufukla yaptığı açı çok daraldığı için ev yerleşimleri ve yükselen burç derecesi yüksek kutupsal sapma gösterebilir.
+    </div>
+
+    <!-- Sonuç Ekranı -->
+    <div class="result-section" id="results">
+      <div class="result-card">
+        <span class="rising-glyph" id="resultGlyph">ASC</span>
+        <h2 class="rising-title" id="resultName">Terazi Burcu</h2>
+        <div class="rising-deg" id="resultDegree">28° Terazi 11'</div>
+        
+        <div class="trait-badges">
+          <span class="badge" id="resultElement" style="border-color: #54a0ff; color: #54a0ff;">💨 Hava</span>
+          <span class="badge" id="resultModality" style="border-color: #f39c12; color: #f39c12;">✦ Öncü</span>
+        </div>
+
+        <div class="desc-box">
+          <p id="resultDesc">Yükselen burcunuz (Ascendant), dış dünyaya takındığınız maskeyi, ilk izleniminizi ve hayata yaklaşım tarzınızı temsil eder.</p>
+          <div class="cta-container">
+            <a id="detailLink" href="yukselen-burclar.html" class="cta-btn secondary">Yükselen Burçlar Rehberi →</a>
+            <a href="dogum-haritasi.html" class="cta-btn primary">Tam Doğum Haritanı Çıkar ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById("birthCity");
+      if (select && typeof cityDatabase !== 'undefined') {
+        select.innerHTML = cityDatabase.map((c, idx) => 
+          `<option value="${idx}" ${c.name === 'İstanbul' ? 'selected' : ''}>${c.name} (${c.country})</option>`
+        ).join('');
+      }
+    });
+
+    function toggleTimeField() {
+      const isChecked = document.getElementById("unknownTime").checked;
+      const timeInputGroup = document.getElementById("timeInputGroup");
+      const dstGroup = document.getElementById("dstGroup");
+      const calcBtn = document.getElementById("calcBtn");
+      const warningBanner = document.getElementById("warningBanner");
+      
+      if (isChecked) {
+        timeInputGroup.style.opacity = "0.5";
+        document.getElementById("birthTime").disabled = true;
+        dstGroup.style.display = "none";
+        calcBtn.disabled = true;
+        warningBanner.style.display = "block";
+        document.getElementById("results").style.display = "none";
+        document.getElementById("latBanner").style.display = "none";
+      } else {
+        timeInputGroup.style.opacity = "1";
+        document.getElementById("birthTime").disabled = false;
+        dstGroup.style.display = "flex";
+        calcBtn.disabled = false;
+        warningBanner.style.display = "none";
+      }
+    }
+
+    const elementNames = {
+      'Koç': 'Ateş', 'Aslan': 'Ateş', 'Yay': 'Ateş',
+      'Boğa': 'Toprak', 'Başak': 'Toprak', 'Oğlak': 'Toprak',
+      'İkizler': 'Hava', 'Terazi': 'Hava', 'Kova': 'Hava',
+      'Yengeç': 'Su', 'Akrep': 'Su', 'Balık': 'Su'
+    };
+
+    const modalityNames = {
+      'Koç': 'Öncü', 'Yengeç': 'Öncü', 'Terazi': 'Öncü', 'Oğlak': 'Öncü',
+      'Boğa': 'Sabit', 'Aslan': 'Sabit', 'Akrep': 'Sabit', 'Kova': 'Sabit',
+      'İkizler': 'Değişken', 'Başak': 'Değişken', 'Yay': 'Değişken', 'Balık': 'Değişken'
+    };
+
+    const elementEmojis = { 'Ateş': '🔥 Ateş', 'Toprak': '🌳 Toprak', 'Hava': '💨 Hava', 'Su': '💧 Su' };
+    const modalityEmojis = { 'Öncü': '✦ Öncü', 'Sabit': '⚱️ Sabit', 'Değişken': '🌀 Değişken' };
+
+    const elementColors = { 'Ateş': '#ff9f43', 'Toprak': '#10ac84', 'Hava': '#54a0ff', 'Su': '#5f27cd' };
+    const modalityColors = { 'Öncü': '#d4af37', 'Sabit': '#3498db', 'Değişken': '#9b59b6' };
+
+    const risingInterpretations = {
+      'Koç': 'Yükseleniniz Koç. Dış dünyaya karşı dinamik, doğrudan, cesur ve girişimci bir enerji yayarsınız. İnsanlar sizi enerjik, sabırsız ve harekete geçmeye hazır biri olarak algılar. Hayata bir mücadele alanı gibi yaklaşırsınız.',
+      'Boğa': 'Yükseleniniz Boğa. İlk izleniminiz huzurlu, sakin, güven verici ve estetiğe önem veren bir yapıdadır. Sağlam, acele etmeyen adımlarla ilerlersiniz. Somut değerler üretmek ve güvende olmak sizin için önceliklidir.',
+      'İkizler': 'Yükseleniniz İkizler. Çevrenize karşı meraklı, konuşkan, entelektüel ve hareketli bir enerji yansıtırsınız. Kolay iletişim kurar, sürekli bilgi alışverişinde bulunursunuz. İnsanlar sizi genç ruhlu ve esnek bulur.',
+      'Yengeç': 'Yükseleniniz Yengeç. Dışarıdan sıcak, koruyucu, şefkatli ve biraz temkinli görünürsünüz. Sezgisel olarak ortamın havasını hemen algılarsınız. Kendinizi güvende hissetmeden duygusal duvarlarınızı indirmezsiniz.',
+      'Aslan': 'Yükseleniniz Aslan. Karizmatik, neşeli, cömert ve girdikleri ortamda hemen fark edilen bir duruşa sahipsiniz. Kendinizi ifade etme tarzınız dramatik ve yaratıcıdır. Doğal bir liderlik havası taşırsınız.',
+      'Başak': 'Yükseleniniz Başak. Dış dünyaya titiz, analitik, düzenli ve mesafeli bir duruş sergilersiniz. Detaylara önem verirsiniz. İnsanlar sizi güvenilir, pratik çözümler üreten ve yardımsever biri olarak tanır.',
+      'Terazi': 'Yükseleniniz Terazi. Son derece zarif, uyumlu, kibar ve diplomatik bir enerjiniz vardır. Çatışmalardan kaçınır, ilişkilerde denge kurmaya çalışırsınız. Estetik ve giyim kuşam konularında doğal bir zevkiniz vardır.',
+      'Akrep': 'Yükseleniniz Akrep. Manyetik, gizemli, sessiz ama derinden kontrolü elinde tutan bir duruşunuz vardır. İnsanlar sizin hakkınızda hemen fikir sahibi olamaz. Gözleriniz ve bakışlarınız oldukça etkilidir.',
+      'Yay': 'Yükseleniniz Yay. İyimser, neşeli, coşkulu ve keşfetmeye meraklı bir yaklaşımınız vardır. Hayatı bir macera ve öğrenme süreci olarak görürsünüz. Açık sözlü, samimi ve özgürlüğünüze düşkünsünüzdür.',
+      'Oğlak': 'Yükseleniniz Oğlak. Ciddi, olgun, mesafeli ve disiplinli bir duruş sergilersiniz. Genç yaşlarda bile sorumluluk sahibi görünürsünüz. Kararlı ve sabırlı yapınızla hedeflerinize sarsılmadan yürürsünüz.',
+      'Kova': 'Yükseleniniz Kova. Özgün, sıra dışı, bağımsız ve entelektüel bir aura yayarsınız. İnsanlar sizi marjinal veya vizyoner bulabilir. Toplumsal konulara duyarlısınızdır ancak kişisel ilişkilerde mesafeyi korursunuz.',
+      'Balık': 'Yükseleniniz Balık. Sezgisel, rüya gibi, yumuşak ve son derece empatik bir ilk izlenim bırakırsınız. Sınırlarınız geçirgendir, çevrenin enerjisini sünger gibi çekebilirsiniz. Sanatsal ve mistik bir havanız vardır.'
+    };
+
+    const signSlugs = {
+      'Koç': 'koc', 'Boğa': 'boga', 'İkizler': 'ikizler', 'Yengeç': 'yengec',
+      'Aslan': 'aslan', 'Başak': 'basak', 'Terazi': 'terazi', 'Akrep': 'akrep',
+      'Yay': 'yay', 'Oğlak': 'oglak', 'Kova': 'kova', 'Balık': 'balik'
+    };
+
+    function calculateRisingSign() {
+      const dateVal = document.getElementById("birthDate").value;
+      const unknownTime = document.getElementById("unknownTime").checked;
+      const timeVal = document.getElementById("birthTime").value;
+      const cityIdx = document.getElementById("birthCity").value;
+      const dstChecked = document.getElementById("dst").checked;
+
+      if (unknownTime) {
+        return;
+      }
+
+      if (!dateVal || !timeVal || cityIdx === "") {
+        alert("Lütfen doğum tarihi, doğum saati ve doğum yeri bilgilerini giriniz.");
+        return;
+      }
+
+      const dateParts = dateVal.split('-').map(Number);
+      const timeParts = timeVal.split(':').map(Number);
+      const city = cityDatabase[Number(cityIdx)];
+      const lat = city.lat;
+      const lng = city.lng;
+      let tz = city.tz;
+      if (dstChecked) {
+        tz += 1.0;
+      }
+
+      let jd = null;
+      let ascLong = null;
+      let calculatedWithNewEngine = false;
+
+      // 1. Calculate using AstroAdapter
+      try {
+        jd = AstroAdapter.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        ascLong = AstroAdapter.getAscendant(jd, lat, lng);
+        calculatedWithNewEngine = true;
+      } catch (e) {
+        console.warn("AstroAdapter failed, falling back to AstroCalc:", e);
+      }
+
+      if (!calculatedWithNewEngine) {
+        const jdOld = AstroCalc.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        ascLong = AstroCalc.getAscendant(jdOld, lat, lng);
+      }
+
+      const sign = AstroCalc.getZodiacSign(ascLong);
+      const elem = elementNames[sign.name];
+      const mod = modalityNames[sign.name];
+
+      // Update values
+      document.getElementById("resultGlyph").textContent = sign.glyph;
+      document.getElementById("resultName").textContent = `Yükselen Burcunuz: ${sign.name}`;
+      document.getElementById("resultDegree").textContent = `ASC Boylam Konumu: ${sign.degree}° ${sign.name} ${sign.minute}'`;
+
+      const elemBadge = document.getElementById("resultElement");
+      elemBadge.textContent = elementEmojis[elem];
+      elemBadge.style.borderColor = elementColors[elem];
+      elemBadge.style.color = elementColors[elem];
+
+      const modBadge = document.getElementById("resultModality");
+      modBadge.textContent = modalityEmojis[mod];
+      modBadge.style.borderColor = modalityColors[mod];
+      modBadge.style.color = modalityColors[mod];
+
+      document.getElementById("resultDesc").innerHTML = `
+        <p>${risingInterpretations[sign.name]}</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-top: 1rem;">
+          Yükselen burç (ASC), doğum haritanızın 1. evinin başlangıç çizgisini (Kasp) oluşturur. 
+          Bu burç fiziksel beden yapınızı, yüz hatlarınızı ve hayata adım atış biçiminizi simgeler. 
+          Astrolojik olarak Yükselen, <strong>${elem}</strong> elementine ve <strong>${mod}</strong> niteliğe sahiptir.
+        </p>
+      `;
+
+      // Set correct URL for details
+      const slug = signSlugs[sign.name];
+      document.getElementById("detailLink").href = `burclar/${slug}-kariyer.html`; // Direct link to Rising sign's topic page
+      document.getElementById("detailLink").textContent = `${sign.name} Burcu İş & Kariyeri →`;
+
+      // Show/hide latitude warning banner
+      document.getElementById("latBanner").style.display = Math.abs(lat) > 65.0 ? "block" : "none";
+
+      // Show results
+      document.getElementById("results").style.display = "block";
+      document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doğum haritanızdaki Güneş, Ay, yükselen ve gezegen yerleşimlerine göre Ateş, Toprak, Hava, Su elementleri ile Öncü, Sabit, Değişken nitelik dağılımınızı puanlayıp hesaplayın.">
+  <meta property="og:title" content="Astrolojik Element ve Nitelik Hesaplayıcı — Zodyak Atlası">
+  <meta property="og:description" content="Haritanızdaki Güneş, Ay, yükselen ve gezegen yerleşimlerine göre element ve nitelik dengenizi hesaplayıp analiz edin.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/element-nitelik-hesaplayici.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/element-nitelik-hesaplayici.html">
+  <title>Astrolojik Element ve Nitelik Hesaplayıcı — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .calc-container {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .calc-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .calc-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+    }
+    .calc-hero p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .calc-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .input-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .input-control {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-control:focus {
+      border-color: var(--gold);
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 1.1rem;
+      background: linear-gradient(135deg, #d4af37, #967012);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: #030610;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--gold-glow);
+    }
+    .result-section {
+      display: none;
+      margin-top: 3rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .result-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .chart-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .chart-box h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+    }
+    .bar-row {
+      margin-bottom: 1.5rem;
+    }
+    .bar-row:last-child {
+      margin-bottom: 0;
+    }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .bar-outer {
+      height: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .bar-inner {
+      height: 100%;
+      width: 0;
+      transition: width 1s cubic-bezier(0.1, 0.8, 0.3, 1);
+    }
+    .interpretation-card {
+      background: rgba(212, 175, 55, 0.02);
+      border: 1px dashed var(--gold);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .interpretation-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    .interpretation-card p {
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+    .interpretation-card p:last-child {
+      margin-bottom: 0;
+    }
+    .placements-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    .placements-table th, .placements-table td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .placements-table th {
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-weight: normal;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hesaplayıcılar",
+      "item": "https://zodyakatlasi.com/hesaplayicilar.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Element & Nitelik Hesaplayıcı",
+      "item": "https://zodyakatlasi.com/element-nitelik-hesaplayici.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Astrolojik Element ve Nitelik Hesaplayıcı",
+    "operatingSystem": "All",
+    "applicationCategory": "LifestyleApplication",
+    "browserRequirements": "requires HTML5, CSS3, JavaScript support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "TRY"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <!-- Menü standardize_menus.ps1 ile doldurulacaktır -->
+    </nav>
+  </header>
+
+  <main class="calc-container">
+    <section class="calc-hero">
+      <h1>Element & Nitelik Hesaplayıcı</h1>
+      <p>Doğum haritanızdaki gök cisimlerinin (Güneş, Ay, Merkür, Venüs, Mars, Jüpiter, Satürn) ve yükseleninizin zodyak koordinatlarına göre Ateş, Toprak, Hava, Su dengesini ve Öncü, Sabit, Değişken nitelik puanınızı bulun.</p>
+    </section>
+
+    <div class="calc-card">
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="birthDate">Doğum Tarihi</label>
+          <input type="date" id="birthDate" class="input-control" value="2000-01-01">
+        </div>
+        <div class="input-group" id="timeInputGroup">
+          <label for="birthTime">Doğum Saati</label>
+          <input type="time" id="birthTime" class="input-control" value="12:00">
+        </div>
+        <div class="input-group">
+          <label for="birthCity">Doğum Yeri</label>
+          <select id="birthCity" class="input-control">
+            <option value="">Yükleniyor...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="unknownTime" onchange="toggleTimeField()">
+        <label for="unknownTime">Doğum saatimi bilmiyorum (Yükselen burç hesaplamaya katılmaz, Güneş/Ay 12:00'ye göre alınır)</label>
+      </div>
+
+      <div class="checkbox-group" id="dstGroup">
+        <input type="checkbox" id="dst" checked>
+        <label for="dst">Doğum tarihimde Yaz Saati (DST) uygulanıyordu (+1 Saat ekle)</label>
+      </div>
+
+      <button class="calc-btn" onclick="calculateBalance()">Denge Analizini Hesapla</button>
+    </div>
+
+    <!-- Sonuç Ekranı -->
+    <div class="result-section" id="results">
+      <div class="result-grid">
+        <!-- Element Puanları -->
+        <div class="chart-box">
+          <h3>Element Dağılımı</h3>
+          
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #ff9f43;">🔥 Ateş</span>
+              <span id="scoreAtes">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barAtes" style="background: linear-gradient(90deg, #ff9f43, #ff6b6b);"></div>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #10ac84;">🌳 Toprak</span>
+              <span id="scoreToprak">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barToprak" style="background: linear-gradient(90deg, #10ac84, #1dd1a1);"></div>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #54a0ff;">💨 Hava</span>
+              <span id="scoreHava">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barHava" style="background: linear-gradient(90deg, #54a0ff, #2e86de);"></div>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #5f27cd;">💧 Su</span>
+              <span id="scoreSu">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barSu" style="background: linear-gradient(90deg, #5f27cd, #341f97);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nitelik Puanları -->
+        <div class="chart-box">
+          <h3>Nitelik Dağılımı</h3>
+          
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: var(--gold-bright);">✦ Öncü</span>
+              <span id="scoreOncu">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barOncu" style="background: linear-gradient(90deg, #f39c12, #d4af37);"></div>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #3498db;">⚱️ Sabit</span>
+              <span id="scoreSabit">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barSabit" style="background: linear-gradient(90deg, #2980b9, #3498db);"></div>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-label">
+              <span style="color: #9b59b6;">🌀 Değişken</span>
+              <span id="scoreDegisken">0 Puan</span>
+            </div>
+            <div class="bar-outer">
+              <div class="bar-inner" id="barDegisken" style="background: linear-gradient(90deg, #8e44ad, #9b59b6);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Baskın & Eksik Yorumu -->
+      <div class="interpretation-card">
+        <h3>Kozmik Denge Analizi</h3>
+        <p id="dominantElementText"></p>
+        <p id="deficientElementText"></p>
+        <p id="dominantModalityText"></p>
+        <p id="deficientModalityText"></p>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="elementler.html" style="color: var(--gold-bright); text-decoration: none; font-weight: 500;">△ Elementler Rehberi →</a>
+          <a href="nitelikler.html" style="color: var(--gold-bright); text-decoration: none; font-weight: 500;">⚖️ Nitelikler Rehberi →</a>
+        </div>
+      </div>
+
+      <!-- Detay Tablosu -->
+      <div class="chart-box" style="overflow-x: auto;">
+        <h3>Gezegen Yerleşimleri ve Puan Dağılımı</h3>
+        <table class="placements-table">
+          <thead>
+            <tr>
+              <th>Gök Cismi</th>
+              <th>Yerleştiği Burç</th>
+              <th>Element</th>
+              <th>Nitelik</th>
+              <th>Katkı Puanı</th>
+            </tr>
+          </thead>
+          <tbody id="placementsTableBody">
+            <!-- Dinamik doldurulacaktır -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+
+  <script>
+    // Şehirleri dropdown listesine doldur
+    window.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById("birthCity");
+      if (select && typeof cityDatabase !== 'undefined') {
+        select.innerHTML = cityDatabase.map((c, idx) => 
+          `<option value="${idx}" ${c.name === 'İstanbul' ? 'selected' : ''}>${c.name} (${c.country})</option>`
+        ).join('');
+      }
+    });
+
+    function toggleTimeField() {
+      const isChecked = document.getElementById("unknownTime").checked;
+      const timeInputGroup = document.getElementById("timeInputGroup");
+      const dstGroup = document.getElementById("dstGroup");
+      if (isChecked) {
+        timeInputGroup.style.opacity = "0.5";
+        document.getElementById("birthTime").disabled = true;
+        dstGroup.style.display = "none";
+      } else {
+        timeInputGroup.style.opacity = "1";
+        document.getElementById("birthTime").disabled = false;
+        dstGroup.style.display = "flex";
+      }
+    }
+
+    const elementOfSign = [
+      'Ateş', 'Toprak', 'Hava', 'Su', // Koç, Boğa, İkizler, Yengeç
+      'Ateş', 'Toprak', 'Hava', 'Su', // Aslan, Başak, Terazi, Akrep
+      'Ateş', 'Toprak', 'Hava', 'Su'  // Yay, Oğlak, Kova, Balık
+    ];
+
+    const modalityOfSign = [
+      'Öncü', 'Sabit', 'Değişken', 'Öncü',   // Koç, Boğa, İkizler, Yengeç
+      'Sabit', 'Değişken', 'Öncü', 'Sabit',   // Aslan, Başak, Terazi, Akrep
+      'Değişken', 'Öncü', 'Sabit', 'Değişken' // Yay, Oğlak, Kova, Balık
+    ];
+
+    const elementEmojis = { 'Ateş': '🔥 Ateş', 'Toprak': '🌳 Toprak', 'Hava': '💨 Hava', 'Su': '💧 Su' };
+    const modalityEmojis = { 'Öncü': '✦ Öncü', 'Sabit': '⚱️ Sabit', 'Değişken': '🌀 Değişken' };
+
+    const elementInterpretations = {
+      'Ateş': {
+        dominant: "<strong>Baskın Ateş:</strong> Haritanızda Ateş elementi oldukça baskın. Bu durum size yüksek yaşam coşkusu, cesaret, liderlik ruhu ve hızlı harekete geçme arzusu verir. Ancak sabırsızlık, çabuk öfkelenme ve uzun vadeli projelere odaklanma zorluğu yaratabilir.",
+        deficient: "<strong>Eksik Ateş:</strong> Haritanızda Ateş puanı düşük. Eyleme geçmekte, kendinizi sabitlemekte veya motivasyonunuzu korumakta zorlanabilirsiniz. Yaşam enerjinizi yükseltecek yaratıcı etkinliklere odaklanmak size fayda sağlar."
+      },
+      'Toprak': {
+        dominant: "<strong>Baskın Toprak:</strong> Haritanızda Toprak elementi baskın. Son derece ayakları yere basan, pratik, sabırlı ve organize bir yapınız var. Ancak değişime aşırı direnç gösterme, maddiyata fazla odaklanma veya inatçılık geliştirebilirsiniz.",
+        deficient: "<strong>Eksik Toprak:</strong> Haritanızda Toprak elementi zayıf. Planlı olmakta, bütçe yönetiminde ve başladığınız işleri somut bir sonuca ulaştırmakta zorlanabilirsiniz. Disiplin ve pratik rutinler geliştirmek yaşamınızı kolaylaştırabilir."
+      },
+      'Hava': {
+        dominant: "<strong>Baskın Hava:</strong> Haritanızda Hava elementi öne çıkıyor. Zihinsel olarak aktif, entelektüel, sosyal bağları güçlü ve yeni fikirlere açık birisiniz. Ancak zihninizin aşırı çalışması uykusuzluğa, kararsızlığa veya duygulardan uzaklaşarak rasyonelleştirme eğilimine sebep olabilir.",
+        deficient: "<strong>Eksik Hava:</strong> Haritanızda Hava elementi eksik. Fikirlerinizi objektif bir şekilde ifade etmekte veya yeni insanlarla hızlı sosyalleşmekte zorlanabilirsiniz. Bol okumak ve zihinsel jimnastikler yapmak bu enerjiyi dengeler."
+      },
+      'Su': {
+        dominant: "<strong>Baskın Su:</strong> Haritanızda Su elementi yoğunluğu var. Sezgileriniz son derece güçlü, empatik, derin duygusal bağlar kurabilen birisiniz. Ancak alınganlık, geçmişe aşırı takılma veya duygusal sınırları çizmekte zorlanma görülebilir.",
+        deficient: "<strong>Eksik Su:</strong> Haritanızda Su elementi zayıf. Duygularınızı tanımakta ve onları başkalarına göstermekte güçlük yaşayabilirsiniz. Bazen fazla mantıklı veya mesafeli görünebilirsiniz; sanatsal ve sezgisel uğraşlar duygularınızı yumuşatır."
+      }
+    };
+
+    const modalityInterpretations = {
+      'Öncü': {
+        dominant: "<strong>Baskın Öncü:</strong> Öncü niteliğiniz yüksek. Hayatı başlatan, vizyon kuran ve liderlik yapan bir yapıdasınız. Ancak her başladığınız işi bitirecek istikrarı göstermekte zorlanabilir, çabuk sıkılabilirsiniz.",
+        deficient: "<strong>Eksik Öncü:</strong> Öncü niteliği zayıf. Hayatta ilk adımı atmakta veya inisiyatif almakta çekingen davranabilirsiniz. Başkalarının başlatacağı işleri beklemek yerine kendi hedeflerinizi belirlemeniz önemlidir."
+      },
+      'Sabit': {
+        dominant: "<strong>Baskın Sabit:</strong> Sabit niteliğiniz baskın. Olağanüstü bir sabır, dayanıklılık, kararlılık ve sadakat kapasitesine sahipsiniz. Fakat koşullar değiştiğinde adapte olmakta çok zorlanabilir ve aşırı inatçı davranabilirsiniz.",
+        deficient: "<strong>Eksik Sabit:</strong> Sabit niteliği eksik. Sebat göstermekte zorlanabilir, hedeflerinizden çok kolay sapabilirsiniz. Düzenli rutinler ve hedefe sadakat pratikleri yapmanız gelişiminiz için kritiktir."
+      },
+      'Değişken': {
+        dominant: "<strong>Baskın Değişken:</strong> Değişken niteliğiniz yüksek. Her türlü yeni duruma hızla adapte olabilen, esnek, öğrenmeye meraklı birisiniz. Lakin bu durum odaklanma dağınıklığı, kafa karışıklığı ve sık kararsızlık yaratabilir.",
+        deficient: "<strong>Eksik Değişken:</strong> Değişken niteliği zayıf. Katı kurallara bağlı kalabilir, şartlar değiştiğinde esnemekte çok zorlanıp direnç gösterebilirsiniz. Hayatın akışına ve yeniliklere karşı esnek olmayı öğrenmelisiniz."
+      }
+    };
+
+    function calculateBalance() {
+      const dateVal = document.getElementById("birthDate").value;
+      const unknownTime = document.getElementById("unknownTime").checked;
+      const timeVal = unknownTime ? "12:00" : document.getElementById("birthTime").value;
+      const cityIdx = document.getElementById("birthCity").value;
+      const dstChecked = document.getElementById("dst").checked;
+
+      if (!dateVal || cityIdx === "") {
+        alert("Lütfen doğum tarihi ve doğum yeri bilgilerini giriniz.");
+        return;
+      }
+
+      const dateParts = dateVal.split('-').map(Number);
+      const timeParts = timeVal.split(':').map(Number);
+      const city = cityDatabase[Number(cityIdx)];
+      const lat = city.lat;
+      const lng = city.lng;
+      let tz = city.tz;
+      if (dstChecked && !unknownTime) {
+        tz += 1.0;
+      }
+
+      let jd = null;
+      let calculatedWithNewEngine = false;
+      let sunLong, moonLong, ascLong = null;
+      let positions = {};
+
+      // 1. Calculate positions using AstroAdapter or fallback to AstroCalc
+      try {
+        jd = AstroAdapter.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        sunLong = AstroAdapter.getSunLongitude(jd);
+        moonLong = AstroAdapter.getMoonLongitude(jd);
+        if (!unknownTime) {
+          ascLong = AstroAdapter.getAscendant(jd, lat, lng);
+        }
+        const rawPositions = AstroAdapter.getPlanetaryPositions(jd);
+        positions = {
+          mercury: rawPositions.mercury,
+          venus: rawPositions.venus,
+          mars: rawPositions.mars,
+          jupiter: rawPositions.jupiter,
+          saturn: rawPositions.saturn
+        };
+        calculatedWithNewEngine = true;
+      } catch (e) {
+        console.warn("AstroAdapter failed, falling back to AstroCalc:", e);
+      }
+
+      if (!calculatedWithNewEngine) {
+        const jdOld = AstroCalc.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        sunLong = AstroCalc.getSunLongitude(jdOld);
+        moonLong = AstroCalc.getMoonLongitude(jdOld);
+        if (!unknownTime) {
+          ascLong = AstroCalc.getAscendant(jdOld, lat, lng);
+        }
+        const rawPositions = AstroCalc.getPlanetaryPositions(jdOld);
+        positions = {
+          mercury: rawPositions.mercury,
+          venus: rawPositions.venus,
+          mars: rawPositions.mars,
+          jupiter: rawPositions.jupiter,
+          saturn: rawPositions.saturn
+        };
+      }
+
+      // Initialize scores
+      const elemScores = { 'Ateş': 0, 'Toprak': 0, 'Hava': 0, 'Su': 0 };
+      const modScores = { 'Öncü': 0, 'Sabit': 0, 'Değişken': 0 };
+      const tableData = [];
+
+      const addPlacement = (name, long, points) => {
+        const sign = AstroCalc.getZodiacSign(long);
+        const elem = elementOfSign[sign.index];
+        const mod = modalityOfSign[sign.index];
+        
+        elemScores[elem] += points;
+        modScores[mod] += points;
+        
+        tableData.push({
+          name: name,
+          sign: `${sign.glyph} ${sign.name} (${sign.degree}°${sign.minute}')`,
+          elem: elem,
+          mod: mod,
+          points: points
+        });
+      };
+
+      // Add placements according to weight rules
+      addPlacement('Güneş ☉', sunLong, 3);
+      addPlacement('Ay ☽', moonLong, 3);
+      if (!unknownTime && ascLong !== null) {
+        addPlacement('Yükselen (ASC)', ascLong, 3);
+      }
+      addPlacement('Merkür ☿', positions.mercury, 2);
+      addPlacement('Venüs ♀', positions.venus, 2);
+      addPlacement('Mars ♂', positions.mars, 2);
+      addPlacement('Jüpiter ♃', positions.jupiter, 1);
+      addPlacement('Satürn ♄', positions.saturn, 1);
+
+      // Render table
+      const tbody = document.getElementById("placementsTableBody");
+      tbody.innerHTML = tableData.map(row => `
+        <tr>
+          <td><strong>${row.name}</strong></td>
+          <td>${row.sign}</td>
+          <td>${elementEmojis[row.elem]}</td>
+          <td>${modalityEmojis[row.mod]}</td>
+          <td><strong>${row.points} Puan</strong></td>
+        </tr>
+      `).join('');
+
+      // Display Scores & Progress Bars
+      const maxPossible = unknownTime ? 14 : 17;
+
+      const animateBar = (elementId, scoreId, score) => {
+        const percent = Math.round((score / maxPossible) * 100);
+        document.getElementById(scoreId).textContent = `${score} Puan (${percent}%)`;
+        document.getElementById(elementId).style.width = `${percent}%`;
+      };
+
+      animateBar('barAtes', 'scoreAtes', elemScores['Ateş']);
+      animateBar('barToprak', 'scoreToprak', elemScores['Toprak']);
+      animateBar('barHava', 'scoreHava', elemScores['Hava']);
+      animateBar('barSu', 'scoreSu', elemScores['Su']);
+
+      animateBar('barOncu', 'scoreOncu', modScores['Öncü']);
+      animateBar('barSabit', 'scoreSabit', modScores['Sabit']);
+      animateBar('barDegisken', 'scoreDegisken', modScores['Değişken']);
+
+      // Calculate Dominant & Deficient
+      let dominantElements = [];
+      let deficientElements = [];
+      let maxElem = -1;
+      let minElem = 99;
+
+      Object.keys(elemScores).forEach(el => {
+        if (elemScores[el] > maxElem) { maxElem = elemScores[el]; }
+        if (elemScores[el] < minElem) { minElem = elemScores[el]; }
+      });
+      Object.keys(elemScores).forEach(el => {
+        if (elemScores[el] === maxElem && maxElem > 0) dominantElements.push(el);
+        if (elemScores[el] === minElem && minElem <= 2) deficientElements.push(el);
+      });
+
+      let dominantModalities = [];
+      let deficientModalities = [];
+      let maxMod = -1;
+      let minMod = 99;
+
+      Object.keys(modScores).forEach(md => {
+        if (modScores[md] > maxMod) { maxMod = modScores[md]; }
+        if (modScores[md] < minMod) { minMod = modScores[md]; }
+      });
+      Object.keys(modScores).forEach(md => {
+        if (modScores[md] === maxMod && maxMod > 0) dominantModalities.push(md);
+        if (modScores[md] === minMod && minMod <= 2) deficientModalities.push(md);
+      });
+
+      // Construct interpretation texts
+      document.getElementById("dominantElementText").innerHTML = dominantElements.map(el => elementInterpretations[el].dominant).join("<br><br>");
+      document.getElementById("deficientElementText").innerHTML = deficientElements.map(el => elementInterpretations[el].deficient).join("<br><br>");
+      document.getElementById("dominantModalityText").innerHTML = dominantModalities.map(md => modalityInterpretations[md].dominant).join("<br><br>");
+      document.getElementById("deficientModalityText").innerHTML = deficientModalities.map(md => modalityInterpretations[md].deficient).join("<br><br>");
+
+      // Show results
+      document.getElementById("results").style.display = "block";
+      document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

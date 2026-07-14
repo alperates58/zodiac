@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doğum tarihinize, doğum saatinize ve doğum yerinize göre Ay burcunuzu, tam boylam derecesini, dakikasını, element ve nitelik yapısını hesaplayın.">
+  <meta property="og:title" content="Ay Burcu Hesaplayıcı — Zodyak Atlası">
+  <meta property="og:description" content="Doğum bilgilerinizi girerek Ay burcunuzu ve boylam derecesini saniyeler içinde hesaplayın.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/ay-burcu-hesaplayici.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/ay-burcu-hesaplayici.html">
+  <title>Ay Burcu Hesaplayıcı — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .calc-container {
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .calc-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(130, 150, 201, 0.05) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .calc-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: #8296c9;
+    }
+    .calc-hero p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .calc-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 600px) {
+      .form-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .input-group label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .input-control {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-control:focus {
+      border-color: #8296c9;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 1.1rem;
+      background: linear-gradient(135deg, #8296c9, #4a5c88);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: #030610;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(130, 150, 201, 0.2);
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(130, 150, 201, 0.4);
+    }
+    .warning-banner {
+      display: none;
+      background: rgba(243, 156, 18, 0.08);
+      border: 1px solid #f39c12;
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #f39c12;
+    }
+    .result-section {
+      display: none;
+      margin-top: 3rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .result-card {
+      background: rgba(130, 150, 201, 0.03);
+      border: 1px solid #8296c9;
+      border-radius: 8px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .moon-glyph {
+      font-size: 4rem;
+      color: #8296c9;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .moon-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: #fff;
+      margin: 0 0 0.5rem;
+    }
+    .moon-deg {
+      font-size: 1.1rem;
+      color: var(--gold-bright);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .trait-badges {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      padding: 0.5rem 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .desc-box {
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #cbd5e1;
+      text-align: left;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+    }
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .cta-btn {
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .cta-btn.primary {
+      background: var(--gold);
+      color: #030610;
+    }
+    .cta-btn.primary:hover {
+      background: var(--gold-bright);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+    .cta-btn.secondary {
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      background: rgba(255,255,255,0.02);
+    }
+    .cta-btn.secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hesaplayıcılar",
+      "item": "https://zodyakatlasi.com/hesaplayicilar.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ay Burcu Hesaplayıcı",
+      "item": "https://zodyakatlasi.com/ay-burcu-hesaplayici.html"
+    }]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Ay Burcu Hesaplayıcı",
+    "operatingSystem": "All",
+    "applicationCategory": "LifestyleApplication",
+    "browserRequirements": "requires HTML5, CSS3, JavaScript support",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "TRY"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <!-- Menü standardize_menus.ps1 ile doldurulacaktır -->
+    </nav>
+  </header>
+
+  <main class="calc-container">
+    <section class="calc-hero">
+      <h1>Ay Burcu Hesaplayıcı</h1>
+      <p>Doğum tarihi, saati ve yerine göre Ay'ın gökyüzündeki tam boylam derecesini hesaplayarak duygusal ihtiyaçlarınızı, iç dünyanızı ve bilinçaltı kalıplarınızı simgeleyen Ay burcunuzu öğrenin.</p>
+    </section>
+
+    <div class="calc-card">
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="birthDate">Doğum Tarihi</label>
+          <input type="date" id="birthDate" class="input-control" value="2000-01-01">
+        </div>
+        <div class="input-group" id="timeInputGroup">
+          <label for="birthTime">Doğum Saati</label>
+          <input type="time" id="birthTime" class="input-control" value="12:00">
+        </div>
+        <div class="input-group">
+          <label for="birthCity">Doğum Yeri</label>
+          <select id="birthCity" class="input-control">
+            <option value="">Yükleniyor...</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="unknownTime" onchange="toggleTimeField()">
+        <label for="unknownTime">Doğum saatimi bilmiyorum</label>
+      </div>
+
+      <div class="checkbox-group" id="dstGroup">
+        <input type="checkbox" id="dst" checked>
+        <label for="dst">Doğum tarihimde Yaz Saati (DST) uygulanıyordu (+1 Saat ekle)</label>
+      </div>
+
+      <button class="calc-btn" onclick="calculateMoonSign()">Ay Burcunu Hesapla</button>
+    </div>
+
+    <!-- Uyarı Bannerı -->
+    <div class="warning-banner" id="warningBanner">
+      ⚠️ <strong>Saat Bilinmiyor Uyarısı:</strong> Doğum saatiniz bilinmediği için hesaplama öğle saatine (12:00) göre yapılmıştır. Ay, zodyakta günde yaklaşık 13 derece yol aldığı için gün içinde burç değiştirmiş olabilir. Ay burcunuzun kesinliği için doğum saatinizi bulmanız tavsiye edilir.
+    </div>
+
+    <!-- Sonuç Ekranı -->
+    <div class="result-section" id="results">
+      <div class="result-card">
+        <span class="moon-glyph" id="resultGlyph">☽</span>
+        <h2 class="moon-title" id="resultName">Boğa Burcu</h2>
+        <div class="moon-deg" id="resultDegree">14° Boğa 23'</div>
+        
+        <div class="trait-badges">
+          <span class="badge" id="resultElement" style="border-color: #10ac84; color: #10ac84;">🌳 Toprak</span>
+          <span class="badge" id="resultModality" style="border-color: #3498db; color: #3498db;">⚱️ Sabit</span>
+        </div>
+
+        <div class="desc-box">
+          <p id="resultDesc">Duygusal ihtiyaçlar, iç dünyanız, alışkanlıklarınız ve kendinizi güvende hissetme biçiminiz Ay burcunuz tarafından yönetilir.</p>
+          <div class="cta-container">
+            <a id="detailLink" href="ay-burclari.html" class="cta-btn secondary">Ay Burçları Yorumları →</a>
+            <a href="dogum-haritasi.html" class="cta-btn primary">Tam Doğum Haritanı Çıkar ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const select = document.getElementById("birthCity");
+      if (select && typeof cityDatabase !== 'undefined') {
+        select.innerHTML = cityDatabase.map((c, idx) => 
+          `<option value="${idx}" ${c.name === 'İstanbul' ? 'selected' : ''}>${c.name} (${c.country})</option>`
+        ).join('');
+      }
+    });
+
+    function toggleTimeField() {
+      const isChecked = document.getElementById("unknownTime").checked;
+      const timeInputGroup = document.getElementById("timeInputGroup");
+      const dstGroup = document.getElementById("dstGroup");
+      if (isChecked) {
+        timeInputGroup.style.opacity = "0.5";
+        document.getElementById("birthTime").disabled = true;
+        dstGroup.style.display = "none";
+      } else {
+        timeInputGroup.style.opacity = "1";
+        document.getElementById("birthTime").disabled = false;
+        dstGroup.style.display = "flex";
+      }
+    }
+
+    const elementNames = {
+      'Koç': 'Ateş', 'Aslan': 'Ateş', 'Yay': 'Ateş',
+      'Boğa': 'Toprak', 'Başak': 'Toprak', 'Oğlak': 'Toprak',
+      'İkizler': 'Hava', 'Terazi': 'Hava', 'Kova': 'Hava',
+      'Yengeç': 'Su', 'Akrep': 'Su', 'Balık': 'Su'
+    };
+
+    const modalityNames = {
+      'Koç': 'Öncü', 'Yengeç': 'Öncü', 'Terazi': 'Öncü', 'Oğlak': 'Öncü',
+      'Boğa': 'Sabit', 'Aslan': 'Sabit', 'Akrep': 'Sabit', 'Kova': 'Sabit',
+      'İkizler': 'Değişken', 'Başak': 'Değişken', 'Yay': 'Değişken', 'Balık': 'Değişken'
+    };
+
+    const elementEmojis = { 'Ateş': '🔥 Ateş', 'Toprak': '🌳 Toprak', 'Hava': '💨 Hava', 'Su': '💧 Su' };
+    const modalityEmojis = { 'Öncü': '✦ Öncü', 'Sabit': '⚱️ Sabit', 'Değişken': '🌀 Değişken' };
+
+    const elementColors = { 'Ateş': '#ff9f43', 'Toprak': '#10ac84', 'Hava': '#54a0ff', 'Su': '#5f27cd' };
+    const modalityColors = { 'Öncü': '#d4af37', 'Sabit': '#3498db', 'Değişken': '#9b59b6' };
+
+    const moonInterpretations = {
+      'Koç': 'Ay\'ınız Koç burcunda. Duygusal dünyanız oldukça dinamik, bağımsız ve heyecan doludur. İçgüdüsel olarak hızlı tepki verirsiniz. Duygusal tatmininiz liderlik yapabilmenize ve kendinizi engellenmeden ortaya koyabilmenize bağlıdır.',
+      'Boğa': 'Ay\'ınız Boğa burcunda (Ay burada yücelimdedir). Duygusal olarak son derece huzurlu, sabırlı ve sadık bir yapıya sahipsiniz. Güvende olma ihtiyacınız yüksektir; maddi güvence, konfor ve sadakat sizin için vazgeçilmezdir.',
+      'İkizler': 'Ay\'ınız İkizler burcunda. Duygusal durumunuz zihinsel uyarılma ve iletişim ihtiyacıyla şekillenir. Hislerinizi konuşarak, yazarak paylaşmak istersiniz. Çift taraflı düşünme ve esneklik duygusal rahatlık getirir.',
+      'Yengeç': 'Ay\'ınız Yengeç burcunda (Ay burada kendi evindedir). Son derece hassas, koruyucu, sezgisel ve anaç bir duygusal yapıya sahipsiniz. Aileniz, yuvanız ve kökleriniz duygusal dünyanızın merkezidir.',
+      'Aslan': 'Ay\'ınız Aslan burcunda. Duygusal olarak sıcakkanlı, yaratıcı, cömert ve takdir edilmekten hoşlanan birisiniz. Sevdiklerinizi yüceltir ve korursunuz. Duygusal tatmininiz ilgi görmekten ve parlamaktan geçer.',
+      'Başak': 'Ay\'ınız Başak burcunda. Duygusal dünyanız analiz, fayda sağlama ve düzen üzerine kuruludur. Sevginizi sevdiklerinize hizmet ederek, onların sorunlarını pratik yollarla çözerek gösterirsiniz.',
+      'Terazi': 'Ay\'ınız Terazi burcunda. Uyum, denge, diplomasi ve adalet duygusal olarak en çok ihtiyaç duyduğunuz temalardır. Yalnız kalmaktan hoşlanmaz, hayatı bir ortakla paylaşma ihtiyacı hissedersiniz.',
+      'Akrep': 'Ay\'ınız Akrep burcunda. Duygularınızı son derece yoğun, tutkulu ve derinden yaşarsınız. Sezgileriniz çok güçlüdür ve olayların arkasındaki gizli niyetleri hemen çözersiniz. Güven sizin için en önemli sınavdır.',
+      'Yay': 'Ay\'ınız Yay burcunda. Duygusal olarak iyimser, neşeli, keşifçi ve özgürlüğüne düşkün birisiniz. Yeni kültürler öğrenmek, felsefi konulara eğilmek ve sınırlanmamak duygusal tatmin sağlar.',
+      'Oğlak': 'Ay\'ınız Oğlak burcunda. Duygusal olarak olgun, temkinli, disiplinli ve sorumluluk bilinci yüksek birisiniz. Hislerinizi dışarı vurmakta zorlanabilir, sevdiklerinize karşı koruyuculuğu sorumluluk alarak gösterirsiniz.',
+      'Kova': 'Ay\'ınız Kova burcunda. Duygusal dünyanız bağımsız, insani ve vizyonerdir. Geleneksel duygusal kalıplara sığmakta zorlanabilirsiniz. Arkadaşlıklar, entelektüel paylaşımlar ve toplumsal temalar ön plandadır.',
+      'Balık': 'Ay\'ınız Balık burcunda. Olağanüstü düzeyde empatik, hayal gücü geniş, sezgisel ve fedakar bir duygusal yapınız var. Evrensel sevgi ve şifa enerjisini derinden hisseder, sevdiklerinizin acılarını paylaşırsınız.'
+    };
+
+    const signSlugs = {
+      'Koç': 'koc', 'Boğa': 'boga', 'İkizler': 'ikizler', 'Yengeç': 'yengec',
+      'Aslan': 'aslan', 'Başak': 'basak', 'Terazi': 'terazi', 'Akrep': 'akrep',
+      'Yay': 'yay', 'Oğlak': 'oglak', 'Kova': 'kova', 'Balık': 'balik'
+    };
+
+    function calculateMoonSign() {
+      const dateVal = document.getElementById("birthDate").value;
+      const unknownTime = document.getElementById("unknownTime").checked;
+      const timeVal = unknownTime ? "12:00" : document.getElementById("birthTime").value;
+      const cityIdx = document.getElementById("birthCity").value;
+      const dstChecked = document.getElementById("dst").checked;
+
+      if (!dateVal || cityIdx === "") {
+        alert("Lütfen doğum tarihi ve doğum yeri bilgilerini giriniz.");
+        return;
+      }
+
+      const dateParts = dateVal.split('-').map(Number);
+      const timeParts = timeVal.split(':').map(Number);
+      const city = cityDatabase[Number(cityIdx)];
+      let tz = city.tz;
+      if (dstChecked && !unknownTime) {
+        tz += 1.0;
+      }
+
+      let jd = null;
+      let moonLong = null;
+      let calculatedWithNewEngine = false;
+
+      // 1. Calculate using AstroAdapter
+      try {
+        jd = AstroAdapter.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        moonLong = AstroAdapter.getMoonLongitude(jd);
+        calculatedWithNewEngine = true;
+      } catch (e) {
+        console.warn("AstroAdapter failed, falling back to AstroCalc:", e);
+      }
+
+      if (!calculatedWithNewEngine) {
+        const jdOld = AstroCalc.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+        moonLong = AstroCalc.getMoonLongitude(jdOld);
+      }
+
+      const sign = AstroCalc.getZodiacSign(moonLong);
+      const elem = elementNames[sign.name];
+      const mod = modalityNames[sign.name];
+
+      // Update values
+      document.getElementById("resultGlyph").textContent = sign.glyph;
+      document.getElementById("resultName").textContent = `Ay Burcunuz: ${sign.name}`;
+      document.getElementById("resultDegree").textContent = `Boylam Konumu: ${sign.degree}° ${sign.name} ${sign.minute}'`;
+
+      const elemBadge = document.getElementById("resultElement");
+      elemBadge.textContent = elementEmojis[elem];
+      elemBadge.style.borderColor = elementColors[elem];
+      elemBadge.style.color = elementColors[elem];
+
+      const modBadge = document.getElementById("resultModality");
+      modBadge.textContent = modalityEmojis[mod];
+      modBadge.style.borderColor = modalityColors[mod];
+      modBadge.style.color = modalityColors[mod];
+
+      document.getElementById("resultDesc").innerHTML = `
+        <p>${moonInterpretations[sign.name]}</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-top: 1rem;">
+          Ay burcu haritamızın gölge yönlerini, beslenme biçimimizi, çocukluk anılarımızı ve anneyle olan ilişkilerimizi de yönetir. 
+          Astrolojik olarak Ay, <strong>${elem}</strong> elementine ve <strong>${mod}</strong> niteliğe sahiptir.
+        </p>
+      `;
+
+      // Set correct URL for details
+      const slug = signSlugs[sign.name];
+      document.getElementById("detailLink").href = `burclar/${slug}-ask.html`; // Direct link to Moon sign's topic page or general Moon signs list
+      document.getElementById("detailLink").textContent = `${sign.name} Burcu Aşk & İlişkileri →`;
+
+      // Show/hide warning banner
+      document.getElementById("warningBanner").style.display = unknownTime ? "block" : "none";
+
+      // Show results
+      document.getElementById("results").style.display = "block";
+      document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
