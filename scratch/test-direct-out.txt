@@ -1,0 +1,976 @@
+﻿<!DOCTYPE html>
+<html lang="tr"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Do─şum haritas─▒ yorumlama rehberi. Gezegenler, evler, a├ğ─▒lar ve harita analizi hakk─▒nda detayl─▒ bilgiler.">
+  <title>Do─şum Haritas─▒ Rehberi ÔÇö Zodyak Atlas─▒</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <style>
+    .chart-guide-container {
+      max-width: 1100px;
+      margin: 120px auto 80px;
+      padding: 0 6vw;
+    }
+    .chart-hero {
+      text-align: center;
+      margin-bottom: 5rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      padding: 4rem 2rem;
+      border-radius: 8px;
+    }
+    .chart-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .chart-hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5rem;
+    }
+    .guide-block {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 5rem;
+    }
+    .guide-block:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .guide-block h2 {
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .guide-block h2 span {
+      font-size: 1.5rem;
+      color: var(--coral);
+    }
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .info-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 2.2rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .info-card span {
+      font-size: 3rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+    .info-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .info-card p {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .houses-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .house-item {
+      background: var(--glass-bg);
+      border-left: 3px solid var(--coral);
+      padding: 2rem;
+      border-radius: 0 6px 6px 0;
+      border-top: 1px solid var(--glass-border);
+      border-right: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .house-item h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .house-item p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    
+    @media(max-width: 1050px) {
+      .info-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media(max-width: 768px) {
+      .info-cards, .houses-list {
+        grid-template-columns: 1fr;
+      }
+      .chart-guide-container {
+        padding: 0 1.5rem;
+      }
+      #yukselen-hesaplayici .info-card {
+        padding: 1.5rem !important;
+      }
+      .birth-fields {
+        grid-template-columns: 1fr !important;
+      }
+    }
+    @media(max-width: 480px) {
+      .chart-hero {
+        padding: 3rem 1rem;
+      }
+      .chart-hero h1 {
+        font-size: 2.15rem;
+        overflow-wrap: anywhere;
+      }
+      .guide-grid,
+      .guide-block,
+      .info-cards,
+      .houses-list,
+      .info-card,
+      .house-item {
+        min-width: 0;
+        max-width: 100%;
+      }
+      .guide-block h2 {
+        min-width: 0;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        font-size: 1.6rem;
+        overflow-wrap: anywhere;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>Ô£Ğ</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Men├╝</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Bur├ğ</a>
+      <a href="dogum-haritasi.html">Do─şum Haritas─▒</a>
+      <a href="uyum.html">Bur├ğ Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">S├Âzl├╝k</a>
+      <a href="cin-burclari.html">├çin Bur├ğlar─▒</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama ­şöı</a>
+    </nav>
+  </header>
+
+  <main class="chart-guide-container">
+    <div class="star-field" aria-hidden="true"></div>
+    
+    <section class="chart-hero">
+      <p class="eyebrow" style="justify-content: center;">Kozmik Foto─şraf─▒n─▒z</p>
+      <h1>Do─şum Haritas─▒ Rehberi</h1>
+      <p>
+        Do─şum haritas─▒ (Natal Harita), do─şdu─şunuz an ve yer koordinatlar─▒na g├Âre g├Âky├╝z├╝n├╝n ├ğ─▒kart─▒lan sembolik haritas─▒d─▒r. Hayat yolculu─şunuzun, potansiyellerinizin, g├Âlge y├Ânlerinizin ve kader d├Âng├╝lerinizin kozmik k─▒lavuzudur.
+      </p>
+    </section>
+
+    <div class="guide-grid">
+      <!-- 1. B├Âl├╝m: B├╝y├╝k ├£├ğl├╝ -->
+      <section class="guide-block">
+        <h2><span>01</span> B├╝y├╝k ├£├ğl├╝ (├ûz Benli─şiniz)</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8;">
+          Do─şum haritas─▒ndaki en temel ├╝├ğ yerle┼şimdir. Ki┼şili─şin ├ğekirde─şini, ruhsal ihtiya├ğlar─▒ ve d─▒┼ş d├╝nyaya yans─▒t─▒lan maskeyi temsil ederler.
+        </p>
+        <div class="info-cards">
+          <div class="info-card">
+            <span>Ôİë</span>
+            <h3>G├╝ne┼ş Burcu</h3>
+            <p>
+              ─░radenizi, temel ya┼şam g├╝c├╝n├╝z├╝, egonuzu ve hayatta parlamak istedi─şiniz alan─▒ simgeler. "Ben kimim?" sorusunun yan─▒t─▒ G├╝ne┼ş burcundad─▒r. Karakterinizin ana omurgas─▒d─▒r.
+            </p>
+          </div>
+          <div class="info-card">
+            <span>Ôİ¢</span>
+            <h3>Ay Burcu</h3>
+            <p>
+              Duygusal ihtiya├ğlar─▒n─▒z─▒, i├ğ d├╝nyan─▒z─▒, i├ğg├╝d├╝lerinizi ve kendinizi g├╝vende hissetme bi├ğiminizi simgeler. Olaylara verdi─şiniz ilk anl─▒k duygusal tepki Ay burcunuzun dilindedir.
+            </p>
+          </div>
+          <div class="info-card">
+            <span>ASC</span>
+            <h3>Y├╝kselen Bur├ğ</h3>
+            <p>
+              Do─şdu─şunuz anda do─şu ufkunda y├╝kselen bur├ğtur. D─▒┼ş d├╝nyaya g├Âsterdi─şiniz maskeniz, ilk izleniminiz, fiziksel g├Âr├╝n├╝┼ş├╝n├╝z ve hayata kar┼ş─▒ geli┼ştirdi─şiniz savunma mekanizmalar─▒d─▒r.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. B├Âl├╝m: Y├╝kselen Bur├ğ Hesaplay─▒c─▒ -->
+      <section class="guide-block" id="yukselen-hesaplayici">
+        <h2><span>Ô£Ğ</span> Kozmik Hesaplay─▒c─▒: B├╝y├╝k ├£├ğl├╝ Bulucu (G├╝ne┼ş, Ay &amp; Y├╝kselen)</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8;">
+          Bu ara├ğ do─şum tarihi, saati ve enlem/boylam koordinatlar─▒n─▒ kullanarak G├╝ne┼ş, Ay ve Y├╝kselen yerle┼şimlerinizi (B├╝y├╝k ├£├ğl├╝) ger├ğek g├Âk cismi boylamlar─▒ temelinde hesaplar.
+        </p>
+        <div class="info-card" style="max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 1px solid var(--line); padding: 2.5rem; border-radius: 8px;">
+          <div style="margin-bottom: 1.5rem;">
+            <label for="calcBirthDate" style="display: block; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Do─şum Tarihiniz</label>
+            <input type="date" id="calcBirthDate" value="2000-01-01" style="width: 100%; padding: 0.8rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none;">
+          </div>
+          <div class="birth-fields" style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label for="calcBirthTime" style="display: block; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Do─şum Saati</label>
+              <input type="time" id="calcBirthTime" value="12:00" style="width: 100%; padding: 0.8rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none;">
+            </div>
+            <div>
+              <label for="calcCity" style="display: block; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Do─şum Yeri</label>
+              <select id="calcCity" style="width: 100%; padding: 0.8rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none; cursor: pointer;"><option value="0">Adana (T├╝rkiye)</option><option value="1">Ad─▒yaman (T├╝rkiye)</option><option value="2">Afyonkarahisar (T├╝rkiye)</option><option value="3">A─şr─▒ (T├╝rkiye)</option><option value="4">Amasya (T├╝rkiye)</option><option value="5">Ankara (T├╝rkiye)</option><option value="6">Antalya (T├╝rkiye)</option><option value="7">Artvin (T├╝rkiye)</option><option value="8">Ayd─▒n (T├╝rkiye)</option><option value="9">Bal─▒kesir (T├╝rkiye)</option><option value="10">Bilecik (T├╝rkiye)</option><option value="11">Bing├Âl (T├╝rkiye)</option><option value="12">Bitlis (T├╝rkiye)</option><option value="13">Bolu (T├╝rkiye)</option><option value="14">Burdur (T├╝rkiye)</option><option value="15">Bursa (T├╝rkiye)</option><option value="16">├çanakkale (T├╝rkiye)</option><option value="17">├çank─▒r─▒ (T├╝rkiye)</option><option value="18">├çorum (T├╝rkiye)</option><option value="19">Denizli (T├╝rkiye)</option><option value="20">Diyarbak─▒r (T├╝rkiye)</option><option value="21">Edirne (T├╝rkiye)</option><option value="22">Elaz─▒─ş (T├╝rkiye)</option><option value="23">Erzincan (T├╝rkiye)</option><option value="24">Erzurum (T├╝rkiye)</option><option value="25">Eski┼şehir (T├╝rkiye)</option><option value="26">Gaziantep (T├╝rkiye)</option><option value="27">Giresun (T├╝rkiye)</option><option value="28">G├╝m├╝┼şhane (T├╝rkiye)</option><option value="29">Hakkari (T├╝rkiye)</option><option value="30">Hatay (T├╝rkiye)</option><option value="31">Isparta (T├╝rkiye)</option><option value="32">Mersin (T├╝rkiye)</option><option value="33" selected="">─░stanbul (T├╝rkiye)</option><option value="34">─░zmir (T├╝rkiye)</option><option value="35">Kars (T├╝rkiye)</option><option value="36">Kastamonu (T├╝rkiye)</option><option value="37">Kayseri (T├╝rkiye)</option><option value="38">K─▒rklareli (T├╝rkiye)</option><option value="39">K─▒r┼şehir (T├╝rkiye)</option><option value="40">Kocaeli (T├╝rkiye)</option><option value="41">Konya (T├╝rkiye)</option><option value="42">K├╝tahya (T├╝rkiye)</option><option value="43">Malatya (T├╝rkiye)</option><option value="44">Manisa (T├╝rkiye)</option><option value="45">Kahramanmara┼ş (T├╝rkiye)</option><option value="46">Mardin (T├╝rkiye)</option><option value="47">Mu─şla (T├╝rkiye)</option><option value="48">Mu┼ş (T├╝rkiye)</option><option value="49">Nev┼şehir (T├╝rkiye)</option><option value="50">Ni─şde (T├╝rkiye)</option><option value="51">Ordu (T├╝rkiye)</option><option value="52">Rize (T├╝rkiye)</option><option value="53">Sakarya (T├╝rkiye)</option><option value="54">Samsun (T├╝rkiye)</option><option value="55">Siirt (T├╝rkiye)</option><option value="56">Sinop (T├╝rkiye)</option><option value="57">Sivas (T├╝rkiye)</option><option value="58">Tekirda─ş (T├╝rkiye)</option><option value="59">Tokat (T├╝rkiye)</option><option value="60">Trabzon (T├╝rkiye)</option><option value="61">Tunceli (T├╝rkiye)</option><option value="62">┼Şanl─▒urfa (T├╝rkiye)</option><option value="63">U┼şak (T├╝rkiye)</option><option value="64">Van (T├╝rkiye)</option><option value="65">Yozgat (T├╝rkiye)</option><option value="66">Zonguldak (T├╝rkiye)</option><option value="67">Aksaray (T├╝rkiye)</option><option value="68">Bayburt (T├╝rkiye)</option><option value="69">Karaman (T├╝rkiye)</option><option value="70">K─▒r─▒kkale (T├╝rkiye)</option><option value="71">Batman (T├╝rkiye)</option><option value="72">┼Ş─▒rnak (T├╝rkiye)</option><option value="73">Bart─▒n (T├╝rkiye)</option><option value="74">Ardahan (T├╝rkiye)</option><option value="75">I─şd─▒r (T├╝rkiye)</option><option value="76">Yalova (T├╝rkiye)</option><option value="77">Karab├╝k (T├╝rkiye)</option><option value="78">Kilis (T├╝rkiye)</option><option value="79">Osmaniye (T├╝rkiye)</option><option value="80">D├╝zce (T├╝rkiye)</option><option value="81">Londra (─░ngiltere)</option><option value="82">New York (ABD)</option><option value="83">Paris (Fransa)</option><option value="84">Berlin (Almanya)</option><option value="85">Bak├╝ (Azerbaycan)</option><option value="86">Moskova (Rusya)</option><option value="87">Tokyo (Japonya)</option><option value="88">Kahire (M─▒s─▒r)</option><option value="89">Roma (─░talya)</option><option value="90">Sidney (Avustralya)</option><option value="91">Tromso (Norway)</option></select>
+            </div>
+          </div>
+          <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="calcDST" checked="" style="cursor: pointer; width: 18px; height: 18px;">
+            <label for="calcDST" style="font-size: 0.9rem; color: var(--muted); cursor: pointer; user-select: none;">Do─şum tarihimde Yaz Saati (DST) uygulan─▒yordu (+1 Saat ekle)</label>
+          </div>
+          <button onclick="calculateBigThree()" style="width: 100%; padding: 1.1rem; background: linear-gradient(135deg, #d4af37, #967012); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #030610; font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 15px var(--gold-glow);">B├╝y├╝k ├£├ğl├╝n├╝ Hesapla</button>
+          
+          <!-- Sonu├ğ Ekran─▒ -->
+          <div id="risingResult" style="display: block; margin-top: 2.5rem; padding: 2rem; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border: 1px solid var(--gold); text-align: left; animation: 0.5s ease 0s 1 normal none running slideUp;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center; font-size: 1.6rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Hesaplanan Kozmik Portre</h3>
+            
+            <div class="trait-grid" style="grid-template-columns: 1fr; gap: 1.5rem;">
+              <!-- G├╝ne┼ş Burcu Kart─▒ -->
+              <div class="trait-card" style="border-left: 4px solid var(--gold); background: rgba(255,255,255,0.01);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff;">Ôİë G├£NE┼Ş BURCU (├ûZ BENL─░K)</h4>
+                  <span id="sunGlyph" style="font-size: 2rem; color: var(--gold-bright);">ÔÖè</span>
+                </div>
+                <p style="margin: 0.5rem 0 0.8rem; font-size: 1.3rem; font-weight: 600; color: var(--gold-bright);" id="sunName">─░kizler (24┬░ 20')</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;" id="sunDesc">Merakl─▒, entelekt├╝el, konu┼şkan ve esnek ileti┼şim g├╝c├╝.</p>
+              </div>
+
+              <!-- Ay Burcu Kart─▒ -->
+              <div class="trait-card" style="border-left: 4px solid #8296c9; background: rgba(255,255,255,0.01);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff;">Ôİ¢ AY BURCU (─░├ç D├£NYA)</h4>
+                  <span id="moonGlyph" style="font-size: 2rem; color: #8296c9;">ÔÖë</span>
+                </div>
+                <p style="margin: 0.5rem 0 0.8rem; font-size: 1.3rem; font-weight: 600; color: #8296c9;" id="moonName">Bo─şa (20┬░ 52')</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;" id="moonDesc">G├╝venilir, huzurlu, estetik ve sa─şlam ad─▒mlarla ilerleyen k├Âklenme.</p>
+              </div>
+
+              <!-- Y├╝kselen Bur├ğ Kart─▒ -->
+              <div class="trait-card" style="border-left: 4px solid var(--coral); background: rgba(255,255,255,0.01);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: #fff;">ASC Y├£KSELEN BUR├ç (DI┼Ş MASKE)</h4>
+                  <span id="risingGlyph" style="font-size: 2rem; color: var(--coral);">ÔÖê</span>
+                </div>
+                <p style="margin: 0.5rem 0 0.8rem; font-size: 1.3rem; font-weight: 600; color: var(--coral);" id="risingSignName">Ko├ğ (10┬░ 6')</p>
+                <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;" id="risingSignInterpretation">Cesur, lider, sab─▒rs─▒z ve ├Ânc├╝ bir eylem enerjisi.</p>
+              </div>
+            </div>
+
+            <!-- Kombinasyon ├ûzeti -->
+            <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--line); border-radius: 6px;">
+              <h4 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">­şÄ¡ B├£Y├£K ├£├çL├£ KOMB─░NASYON ANAL─░Z─░</h4>
+              <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin: 0;" id="comboAnalysis">D─▒┼ş d├╝nyaya sundu─şunuz maskeniz ve hayata ilk yakla┼ş─▒m─▒n─▒z <strong>Ko├ğ (Y├╝kselen Ate┼ş)</strong> enerjisiyle ┼şekilleniyor. ─░nsanlar sizi ilk etapta bu ├Âzelliklerle alg─▒lar. Ancak i├ğ d├╝nyan─▒zda ve duygusal s─▒─ş─▒naklar─▒n─▒zda <strong>Bo─şa (Ay Toprak)</strong> yer al─▒yor; huzuru ve tatmini bu temalarda ar─▒yorsunuz. ├ûz kimli─şiniz, iradeniz ve hayattaki parlama amac─▒n─▒z ise <strong>─░kizler (G├╝ne┼ş Hava)</strong> arketipiyle par─▒ld─▒yor. <strong>Hava</strong>, <strong>Toprak</strong> ve <strong>Ate┼ş</strong> elementlerinin bu e┼şsiz kombinasyonu, karakterinizde ak─▒l, duygu ve pratik eylem g├╝c├╝ aras─▒nda zengin bir sentez olu┼şturuyor.</p>
+            </div>
+
+            <!-- Sistem Uyar─▒lar─▒ ve Bilgilendirmeler -->
+            <div id="systemDisclaimers" style="margin-top: 1.5rem; font-size: 0.85rem; line-height: 1.5; color: var(--muted);">
+              <div id="timezoneDisclaimer" style="display: block; margin-bottom: 0.4rem;">* Tarihsel saat fark─▒ hassasiyeti co─şrafi ve tarihsel k─▒s─▒tlar nedeniyle s─▒n─▒rl─▒ olabilir (Ge├ğici say─▒sal saat dilimi: UTC <span id="debugTzOffset">+2</span>).</div>
+              <div id="latitudeDisclaimer" style="display: block; color: var(--coral);">* Y├╝ksek enlem co─şrafyas─▒ nedeniyle ev sistemi Whole Sign (T├╝m Bur├ğ) olarak s─▒n─▒rland─▒r─▒lm─▒┼şt─▒r.</div>
+            </div>
+
+            <!-- Kullan─▒c─▒ya G├Âr├╝nmeyen/Arka Plan Debug/Validation Paneli -->
+            <div id="debugValidationPanel" style="display: none; margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #888;">
+              <div><strong>Hesaplama Motoru:</strong> <span id="debugEngineName">AstroAdapter (Yeni)</span></div>
+              <div id="debugFallbackContainer" style="display: none; color: var(--coral); margin-top: 0.3rem;"><strong>Hata / Fallback:</strong> <span id="debugErrorDetail"></span></div>
+            </div>
+            
+            <!-- SVG Natal Harita ├çemberi ve Gezegen Tablosu -->
+            <div id="chartWheelContainer" style="margin: 2.5rem auto 1.5rem; max-width: 450px; text-align: center; display: block;">
+              <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase;">Ô£Ğ Do─şum Haritas─▒ ├çemberi</h4>
+              <div style="position: relative; width: 100%; padding-bottom: 100%;">
+                <svg id="natalChartSvg" viewBox="0 0 500 500" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #030610; border: 1px solid var(--glass-border); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.6);"><circle cx="250" cy="250" r="220" stroke="var(--gold)" stroke-width="2" fill="none"></circle><circle cx="250" cy="250" r="190" stroke="#1f2937" stroke-width="1.5" fill="none"></circle><circle cx="250" cy="250" r="100" stroke="#1f2937" stroke-width="1.5" fill="none"></circle><line x1="151.5547749964919" y1="232.43475949471056" x2="33.42050499228213" y2="211.35647088836325" stroke="var(--coral)" stroke-width="2"></line><text x="45.744141635381" y="267.45119834660943" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖê</text><text x="135.41744530765277" y="259.7896966334638" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">1</text><line x1="155.96131401304226" y1="284.01066800059" x2="43.11489082869295" y2="324.823469601298" stroke="#1f2937" stroke-width="1"></line><text x="81.8348369577484" y="367.2411102769542" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖë</text><text x="155.66344512263936" y="315.76940332609627" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">2</text><line x1="185.5654429970819" y1="326.4734454816683" x2="108.24397459358016" y2="418.2415800596703" stroke="#1f2937" stroke-width="1"></line><text x="162.98525191233517" y="435.6163613888609" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖè</text><text x="201.186848633749" y="354.12625151082443" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">3</text><line x1="232.43475949471056" y1="348.4452250035081" x2="211.35647088836325" y2="466.57949500771787" stroke="#1f2937" stroke-width="1"></line><text x="267.4511983466094" y="454.25585836461903" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖï</text><text x="259.7896966334638" y="364.58255469234723" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">4</text><line x1="284.01066800059" y1="344.0386859869577" x2="324.82346960129803" y2="456.885109171307" stroke="#1f2937" stroke-width="1"></line><text x="367.24111027695415" y="418.1651630422516" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖî</text><text x="315.76940332609627" y="344.33655487736064" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">5</text><line x1="326.4734454816683" y1="314.43455700291815" x2="418.24158005967024" y2="391.7560254064199" stroke="#1f2937" stroke-width="1"></line><text x="435.6163613888609" y="337.0147480876648" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖı</text><text x="354.12625151082443" y="298.81315136625096" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">6</text><line x1="348.4452250035081" y1="267.56524050528947" x2="466.5794950077178" y2="288.6435291116368" stroke="#1f2937" stroke-width="1"></line><text x="454.25585836461903" y="232.54880165339065" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖÄ</text><text x="364.58255469234723" y="240.2103033665362" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">7</text><line x1="344.0386859869578" y1="215.98933199941" x2="456.8851091713071" y2="175.17653039870206" stroke="#1f2937" stroke-width="1"></line><text x="418.1651630422516" y="132.7588897230458" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖÅ</text><text x="344.33655487736064" y="184.23059667390373" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">8</text><line x1="314.43455700291815" y1="173.5265545183317" x2="391.7560254064199" y2="81.7584199403297" stroke="#1f2937" stroke-width="1"></line><text x="337.0147480876648" y="64.38363861113905" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖÉ</text><text x="298.813151366251" y="145.87374848917557" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">9</text><line x1="267.56524050528947" y1="151.5547749964919" x2="288.6435291116368" y2="33.42050499228216" stroke="#1f2937" stroke-width="1"></line><text x="232.54880165339068" y="45.744141635381" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖæ</text><text x="240.21030336653624" y="135.41744530765277" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">10</text><line x1="215.98933199941" y1="155.96131401304226" x2="175.17653039870203" y2="43.11489082869295" stroke="#1f2937" stroke-width="1"></line><text x="132.75888972304583" y="81.83483695774837" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖÆ</text><text x="184.23059667390376" y="155.66344512263933" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">11</text><line x1="173.52655451833172" y1="185.56544299708185" x2="81.75841994032979" y2="108.24397459358005" stroke="#1f2937" stroke-width="1"></line><text x="64.38363861113908" y="162.98525191233514" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖô</text><text x="145.87374848917557" y="201.18684863374898" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">12</text><line x1="222.81206211980867" y1="346.2331337628722" x2="190.28329017556985" y2="169.78831402005812" stroke="#8296c9" stroke-width="1" opacity="0.4"></line><line x1="222.81206211980867" y1="346.2331337628722" x2="342.71508206701645" y2="212.53116551977624" stroke="#8296c9" stroke-width="1" opacity="0.4"></line><line x1="174.2623771006729" y1="315.29787498502014" x2="190.28329017556985" y2="169.78831402005812" stroke="#ef476f" stroke-width="1" opacity="0.4"></line><line x1="174.2623771006729" y1="315.29787498502014" x2="323.6205882631299" y2="182.32423636344615" stroke="#e76f51" stroke-width="1" opacity="0.4"></line><line x1="239.1371086162198" y1="349.40823703689847" x2="162.12217274460318" y2="297.72302878978485" stroke="#06d6a0" stroke-width="1" opacity="0.4"></line><line x1="239.1371086162198" y1="349.40823703689847" x2="239.42157720086314" y2="349.4389107496794" stroke="var(--gold)" stroke-width="1" opacity="0.4"></line><line x1="239.1371086162198" y1="349.40823703689847" x2="263.32337397709045" y2="150.89153564974083" stroke="#e76f51" stroke-width="1" opacity="0.4"></line><line x1="239.1371086162198" y1="349.40823703689847" x2="342.71508206701645" y2="212.53116551977624" stroke="#8296c9" stroke-width="1" opacity="0.4"></line><line x1="162.12217274460318" y1="297.72302878978485" x2="239.42157720086314" y2="349.4389107496794" stroke="#06d6a0" stroke-width="1" opacity="0.4"></line><line x1="162.12217274460318" y1="297.72302878978485" x2="263.32337397709045" y2="150.89153564974083" stroke="#8296c9" stroke-width="1" opacity="0.4"></line><line x1="162.12217274460318" y1="297.72302878978485" x2="342.71508206701645" y2="212.53116551977624" stroke="#e76f51" stroke-width="1" opacity="0.4"></line><line x1="239.42157720086314" y1="349.4389107496794" x2="263.32337397709045" y2="150.89153564974083" stroke="#e76f51" stroke-width="1" opacity="0.4"></line><line x1="239.42157720086314" y1="349.4389107496794" x2="342.71508206701645" y2="212.53116551977624" stroke="#8296c9" stroke-width="1" opacity="0.4"></line><line x1="190.28329017556985" y1="169.78831402005812" x2="323.6205882631299" y2="182.32423636344615" stroke="#ef476f" stroke-width="1" opacity="0.4"></line><line x1="190.28329017556985" y1="169.78831402005812" x2="291.4467315013507" y2="158.99358018329178" stroke="#06d6a0" stroke-width="1" opacity="0.4"></line><line x1="263.32337397709045" y1="150.89153564974083" x2="342.71508206701645" y2="212.53116551977624" stroke="#06d6a0" stroke-width="1" opacity="0.4"></line><circle cx="209.21809317971298" cy="394.3497006443083" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="209.21809317971298" y="394.3497006443083" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">Ôİë</text><circle cx="125.03292221611025" cy="357.74149372528325" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="125.03292221611025" y="357.74149372528325" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">Ôİ¢</text><circle cx="233.70566292432972" cy="399.1123555553477" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="233.70566292432972" y="399.1123555553477" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">Ôİ┐</text><circle cx="105.00158502859523" cy="328.74299750314503" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="105.00158502859523" y="328.74299750314503" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖÇ</text><circle cx="234.1323658012947" cy="399.15836612451903" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="234.1323658012947" y="399.15836612451903" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖé</text><circle cx="151.46742878969025" cy="117.65071813309586" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="151.46742878969025" y="117.65071813309586" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖâ</text><circle cx="360.4308823946948" cy="148.4863545451692" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="360.4308823946948" y="148.4863545451692" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖä</text><circle cx="318.38710697722865" cy="99.83940730243143" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="318.38710697722865" y="99.83940730243143" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖà</text><circle cx="269.9850609656357" cy="101.33730347461128" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="269.9850609656357" y="101.33730347461128" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖå</text><circle cx="402.97988541057714" cy="188.17642310763077" r="7" fill="#030610" stroke="#1f2937" stroke-width="1"></circle><text x="402.97988541057714" y="188.17642310763077" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">ÔÖç</text></svg>
+              </div>
+            </div>
+
+            <div id="planetsTableContainer" style="margin-top: 2rem; display: block;">
+              <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; text-align: center;">Ô£Ğ Gezegen Konumlar─▒ ve Evler</h4>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; color: #cbd5e1;">
+                  <thead>
+                    <tr style="border-bottom: 1px solid var(--line); color: var(--gold-bright); font-family: 'Cinzel', serif;">
+                      <th style="padding: 0.75rem 0.5rem;">G├Âk Cismi</th>
+                      <th style="padding: 0.75rem 0.5rem;">Bur├ğ</th>
+                      <th style="padding: 0.75rem 0.5rem;">Derece</th>
+                      <th style="padding: 0.75rem 0.5rem;">Ev</th>
+                    </tr>
+                  </thead>
+                  <tbody id="planetsTableBody">
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">Ôİë G├╝ne┼ş</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖè ─░kizler</td>
+            <td style="padding: 0.6rem 0.5rem;">24┬░ 20'</td>
+            <td style="padding: 0.6rem 0.5rem;">3. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">Ôİ¢ Ay</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖë Bo─şa</td>
+            <td style="padding: 0.6rem 0.5rem;">20┬░ 52'</td>
+            <td style="padding: 0.6rem 0.5rem;">2. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">Ôİ┐ Merk├╝r</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖï Yenge├ğ</td>
+            <td style="padding: 0.6rem 0.5rem;">3┬░ 52'</td>
+            <td style="padding: 0.6rem 0.5rem;">4. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖÇ Ven├╝s</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖë Bo─şa</td>
+            <td style="padding: 0.6rem 0.5rem;">8┬░ 37'</td>
+            <td style="padding: 0.6rem 0.5rem;">2. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖé Mars</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖï Yenge├ğ</td>
+            <td style="padding: 0.6rem 0.5rem;">4┬░ 2'</td>
+            <td style="padding: 0.6rem 0.5rem;">4. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖâ J├╝piter</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖÆ Kova</td>
+            <td style="padding: 0.6rem 0.5rem;">16┬░ 47'</td>
+            <td style="padding: 0.6rem 0.5rem;">11. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖä Sat├╝rn</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖÅ Akrep</td>
+            <td style="padding: 0.6rem 0.5rem;">22┬░ 42'</td>
+            <td style="padding: 0.6rem 0.5rem;">8. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖà Uran├╝s</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖÉ Yay</td>
+            <td style="padding: 0.6rem 0.5rem;">15┬░ 37'</td>
+            <td style="padding: 0.6rem 0.5rem;">9. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖå Nept├╝n</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖæ O─şlak</td>
+            <td style="padding: 0.6rem 0.5rem;">2┬░ 27'</td>
+            <td style="padding: 0.6rem 0.5rem;">10. Ev</td>
+          </tr>
+        
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">ÔÖç Pl├╝ton</td>
+            <td style="padding: 0.6rem 0.5rem;">ÔÖÅ Akrep</td>
+            <td style="padding: 0.6rem 0.5rem;">2┬░ 7'</td>
+            <td style="padding: 0.6rem 0.5rem;">8. Ev</td>
+          </tr>
+        </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Sabit Y─▒ld─▒z Kavu┼şumlar─▒ Raporu -->
+            <div id="starConjunctionsContainer" style="margin-top: 2rem; display: block; padding: 1.2rem; background: rgba(255, 209, 102, 0.02); border: 1px dashed rgba(255, 209, 102, 0.2); border-radius: 6px;">
+              <h4 style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase;">Ô£¿ Sabit Y─▒ld─▒z Kavu┼şumlar─▒</h4>
+              <ul id="starConjunctionsList" style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.6; color: #cbd5e1;"><li>Bu do─şum haritas─▒nda ├Âne ├ğ─▒kan sabit y─▒ld─▒z kavu┼şumu bulunmamaktad─▒r.</li></ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+              <a id="risingDetailLink" href="burclar/koc.html" class="text-link" style="display: inline-flex;">Detayl─▒ Y├╝kselen Analizini Oku ÔåÆ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. B├Âl├╝m: Gezegenlerin Anlamlar─▒ -->
+      <section class="guide-block">
+        <h2><span>02</span> G├Âk Cisimleri (Kozmik Oyuncular)</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8;">
+          Her gezegen do─şum haritas─▒nda farkl─▒ bir psikolojik d├╝rt├╝y├╝ ve i┼şlevi temsil eder. Bur├ğlar bu d├╝rt├╝lerin "nas─▒l" ifade edildi─şini g├Âsterir.
+        </p>
+        <div class="info-cards">
+          <div class="info-card">
+            <span>Ôİ┐</span>
+            <h3>Merk├╝r</h3>
+            <p><b>Zihin ve ─░leti┼şim:</b> Nas─▒l d├╝┼ş├╝nd├╝─ş├╝n├╝z├╝, bilgiyi nas─▒l i┼şledi─şinizi, mant─▒k y├╝r├╝tme bi├ğiminizi ve kendinizi kelimelerle nas─▒l ifade etti─şinizi y├Ânetir.</p>
+          </div>
+          <div class="info-card">
+            <span>ÔÖÇ</span>
+            <h3>Ven├╝s</h3>
+            <p><b>A┼şk, De─şer ve Estetik:</b> ─░li┼şkilerde sevgiyi nas─▒l verdi─şinizi ve ald─▒─ş─▒n─▒z─▒, neleri de─şerli buldu─şunuzu, finansal kaynaklar─▒ ve sanatsal zevklerinizi temsil eder.</p>
+          </div>
+          <div class="info-card">
+            <span>ÔÖé</span>
+            <h3>Mars</h3>
+            <p><b>Eylem, Tutku ve ─░rade:</b> Harekete ge├ğme bi├ğiminizi, m├╝cadele g├╝c├╝n├╝z├╝, fiziksel enerjinizi, arzular─▒n─▒z─▒ ve ├Âfkenizi nas─▒l y├Ânetti─şinizi simgeler.</p>
+          </div>
+          <div class="info-card">
+            <span>ÔÖâ</span>
+            <h3>J├╝piter</h3>
+            <p><b>B├╝y├╝me ve ┼Şans:</b> Hayatta ┼şans─▒n, bollu─şun, geni┼şlemenin ve inanc─▒n nereden gelece─şini g├Âsterir. Felsefi anlam aray─▒┼ş─▒n─▒z─▒ ve bilgeli─şinizi y├Ânetir.</p>
+          </div>
+          <div class="info-card">
+            <span>ÔÖä</span>
+            <h3>Sat├╝rn</h3>
+            <p><b>Disiplin ve S─▒n─▒rlar:</b> Hayat─▒n─▒zdaki engelleri, sorumluluklar─▒, korkular─▒, disiplin kurman─▒z gereken alanlar─▒ ve zamanla kazanaca─ş─▒n─▒z ustal─▒klar─▒ temsil eder.</p>
+          </div>
+          <div class="info-card">
+            <span>ÔÖç</span>
+            <h3>Kolektif Gezegenler</h3>
+            <p><b>Uran├╝s, Nept├╝n ve Pl├╝ton:</b> Bireysel bilincin ├Âtesindeki jenerasyon etkilerini temsil ederler. Devrim, hayaller, ├ğ├Âz├╝lme ve derin k├╝llerinden do─şma enerjilerini y├Ânetirler.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. B├Âl├╝m: 12 Ev -->
+      <section class="guide-block">
+        <h2><span>03</span> 12 Ya┼şam Evi (Deneyim Alanlar─▒)</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8;">
+          Evler, g├Âky├╝z├╝n├╝ 12 e┼şit par├ğaya b├Âler. Gezegenlerin ve bur├ğlar─▒n hayat─▒n hangi somut alan─▒nda (kariyer, aile, a┼şk, sa─şl─▒k) kendini g├Âsterece─şini belirler.
+        </p>
+        <div class="houses-list">
+          <div class="house-item">
+            <h4>1. Ev (Benlik &amp; D─▒┼ş D├╝nya)</h4>
+            <p>Y├╝kselen burcun evidir. Karakter, fiziksel g├Âr├╝n├╝┼ş, hayata bak─▒┼ş a├ğ─▒s─▒ ve ba┼şlang─▒├ğlar bu evle incelenir.</p>
+          </div>
+          <div class="house-item">
+            <h4>2. Ev (Maddi De─şerler &amp; Para)</h4>
+            <p>Kendi kazanc─▒n─▒z, ki┼şisel yetenekleriniz, ├Âzg├╝veniniz ve maddi d├╝nyadaki sahip olduklar─▒n─▒zla ilgilidir.</p>
+          </div>
+          <div class="house-item">
+            <h4>3. Ev (Zihin &amp; Yak─▒n ├çevre)</h4>
+            <p>Karde┼şler, kom┼şular, k─▒sa seyahatler, ilk├Â─şretim ve zihinsel ├ğal─▒┼şma/ileti┼şim tarz─▒n─▒z bu evdedir.</p>
+          </div>
+          <div class="house-item">
+            <h4>4. Ev (Yuva, Aile &amp; K├Âkler)</h4>
+            <p>Ev hayat─▒n─▒z, baban─▒z veya ebeveynleriniz, bilin├ğalt─▒ k├Âkleriniz ve hayat─▒n son d├Ânemleri bu evle y├Ânetilir.</p>
+          </div>
+          <div class="house-item">
+            <h4>5. Ev (A┼şk, Yarat─▒c─▒l─▒k &amp; E─şlence)</h4>
+            <p>A┼şk ili┼şkileriniz, ├ğocuklar─▒n─▒z, yarat─▒c─▒ hobileriniz, ┼şans oyunlar─▒ ve hayattan ald─▒─ş─▒n─▒z keyiftir.</p>
+          </div>
+          <div class="house-item">
+            <h4>6. Ev (Rutinler &amp; Sa─şl─▒k)</h4>
+            <p>G├╝nl├╝k i┼ş hayat─▒n─▒z, i┼ş arkada┼şlar─▒n─▒z, evcil hayvanlar─▒n─▒z, beslenme d├╝zeniniz ve fiziksel sa─şl─▒─ş─▒n─▒zd─▒r.</p>
+          </div>
+          <div class="house-item">
+            <h4>7. Ev (Ortakl─▒klar &amp; Evlilik)</h4>
+            <p>Evlilik, uzun vadeli ili┼şkiler, i┼ş ortakl─▒klar─▒ ve a├ğ─▒k d├╝┼şmanlar bu evle analiz edilir.</p>
+          </div>
+          <div class="house-item">
+            <h4>8. Ev (D├Ân├╝┼ş├╝m &amp; Ortak Paralar)</h4>
+            <p>Miraslar, e┼şin paras─▒, vergiler, ├Âl├╝m, ruhsal d├Ân├╝┼ş├╝m, cinsellik ve bilinmeyen ok├╝lt s─▒rlar bu evdedir.</p>
+          </div>
+          <div class="house-item">
+            <h4>9. Ev (Felsefe, ─░nan├ğlar &amp; Uzaklar)</h4>
+            <p>Y├╝ksek ├Â─şrenim, yabanc─▒ ├╝lkeler, uzun seyahatler, felsefe, din ve hayat─▒n y├╝ksek anlam aray─▒┼ş─▒d─▒r.</p>
+          </div>
+          <div class="house-item">
+            <h4>10. Ev (Kariyer &amp; Stat├╝)</h4>
+            <p>Haritan─▒n en tepe noktas─▒d─▒r. Mesleki ba┼şar─▒lar, toplumsal ├╝nvan─▒n─▒z, kariyeriniz ve otorite fig├╝rlerinizdir.</p>
+          </div>
+          <div class="house-item">
+            <h4>11. Ev (Sosyal ├çevre &amp; ─░dealler)</h4>
+            <p>Arkada┼ş gruplar─▒, dahil oldu─şunuz topluluklar, gelece─şe dair dilekleriniz ve idealleriniz bu evdedir.</p>
+          </div>
+          <div class="house-item">
+            <h4>12. Ev (Bilin├ğd─▒┼ş─▒ &amp; ─░├ğe ├çekilme)</h4>
+            <p>Bilin├ğalt─▒, gizli d├╝┼şmanlar, r├╝yalar, tecrit alanlar─▒ (hastaneler, hapishaneler) ve manevi teslimiyettir.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. B├Âl├╝m: A├ğ─▒lar -->
+      <section class="guide-block">
+        <h2><span>04</span> A├ğ─▒lar (Gezegenler Aras─▒ Diyalog)</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8;">
+          Do─şum haritas─▒ndaki gezegenlerin birbirleriyle yapt─▒klar─▒ geometrik mesafeler (a├ğ─▒lar), bu g├╝├ğlerin birbiriyle uyumlu mu yoksa gerilimli mi ├ğal─▒┼şaca─ş─▒n─▒ anlat─▒r.
+        </p>
+        <div class="info-cards">
+          <div class="info-card">
+            <span>Ôİî</span>
+            <h3>Kavu┼şum (0┬░)</h3>
+            <p><b>G├╝├ğ Birli─şi:</b> ─░ki gezegenin yan yana gelmesidir. Enerjiler tamamen birle┼şir ve birbirini yo─şun ┼şekilde etkiler. En g├╝├ğl├╝ a├ğ─▒d─▒r.</p>
+          </div>
+          <div class="info-card">
+            <span>Ôû│</span>
+            <h3>├£├ğgen (120┬░)</h3>
+            <p><b>Do─şal Yetenek:</b> ─░ki gezegenin uyumlu elementlerde (├Ârne─şin iki su burcunda) pasla┼şmas─▒d─▒r. ├çaba sarf etmeden akan yetenekleri ve ┼şans─▒ simgeler.</p>
+          </div>
+          <div class="info-card">
+            <span>Ôûí</span>
+            <h3>Kare (90┬░)</h3>
+            <p><b>Geli┼şim Bask─▒s─▒:</b> ─░ki gezegenin ├ğat─▒┼şmas─▒d─▒r. Gerilim, m├╝cadele ve kriz yarat─▒r. Ancak bu kriz, hayatta geli┼şimi ve ba┼şar─▒y─▒ tetikler.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>┬® 2026 Zodyak Atlas─▒ ÔÇö G├Âky├╝z├╝n├╝n Kadim Bilgeli─şi</p>
+  </footer>
+
+  <script src="../data/cities.js"></script>
+  <script src="../astro-calc.js"></script>
+  <script src="../astronomy.min.js"></script>
+  <script src="../astro-adapter.js"></script>
+  <script>
+    // Mobil men├╝ i┼şleyicisi
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Men├╝';
+    });
+
+    // ┼Şehirleri doldur (cities.js'den y├╝klenen global cityDatabase ile)
+    const select = document.getElementById("calcCity");
+    if (select && typeof cityDatabase !== 'undefined') {
+      select.innerHTML = cityDatabase.map((c, idx) => 
+        `<option value="${idx}" ${c.name === '─░stanbul' ? 'selected' : ''}>${c.name} (${c.country})</option>`
+      ).join('');
+    }
+
+    const elementNames = {
+      'Ko├ğ': 'Ate┼ş', 'Aslan': 'Ate┼ş', 'Yay': 'Ate┼ş',
+      'Bo─şa': 'Toprak', 'Ba┼şak': 'Toprak', 'O─şlak': 'Toprak',
+      '─░kizler': 'Hava', 'Terazi': 'Hava', 'Kova': 'Hava',
+      'Yenge├ğ': 'Su', 'Akrep': 'Su', 'Bal─▒k': 'Su'
+    };
+
+    const signDescs = {
+      'Ko├ğ': 'Cesur, lider, sab─▒rs─▒z ve ├Ânc├╝ bir eylem enerjisi.',
+      'Bo─şa': 'G├╝venilir, huzurlu, estetik ve sa─şlam ad─▒mlarla ilerleyen k├Âklenme.',
+      '─░kizler': 'Merakl─▒, entelekt├╝el, konu┼şkan ve esnek ileti┼şim g├╝c├╝.',
+      'Yenge├ğ': '┼Şefkatli, sezgisel, korumac─▒ ve derin aile ba─şlar─▒.',
+      'Aslan': 'Karizmatik, yarat─▒c─▒, c├Âmert ve sahne ─▒┼ş─▒─ş─▒ alt─▒nda parlayan gurur.',
+      'Ba┼şak': 'Analitik, titiz, d├╝zenli, fayda sa─şlamay─▒ seven hizmet a┼şk─▒.',
+      'Terazi': 'Zarif, adil, uzla┼şmac─▒, uyum ve estetik arayan diplomasi.',
+      'Akrep': 'Manyetik, g├╝├ğl├╝, krizlerle d├Ân├╝┼şen ve s─▒rlar ├ğ├Âzen tutku.',
+      'Yay': '─░yimser, ne┼şeli, ke┼şif odakl─▒, felsefi ve ├Âzg├╝rl├╝k tutkusu.',
+      'O─şlak': 'Disiplinli, olgun, sab─▒rl─▒ ve kariyer odakl─▒ sars─▒lmaz kararl─▒l─▒k.',
+      'Kova': '├ûzg├╝n, vizyoner, ba─ş─▒ms─▒z ve toplumsal uyan─▒┼ş odakl─▒ deha.',
+      'Bal─▒k': 'Empatik, hayalperest, sezgisel ve evrensel sevgiye teslimiyet.'
+    };
+
+    const signSlugs = {
+      'Ko├ğ': 'koc', 'Bo─şa': 'boga', '─░kizler': 'ikizler', 'Yenge├ğ': 'yengec',
+      'Aslan': 'aslan', 'Ba┼şak': 'basak', 'Terazi': 'terazi', 'Akrep': 'akrep',
+      'Yay': 'yay', 'O─şlak': 'oglak', 'Kova': 'kova', 'Bal─▒k': 'balik'
+    };
+
+    function calculateBigThree() {
+      const dateVal = document.getElementById("calcBirthDate").value;
+      const timeVal = document.getElementById("calcBirthTime").value;
+      const cityIdx = document.getElementById("calcCity").value;
+      const dstChecked = document.getElementById("calcDST").checked;
+
+      if (!dateVal || !timeVal || cityIdx === "") return;
+
+      const dateParts = dateVal.split('-').map(Number); // YYYY, MM, DD
+      const timeParts = timeVal.split(':').map(Number); // HH, MM
+
+      const city = cityDatabase[Number(cityIdx)];
+      const lat = city.lat;
+      const lng = city.lng;
+      
+      // Saat dilimini ve DST'yi ayarla
+      let tz = city.tz;
+      if (dstChecked) {
+        tz += 1.0;
+      }
+
+      // Feature Flag: Yeni Astronomi motorunu kullan (AstroAdapter)
+      const USE_NEW_ENGINE = true;
+
+      // J2000'den beri ge├ğen y├╝zy─▒llar─▒ hesaplamak i├ğin Julian Date bul
+      const jdOld = AstroCalc.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+      let jdNew = null;
+      
+      let sunLong, moonLong, ascLong;
+      let positions = {};
+      let calculatedWithNewEngine = false;
+
+      // Debug Paneli S─▒f─▒rlama
+      if (document.getElementById("debugEngineName")) {
+        document.getElementById("debugEngineName").textContent = "AstroCalc (Eski)";
+        document.getElementById("debugFallbackContainer").style.display = "none";
+        document.getElementById("debugErrorDetail").textContent = "";
+      }
+
+      // Disclaimers S─▒f─▒rlama
+      if (document.getElementById("timezoneDisclaimer")) {
+        document.getElementById("timezoneDisclaimer").style.display = "none";
+        document.getElementById("latitudeDisclaimer").style.display = "none";
+      }
+
+      if (typeof USE_NEW_ENGINE !== "undefined" && USE_NEW_ENGINE) {
+        try {
+          // AstroAdapter (Yeni Motor) ile hesaplamay─▒ dene
+          jdNew = AstroAdapter.getJulianDate(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1], tz);
+          
+          sunLong = AstroAdapter.getSunLongitude(jdNew);
+          moonLong = AstroAdapter.getMoonLongitude(jdNew);
+          ascLong = AstroAdapter.getAscendant(jdNew, lat, lng);
+          
+          let rawPositions = AstroAdapter.getPlanetaryPositions(jdNew);
+          positions = {
+            mercury: rawPositions.mercury,
+            venus: rawPositions.venus,
+            mars: rawPositions.mars,
+            jupiter: rawPositions.jupiter,
+            saturn: rawPositions.saturn,
+            uranus: rawPositions.uranus,
+            neptune: rawPositions.neptune,
+            pluto: rawPositions.pluto
+          };
+          
+          calculatedWithNewEngine = true;
+          if (document.getElementById("debugEngineName")) {
+            document.getElementById("debugEngineName").textContent = "AstroAdapter (Yeni)";
+          }
+          console.log("Calculated planetary positions with new AstroAdapter engine successfully.");
+        } catch (e) {
+          console.warn("AstroAdapter calculation failed, falling back to AstroCalc:", e);
+          if (document.getElementById("debugFallbackContainer")) {
+            document.getElementById("debugFallbackContainer").style.display = "block";
+            document.getElementById("debugErrorDetail").textContent = e.message;
+          }
+        }
+      }
+
+      // Fallback veya varsay─▒lan olarak AstroCalc
+      if (!calculatedWithNewEngine) {
+        sunLong = AstroCalc.getSunLongitude(jdOld);
+        moonLong = AstroCalc.getMoonLongitude(jdOld);
+        ascLong = AstroCalc.getAscendant(jdOld, lat, lng);
+        
+        let rawPositions = AstroCalc.getPlanetaryPositions(jdOld);
+        const T = (jdOld - 2451545.0) / 36525.0;
+        positions = {
+          mercury: rawPositions.mercury,
+          venus: rawPositions.venus,
+          mars: rawPositions.mars,
+          jupiter: rawPositions.jupiter,
+          saturn: rawPositions.saturn,
+          uranus: rawPositions.uranus,
+          neptune: rawPositions.neptune,
+          pluto: AstroCalc.norm360(249.26 + 14.5 * T)
+        };
+      }
+
+      // Uyar─▒ ve bilgilendirme notlar─▒n─▒ doldur
+      if (document.getElementById("timezoneDisclaimer")) {
+        document.getElementById("debugTzOffset").textContent = (tz >= 0 ? "+" : "") + tz;
+        document.getElementById("timezoneDisclaimer").style.display = "block";
+        
+        if (Math.abs(lat) > 65.0) {
+          document.getElementById("latitudeDisclaimer").style.display = "block";
+        }
+      }
+
+      const sunSign = AstroCalc.getZodiacSign(sunLong);
+      const moonSign = AstroCalc.getZodiacSign(moonLong);
+      const ascSign = AstroCalc.getZodiacSign(ascLong);
+
+      // Kartlar─▒ g├╝ncelle
+      document.getElementById("sunName").textContent = `${sunSign.name} (${sunSign.degree}┬░ ${sunSign.minute}')`;
+      document.getElementById("sunGlyph").textContent = sunSign.glyph;
+      document.getElementById("sunDesc").textContent = signDescs[sunSign.name];
+
+      document.getElementById("moonName").textContent = `${moonSign.name} (${moonSign.degree}┬░ ${moonSign.minute}')`;
+      document.getElementById("moonGlyph").textContent = moonSign.glyph;
+      document.getElementById("moonDesc").textContent = signDescs[moonSign.name];
+
+      document.getElementById("risingSignName").textContent = `${ascSign.name} (${ascSign.degree}┬░ ${ascSign.minute}')`;
+      document.getElementById("risingGlyph").textContent = ascSign.glyph;
+      document.getElementById("risingSignInterpretation").textContent = signDescs[ascSign.name];
+
+      // Kombinasyon Analizi olu┼ştur
+      const sunEl = elementNames[sunSign.name];
+      const moonEl = elementNames[moonSign.name];
+      const ascEl = elementNames[ascSign.name];
+
+      let analysisText = `D─▒┼ş d├╝nyaya sundu─şunuz maskeniz ve hayata ilk yakla┼ş─▒m─▒n─▒z <strong>${ascSign.name} (Y├╝kselen ${ascEl})</strong> enerjisiyle ┼şekilleniyor. ─░nsanlar sizi ilk etapta bu ├Âzelliklerle alg─▒lar. Ancak i├ğ d├╝nyan─▒zda ve duygusal s─▒─ş─▒naklar─▒n─▒zda <strong>${moonSign.name} (Ay ${moonEl})</strong> yer al─▒yor; huzuru ve tatmini bu temalarda ar─▒yorsunuz. ├ûz kimli─şiniz, iradeniz ve hayattaki parlama amac─▒n─▒z ise <strong>${sunSign.name} (G├╝ne┼ş ${sunEl})</strong> arketipiyle par─▒ld─▒yor. `;
+      
+      if (sunEl === moonEl && sunEl === ascEl) {
+        analysisText += `Haritan─▒zda devasa bir <strong>${sunEl} elementi yo─şunla┼şmas─▒</strong> var. Karakteriniz son derece b├╝t├╝nle┼şik, g├╝├ğl├╝ ve tek y├Ânl├╝ bir ak─▒┼şa sahip. Bu elementin g├Âlge y├Ânlerine kar┼ş─▒ dengeleyici aktiviteler edinmelisiniz.`;
+      } else {
+        analysisText += `<strong>${sunEl}</strong>, <strong>${moonEl}</strong> ve <strong>${ascEl}</strong> elementlerinin bu e┼şsiz kombinasyonu, karakterinizde ak─▒l, duygu ve pratik eylem g├╝c├╝ aras─▒nda zengin bir sentez olu┼şturuyor.`;
+      }
+
+      document.getElementById("comboAnalysis").innerHTML = analysisText;
+      document.getElementById("risingDetailLink").setAttribute("href", `burclar/${signSlugs[ascSign.name]}.html`);
+
+      const allPlanets = [
+        { key: 'sun', name: 'G├╝ne┼ş', glyph: 'Ôİë', long: sunLong },
+        { key: 'moon', name: 'Ay', glyph: 'Ôİ¢', long: moonLong },
+        { key: 'mercury', name: 'Merk├╝r', glyph: 'Ôİ┐', long: positions.mercury },
+        { key: 'venus', name: 'Ven├╝s', glyph: 'ÔÖÇ', long: positions.venus },
+        { key: 'mars', name: 'Mars', glyph: 'ÔÖé', long: positions.mars },
+        { key: 'jupiter', name: 'J├╝piter', glyph: 'ÔÖâ', long: positions.jupiter },
+        { key: 'saturn', name: 'Sat├╝rn', glyph: 'ÔÖä', long: positions.saturn },
+        { key: 'uranus', name: 'Uran├╝s', glyph: 'ÔÖà', long: positions.uranus },
+        { key: 'neptune', name: 'Nept├╝n', glyph: 'ÔÖå', long: positions.neptune },
+        { key: 'pluto', name: 'Pl├╝ton', glyph: 'ÔÖç', long: positions.pluto }
+      ];
+
+      // Evleri hesapla (Whole Sign)
+      const cusps = AstroCalc.getHouseCusps(ascLong, 'Whole Sign');
+
+      // Gezegenler Tablosunu Doldur
+      const tableBody = document.getElementById("planetsTableBody");
+      tableBody.innerHTML = allPlanets.map(p => {
+        const signInfo = AstroCalc.getZodiacSign(p.long);
+        const houseNum = AstroCalc.getHouseOfPlanet(p.long, cusps);
+        return `
+          <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <td style="padding: 0.6rem 0.5rem; font-weight: 500;">${p.glyph} ${p.name}</td>
+            <td style="padding: 0.6rem 0.5rem;">${signInfo.glyph} ${signInfo.name}</td>
+            <td style="padding: 0.6rem 0.5rem;">${signInfo.degree}┬░ ${signInfo.minute}'</td>
+            <td style="padding: 0.6rem 0.5rem;">${houseNum}. Ev</td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById("planetsTableContainer").style.display = "block";
+
+      // SAB─░T YILDIZ KAVU┼ŞUMLARINI HESAPLA
+      const fixedStars = [
+        { name: "Algol (K├Ât├╝ ┼Ş├Âhretli ┼Şahika)", long: 56.16, desc: "26┬░ Bo─şa. Yo─şun tutku, sanatsal g├╝├ğ, krizler ve koruyucu manyetizma." },
+        { name: "Aldebaran (Kraliyet Y─▒ld─▒z─▒)", long: 69.78, desc: "9┬░ ─░kizler. D├╝r├╝stl├╝k, ticari zeka, b├╝y├╝k ba┼şar─▒ ve ahlaki s─▒navlar." },
+        { name: "Sirius (Kutsal G├╝ne┼ş)", long: 104.08, desc: "14┬░ Yenge├ğ. Y├╝ksek koruma, onur, ┼şan, manevi vizyon ve zenginlik." },
+        { name: "Regulus (Aslan─▒n Kalbi)", long: 149.83, desc: "29┬░ Aslan. G├╝├ğ, liderlik, c├Âmertlik, ani y├╝kseli┼ş ve intikam s─▒nav─▒." },
+        { name: "Spica (Ba┼şak Ba┼ş┼şa─ş─▒)", long: 203.83, desc: "23┬░ Terazi. B├╝y├╝k yetenek, sanatsal deha, talih, koruma ve zarafet." },
+        { name: "Antares (Akrebin Kalbi)", long: 249.76, desc: "9┬░ Yay. Stratejik deha, cesaret, krizleri a┼şma g├╝c├╝, ani de─şi┼şimler." }
+      ];
+
+      const conjunctions = [];
+      allPlanets.forEach(p => {
+        fixedStars.forEach(s => {
+          let diff = Math.abs(p.long - s.long);
+          if (diff > 180) diff = 360 - diff;
+          if (diff <= 1.5) { // 1.5 derece orb
+            conjunctions.push(`<li>­şîş <strong>${p.name}</strong> gezegeniniz <strong>${s.name}</strong> ile kavu┼şumda (${s.desc})</li>`);
+          }
+        });
+      });
+
+      const listElement = document.getElementById("starConjunctionsList");
+      if (conjunctions.length > 0) {
+        listElement.innerHTML = conjunctions.join('');
+      } else {
+        listElement.innerHTML = "<li>Bu do─şum haritas─▒nda ├Âne ├ğ─▒kan sabit y─▒ld─▒z kavu┼şumu bulunmamaktad─▒r.</li>";
+      }
+      document.getElementById("starConjunctionsContainer").style.display = "block";
+
+      // SVG HAR─░TA ├çEMBER─░N─░ ├ç─░Z
+      drawNatalChartWheel(sunLong, moonLong, ascLong, allPlanets, cusps);
+      document.getElementById("chartWheelContainer").style.display = "block";
+
+      // Sonucu g├Âster ve kayd─▒r
+      const resBox = document.getElementById("risingResult");
+      resBox.style.display = "block";
+      resBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // SVG ├çember ├çizim Fonksiyonu
+    function drawNatalChartWheel(sunLong, moonLong, ascLong, planets, cusps) {
+      const svg = document.getElementById("natalChartSvg");
+      svg.innerHTML = ''; // Temizle
+
+      const cx = 250, cy = 250;
+      const rOuter = 220, rMid = 190, rInner = 100;
+
+      // 1. D─▒┼ş halkalar─▒ ├ğiz
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rOuter}" stroke="var(--gold)" stroke-width="2" fill="none" />`;
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rMid}" stroke="#1f2937" stroke-width="1.5" fill="none" />`;
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rInner}" stroke="#1f2937" stroke-width="1.5" fill="none" />`;
+
+      // 2. 12 Evi ve Bur├ğ Dilimlerini ├çiz (Whole Sign tabanl─▒, ASC sol ufuk ├ğizgisinde = 180 derecede olacak ┼şekilde)
+      // ASC'nin zodyaktaki derecesi
+      const ascSignIdx = Math.floor(ascLong / 30);
+      const ascSignStartLong = ascSignIdx * 30;
+
+      // Her evin ├ğizgisini ├ğiz
+      for (let i = 0; i < 12; i++) {
+        const cuspLong = (ascSignIdx + i) * 30;
+        // ASC sol ufuktad─▒r (180┬░), o y├╝zden relatif a├ğ─▒ hesaplan─▒r
+        const angleDeg = 180 - (cuspLong - ascLong);
+        const angleRad = AstroCalc.rad(angleDeg);
+
+        const xStart = cx + rInner * Math.cos(angleRad);
+        const yStart = cy + rInner * Math.sin(angleRad);
+        const xEnd = cx + rOuter * Math.cos(angleRad);
+        const yEnd = cy + rOuter * Math.sin(angleRad);
+
+        // Ev ├ğizgisi
+        const strokeColor = i === 0 ? "var(--coral)" : "#1f2937";
+        const strokeWidth = i === 0 ? "2" : "1";
+        svg.innerHTML += `<line x1="${xStart}" y1="${yStart}" x2="${xEnd}" y2="${yEnd}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+
+        // Bur├ğ sembollerini d─▒┼ş halkaya ├ğiz
+        const midSignLong = cuspLong + 15;
+        const midAngleDeg = 180 - (midSignLong - ascLong);
+        const midAngleRad = AstroCalc.rad(midAngleDeg);
+        const xText = cx + 205 * Math.cos(midAngleRad);
+        const yText = cy + 205 * Math.sin(midAngleRad);
+
+        const signInfo = AstroCalc.zodiacs[(ascSignIdx + i) % 12];
+        svg.innerHTML += `<text x="${xText}" y="${yText}" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" font-family="'Outfit', sans-serif" style="user-select:none;">${signInfo.glyph}</text>`;
+
+        // Ev Numaralar─▒n─▒ ─░├ğ ├çemberin Hemen D─▒┼ş─▒na ├çiz
+        const xHouseNum = cx + 115 * Math.cos(midAngleRad);
+        const yHouseNum = cy + 115 * Math.sin(midAngleRad);
+        svg.innerHTML += `<text x="${xHouseNum}" y="${yHouseNum}" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.2)" font-size="10" style="user-select:none;">${i+1}</text>`;
+      }
+
+      // 3. Gezegen A├ğ─▒lar─▒ ├çizgilerini ├çiz (Aspects)
+      for (let i = 0; i < planets.length; i++) {
+        for (let j = i + 1; j < planets.length; j++) {
+          const pA = planets[i];
+          const pB = planets[j];
+
+          let diff = Math.abs(pA.long - pB.long);
+          if (diff > 180) diff = 360 - diff;
+
+          let aspectColor = "";
+          // 0┬░ Conjunction (kavu┼şum) - ├ğizgi ├ğizilmez veya merkeze yak─▒n k├╝├ğ├╝k daire
+          if (diff <= 8) aspectColor = "var(--gold)"; 
+          // 60┬░ Sekstil - ye┼şil/teal
+          else if (Math.abs(diff - 60) <= 6) aspectColor = "#06d6a0";
+          // 90┬░ Kare - k─▒rm─▒z─▒
+          else if (Math.abs(diff - 90) <= 8) aspectColor = "#ef476f";
+          // 120┬░ ├£├ğgen - mavi
+          else if (Math.abs(diff - 120) <= 8) aspectColor = "#8296c9";
+          // 180┬░ Kar┼ş─▒t - turuncu/k─▒rm─▒z─▒
+          else if (Math.abs(diff - 180) <= 8) aspectColor = "#e76f51";
+
+          if (aspectColor !== "") {
+            const angleDegA = 180 - (pA.long - ascLong);
+            const angleDegB = 180 - (pB.long - ascLong);
+
+            const xA = cx + rInner * Math.cos(AstroCalc.rad(angleDegA));
+            const yA = cy + rInner * Math.sin(AstroCalc.rad(angleDegA));
+            const xB = cx + rInner * Math.cos(AstroCalc.rad(angleDegB));
+            const yB = cy + rInner * Math.sin(AstroCalc.rad(angleDegB));
+
+            svg.innerHTML += `<line x1="${xA}" y1="${yA}" x2="${xB}" y2="${yB}" stroke="${aspectColor}" stroke-width="1" opacity="0.4" />`;
+          }
+        }
+      }
+
+      // 4. Gezegen Konumlar─▒n─▒ ve Simgelerini ├çiz
+      planets.forEach((p, idx) => {
+        const angleDeg = 180 - (p.long - ascLong);
+        const angleRad = AstroCalc.rad(angleDeg);
+
+        // ├çak─▒┼şmay─▒ ├Ânlemek i├ğin hafif yar─▒├ğap de─şi┼şimi
+        const offsetR = idx % 2 === 0 ? 150 : 165;
+
+        const xPlan = cx + offsetR * Math.cos(angleRad);
+        const yPlan = cy + offsetR * Math.sin(angleRad);
+
+        // Gezegen Simgesi
+        svg.innerHTML += `<circle cx="${xPlan}" cy="${yPlan}" r="7" fill="#030610" stroke="#1f2937" stroke-width="1" />`;
+        svg.innerHTML += `<text x="${xPlan}" y="${yPlan}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10" font-family="'Outfit', sans-serif" style="user-select:none;">${p.glyph}</text>`;
+      });
+    }
+  </script>
+<script>
+try {
+  // Setup Tromso (15.06.1985 14:30 UTC+2)
+  document.getElementById("calcBirthDate").value = "1985-06-15";
+  document.getElementById("calcBirthTime").value = "14:30";
+  document.getElementById("calcDST").checked = false;
+
+  // Select Tromso
+  var cityIdx = cityDatabase.length;
+  cityDatabase.push({
+    name: "Tromso",
+    country: "Norway",
+    lat: 69.65,
+    lng: 18.95,
+    tz: 2.0
+  });
+
+  var opt = document.createElement("option");
+  opt.value = cityIdx;
+  opt.textContent = "Tromso (Norway)";
+  document.getElementById("calcCity").appendChild(opt);
+  document.getElementById("calcCity").value = cityIdx;
+
+  // Calculate
+  calculateBigThree();
+
+  // Render results to a dedicated div for easy reading
+  var res = document.createElement("div");
+  res.id = "test-result-marker";
+  res.style.background = "#fff";
+  res.style.color = "#000";
+  res.style.padding = "20px";
+  res.style.position = "fixed";
+  res.style.top = "0";
+  res.style.left = "0";
+  res.style.zIndex = "99999";
+  
+  var sunName = document.getElementById("sunName").innerText;
+  var moonName = document.getElementById("moonName").innerText;
+  var risingSignName = document.getElementById("risingSignName").innerText;
+  var engineName = document.getElementById("debugEngineName").innerText;
+  var tzDisclaimerStyle = document.getElementById("timezoneDisclaimer").style.display;
+  var latDisclaimerStyle = document.getElementById("latitudeDisclaimer").style.display;
+
+  res.innerText = "DIRECT_TEST_START:" + JSON.stringify({
+    engine: engineName,
+    sun: sunName,
+    moon: moonName,
+    rising: risingSignName,
+    tzStyle: tzDisclaimerStyle,
+    latStyle: latDisclaimerStyle
+  }) + ":DIRECT_TEST_END";
+  
+  document.body.appendChild(res);
+} catch (e) {
+  var errDiv = document.createElement("div");
+  errDiv.id = "test-crash-marker";
+  errDiv.style.background = "red";
+  errDiv.style.color = "white";
+  errDiv.innerText = "CRASH_ERROR: " + e.toString() + "\nStack: " + e.stack;
+  document.body.appendChild(errDiv);
+}
+</script><div id="test-result-marker" style="background: rgb(255, 255, 255); color: rgb(0, 0, 0); padding: 20px; position: fixed; top: 0px; left: 0px; z-index: 99999;">DIRECT_TEST_START:{"engine":"AstroAdapter (Yeni)","sun":"─░kizler (24┬░ 20')","moon":"Bo─şa (20┬░ 52')","rising":"Ko├ğ (10┬░ 6')","tzStyle":"block","latStyle":"block"}:DIRECT_TEST_END</div>
+
+
+</body></html>

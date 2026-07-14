@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
@@ -473,10 +473,10 @@
     <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
   </footer >
 
-  <script src="data/cities.js"></script>
-  <script src="astro-calc.js"></script>
-  <script src="astronomy.min.js"></script>
-  <script src="astro-adapter.js"></script>
+  <script src="../data/cities.js"></script>
+  <script src="../astro-calc.js"></script>
+  <script src="../astronomy.min.js"></script>
+  <script src="../astro-adapter.js"></script>
   <script>
     // Mobil menü işleyicisi
     document.querySelector('#menuButton').addEventListener('click', () => {
@@ -841,5 +841,68 @@
       });
     }
   </script>
+<script>
+try {
+  // Setup Tromso (15.06.1985 14:30 UTC+2)
+  document.getElementById("calcBirthDate").value = "1985-06-15";
+  document.getElementById("calcBirthTime").value = "14:30";
+  document.getElementById("calcDST").checked = false;
+
+  // Select Tromso
+  var cityIdx = cityDatabase.length;
+  cityDatabase.push({
+    name: "Tromso",
+    country: "Norway",
+    lat: 69.65,
+    lng: 18.95,
+    tz: 2.0
+  });
+
+  var opt = document.createElement("option");
+  opt.value = cityIdx;
+  opt.textContent = "Tromso (Norway)";
+  document.getElementById("calcCity").appendChild(opt);
+  document.getElementById("calcCity").value = cityIdx;
+
+  // Calculate
+  calculateBigThree();
+
+  // Render results to a dedicated div for easy reading
+  var res = document.createElement("div");
+  res.id = "test-result-marker";
+  res.style.background = "#fff";
+  res.style.color = "#000";
+  res.style.padding = "20px";
+  res.style.position = "fixed";
+  res.style.top = "0";
+  res.style.left = "0";
+  res.style.zIndex = "99999";
+  
+  var sunName = document.getElementById("sunName").innerText;
+  var moonName = document.getElementById("moonName").innerText;
+  var risingSignName = document.getElementById("risingSignName").innerText;
+  var engineName = document.getElementById("debugEngineName").innerText;
+  var tzDisclaimerStyle = document.getElementById("timezoneDisclaimer").style.display;
+  var latDisclaimerStyle = document.getElementById("latitudeDisclaimer").style.display;
+
+  res.innerText = "DIRECT_TEST_START:" + JSON.stringify({
+    engine: engineName,
+    sun: sunName,
+    moon: moonName,
+    rising: risingSignName,
+    tzStyle: tzDisclaimerStyle,
+    latStyle: latDisclaimerStyle
+  }) + ":DIRECT_TEST_END";
+  
+  document.body.appendChild(res);
+} catch (e) {
+  var errDiv = document.createElement("div");
+  errDiv.id = "test-crash-marker";
+  errDiv.style.background = "red";
+  errDiv.style.color = "white";
+  errDiv.innerText = "CRASH_ERROR: " + e.toString() + "\nStack: " + e.stack;
+  document.body.appendChild(errDiv);
+}
+</script>
 </body>
 </html>
