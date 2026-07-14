@@ -1,0 +1,1179 @@
+﻿<!DOCTYPE html>
+<html lang="tr"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zodyak Atlas─▒ - Faz 4A-0 Test Paneli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&amp;family=Cinzel:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030610;
+      --card-bg: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.08);
+      --gold: #d4af37;
+      --gold-bright: #ffd166;
+      --coral: #ef476f;
+      --green: #06d6a0;
+      --text: #cbd5e1;
+      --text-muted: #64748b;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+    .header h1 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+      margin: 0 0 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .header p {
+      color: var(--text-muted);
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .summary-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .summary-card .value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .summary-card .value.pass {
+      color: var(--green);
+    }
+    .summary-card .value.fail {
+      color: var(--coral);
+    }
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.8rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--gold);
+      color: #030610;
+      border-color: var(--gold);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(212,175,55,0.25);
+    }
+    .tab-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      display: none;
+      backdrop-filter: blur(10px);
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .profile-info {
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .profile-info h2 {
+      margin: 0 0 0.5rem;
+      font-family: 'Cinzel', serif;
+      color: #fff;
+    }
+    .profile-info p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th {
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+      padding: 1rem 0.75rem;
+      border-bottom: 2px solid var(--border);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 0.85rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #cbd5e1;
+    }
+    tr:hover td {
+      background: rgba(255,255,255,0.01);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .status-badge.pass {
+      background: rgba(6, 214, 160, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(6, 214, 160, 0.3);
+    }
+    .status-badge.fail {
+      background: rgba(239, 71, 111, 0.15);
+      color: var(--coral);
+      border: 1px solid rgba(239, 71, 111, 0.3);
+    }
+    .diff-val {
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+    .diff-val.high-diff {
+      color: var(--coral);
+      font-weight: 600;
+    }
+    .diff-val.ok-diff {
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="debug-checkpoints" style="font-family:monospace; font-size:12px; color:#aaa; margin:20px; padding:10px; background:#222; display:block; white-space:pre-wrap;"><div>runTests starting...</div><div>Profile 1 (Kuzey Y├╝ksek Enlem) starting...</div><div>Profile 1: Calculating jdOld...</div><div>Profile 1: jdOld = 2446232.0208333335</div><div>Profile 1: Calculating jdNew...</div><div>Profile 1: jdNew = -5312.979166666667</div><div>Profile 1: Calculating old planetary positions...</div><div>Profile 1: Calculating old Sun position...</div><div>Profile 1: Calculating old Moon position...</div><div>Profile 1: Calculating old ASC...</div><div>Profile 1: Calculating old MC...</div><div>Profile 1: Calculating new planetary positions...</div><div>Profile 1: Calculating new Sun position...</div><div>Profile 1: Calculating new Moon position...</div><div>Profile 1: Calculating new ASC...</div><div>Profile 1: Calculating new MC...</div><div>Profile 2 (G├╝ney Yar─▒mk├╝re) starting...</div><div>Profile 2: Calculating jdOld...</div><div>Profile 2: jdOld = 2453725.71875</div><div>Profile 2: Calculating jdNew...</div><div>Profile 2: jdNew = 2180.71875</div><div>Profile 2: Calculating old planetary positions...</div><div>Profile 2: Calculating old Sun position...</div><div>Profile 2: Calculating old Moon position...</div><div>Profile 2: Calculating old ASC...</div><div>Profile 2: Calculating old MC...</div><div>Profile 2: Calculating new planetary positions...</div><div>Profile 2: Calculating new Sun position...</div><div>Profile 2: Calculating new Moon position...</div><div>Profile 2: Calculating new ASC...</div><div>Profile 2: Calculating new MC...</div><div>Profile 3 (Ekvatora Yak─▒n Konum) starting...</div><div>Profile 3: Calculating jdOld...</div><div>Profile 3: jdOld = 2455276.7083333335</div><div>Profile 3: Calculating jdNew...</div><div>Profile 3: jdNew = 3731.7083333333335</div><div>Profile 3: Calculating old planetary positions...</div><div>Profile 3: Calculating old Sun position...</div><div>Profile 3: Calculating old Moon position...</div><div>Profile 3: Calculating old ASC...</div><div>Profile 3: Calculating old MC...</div><div>Profile 3: Calculating new planetary positions...</div><div>Profile 3: Calculating new Sun position...</div><div>Profile 3: Calculating new Moon position...</div><div>Profile 3: Calculating new ASC...</div><div>Profile 3: Calculating new MC...</div><div>Profile 4 (Tarihsel DST Ge├ği┼şi) starting...</div><div>Profile 4: Calculating jdOld...</div><div>Profile 4: jdOld = 2451265.4791666665</div><div>Profile 4: Calculating jdNew...</div><div>Profile 4: jdNew = -279.5208333333333</div><div>Profile 4: Calculating old planetary positions...</div><div>Profile 4: Calculating old Sun position...</div><div>Profile 4: Calculating old Moon position...</div><div>Profile 4: Calculating old ASC...</div><div>Profile 4: Calculating old MC...</div><div>Profile 4: Calculating new planetary positions...</div><div>Profile 4: Calculating new Sun position...</div><div>Profile 4: Calculating new Moon position...</div><div>Profile 4: Calculating new ASC...</div><div>Profile 4: Calculating new MC...</div><div>Profile 5 (T├╝rkiye 2016 Sonras─▒) starting...</div><div>Profile 5: Calculating jdOld...</div><div>Profile 5: jdOld = 2458437.7916666665</div><div>Profile 5: Calculating jdNew...</div><div>Profile 5: jdNew = 6892.791666666667</div><div>Profile 5: Calculating old planetary positions...</div><div>Profile 5: Calculating old Sun position...</div><div>Profile 5: Calculating old Moon position...</div><div>Profile 5: Calculating old ASC...</div><div>Profile 5: Calculating old MC...</div><div>Profile 5: Calculating new planetary positions...</div><div>Profile 5: Calculating new Sun position...</div><div>Profile 5: Calculating new Moon position...</div><div>Profile 5: Calculating new ASC...</div><div>Profile 5: Calculating new MC...</div></div>
+
+  <div class="header">
+    <h1>Zodyak Atlas─▒ - Faz 4A-0 Test Harness</h1>
+    <p>Astronomy Engine (AstroAdapter) vs. Eski Motor (AstroCalc) &amp; Referans Kar┼ş─▒la┼şt─▒rma</p>
+  </div>
+
+  <div class="summary-cards">
+    <div class="summary-card">
+      <h3>Toplam Test Profili</h3>
+      <div class="value" id="totalProfiles">5</div>
+    </div>
+    <div class="summary-card">
+      <h3>Do─şrulanan Nokta Say─▒s─▒</h3>
+      <div class="value" id="totalPoints">60</div>
+    </div>
+    <div class="summary-card">
+      <h3>Yeni Motor Ba┼şar─▒ Oran─▒</h3>
+      <div class="value pass" id="successRate">%1.7</div>
+    </div>
+    <div class="summary-card">
+      <h3>Eski Motor Ba┼şar─▒ Oran─▒</h3>
+      <div class="value fail" id="oldSuccessRate">%0.0</div>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabContainer"><button class="tab-btn active">Kuzey Y├╝ksek Enlem</button><button class="tab-btn ">G├╝ney Yar─▒mk├╝re</button><button class="tab-btn ">Ekvatora Yak─▒n Konum</button><button class="tab-btn ">Tarihsel DST Ge├ği┼şi</button><button class="tab-btn ">T├╝rkiye 2016 Sonras─▒</button></div>
+  <div id="contentContainer"><div id="tabContent-0" class="tab-content active">
+          <div class="profile-info">
+            <h2>Kuzey Y├╝ksek Enlem (Troms├©, Norve├ğ)</h2>
+            <p><strong>Girdi Parametreleri:</strong> 15.6.1985 14:30 (Offset: 2, IANA: Europe/Oslo)</p>
+            <p><strong>Test Senaryosu:</strong> Kutup dairesine yak─▒n konum, ASC/MC ev s─▒k─▒┼şmalar─▒ testi</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td style="font-weight:600;">G├╝ne┼ş</td>
+              <td class="diff-val">ÔÖè ─░kizler 24┬░ 21' (84.352┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 24┬░ 20' (84.340┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖè ─░kizler 24┬░ 12' (84.215┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0118┬░)</td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1255┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ay</td>
+              <td class="diff-val">ÔÖë Bo─şa 21┬░ 01' (51.019┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 20┬░ 52' (50.883┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 19┬░ 27' (49.452┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1356┬░)</td>
+              <td class="diff-val high-diff">1┬░ 26' (1.4312┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Merk├╝r</td>
+              <td class="diff-val">ÔÖï Yenge├ğ 4┬░ 06' (94.103┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 3┬░ 52' (93.880┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 4┬░ 02' (94.041┬░) </td>
+              <td class="diff-val high-diff">0┬░ 13' (0.2225┬░)</td>
+              <td class="diff-val high-diff">0┬░ 10' (0.1607┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ven├╝s</td>
+              <td class="diff-val">ÔÖë Bo─şa 8┬░ 49' (38.832┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 8┬░ 37' (38.621┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 8┬░ 47' (38.789┬░) </td>
+              <td class="diff-val high-diff">0┬░ 13' (0.2109┬░)</td>
+              <td class="diff-val high-diff">0┬░ 10' (0.1677┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Mars</td>
+              <td class="diff-val">ÔÖï Yenge├ğ 4┬░ 16' (94.267┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 4┬░ 02' (94.044┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 4┬░ 02' (94.041┬░) </td>
+              <td class="diff-val high-diff">0┬░ 13' (0.2227┬░)</td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0033┬░)</td>
+              <td><span class="status-badge pass">GE├çT─░</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">J├╝piter</td>
+              <td class="diff-val">ÔÖÆ Kova 17┬░ 02' (317.037┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 16┬░ 47' (316.784┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 16┬░ 37' (316.632┬░) </td>
+              <td class="diff-val high-diff">0┬░ 15' (0.2528┬░)</td>
+              <td class="diff-val high-diff">0┬░ 09' (0.1519┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Sat├╝rn</td>
+              <td class="diff-val">ÔÖÅ Akrep 22┬░ 56' (232.945┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 22┬░ 42' (232.707┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 23┬░ 04' (233.074┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 14' (0.2375┬░)</td>
+              <td class="diff-val high-diff">0┬░ 22' (0.3666┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Uran├╝s</td>
+              <td class="diff-val">ÔÖÉ Yay 15┬░ 48' (255.814┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 15┬░ 37' (255.631┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 15┬░ 13' (255.221┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 11' (0.1833┬░)</td>
+              <td class="diff-val high-diff">0┬░ 25' (0.4099┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Nept├╝n</td>
+              <td class="diff-val">ÔÖæ O─şlak 2┬░ 39' (272.661┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 2┬░ 27' (272.460┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 2┬░ 09' (272.158┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 12' (0.2007┬░)</td>
+              <td class="diff-val high-diff">0┬░ 18' (0.3021┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Pl├╝ton</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 00' (0.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 2┬░ 07' (212.122┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 2┬░ 14' (212.241┬░) (R)</td>
+              <td class="diff-val high-diff">147┬░ 53' (147.8783┬░)</td>
+              <td class="diff-val high-diff">0┬░ 07' (0.1193┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">ASC (Y├╝kselen)</td>
+              <td class="diff-val">ÔÖê Ko├ğ 10┬░ 07' (10.119┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 10┬░ 06' (10.117┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 12┬░ 44' (222.742┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0019┬░)</td>
+              <td class="diff-val high-diff">147┬░ 22' (147.3746┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">MC (Midheaven)</td>
+              <td class="diff-val">ÔÖï Yenge├ğ 18┬░ 38' (108.640┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 18┬░ 38' (108.637┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖı Ba┼şak 2┬░ 45' (152.756┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0032┬░)</td>
+              <td class="diff-val high-diff">44┬░ 07' (44.1189┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </div><div id="tabContent-1" class="tab-content ">
+          <div class="profile-info">
+            <h2>G├╝ney Yar─▒mk├╝re (Ushuaia, Arjantin)</h2>
+            <p><strong>Girdi Parametreleri:</strong> 21.12.2005 2:15 (Offset: -3, IANA: America/Argentina/Ushuaia)</p>
+            <p><strong>Test Senaryosu:</strong> G├╝ney yar─▒mk├╝re y├╝ksek enlem ve ev ba┼şlang─▒c─▒ y├Ân tayini</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td style="font-weight:600;">G├╝ne┼ş</td>
+              <td class="diff-val">ÔÖÉ Yay 29┬░ 26' (269.441┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 29┬░ 26' (269.434┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 29┬░ 12' (269.215┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0072┬░)</td>
+              <td class="diff-val high-diff">0┬░ 13' (0.2193┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ay</td>
+              <td class="diff-val">ÔÖı Ba┼şak 1┬░ 17' (151.286┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖı Ba┼şak 1┬░ 16' (151.281┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 19┬░ 27' (139.451┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0047┬░)</td>
+              <td class="diff-val high-diff">11┬░ 50' (11.8301┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Merk├╝r</td>
+              <td class="diff-val">ÔÖÉ Yay 10┬░ 06' (250.113┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 10┬░ 11' (250.188┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 11┬░ 07' (251.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 05' (0.0755┬░)</td>
+              <td class="diff-val high-diff">0┬░ 56' (0.9325┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ven├╝s</td>
+              <td class="diff-val">ÔÖÆ Kova 1┬░ 10' (301.181┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 1┬░ 15' (301.265┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 10┬░ 13' (310.231┬░) </td>
+              <td class="diff-val high-diff">0┬░ 05' (0.0833┬░)</td>
+              <td class="diff-val high-diff">8┬░ 58' (8.9663┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Mars</td>
+              <td class="diff-val">ÔÖë Bo─şa 8┬░ 57' (38.957┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 9┬░ 00' (39.006┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 5┬░ 07' (35.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 03' (0.0488┬░)</td>
+              <td class="diff-val high-diff">3┬░ 53' (3.8850┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">J├╝piter</td>
+              <td class="diff-val">ÔÖÅ Akrep 11┬░ 26' (221.447┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 11┬░ 27' (221.466┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 14┬░ 13' (224.231┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0188┬░)</td>
+              <td class="diff-val high-diff">2┬░ 46' (2.7654┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Sat├╝rn</td>
+              <td class="diff-val">ÔÖî Aslan 10┬░ 18' (130.303┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖî Aslan 10┬░ 33' (130.553┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 9┬░ 27' (129.451┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 15' (0.2505┬░)</td>
+              <td class="diff-val high-diff">1┬░ 06' (1.1023┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Uran├╝s</td>
+              <td class="diff-val">ÔÖô Bal─▒k 7┬░ 17' (337.289┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 7┬░ 21' (337.364┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 7┬░ 53' (337.891┬░) </td>
+              <td class="diff-val high-diff">0┬░ 05' (0.0751┬░)</td>
+              <td class="diff-val high-diff">0┬░ 32' (0.5266┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Nept├╝n</td>
+              <td class="diff-val">ÔÖÆ Kova 15┬░ 34' (315.583┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 15┬░ 39' (315.654┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 16┬░ 07' (316.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 04' (0.0705┬░)</td>
+              <td class="diff-val high-diff">0┬░ 28' (0.4673┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Pl├╝ton</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 00' (0.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 24┬░ 29' (264.490┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 24┬░ 07' (264.121┬░) </td>
+              <td class="diff-val high-diff">95┬░ 31' (95.5096┬░)</td>
+              <td class="diff-val high-diff">0┬░ 22' (0.3694┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">ASC (Y├╝kselen)</td>
+              <td class="diff-val">ÔÖê Ko├ğ 27┬░ 53' (27.895┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 27┬░ 53' (27.899┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 21┬░ 12' (201.211┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0032┬░)</td>
+              <td class="diff-val high-diff">173┬░ 19' (173.3124┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">MC (Midheaven)</td>
+              <td class="diff-val">ÔÖï Yenge├ğ 9┬░ 29' (99.494┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 9┬░ 29' (99.493┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 20┬░ 07' (110.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0008┬░)</td>
+              <td class="diff-val high-diff">10┬░ 38' (10.6277┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </div><div id="tabContent-2" class="tab-content ">
+          <div class="profile-info">
+            <h2>Ekvatora Yak─▒n Konum (Pontianak, Endonezya)</h2>
+            <p><strong>Girdi Parametreleri:</strong> 21.3.2010 12:0 (Offset: 7, IANA: Asia/Jakarta)</p>
+            <p><strong>Test Senaryosu:</strong> Tam ekvator ├ğizgisi, ASC derecesi sal─▒n─▒m testi</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td style="font-weight:600;">G├╝ne┼ş</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 28' (0.478┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 0┬░ 28' (0.475┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 0┬░ 12' (0.215┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0028┬░)</td>
+              <td class="diff-val high-diff">0┬░ 16' (0.2598┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ay</td>
+              <td class="diff-val">ÔÖè ─░kizler 2┬░ 30' (62.510┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 2┬░ 28' (62.477┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 28┬░ 07' (58.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 02' (0.0328┬░)</td>
+              <td class="diff-val high-diff">4┬░ 21' (4.3561┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Merk├╝r</td>
+              <td class="diff-val">ÔÖê Ko├ğ 6┬░ 56' (6.935┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 7┬░ 04' (7.069┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 25┬░ 13' (355.231┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1331┬░)</td>
+              <td class="diff-val high-diff">11┬░ 50' (11.8375┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ven├╝s</td>
+              <td class="diff-val">ÔÖê Ko├ğ 16┬░ 51' (16.861┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 16┬░ 59' (16.996┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 15┬░ 07' (15.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1349┬░)</td>
+              <td class="diff-val high-diff">1┬░ 52' (1.8748┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Mars</td>
+              <td class="diff-val">ÔÖî Aslan 0┬░ 48' (120.804┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖî Aslan 0┬░ 56' (120.942┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 5┬░ 07' (125.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1376┬░)</td>
+              <td class="diff-val high-diff">4┬░ 11' (4.1792┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">J├╝piter</td>
+              <td class="diff-val">ÔÖô Bal─▒k 14┬░ 36' (344.606┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 14┬░ 43' (344.720┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 12┬░ 07' (342.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 07' (0.1141┬░)</td>
+              <td class="diff-val high-diff">2┬░ 36' (2.5989┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Sat├╝rn</td>
+              <td class="diff-val">ÔÖÄ Terazi 1┬░ 03' (181.052┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 1┬░ 20' (181.349┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖı Ba┼şak 29┬░ 27' (179.451┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 18' (0.2971┬░)</td>
+              <td class="diff-val high-diff">1┬░ 54' (1.8983┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Uran├╝s</td>
+              <td class="diff-val">ÔÖô Bal─▒k 26┬░ 39' (356.660┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 26┬░ 47' (356.796┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 26┬░ 13' (356.231┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1360┬░)</td>
+              <td class="diff-val high-diff">0┬░ 34' (0.5649┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Nept├╝n</td>
+              <td class="diff-val">ÔÖÆ Kova 27┬░ 16' (327.267┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 27┬░ 24' (327.409┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 26┬░ 07' (326.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 09' (0.1425┬░)</td>
+              <td class="diff-val high-diff">1┬░ 17' (1.2882┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Pl├╝ton</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 00' (0.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 5┬░ 20' (275.345┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 4┬░ 07' (274.121┬░) </td>
+              <td class="diff-val high-diff">84┬░ 39' (84.6551┬░)</td>
+              <td class="diff-val high-diff">1┬░ 13' (1.2239┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">ASC (Y├╝kselen)</td>
+              <td class="diff-val">ÔÖæ O─şlak 2┬░ 41' (272.697┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 2┬░ 42' (272.701┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 25┬░ 07' (115.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0038┬░)</td>
+              <td class="diff-val high-diff">157┬░ 35' (157.5798┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">MC (Midheaven)</td>
+              <td class="diff-val">ÔÖê Ko├ğ 3┬░ 12' (3.203┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 3┬░ 12' (3.207┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 25┬░ 07' (25.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0046┬░)</td>
+              <td class="diff-val high-diff">21┬░ 55' (21.9135┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </div><div id="tabContent-3" class="tab-content ">
+          <div class="profile-info">
+            <h2>Tarihsel DST Ge├ği┼şi (─░stanbul, T├╝rkiye)</h2>
+            <p><strong>Girdi Parametreleri:</strong> 28.3.1999 1:30 (Offset: 2, IANA: Europe/Istanbul)</p>
+            <p><strong>Test Senaryosu:</strong> T├╝rkiye saat dilimi ileri al─▒nma ge├ği┼ş s─▒n─▒r─▒ (DST)</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td style="font-weight:600;">G├╝ne┼ş</td>
+              <td class="diff-val">ÔÖê Ko├ğ 6┬░ 51' (6.859┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 6┬░ 50' (6.848┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 12' (7.215┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0113┬░)</td>
+              <td class="diff-val high-diff">0┬░ 22' (0.3674┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ay</td>
+              <td class="diff-val">ÔÖî Aslan 20┬░ 48' (140.815┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖî Aslan 20┬░ 50' (140.849┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 25┬░ 07' (145.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 02' (0.0345┬░)</td>
+              <td class="diff-val high-diff">4┬░ 16' (4.2718┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Merk├╝r</td>
+              <td class="diff-val">ÔÖô Bal─▒k 22┬░ 17' (352.285┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 22┬░ 16' (352.269┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 28┬░ 07' (358.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0156┬░)</td>
+              <td class="diff-val high-diff">5┬░ 51' (5.8515┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ven├╝s</td>
+              <td class="diff-val">ÔÖë Bo─şa 11┬░ 32' (41.538┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 11┬░ 31' (41.517┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 18┬░ 07' (48.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0210┬░)</td>
+              <td class="diff-val high-diff">6┬░ 36' (6.6036┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Mars</td>
+              <td class="diff-val">ÔÖÅ Akrep 11┬░ 38' (221.645┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 11┬░ 39' (221.650┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 14┬░ 07' (224.121┬░) (R)</td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0048┬░)</td>
+              <td class="diff-val high-diff">2┬░ 28' (2.4708┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">J├╝piter</td>
+              <td class="diff-val">ÔÖê Ko├ğ 10┬░ 09' (10.151┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 10┬░ 02' (10.041┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 13' (7.231┬░) </td>
+              <td class="diff-val high-diff">0┬░ 07' (0.1102┬░)</td>
+              <td class="diff-val high-diff">2┬░ 49' (2.8096┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Sat├╝rn</td>
+              <td class="diff-val">ÔÖë Bo─şa 2┬░ 48' (32.806┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 2┬░ 56' (32.942┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 53' (7.891┬░) </td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1364┬░)</td>
+              <td class="diff-val high-diff">25┬░ 03' (25.0511┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Uran├╝s</td>
+              <td class="diff-val">ÔÖÆ Kova 15┬░ 35' (315.588┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 15┬░ 35' (315.593┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 15┬░ 07' (315.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0052┬░)</td>
+              <td class="diff-val high-diff">0┬░ 28' (0.4718┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Nept├╝n</td>
+              <td class="diff-val">ÔÖÆ Kova 3┬░ 56' (303.942┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 3┬░ 56' (303.938┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 3┬░ 07' (303.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0043┬░)</td>
+              <td class="diff-val high-diff">0┬░ 49' (0.8167┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Pl├╝ton</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 00' (0.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 10┬░ 26' (250.441┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 9┬░ 07' (249.121┬░) (R)</td>
+              <td class="diff-val high-diff">109┬░ 34' (109.5591┬░)</td>
+              <td class="diff-val high-diff">1┬░ 19' (1.3199┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">ASC (Y├╝kselen)</td>
+              <td class="diff-val">ÔÖï Yenge├ğ 3┬░ 58' (93.983┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 3┬░ 58' (93.982┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 28┬░ 07' (298.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0007┬░)</td>
+              <td class="diff-val high-diff">155┬░ 52' (155.8609┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">MC (Midheaven)</td>
+              <td class="diff-val">ÔÖÄ Terazi 28┬░ 26' (208.438┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 28┬░ 26' (208.435┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 5┬░ 07' (215.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0033┬░)</td>
+              <td class="diff-val high-diff">6┬░ 41' (6.6859┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </div><div id="tabContent-4" class="tab-content ">
+          <div class="profile-info">
+            <h2>T├╝rkiye 2016 Sonras─▒ (Ankara, T├╝rkiye)</h2>
+            <p><strong>Girdi Parametreleri:</strong> 15.11.2018 10:0 (Offset: 3, IANA: Europe/Istanbul)</p>
+            <p><strong>Test Senaryosu:</strong> T├╝rkiye'nin kal─▒c─▒ UTC+3 uygulamas─▒ do─şrulu─şu</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            <tr>
+              <td style="font-weight:600;">G├╝ne┼ş</td>
+              <td class="diff-val">ÔÖÅ Akrep 22┬░ 51' (232.866┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 22┬░ 51' (232.856┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 22┬░ 33' (232.551┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 01' (0.0098┬░)</td>
+              <td class="diff-val high-diff">0┬░ 18' (0.3048┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ay</td>
+              <td class="diff-val">ÔÖÆ Kova 19┬░ 19' (319.322┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 19┬░ 17' (319.296┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 20┬░ 07' (320.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 02' (0.0264┬░)</td>
+              <td class="diff-val high-diff">0┬░ 49' (0.8249┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Merk├╝r</td>
+              <td class="diff-val">ÔÖÉ Yay 13┬░ 00' (253.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 13┬░ 15' (253.262┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 11┬░ 13' (251.221┬░) </td>
+              <td class="diff-val high-diff">0┬░ 16' (0.2614┬░)</td>
+              <td class="diff-val high-diff">2┬░ 02' (2.0406┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Ven├╝s</td>
+              <td class="diff-val">ÔÖÄ Terazi 25┬░ 00' (205.006┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 25┬░ 16' (205.272┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 20┬░ 07' (200.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 16' (0.2655┬░)</td>
+              <td class="diff-val high-diff">5┬░ 09' (5.1509┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Mars</td>
+              <td class="diff-val">ÔÖÆ Kova 29┬░ 22' (329.375┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 29┬░ 36' (329.609┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 29┬░ 07' (329.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 14' (0.2338┬░)</td>
+              <td class="diff-val high-diff">0┬░ 29' (0.4876┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">J├╝piter</td>
+              <td class="diff-val">ÔÖÉ Yay 1┬░ 17' (241.289┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 1┬░ 29' (241.494┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 1┬░ 07' (241.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 12' (0.2046┬░)</td>
+              <td class="diff-val high-diff">0┬░ 22' (0.3728┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Sat├╝rn</td>
+              <td class="diff-val">ÔÖæ O─şlak 5┬░ 53' (275.886┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 6┬░ 12' (276.211┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 6┬░ 07' (276.121┬░) </td>
+              <td class="diff-val high-diff">0┬░ 19' (0.3249┬░)</td>
+              <td class="diff-val high-diff">0┬░ 05' (0.0899┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Uran├╝s</td>
+              <td class="diff-val">ÔÖê Ko├ğ 29┬░ 26' (29.443┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 29┬░ 40' (29.677┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 29┬░ 07' (29.121┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 14' (0.2342┬░)</td>
+              <td class="diff-val high-diff">0┬░ 33' (0.5561┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Nept├╝n</td>
+              <td class="diff-val">ÔÖô Bal─▒k 13┬░ 28' (343.478┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 13┬░ 43' (343.725┬░) (R)</td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 13┬░ 07' (343.121┬░) (R)</td>
+              <td class="diff-val high-diff">0┬░ 15' (0.2477┬░)</td>
+              <td class="diff-val high-diff">0┬░ 36' (0.6044┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">Pl├╝ton</td>
+              <td class="diff-val">ÔÖê Ko├ğ 0┬░ 00' (0.000┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 19┬░ 15' (289.255┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 19┬░ 07' (289.121┬░) </td>
+              <td class="diff-val high-diff">70┬░ 45' (70.7449┬░)</td>
+              <td class="diff-val high-diff">0┬░ 08' (0.1341┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">ASC (Y├╝kselen)</td>
+              <td class="diff-val">ÔÖè ─░kizler 21┬░ 52' (81.881┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 21┬░ 52' (81.878┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 1┬░ 07' (271.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0025┬░)</td>
+              <td class="diff-val high-diff">170┬░ 45' (170.7575┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            <tr>
+              <td style="font-weight:600;">MC (Midheaven)</td>
+              <td class="diff-val">ÔÖÄ Terazi 13┬░ 13' (193.230┬░)</td>
+              <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 13┬░ 13' (193.226┬░) </td>
+              <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 18┬░ 07' (198.121┬░) </td>
+              <td class="diff-val ok-diff">0┬░ 00' (0.0046┬░)</td>
+              <td class="diff-val high-diff">4┬░ 54' (4.8955┬░)</td>
+              <td><span class="status-badge fail">HATA</span></td>
+            </tr>
+          
+            </tbody>
+          </table>
+        </div></div>
+
+  <!-- Script Entegrasyonlar─▒ -->
+  <script src="../astronomy.min.js"></script>
+  <script src="../astro-adapter.js"></script>
+  <script src="../astro-calc.js"></script>
+  <script src="golden-dataset.js"></script>
+
+  <script>
+    window.onerror = function(msg, url, line, col, error) {
+      const errDiv = document.createElement("div");
+      errDiv.id = "browser-error";
+      errDiv.style.color = "red";
+      errDiv.style.padding = "20px";
+      errDiv.style.background = "black";
+      let stack = error && error.stack ? error.stack : "No stack trace available";
+      errDiv.innerHTML = "ERROR: " + msg + "<br><pre style='color:#ff5555;'>" + stack + "</pre>";
+      document.body.appendChild(errDiv);
+    };
+
+    function logCheckpoint(msg) {
+      const dbg = document.getElementById("debug-checkpoints");
+      if (dbg) {
+        const d = document.createElement("div");
+        d.textContent = msg;
+        dbg.appendChild(d);
+      }
+    }
+
+    if (typeof Astronomy === 'undefined' || typeof AstroAdapter === 'undefined' || typeof AstroCalc === 'undefined' || typeof GoldenDataset === 'undefined') {
+      console.error("K├╝t├╝phaneler y├╝klenemedi! Dosya yollar─▒n─▒ kontrol edin.");
+    } else {
+      runTests();
+    }
+
+    function formatDegree(longitude) {
+      let norm = AstroAdapter.norm360(longitude);
+      let signIdx = Math.floor(norm / 30);
+      let signNames = ['Ko├ğ', 'Bo─şa', '─░kizler', 'Yenge├ğ', 'Aslan', 'Ba┼şak', 'Terazi', 'Akrep', 'Yay', 'O─şlak', 'Kova', 'Bal─▒k'];
+      let glyphs = ['ÔÖê', 'ÔÖë', 'ÔÖè', 'ÔÖï', 'ÔÖî', 'ÔÖı', 'ÔÖÄ', 'ÔÖÅ', 'ÔÖÉ', 'ÔÖæ', 'ÔÖÆ', 'ÔÖô'];
+      let deg = norm - (signIdx * 30);
+      let degInt = Math.floor(deg);
+      let minInt = Math.floor((deg - degInt) * 60);
+      return `${glyphs[signIdx]} ${signNames[signIdx]} ${degInt}┬░ ${minInt.toString().padStart(2, '0')}' (${norm.toFixed(3)}┬░)`;
+    }
+
+    function getDiffString(deg1, deg2) {
+      let diff = Math.abs(deg1 - deg2);
+      if (diff > 180) diff = 360 - diff;
+      let minTotal = diff * 60;
+      let degInt = Math.floor(diff);
+      let minInt = Math.round((diff - degInt) * 60);
+      return `${degInt}┬░ ${minInt.toString().padStart(2, '0')}' (${diff.toFixed(4)}┬░)`;
+    }
+
+    function runTests() {
+      logCheckpoint("runTests starting...");
+      const tabContainer = document.getElementById("tabContainer");
+      const contentContainer = document.getElementById("contentContainer");
+      
+      let totalPointsCount = 0;
+      let newPassCount = 0;
+      let oldPassCount = 0;
+
+      GoldenDataset.forEach((profile, idx) => {
+        logCheckpoint("Profile " + profile.id + " (" + profile.name + ") starting...");
+        // Tab Butonu Olu┼ştur
+        const btn = document.createElement("button");
+        btn.className = `tab-btn ${idx === 0 ? 'active' : ''}`;
+        btn.textContent = profile.name;
+        btn.onclick = () => switchTab(idx);
+        tabContainer.appendChild(btn);
+
+        logCheckpoint("Profile " + profile.id + ": Calculating jdOld...");
+        const jdOld = AstroCalc.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        logCheckpoint("Profile " + profile.id + ": jdOld = " + jdOld);
+        
+        logCheckpoint("Profile " + profile.id + ": Calculating jdNew...");
+        const jdNew = AstroAdapter.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        logCheckpoint("Profile " + profile.id + ": jdNew = " + jdNew);
+
+        logCheckpoint("Profile " + profile.id + ": Calculating old planetary positions...");
+        const oldPlanets = AstroCalc.getPlanetaryPositions(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old Sun position...");
+        const oldSun = AstroCalc.getSunLongitude(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old Moon position...");
+        const oldMoon = AstroCalc.getMoonLongitude(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old ASC...");
+        const oldAsc = AstroCalc.getAscendant(jdOld, profile.lat, profile.lng);
+        logCheckpoint("Profile " + profile.id + ": Calculating old MC...");
+        const oldMc = AstroCalc.getMidheaven(jdOld, profile.lng);
+
+        logCheckpoint("Profile " + profile.id + ": Calculating new planetary positions...");
+        const newPlanets = AstroAdapter.getPlanetaryPositions(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new Sun position...");
+        const newSun = AstroAdapter.getSunLongitude(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new Moon position...");
+        const newMoon = AstroAdapter.getMoonLongitude(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new ASC...");
+        const newAsc = AstroAdapter.getAscendant(jdNew, profile.lat, profile.lng);
+        logCheckpoint("Profile " + profile.id + ": Calculating new MC...");
+        const newMc = AstroAdapter.getMidheaven(jdNew, profile.lng);
+
+        // Kar┼ş─▒la┼şt─▒rma Listesi
+        const points = [
+          { key: 'sun', name: 'G├╝ne┼ş', oldVal: oldSun, newVal: newSun, refVal: profile.reference.sun, type: 'planet' },
+          { key: 'moon', name: 'Ay', oldVal: oldMoon, newVal: newMoon, refVal: profile.reference.moon, type: 'moon' },
+          { key: 'mercury', name: 'Merk├╝r', oldVal: oldPlanets.mercury, newVal: newPlanets.mercury, refVal: profile.reference.mercury, type: 'planet' },
+          { key: 'venus', name: 'Ven├╝s', oldVal: oldPlanets.venus, newVal: newPlanets.venus, refVal: profile.reference.venus, type: 'planet' },
+          { key: 'mars', name: 'Mars', oldVal: oldPlanets.mars, newVal: newPlanets.mars, refVal: profile.reference.mars, type: 'planet' },
+          { key: 'jupiter', name: 'J├╝piter', oldVal: oldPlanets.jupiter, newVal: newPlanets.jupiter, refVal: profile.reference.jupiter, type: 'planet' },
+          { key: 'saturn', name: 'Sat├╝rn', oldVal: oldPlanets.saturn, newVal: newPlanets.saturn, refVal: profile.reference.saturn, type: 'planet' },
+          { key: 'uranus', name: 'Uran├╝s', oldVal: oldPlanets.uranus, newVal: newPlanets.uranus, refVal: profile.reference.uranus, type: 'planet' },
+          { key: 'neptune', name: 'Nept├╝n', oldVal: oldPlanets.neptune, newVal: newPlanets.neptune, refVal: profile.reference.neptune, type: 'planet' },
+          { key: 'pluto', name: 'Pl├╝ton', oldVal: oldPlanets.pluto || 0, newVal: newPlanets.pluto, refVal: profile.reference.pluto, type: 'planet' },
+          { key: 'asc', name: 'ASC (Y├╝kselen)', oldVal: oldAsc, newVal: newAsc, refVal: profile.reference.asc, type: 'asc_mc' },
+          { key: 'mc', name: 'MC (Midheaven)', oldVal: oldMc, newVal: newMc, refVal: profile.reference.mc, type: 'asc_mc' }
+        ];
+
+        // Panel ─░├ğeri─şini Olu┼ştur
+        const contentDiv = document.createElement("div");
+        contentDiv.id = `tabContent-${idx}`;
+        contentDiv.className = `tab-content ${idx === 0 ? 'active' : ''}`;
+
+        let rowsHtml = "";
+        points.forEach(pt => {
+          totalPointsCount++;
+          
+          // Sapma Tolerans Kontrol├╝
+          let tolerance = 0.02; // Planet ve ASC/MC i├ğin 0.02┬░
+          if (pt.type === 'moon') tolerance = 0.03; // Ay i├ğin 0.03┬░
+
+          // Yeni Motor vs Referans Sapmas─▒
+          let newDiff = Math.abs(pt.newVal - pt.refVal);
+          if (newDiff > 180) newDiff = 360 - newDiff;
+          const isNewPass = newDiff <= tolerance;
+          if (isNewPass) newPassCount++;
+
+          // Eski Motor vs Referans Sapmas─▒
+          let oldDiff = Math.abs(pt.oldVal - pt.refVal);
+          if (oldDiff > 180) oldDiff = 360 - oldDiff;
+          const isOldPass = oldDiff <= tolerance;
+          if (isOldPass) oldPassCount++;
+
+          // Eski vs Yeni Fark─▒ (Eski motorun ne kadar kayd─▒─ş─▒n─▒ g├Âstermek i├ğin)
+          let deltaDiff = Math.abs(pt.oldVal - pt.newVal);
+          if (deltaDiff > 180) deltaDiff = 360 - deltaDiff;
+
+          // Retro Durumunu Kontrol Et
+          let isNewRetro = AstroAdapter.isPlanetRetrograde(pt.key, jdNew);
+          let refRetro = profile.reference.retros.includes(pt.key);
+          let retroText = (isNewRetro ? "(R)" : "");
+          let refRetroText = (refRetro ? "(R)" : "");
+
+          rowsHtml += `
+            <tr>
+              <td style="font-weight:600;">${pt.name}</td>
+              <td class="diff-val">${formatDegree(pt.oldVal)}</td>
+              <td class="diff-val" style="color:#fff;">${formatDegree(pt.newVal)} ${retroText}</td>
+              <td class="diff-val" style="color:var(--gold);">${formatDegree(pt.refVal)} ${refRetroText}</td>
+              <td class="diff-val ${deltaDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.oldVal, pt.newVal)}</td>
+              <td class="diff-val ${newDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.newVal, pt.refVal)}</td>
+              <td><span class="status-badge ${isNewPass ? 'pass' : 'fail'}">${isNewPass ? 'GE├çT─░' : 'HATA'}</span></td>
+            </tr>
+          `;
+        });
+
+        contentDiv.innerHTML = `
+          <div class="profile-info">
+            <h2>${profile.name} (${profile.city})</h2>
+            <p><strong>Girdi Parametreleri:</strong> ${profile.day}.${profile.month}.${profile.year} ${profile.hour}:${profile.minute} (Offset: ${profile.tzOffset}, IANA: ${profile.ianaTimezone})</p>
+            <p><strong>Test Senaryosu:</strong> ${profile.scenario}</p>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>G├Âk Cismi</th>
+                <th>Eski Motor (AstroCalc)</th>
+                <th>Yeni Motor (AstroAdapter)</th>
+                <th>Referans Sonu├ğ (Ref)</th>
+                <th>Eski vs Yeni Fark─▒</th>
+                <th>Yeni vs Referans Sapmas─▒</th>
+                <th>Durum</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+        `;
+        contentContainer.appendChild(contentDiv);
+      });
+
+      // ├ûzet Kartlar─▒n─▒ G├╝ncelle
+      document.getElementById("totalPoints").textContent = totalPointsCount;
+      
+      const newSuccessRateVal = (newPassCount / totalPointsCount) * 100;
+      const oldSuccessRateVal = (oldPassCount / totalPointsCount) * 100;
+      
+      document.getElementById("successRate").textContent = `%${newSuccessRateVal.toFixed(1)}`;
+      document.getElementById("oldSuccessRate").textContent = `%${oldSuccessRateVal.toFixed(1)}`;
+
+      // Dump raw results in JSON for automated analysis
+      let resultsObj = {};
+      GoldenDataset.forEach((profile, idx) => {
+        const jdNew = AstroAdapter.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        const newPlanets = AstroAdapter.getPlanetaryPositions(jdNew);
+        const newSun = AstroAdapter.getSunLongitude(jdNew);
+        const newMoon = AstroAdapter.getMoonLongitude(jdNew);
+        const newAsc = AstroAdapter.getAscendant(jdNew, profile.lat, profile.lng);
+        const newMc = AstroAdapter.getMidheaven(jdNew, profile.lng);
+        
+        let retrosList = [];
+        ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'].forEach(p => {
+          if (AstroAdapter.isPlanetRetrograde(p, jdNew)) {
+            retrosList.push(p);
+          }
+        });
+
+        resultsObj[profile.id] = {
+          sun: newSun,
+          moon: newMoon,
+          mercury: newPlanets.mercury,
+          venus: newPlanets.venus,
+          mars: newPlanets.mars,
+          jupiter: newPlanets.jupiter,
+          saturn: newPlanets.saturn,
+          uranus: newPlanets.uranus,
+          neptune: newPlanets.neptune,
+          pluto: newPlanets.pluto,
+          asc: newAsc,
+          mc: newMc,
+          retros: retrosList
+        };
+      });
+      const preEl = document.createElement("pre");
+      preEl.id = "raw-results";
+      preEl.style.display = "block";
+      preEl.style.color = "#8b949e";
+      preEl.style.background = "#0d1117";
+      preEl.style.padding = "1rem";
+      preEl.style.marginTop = "2rem";
+      preEl.style.border = "1px solid var(--border)";
+      preEl.textContent = "RESULTS_JSON_START:" + JSON.stringify(resultsObj) + ":RESULTS_JSON_END";
+      document.body.appendChild(preEl);
+    }
+
+    function switchTab(index) {
+      document.querySelectorAll(".tab-btn").forEach((btn, idx) => {
+        btn.classList.toggle("active", idx === index);
+      });
+      document.querySelectorAll(".tab-content").forEach((content, idx) => {
+        content.classList.toggle("active", idx === index);
+      });
+    }
+  </script><pre id="raw-results" style="display: block; color: rgb(139, 148, 158); background: rgb(13, 17, 23); padding: 1rem; margin-top: 2rem; border: 1px solid var(--border);">RESULTS_JSON_START:{"1":{"sun":84.34049478166789,"moon":50.88319144191362,"mercury":93.8803417799693,"venus":38.62128972950068,"mars":94.04427511636932,"jupiter":316.783900569039,"saturn":232.70741621605163,"uranus":255.63085102280706,"neptune":272.4601282766232,"pluto":212.12167823331416,"asc":10.116626276442167,"mc":108.63711557141023,"retros":["jupiter","saturn","uranus","neptune","pluto"]},"2":{"sun":269.4342639175468,"moon":151.28114867117606,"mercury":250.18847588076846,"venus":301.2647224853177,"mars":39.00604999334124,"jupiter":221.46561181427936,"saturn":130.55326079910898,"uranus":337.36441602803075,"neptune":315.65367492991675,"pluto":264.49043907358333,"asc":27.898553799962095,"mc":99.49333938028009,"retros":["saturn"]},"3":{"sun":0.4747970220533705,"moon":62.477100041941775,"mercury":7.068519984833199,"venus":16.995762167729914,"mars":120.94177763710877,"jupiter":344.71990113103135,"saturn":181.349335371856,"uranus":356.79589868074413,"neptune":327.40919081644756,"pluto":275.34486248277324,"asc":272.70078755172165,"mc":3.207453422817194,"retros":["saturn"]},"4":{"sun":6.847572311578257,"moon":140.84917257918713,"mercury":352.2694501494959,"venus":41.517430867634516,"mars":221.6502130826496,"jupiter":10.040629140793806,"saturn":32.94210213547719,"uranus":315.5927620723387,"neptune":303.9377077340049,"pluto":250.4409040288528,"asc":93.98187376109982,"mc":208.4350872059489,"retros":["mercury","mars","pluto"]},"5":{"sun":232.85579651757115,"moon":319.2960749232731,"mercury":253.26158773290507,"venus":205.2718800106162,"mars":329.6085520646069,"jupiter":241.49384712249972,"saturn":276.21087577155816,"uranus":29.67710634658239,"neptune":343.7254302230969,"pluto":289.255129816941,"asc":81.87845742610858,"mc":193.22554176188567,"retros":["venus","uranus","neptune"]}}:RESULTS_JSON_END</pre>
+
+
+</body></html>

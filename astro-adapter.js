@@ -52,6 +52,7 @@
     },
 
     // Julian Date hesaplama (TimeZone ve DST kaydırmasını çözümler)
+    // DİKKAT: tzOffset sayısal saat farkıdır. IANA saat dilimi çözümlemesi SSG fazında yapılacaktır.
     getJulianDate(year, month, day, hour, minute, tzOffset) {
       // Yerel saati UTC saati cinsinden ondalıklı saate çevir
       let decimalHour = hour + (minute / 60) - tzOffset;
@@ -61,7 +62,7 @@
       date.setUTCMilliseconds(date.getUTCMilliseconds() + decimalHour * 3600000);
       
       let time = new Astronomy.AstroTime(date);
-      return time.ut; // Julian Date UT
+      return time.ut; // J2000.0 epoch'undan beri geçen gün sayısı (negatif olabilir)
     },
 
     // Ekliptik Eğikliği (Obliquity of Ecliptic of date)
@@ -74,15 +75,16 @@
     // Güneş Boylamı (Geocentric Ecliptic Longitude of date, Tropical)
     getSunLongitude(jd) {
       let time = new Astronomy.AstroTime(jd);
-      let coords = Astronomy.EclipticGeoMoon(Astronomy.Body.Sun, time);
+      let vec = Astronomy.GeoVector(Astronomy.Body.Sun, time, true);
+      let coords = Astronomy.Ecliptic(vec);
       return this.norm360(coords.elon);
     },
 
     // Ay Boylamı (Geocentric Ecliptic Longitude of date, Tropical)
     getMoonLongitude(jd) {
       let time = new Astronomy.AstroTime(jd);
-      let coords = Astronomy.EclipticGeoMoon(Astronomy.Body.Moon, time);
-      return this.norm360(coords.elon);
+      let coords = Astronomy.EclipticGeoMoon(time);
+      return this.norm360(coords.lon); // Moon için coords.lon kullanılır
     },
 
     // Gezegen Konumları (Geocentric Ecliptic Longitude of date, Tropical)
@@ -101,7 +103,8 @@
 
       let positions = {};
       Object.keys(bodies).forEach(key => {
-        let coords = Astronomy.EclipticGeoMoon(bodies[key], time);
+        let vec = Astronomy.GeoVector(bodies[key], time, true);
+        let coords = Astronomy.Ecliptic(vec);
         positions[key] = this.norm360(coords.elon);
       });
 
@@ -155,8 +158,11 @@
       let time1 = new Astronomy.AstroTime(jd);
       let time2 = new Astronomy.AstroTime(jd + 0.005);
 
-      let coords1 = Astronomy.EclipticGeoMoon(body, time1);
-      let coords2 = Astronomy.EclipticGeoMoon(body, time2);
+      let vec1 = Astronomy.GeoVector(body, time1, true);
+      let vec2 = Astronomy.GeoVector(body, time2, true);
+
+      let coords1 = Astronomy.Ecliptic(vec1);
+      let coords2 = Astronomy.Ecliptic(vec2);
 
       let diff = coords2.elon - coords1.elon;
       // 360 derece geçişini kontrol et

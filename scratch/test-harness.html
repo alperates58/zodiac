@@ -182,6 +182,8 @@
 </head>
 <body>
 
+  <div id="debug-checkpoints" style="font-family:monospace; font-size:12px; color:#aaa; margin:20px; padding:10px; background:#222; display:block; white-space:pre-wrap;"></div>
+
   <div class="header">
     <h1>Zodyak Atlası - Faz 4A-0 Test Harness</h1>
     <p>Astronomy Engine (AstroAdapter) vs. Eski Motor (AstroCalc) & Referans Karşılaştırma</p>
@@ -216,13 +218,31 @@
   <script src="golden-dataset.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof Astronomy === 'undefined' || typeof AstroAdapter === 'undefined' || typeof AstroCalc === 'undefined' || typeof GoldenDataset === 'undefined') {
-        alert("Kütüphaneler yüklenemedi! Dosya yollarını kontrol edin.");
-        return;
+    window.onerror = function(msg, url, line, col, error) {
+      const errDiv = document.createElement("div");
+      errDiv.id = "browser-error";
+      errDiv.style.color = "red";
+      errDiv.style.padding = "20px";
+      errDiv.style.background = "black";
+      let stack = error && error.stack ? error.stack : "No stack trace available";
+      errDiv.innerHTML = "ERROR: " + msg + "<br><pre style='color:#ff5555;'>" + stack + "</pre>";
+      document.body.appendChild(errDiv);
+    };
+
+    function logCheckpoint(msg) {
+      const dbg = document.getElementById("debug-checkpoints");
+      if (dbg) {
+        const d = document.createElement("div");
+        d.textContent = msg;
+        dbg.appendChild(d);
       }
+    }
+
+    if (typeof Astronomy === 'undefined' || typeof AstroAdapter === 'undefined' || typeof AstroCalc === 'undefined' || typeof GoldenDataset === 'undefined') {
+      console.error("Kütüphaneler yüklenemedi! Dosya yollarını kontrol edin.");
+    } else {
       runTests();
-    });
+    }
 
     function formatDegree(longitude) {
       let norm = AstroAdapter.norm360(longitude);
@@ -245,6 +265,7 @@
     }
 
     function runTests() {
+      logCheckpoint("runTests starting...");
       const tabContainer = document.getElementById("tabContainer");
       const contentContainer = document.getElementById("contentContainer");
       
@@ -253,6 +274,7 @@
       let oldPassCount = 0;
 
       GoldenDataset.forEach((profile, idx) => {
+        logCheckpoint("Profile " + profile.id + " (" + profile.name + ") starting...");
         // Tab Butonu Oluştur
         const btn = document.createElement("button");
         btn.className = `tab-btn ${idx === 0 ? 'active' : ''}`;
@@ -260,23 +282,34 @@
         btn.onclick = () => switchTab(idx);
         tabContainer.appendChild(btn);
 
-        // Tarihsel Timezone Ofsetine ve DST'ye Göre JD Hesaplama
-        // Eski motor offseti ve DST'yi ayrı alırdı, Adapter tek bir net offset alır
+        logCheckpoint("Profile " + profile.id + ": Calculating jdOld...");
         const jdOld = AstroCalc.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        logCheckpoint("Profile " + profile.id + ": jdOld = " + jdOld);
+        
+        logCheckpoint("Profile " + profile.id + ": Calculating jdNew...");
         const jdNew = AstroAdapter.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        logCheckpoint("Profile " + profile.id + ": jdNew = " + jdNew);
 
-        // Konumlar (Eski Motor)
+        logCheckpoint("Profile " + profile.id + ": Calculating old planetary positions...");
         const oldPlanets = AstroCalc.getPlanetaryPositions(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old Sun position...");
         const oldSun = AstroCalc.getSunLongitude(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old Moon position...");
         const oldMoon = AstroCalc.getMoonLongitude(jdOld);
+        logCheckpoint("Profile " + profile.id + ": Calculating old ASC...");
         const oldAsc = AstroCalc.getAscendant(jdOld, profile.lat, profile.lng);
+        logCheckpoint("Profile " + profile.id + ": Calculating old MC...");
         const oldMc = AstroCalc.getMidheaven(jdOld, profile.lng);
 
-        // Konumlar (Yeni Adapter)
+        logCheckpoint("Profile " + profile.id + ": Calculating new planetary positions...");
         const newPlanets = AstroAdapter.getPlanetaryPositions(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new Sun position...");
         const newSun = AstroAdapter.getSunLongitude(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new Moon position...");
         const newMoon = AstroAdapter.getMoonLongitude(jdNew);
+        logCheckpoint("Profile " + profile.id + ": Calculating new ASC...");
         const newAsc = AstroAdapter.getAscendant(jdNew, profile.lat, profile.lng);
+        logCheckpoint("Profile " + profile.id + ": Calculating new MC...");
         const newMc = AstroAdapter.getMidheaven(jdNew, profile.lng);
 
         // Karşılaştırma Listesi
@@ -377,6 +410,50 @@
       
       document.getElementById("successRate").textContent = `%${newSuccessRateVal.toFixed(1)}`;
       document.getElementById("oldSuccessRate").textContent = `%${oldSuccessRateVal.toFixed(1)}`;
+
+      // Dump raw results in JSON for automated analysis
+      let resultsObj = {};
+      GoldenDataset.forEach((profile, idx) => {
+        const jdNew = AstroAdapter.getJulianDate(profile.year, profile.month, profile.day, profile.hour, profile.minute, profile.tzOffset);
+        const newPlanets = AstroAdapter.getPlanetaryPositions(jdNew);
+        const newSun = AstroAdapter.getSunLongitude(jdNew);
+        const newMoon = AstroAdapter.getMoonLongitude(jdNew);
+        const newAsc = AstroAdapter.getAscendant(jdNew, profile.lat, profile.lng);
+        const newMc = AstroAdapter.getMidheaven(jdNew, profile.lng);
+        
+        let retrosList = [];
+        ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'].forEach(p => {
+          if (AstroAdapter.isPlanetRetrograde(p, jdNew)) {
+            retrosList.push(p);
+          }
+        });
+
+        resultsObj[profile.id] = {
+          sun: newSun,
+          moon: newMoon,
+          mercury: newPlanets.mercury,
+          venus: newPlanets.venus,
+          mars: newPlanets.mars,
+          jupiter: newPlanets.jupiter,
+          saturn: newPlanets.saturn,
+          uranus: newPlanets.uranus,
+          neptune: newPlanets.neptune,
+          pluto: newPlanets.pluto,
+          asc: newAsc,
+          mc: newMc,
+          retros: retrosList
+        };
+      });
+      const preEl = document.createElement("pre");
+      preEl.id = "raw-results";
+      preEl.style.display = "block";
+      preEl.style.color = "#8b949e";
+      preEl.style.background = "#0d1117";
+      preEl.style.padding = "1rem";
+      preEl.style.marginTop = "2rem";
+      preEl.style.border = "1px solid var(--border)";
+      preEl.textContent = "RESULTS_JSON_START:" + JSON.stringify(resultsObj) + ":RESULTS_JSON_END";
+      document.body.appendChild(preEl);
     }
 
     function switchTab(index) {
