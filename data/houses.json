@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "1-ev",
+    "num": "1. Ev",
+    "name": "1. Ev (Yükselen / Köşe Ev)",
+    "ruler": "Koç / Mars",
+    "topic": "Benlik, Dış Görünüş, Maske ve Hayata Başlangıç",
+    "desc": "Birinci ev, doğum haritasının başlangıç noktasıdır (ASC/Yükselen). Dış dünyaya gösterdiğimiz maskemizi, fiziksel görünüşümüzü, auranızı, ilk izlenimimizi ve hayata karşı geliştirdiğimiz savunma mekanizmalarını yönetir.",
+    "details": "Bu ev, haritanın merceğidir. Hayatı hangi filtreyle gördüğümüzü ve başkalarının bizi ilk bakışta nasıl algıladığını anlatır. Buradaki gezegenler karakterimizin en belirgin dışa vurumlarıdır.",
+    "planets": "Güneş burçta liderlik verirken, Satürn soğuk ve mesafeli bir duruş katar. Mars sabırsız ve hareketli bir beden dili oluşturur, Jüpiter ise şanslı ve neşeli bir aura sağlar."
+  },
+  {
+    "slug": "2-ev",
+    "num": "2. Ev",
+    "name": "2. Ev (Para ve Değerler / Halef Ev)",
+    "ruler": "Boğa / Venüs",
+    "topic": "Maddi Kaynaklar, Kazançlar, Özdeğer ve Yetenekler",
+    "desc": "İkinci ev, kendi alın terimizle kazandığımız parayı, taşınabilir mallarımızı, finansal güvence ihtiyacımızı ve en önemlisi kendimize verdiğimiz içsel değeri (özdeğer) yönetir.",
+    "details": "Bu ev, hayatta neleri değerli bulduğumuzu ve güvenliğimizi sağlamak için hangi kaynakları kullandığımızı gösterir. Buradaki gezegenler finansal şansımızı ve para kazanma yeteneklerimizi belirler.",
+    "planets": "Venüs ve Jüpiter burada maddi bolluk ve lüks sevgisi getirirken, Satürn para konularında kısıtlanmalar, gecikmeler ve disiplinli birikim yapma zorunluluğu verir."
+  },
+  {
+    "slug": "10-ev",
+    "num": "10. Ev",
+    "name": "10. Ev (Kariyer / Tepe Noktası / Köşe Ev)",
+    "ruler": "Oğlak / Satürn",
+    "topic": "Toplumsal Statü, Kariyer, Hedefler ve Otorite",
+    "desc": "Onuncu ev (MC/Tepe Noktası), haritanın en görünür zirvesidir. Kariyerimizi, mesleki başarılarımızı, toplumsal ünvanımızı, otorite figürleriyle ilişkilerimizi ve hayat amacımızı yönetir.",
+    "details": "Bu ev, dünyada bırakmak istediğimiz izi ve zirveye ulaşma mücadelemizi gösterir. Toplumun bizi neyle hatırlayacağı bu evin yerleşimiyle doğrudan ilişkilidir.",
+    "planets": "Güneş ve Mars burada güçlü liderlik, kariyer hırsı ve yöneticilik verir. Jüpiter büyük ün ve kariyer şansı getirirken, Satürn sabırla inşa edilen sarsılmaz bir başarı vadeder."
+  }
+]

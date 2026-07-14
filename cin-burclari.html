@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Çin burcu ve elementi hesaplayıcı. Doğum tarihinize göre kesin Çin burcunuzu ve Çin burç uyumunuzu öğrenin.">
+  <title>Çin Burcu Hesaplama & Uyum Analizi — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <style>
+    .china-container {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .china-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .china-form {
+      max-width: 500px;
+      margin: 2rem auto 3rem;
+    }
+    .china-result {
+      display: none;
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: rgba(255, 209, 102, 0.03);
+      border: 1px solid rgba(255, 209, 102, 0.2);
+      border-radius: 8px;
+      animation: slideUp 0.5s ease;
+    }
+    .china-icon {
+      font-size: 5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .china-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media(max-width: 768px) {
+      .china-card {
+        padding: 2rem 1.5rem;
+      }
+      .china-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media(max-width: 480px) {
+      .china-container {
+        padding: 0 1rem;
+      }
+      .china-card {
+        min-width: 0;
+        padding: 1.5rem 1rem;
+        overflow-wrap: anywhere;
+      }
+      .china-result {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main class="china-container">
+    <div class="star-field" aria-hidden="true"></div>
+    
+    <div class="china-card">
+      <p class="eyebrow" style="justify-content: center;">Doğu Astrolojisi</p>
+      <h2 style="text-align: center; font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Çin Burcu Hesaplama</h2>
+      <p style="text-align: center; color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem;">
+        Geleneksel Çin Ay-Güneş takvimine göre kesin burcunuzu ve elementinizi hesaplayın. Çin Yeni Yılı başlangıç tarihleri yıl bazında tam olarak dikkate alınmaktadır.
+      </p>
+
+      <div class="china-form">
+        <label for="birthDate" style="display: block; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Doğum Tarihiniz</label>
+        <input type="date" id="birthDate" value="1990-01-01" style="width: 100%; padding: 0.9rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 1.1rem; outline: none; margin-bottom: 1.5rem;">
+        <button onclick="calculateChineseSign()" style="width: 100%; padding: 1.1rem; background: linear-gradient(135deg, #d4af37, #967012); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #030610; font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 15px var(--gold-glow);">Çin Burcumu Bul</button>
+      </div>
+
+      <!-- Sonuç Paneli -->
+      <div id="chinaResult" class="china-result">
+        <span id="chinaAnimalIcon" class="china-icon">🐉</span>
+        <h3 id="chinaAnimalName" style="font-family: 'Cinzel', serif; text-align: center; font-size: 2rem; color: var(--gold-bright); margin-bottom: 0.5rem; text-transform: uppercase;">Ejderha</h3>
+        <p id="chinaElementInfo" style="text-align: center; color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem;">Metal Ejderha Yılı (Yin/Yang: Yang)</p>
+        
+        <div class="china-grid">
+          <div class="trait-card">
+            <h4 style="color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">Karakter Özellikleri</h4>
+            <p id="chinaSignDesc" style="font-size: 0.95rem; color: #cbd5e1; margin: 0; line-height: 1.6;"></p>
+          </div>
+          <div class="trait-card">
+            <h4 style="color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">Uyum Analizi (En Uyumlu Burçlar)</h4>
+            <p id="chinaCompDesc" style="font-size: 0.95rem; color: #cbd5e1; margin: 0; line-height: 1.6;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <script>
+    // Mobil menü işleyicisi
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Menü';
+    });
+
+    // 1950 - 2030 Çin Yeni Yılı Başlangıç Tarihleri Veri Tabanı
+    // [Yıl, Çin Yeni Yılı Başlangıç Ayı (1-based), Başlangıç Günü, Hayvan İndeksi (0: Fare, 1: Öküz, etc.), Element İndeksi (0: Metal, 1: Su, etc.), Yin/Yang]
+    const chineseYears = {
+      1950: [2, 17, 2, 3, "Yang"], // 1950: Kaplan, Metal
+      1951: [2, 6, 3, 3, "Yin"],   // 1951: Tavşan, Metal
+      1952: [1, 27, 4, 4, "Yang"], // 1952: Ejderha, Su
+      1953: [2, 14, 5, 4, "Yin"],   // 1953: Yılan, Su
+      1954: [2, 3, 6, 0, "Yang"],  // 1954: At, Tahta
+      1955: [1, 24, 7, 0, "Yin"],   // 1955: Keçi, Tahta
+      1956: [2, 12, 8, 1, "Yang"], // 1956: Maymun, Ateş
+      1957: [1, 31, 9, 1, "Yin"],   // 1957: Horoz, Ateş
+      1958: [2, 18, 10, 2, "Yang"],// 1958: Köpek, Toprak
+      1959: [2, 8, 11, 2, "Yin"],   // 1959: Domuz, Toprak
+      1960: [1, 28, 0, 3, "Yang"], // 1960: Fare, Metal
+      1961: [2, 15, 1, 3, "Yin"],   // 1961: Öküz, Metal
+      1962: [2, 5, 2, 4, "Yang"],  // 1962: Kaplan, Su
+      1963: [1, 25, 3, 4, "Yin"],   // 1963: Tavşan, Su
+      1964: [2, 13, 4, 0, "Yang"], // 1964: Ejderha, Tahta
+      1965: [2, 2, 5, 0, "Yin"],   // 1965: Yılan, Tahta
+      1966: [1, 21, 6, 1, "Yang"], // 1966: At, Ateş
+      1967: [2, 9, 7, 1, "Yin"],   // 1967: Keçi, Ateş
+      1968: [1, 30, 8, 2, "Yang"], // 1968: Maymun, Toprak
+      1969: [2, 17, 9, 2, "Yin"],   // 1969: Horoz, Toprak
+      1970: [2, 6, 10, 3, "Yang"], // 1970: Köpek, Metal
+      1971: [1, 27, 11, 3, "Yin"],  // 1971: Domuz, Metal
+      1972: [2, 15, 0, 4, "Yang"], // 1972: Fare, Su
+      1973: [2, 3, 1, 4, "Yin"],   // 1973: Öküz, Su
+      1974: [1, 23, 2, 0, "Yang"], // 1974: Kaplan, Tahta
+      1975: [2, 11, 3, 0, "Yin"],   // 1975: Tavşan, Tahta
+      1976: [1, 31, 4, 1, "Yang"], // 1976: Ejderha, Ateş
+      1977: [2, 18, 5, 1, "Yin"],   // 1977: Yılan, Ateş
+      1978: [2, 7, 6, 2, "Yang"],  // 1978: At, Toprak
+      1979: [1, 28, 7, 2, "Yin"],   // 1979: Keçi, Toprak
+      1980: [2, 16, 8, 3, "Yang"], // 1980: Maymun, Metal
+      1981: [2, 5, 9, 3, "Yin"],   // 1981: Horoz, Metal
+      1982: [1, 25, 10, 4, "Yang"],// 1982: Köpek, Su
+      1983: [2, 13, 11, 4, "Yin"],  // 1983: Domuz, Su
+      1984: [2, 2, 0, 0, "Yang"],  // 1984: Fare, Tahta
+      1985: [2, 20, 1, 0, "Yin"],  // 1985: Öküz, Tahta
+      1986: [2, 9, 2, 1, "Yang"],  // 1986: Kaplan, Ateş
+      1987: [1, 29, 3, 1, "Yin"],   // 1987: Tavşan, Ateş
+      1988: [2, 17, 4, 2, "Yang"], // 1988: Ejderha, Toprak
+      1989: [2, 6, 5, 2, "Yin"],   // 1989: Yılan, Toprak
+      1990: [1, 27, 6, 3, "Yang"], // 1990: At, Metal
+      1991: [2, 15, 7, 3, "Yin"],   // 1991: Keçi, Metal
+      1992: [2, 4, 8, 4, "Yang"],  // 1992: Maymun, Su
+      1993: [1, 23, 9, 4, "Yin"],   // 1993: Horoz, Su
+      1994: [2, 10, 10, 0, "Yang"],// 1994: Köpek, Tahta
+      1995: [1, 31, 11, 0, "Yin"],  // 1995: Domuz, Tahta
+      1996: [2, 19, 0, 1, "Yang"], // 1996: Fare, Ateş
+      1997: [2, 7, 1, 1, "Yin"],   // 1997: Öküz, Ateş
+      1998: [1, 28, 2, 2, "Yang"], // 1998: Kaplan, Toprak
+      1999: [2, 16, 3, 2, "Yin"],   // 1999: Tavşan, Toprak
+      2000: [2, 5, 4, 3, "Yang"],  // 2000: Ejderha, Metal
+      2001: [1, 24, 5, 3, "Yin"],   // 2001: Yılan, Metal
+      2002: [2, 12, 6, 4, "Yang"], // 2002: At, Su
+      2003: [2, 1, 7, 4, "Yin"],   // 2003: Keçi, Su
+      2004: [1, 22, 8, 0, "Yang"], // 2004: Maymun, Tahta
+      2005: [2, 9, 9, 0, "Yin"],   // 2005: Horoz, Tahta
+      2006: [1, 29, 10, 1, "Yang"],// 2006: Köpek, Ateş
+      2007: [2, 18, 11, 1, "Yin"],  // 2007: Domuz, Ateş
+      2008: [2, 7, 0, 2, "Yang"],  // 2008: Fare, Toprak
+      2009: [1, 26, 1, 2, "Yin"],   // 2009: Öküz, Toprak
+      2010: [2, 14, 2, 3, "Yang"], // 2010: Kaplan, Metal
+      2011: [2, 3, 3, 3, "Yin"],   // 2011: Tavşan, Metal
+      2012: [1, 23, 4, 4, "Yang"], // 2012: Ejderha, Su
+      2013: [2, 10, 5, 4, "Yin"],  // 2013: Yılan, Su
+      2014: [1, 31, 6, 0, "Yang"], // 2014: At, Tahta
+      2015: [2, 19, 7, 0, "Yin"],  // 2015: Keçi, Tahta
+      2016: [2, 8, 8, 1, "Yang"],  // 2016: Maymun, Ateş
+      2017: [1, 28, 9, 1, "Yin"],   // 2017: Horoz, Ateş
+      2018: [2, 16, 10, 2, "Yang"],// 2018: Köpek, Toprak
+      2019: [2, 5, 11, 2, "Yin"],   // 2019: Domuz, Toprak
+      2020: [1, 25, 0, 3, "Yang"], // 2020: Fare, Metal
+      2021: [2, 12, 1, 3, "Yin"],  // 2021: Öküz, Metal
+      2022: [2, 1, 2, 4, "Yang"],  // 2022: Kaplan, Su
+      2023: [1, 22, 3, 4, "Yin"],   // 2023: Tavşan, Su
+      2024: [2, 10, 4, 0, "Yang"], // 2024: Ejderha, Tahta
+      2025: [1, 29, 5, 0, "Yin"],  // 2025: Yılan, Tahta
+      2026: [2, 17, 6, 1, "Yang"], // 2026: At, Ateş
+      2027: [2, 6, 7, 1, "Yin"],   // 2027: Keçi, Ateş
+      2028: [1, 26, 8, 2, "Yang"], // 2028: Maymun, Toprak
+      2029: [2, 13, 9, 2, "Yin"],  // 2029: Horoz, Toprak
+      2030: [2, 2, 10, 3, "Yang"]  // 2030: Köpek, Metal
+    };
+
+    const animals = [
+      { name: "Fare", icon: "🐀", desc: "Zeki, becerikli, sosyal, uyumlu ama bazen fırsatçı.", comp: "Ejderha, Maymun, Öküz" },
+      { name: "Öküz", icon: "🐂", desc: "Çalışkan, güvenilir, sabırlı, metodik ama bazen inatçı.", comp: "Fare, Horoz, Yılan" },
+      { name: "Kaplan", icon: "🐅", desc: "Cesur, karizmatik, tutkulu, öncü ama bazen fevri ve asi.", comp: "At, Köpek, Domuz" },
+      { name: "Tavşan", icon: "🐇", desc: "Zarif, barışçıl, hassas, sanatsal ama bazen çekingen.", comp: "Keçi, Domuz, Köpek" },
+      { name: "Ejderha", icon: "🐉", desc: "Karizmatik, güçlü, gururlu, şanslı ama bazen kibirli.", comp: "Fare, Maymun, Horoz" },
+      { name: "Yılan", icon: "🐍", desc: "Bilge, gizemli, sezgisel, zarif ama bazen soğuk ve kıskanç.", comp: "Öküz, Horoz, Maymun" },
+      { name: "At", icon: "🐎", desc: "Özgürlüğüne düşkün, enerjik, neşeli ama bazen sabırsız.", comp: "Kaplan, Köpek, Keçi" },
+      { name: "Keçi", icon: "🐐", desc: "Şefkatli, yaratıcı, sanatsal, uyumlu ama bazen karamsar.", comp: "Tavşan, Domuz, At" },
+      { name: "Maymun", icon: "🐒", desc: "Zeki, muzip, meraklı, pratik zekalı ama bazen hilekar.", comp: "Fare, Ejderha, Yılan" },
+      { name: "Horoz", icon: "🐓", desc: "Çalışkan, titiz, dürüst, konuşkan ama bazen eleştirel.", comp: "Öküz, Yılan, Ejderha" },
+      { name: "Köpek", icon: "🐕", desc: "Sadık, dürüst, korumacı, adil ama bazen endişeli.", comp: "Kaplan, Tavşan, At" },
+      { name: "Domuz", icon: "🐖", desc: "Cömert, dürüst, barışçıl, keyifçi ama bazen saftirik.", comp: "Keçi, Tavşan, Kaplan" }
+    ];
+
+    const elements = ["Tahta (Ahşap)", "Ateş", "Toprak", "Metal", "Su"];
+
+    function calculateChineseSign() {
+      const dateVal = document.getElementById("birthDate").value;
+      if (!dateVal) return;
+
+      const date = new Date(dateVal);
+      let birthYear = date.getFullYear();
+      const birthMonth = date.getMonth() + 1; // 1-12
+      const birthDay = date.getDate();
+
+      // Sınır yılları kontrolü (1950 - 2030)
+      if (birthYear < 1950 || birthYear > 2030) {
+        alert("Lütfen 1950 ile 2030 yılları arasında bir tarih seçin.");
+        return;
+      }
+
+      // Seçilen yılın Çin Yeni Yılı başlangıç tarihini al
+      const cYearData = chineseYears[birthYear];
+      const startMonth = cYearData[0];
+      const startDay = cYearData[1];
+
+      // Eğer doğum tarihi o yılın Çin Yeni Yılı başlangıcından ÖNCE ise, bir önceki Çin yılına aittir!
+      let targetChineseYear = birthYear;
+      if (birthMonth < startMonth || (birthMonth === startMonth && birthDay < startDay)) {
+        targetChineseYear = birthYear - 1;
+      }
+
+      // Çin yılının verilerini al
+      const finalYearData = chineseYears[targetChineseYear];
+      const animalIdx = finalYearData[2];
+      const elementIdx = finalYearData[3];
+      const yinYang = finalYearData[4];
+
+      const animal = animals[animalIdx];
+      const elementName = elements[elementIdx];
+
+      // Sonuçları ekrana bas
+      document.getElementById("chinaAnimalIcon").textContent = animal.icon;
+      document.getElementById("chinaAnimalName").textContent = animal.name;
+      document.getElementById("chinaElementInfo").textContent = `${elementName} ${animal.name} Yılı (Yin/Yang: ${yinYang})`;
+      document.getElementById("chinaSignDesc").textContent = animal.desc;
+      document.getElementById("chinaCompDesc").textContent = animal.comp;
+
+      // Sonuç kutusunu göster
+      const resBox = document.getElementById("chinaResult");
+      resBox.style.display = "block";
+      resBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+</body>
+</html>

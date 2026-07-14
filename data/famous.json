@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Mustafa Kemal Atatürk",
+    "job": "Türkiye Cumhuriyeti'nin Kurucusu, Devlet Adamı",
+    "date": "19 Mayıs 1881",
+    "place": "Selanik",
+    "sun": "Boğa",
+    "moon": "Kova",
+    "rising": "Oğlak",
+    "source": "Tarihsel günlükler (Saat sabaha karşı tahmin ediliyor)",
+    "desc": "Haritasındaki Boğa kararlılığı ve Oğlak yükselen disiplini, modern bir ulusun sarsılmaz temeller üzerine inşasını simgeler. Kova Ay'ı ise toplumsal devrimciliğini ve vizyonerliğini gösterir."
+  },
+  {
+    "name": "Albert Einstein",
+    "job": "Teorik Fizikçi, Deha",
+    "date": "14 Mart 1879",
+    "place": "Ulm, Almanya",
+    "sun": "Balık",
+    "moon": "Yay",
+    "rising": "Yengeç",
+    "source": "Resmi doğum belgesi (Astro-Databank AA)",
+    "desc": "Balık burcunun sınırsız hayal gücünü Yay Ay'ının felsefi/fiziksel hakikat arayışıyla birleştirerek evrenin görelilik teorisini sezgisel ve matematiksel olarak kanıtlamıştır."
+  },
+  {
+    "name": "Leonardo da Vinci",
+    "job": "Rönesans Ressamı, Mucit, Polimat",
+    "date": "15 Nisan 1452",
+    "place": "Vinci, İtalya",
+    "sun": "Koç",
+    "moon": "Balık",
+    "rising": "Yay",
+    "source": "Büyükbabasının günlük kayıtları (Astro-Databank AA)",
+    "desc": "Koç burcunun öncü ve cesur yaratıcı enerjisiyle her alanda ilk tasarımları yapmış, Balık Ay'ının mistik sezgisini eserlerine (Mona Lisa) yansıtmıştır."
+  },
+  {
+    "name": "Steve Jobs",
+    "job": "Apple Kurucusu, Vizyoner Girişimci",
+    "date": "24 Şubat 1955",
+    "place": "San Francisco, ABD",
+    "sun": "Balık",
+    "moon": "Koç",
+    "rising": "Başak",
+    "source": "Doğum belgesi (Astro-Databank AA)",
+    "desc": "Yükselen Başak'ın mükemmeliyetçi, piksel hassasiyetindeki estetik anlayışını Koç Ay'ının hırslı, öncü pazarlama dehasıyla birleştirerek teknoloji dünyasında devrim yapmıştır."
+  },
+  {
+    "name": "Marilyn Monroe",
+    "job": "Efsanevi Aktris, Kültürel İkon",
+    "date": "1 Haziran 1926",
+    "place": "Los Angeles, ABD",
+    "sun": "İkizler",
+    "moon": "Kova",
+    "rising": "Aslan",
+    "source": "Resmi doğum belgesi (Astro-Databank AA)",
+    "desc": "Yükselen Aslan'ın manyetik sahne aurası ve parlaklığını taşırken, Güneş İkizler'in çift karakterli zihinsel yapısı ve Kova Ay'ının içsel bağımsızlık ve yalnızlık dürtüsü arasında gidip gelmiştir."
+  },
+  {
+    "name": "Alper Ateş",
+    "job": "Zodyak Atlası Katılımcısı, Yazılımcı",
+    "date": "2 Temmuz 1993",
+    "place": "İstanbul",
+    "sun": "Yengeç",
+    "moon": "Yay",
+    "rising": "Akrep",
+    "source": "Kişisel beyan (Güvenilir kaynak)",
+    "desc": "Yengeç burcunun yüksek duygusal zekasını ve sezgisini, Yay Ay'ının keşif aşkı ve Akrep yükseleninin kararlı ve gizemli eylem gücüyle harmanlayan derinlikli bir karakter."
+  },
+  {
+    "name": "Marie Curie",
+    "job": "Fizikçi ve Kimyager, Nobel Ödüllü Bilim İnsanı",
+    "date": "7 Kasım 1867",
+    "place": "Varşova, Polonya",
+    "sun": "Akrep",
+    "moon": "Balık",
+    "rising": "Oğlak",
+    "source": "Tarihsel kayıtlar (Astro-Databank A)",
+    "desc": "Akrep burcunun araştırıcı, radyoaktivite gibi görünmeyeni söküp çıkaran derin gücünü Oğlak yükselenin insanüstü çalışma disipliniyle birleştirerek iki farklı bilim dalında Nobel almıştır."
+  },
+  {
+    "name": "Lady Gaga",
+    "job": "Pop İkonu, Şarkıcı ve Aktris",
+    "date": "28 Mart 1986",
+    "place": "New York, ABD",
+    "sun": "Koç",
+    "moon": "Akrep",
+    "rising": "İkizler",
+    "source": "Doğum belgesi (Astro-Databank AA)",
+    "desc": "Koç burcunun cesur, korkusuz ve öncü sahne şovlarını, Akrep Ay'ının karanlık, derin ve dramatik sanatsal ifadeleriyle harmanlayarak küresel bir fenomene dönüşmüştür."
+  }
+]

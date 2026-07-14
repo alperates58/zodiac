@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A'dan Z'ye astroloji sözlüğü. Teknik terimler, gezegen yerleşimleri, açılar ve evlerin açıklamaları.">
+  <title>Astroloji Sözlüğü — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <style>
+    .dict-container {
+      max-width: 1000px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .dict-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .search-box-wrap {
+      max-width: 600px;
+      margin: 2rem auto 1.5rem;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 1.1rem 1.5rem 1.1rem 3.5rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .search-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    
+    /* Alphabet Filter */
+    .alpha-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .alpha-btn {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      color: var(--muted);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+    }
+    .alpha-btn:hover, .alpha-btn.active {
+      background: var(--gold);
+      color: var(--night-deep);
+      border-color: var(--gold);
+      font-weight: 600;
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+    
+    /* Category Filter */
+    .cat-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .cat-btn {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      color: var(--ink);
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+    .cat-btn:hover, .cat-btn.active {
+      background: var(--gold);
+      color: var(--night-deep);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Grid layout for Dictionary Cards */
+    .dict-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .dict-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dict-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .dict-card h3 {
+      font-size: 1.3rem;
+      color: var(--gold-bright);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .dict-card span.badge {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.01);
+    }
+    .dict-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .no-results {
+      grid-column: span 2;
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    @media(max-width: 768px) {
+      .dict-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main class="dict-container">
+    <div class="star-field" aria-hidden="true"></div>
+    
+    <div class="dict-header">
+      <p class="eyebrow" style="justify-content: center;">Sembollerin Dili</p>
+      <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase;">Astroloji Sözlüğü</h1>
+      <p style="color: var(--muted); max-width: 600px; margin: 1rem auto 0; line-height: 1.7;">
+        Astrolojik haritalarda kullanılan tüm teknik terimleri, gezegen arketiplerini, ev yerleşimlerini ve açısal kalıpları keşfedin.
+      </p>
+      
+      <!-- Arama Kutusu -->
+      <div class="search-box-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="dictSearch" class="search-input" placeholder="Terim ara (örneğin: Stellium, Retro, ASC)...">
+      </div>
+      
+      <!-- Harf Filtresi -->
+      <div class="alpha-filter" id="alphaFilter"></div>
+
+      <!-- Kategori Filtresi -->
+      <div class="cat-filter" id="catFilter"></div>
+    </div>
+
+    <!-- Terimler Listesi -->
+    <div class="dict-grid" id="dictGrid">
+      <div class="no-results">Yükleniyor...</div>
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <script src="data/dictionary.js"></script>
+  <script>
+    // Global dictionaryData, dictionary.js'den otomatik yüklendi
+    let activeLetter = 'Tümü';
+    let activeCategory = 'Tümü';
+    let searchQuery = '';
+
+    const letters = ['Tümü', 'A', 'B', 'C', 'Ç', 'D', 'E', 'F', 'G', 'H', 'I', 'İ', 'J', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P', 'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z'];
+    const categories = ['Tümü', 'Temel Terimler', 'Açılar', 'Transitler', 'Gök Cisimleri', 'Açı Kalıpları', 'Hesaplama'];
+
+    // DOM Elements
+    const dictGrid = document.getElementById("dictGrid");
+    const alphaFilter = document.getElementById("alphaFilter");
+    const catFilter = document.getElementById("catFilter");
+    const dictSearch = document.getElementById("dictSearch");
+
+    // Initialize (Veri yerel yüklendiği için direkt çalışır)
+    if (typeof dictionaryData !== 'undefined') {
+      renderAlphaFilters();
+      renderCatFilters();
+      renderDictionary();
+    } else {
+      dictGrid.innerHTML = '<div class="no-results">Veriler yüklenirken bir hata oluştu.</div>';
+    }
+
+    // Mobil menü
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Menü';
+    });
+
+    function renderAlphaFilters() {
+      alphaFilter.innerHTML = letters.map(letter => 
+        `<button class="alpha-btn ${letter === activeLetter ? 'active' : ''}" onclick="filterLetter('${letter}')">${letter}</button>`
+      ).join('');
+    }
+
+    function renderCatFilters() {
+      catFilter.innerHTML = categories.map(cat => 
+        `<button class="cat-btn ${cat === activeCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">${cat}</button>`
+      ).join('');
+    }
+
+    function filterLetter(letter) {
+      activeLetter = letter;
+      renderAlphaFilters();
+      renderDictionary();
+    }
+
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCatFilters();
+      renderDictionary();
+    }
+
+    dictSearch.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderDictionary();
+    });
+
+    function turkishToLower(str) {
+      return str.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
+    }
+
+    function renderDictionary() {
+      let filtered = dictionaryData;
+
+      // Search Query Filter
+      if (searchQuery) {
+        filtered = filtered.filter(item => 
+          turkishToLower(item.term).includes(turkishToLower(searchQuery)) ||
+          turkishToLower(item.def).includes(turkishToLower(searchQuery))
+        );
+      }
+
+      // Letter Filter
+      if (activeLetter !== 'Tümü') {
+        filtered = filtered.filter(item => {
+          const firstChar = item.term.charAt(0).toUpperCase();
+          return firstChar === activeLetter;
+        });
+      }
+
+      // Category Filter
+      if (activeCategory !== 'Tümü') {
+        filtered = filtered.filter(item => item.category === activeCategory);
+      }
+
+      // Sort Alphabetically
+      filtered.sort((a, b) => a.term.localeCompare(b.term, 'tr'));
+
+      // Render Cards
+      if (filtered.length === 0) {
+        dictGrid.innerHTML = '<div class="no-results">Arama kriterlerinize uygun terim bulunamadı.</div>';
+      } else {
+        dictGrid.innerHTML = filtered.map(item => `
+          <div class="dict-card">
+            <div>
+              <span class="badge">${item.category}</span>
+              <h3>${item.term}</h3>
+              <p>${item.def}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+  </script>
+</body>
+</html>

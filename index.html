@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="12 burç, gezegenler, evler, açılar ve doğum haritası üzerine zengin Türkçe astroloji atlası.">
+  <meta name="theme-color" content="#070b18">
+  <meta property="og:title" content="Zodyak Atlası">
+  <meta property="og:description" content="Gökyüzünün sembolik dilini keşfet.">
+  <meta property="og:image" content="og.png">
+  <title>Zodyak Atlası — Burçlar ve Astroloji Rehberi</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <script src="astro-calc.js" defer></script>
+  <script src="script.js" defer></script>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Zodyak Atlası ana sayfa"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="star-field" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Gökyüzünün sembolik dili</p>
+        <h1>Kendine giden yol,<br><em>yıldızlardan geçer.</em></h1>
+        <p class="lead">Burçlar, gezegenler, evler ve açılar… Astrolojinin zengin sembol dünyasını tek bir çağdaş atlas içinde keşfet.</p>
+        <div class="hero-actions"><a class="primary" href="#burcunu-bul">Burcunu bul <span>↘</span></a><a class="text-link" href="#rehber">Astrolojiye başla →</a></div>
+      </div>
+      <div class="orbit-wrap" aria-label="Zodyak çemberi">
+        <div class="orbit orbit-one">
+          <a href="burclar/koc.html" title="Koç Burcu">♈</a>
+          <a href="burclar/yengec.html" title="Yengeç Burcu">♋</a>
+          <a href="burclar/terazi.html" title="Terazi Burcu">♎</a>
+          <a href="burclar/oglak.html" title="Oğlak Burcu">♑</a>
+        </div>
+        <div class="orbit orbit-two">
+          <a href="burclar/boga.html" title="Boğa Burcu">♉</a>
+          <a href="burclar/aslan.html" title="Aslan Burcu">♌</a>
+          <a href="burclar/akrep.html" title="Akrep Burcu">♏</a>
+          <a href="burclar/kova.html" title="Kova Burcu">♒</a>
+        </div>
+        <div class="moon"><span>☾</span><small>12</small></div>
+      </div>
+      <div class="hero-index"><span>01</span><div></div><span>05</span></div>
+    </section>
+
+    <section class="finder" id="burcunu-bul">
+      <div><p class="eyebrow dark">Hızlı keşif</p><h2>Güneş burcun hangisi?</h2><p>Doğum tarihini seç; zodyaktaki temel arketipini anında bul.</p></div>
+      <div class="date-box"><label for="birthdate">Doğum tarihin</label><input id="birthdate" type="date"><div id="foundSign"><p class="date-hint">Takvimden bir tarih seç.</p></div></div>
+    </section>
+
+    <!-- Kozmik Gökyüzü Durumu (Transit Center) -->
+    <section class="section" id="sky-transit-center" style="background: linear-gradient(180deg, rgba(3, 6, 16, 0.4) 0%, rgba(13, 18, 34, 0.4) 100%); border-bottom: 1px solid var(--line);">
+      <div class="section-head compact">
+        <div>
+          <p class="eyebrow">Canlı Gökyüzü</p>
+          <h2>Kozmik Durum Raporu</h2>
+        </div>
+        <p>Gezegenlerin şu anki konumlarını, Ay fazını ve güncel retro hareketleri anlık takip edin.</p>
+      </div>
+
+      <div class="trait-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 2.5rem; display: grid;">
+        <!-- Ay Fazı Kartı -->
+        <div class="trait-card" style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); text-align: center; padding: 2rem;">
+          <span id="liveMoonIcon" style="font-size: 3rem; color: var(--gold-bright); display: block; margin-bottom: 1rem;">☽</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Bugünkü Ay Fazı</h3>
+          <p id="liveMoonPhaseName" style="font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Yükleniyor...</p>
+          <span id="liveMoonIllum" style="font-size: 0.85rem; color: var(--muted);">-</span>
+        </div>
+
+        <!-- Ay'ın Burcu Kartı -->
+        <div class="trait-card" style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); text-align: center; padding: 2rem;">
+          <span id="liveMoonSignGlyph" style="font-size: 3rem; color: #8296c9; display: block; margin-bottom: 1rem;">♏</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase;">Ay'ın Burcu</h3>
+          <p id="liveMoonSignName" style="font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;">Yükleniyor...</p>
+          <span id="liveMoonSignMeaning" style="font-size: 0.85rem; color: var(--muted);">-</span>
+        </div>
+
+        <!-- Gökyüzü Takvimi & Retrolar -->
+        <div class="trait-card" style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); text-align: left; padding: 2rem;">
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; text-align: center;">Kozmik Retro & Olaylar</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.7; color: #cbd5e1;">
+            <li>🔄 <strong>Merkür:</strong> Direkt Harekette</li>
+            <li>🔥 <strong>Mars:</strong> Direkt Harekette</li>
+            <li>🌌 <strong>Satürn Retrosu:</strong> 13 Tem - 27 Kas 2026</li>
+            <li>☄️ <strong>Yaklaşan Olay:</strong> 12 Ağu 2026 - Perseid Meteor Yağmuru</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section signs-section" id="burclar">
+      <div class="section-head"><div><p class="eyebrow">Zodyak kuşağı</p><h2>On iki karakter,<br><em>tek gökyüzü.</em></h2></div><p>Her burç; element, nitelik ve yönetici gezegenin eşsiz bir bileşimidir. Kartlara dokun, arketipin katmanlarını aç.</p></div>
+      <div class="filters" id="filters" role="group" aria-label="Burçları elemente göre filtrele"></div>
+      <div class="sign-grid" id="signGrid"></div>
+    </section>
+
+    <section class="section chart-section" id="harita">
+      <div class="section-head compact"><div><p class="eyebrow">Büyük üçlü</p><h2>Güneş, Ay<br><em>ve yükselen.</em></h2></div><p>"Burcun" yalnızca başlangıçtır. Doğum haritası; gökyüzünün doğduğun an ve yerdeki sembolik fotoğrafıdır.</p></div>
+      <div class="big-three">
+        <article><span>☉</span><small>GÜNEŞ BURCU</small><h3>Öz kimliğin</h3><p>İrade, canlılık ve olmak istediğin kişi. "Ben kimim?" sorusunun merkezi.</p></article>
+        <article><span>☽</span><small>AY BURCU</small><h3>İç dünyan</h3><p>Duygusal ihtiyaçlar, içgüdüler, alışkanlıklar ve kendini güvende hissetme biçimin.</p></article>
+        <article><span>ASC</span><small>YÜKSELEN BURÇ</small><h3>Dışarı açılan kapın</h3><p>İlk izlenim, hayata yaklaşım ve doğum anında doğu ufkunda yükselen burç.</p></article>
+      </div>
+      <div class="chart-note"><strong>Harita için ne gerekir?</strong><p>Doğum tarihi + mümkün olduğunca kesin doğum saati + doğum yeri. Saat, yükselen burcu ve evleri belirgin biçimde etkiler.</p><span>i</span></div>
+    </section>
+
+    <section class="section planets-section" id="gezegenler">
+      <div class="section-kicker"><span>02</span><p>Gezegenler</p></div>
+      <div class="section-head compact"><div><h2>Göksel oyuncular,<br><em>içsel dürtüler.</em></h2></div><p>Astrolojide gezegenler "ne" olduğunu, burçlar "nasıl", evler ise "nerede" olduğunu simgeler.</p></div>
+      <div class="planet-list" id="planetList"></div>
+    </section>
+
+    <section class="section houses-section">
+      <div class="section-head compact"><div><p class="eyebrow">Yaşam sahneleri</p><h2>12 ev,<br><em>12 deneyim alanı.</em></h2></div><p>Evler gökyüzünü, gündelik hayatın farklı alanlarına böler. Bir gezegenin bulunduğu ev, temasının nerede görünür olduğunu anlatır.</p></div>
+      <div class="houses-grid" id="housesGrid"></div>
+    </section>
+
+    <section class="section elements-section">
+      <div class="section-head compact"><div><p class="eyebrow">Temel gramer</p><h2>Dört element,<br><em>üç hareket biçimi.</em></h2></div></div>
+      <div class="element-grid">
+        <article><span>△</span><h3>Ateş</h3><p>Sezgi · ilham · eylem</p><small>Koç · Aslan · Yay</small></article>
+        <article><span>▽</span><h3>Toprak</h3><p>Duyu · madde · istikrar</p><small>Boğa · Başak · Oğlak</small></article>
+        <article><span>△</span><h3>Hava</h3><p>Zihin · ilişki · fikir</p><small>İkizler · Terazi · Kova</small></article>
+        <article><span>▽</span><h3>Su</h3><p>Duygu · sezgi · bağ</p><small>Yengeç · Akrep · Balık</small></article>
+      </div>
+      <div class="modes"><article><b>ÖNCÜ</b><p>Mevsimi ve hareketi başlatır.</p></article><article><b>SABİT</b><p>Enerjiyi toplar ve sürdürür.</p></article><article><b>DEĞİŞKEN</b><p>Uyum sağlar, dönüştürür, tamamlar.</p></article></div>
+    </section>
+
+    <section class="section aspects-section">
+      <div class="section-head compact"><div><p class="eyebrow">Gezegenler arası diyalog</p><h2>Açılar.</h2></div><p>Haritadaki geometrik mesafeler, gezegenlerin birbirleriyle nasıl "konuştuğunu" yorumlamak için kullanılır.</p></div>
+      <div class="aspect-row" id="aspectRow"></div>
+    </section>
+
+    <section class="section guide-section" id="rehber">
+      <div class="guide-intro"><p class="eyebrow">Mini akademi</p><h2>Astrolojiye<br><em>nereden başlanır?</em></h2><p>Bir haritayı ezber değil, katmanlı bir dil gibi oku.</p></div>
+      <ol class="steps">
+        <li onclick="toggleStep(0)">
+          <div class="step-header">
+            <span>01</span>
+            <h3>Büyük üçlünü öğren <span class="icon">+</span></h3>
+          </div>
+          <div class="step-body" id="step-body-0">
+            <p>Güneş, Ay ve yükselen burcunu birlikte düşün. Kimlik, ihtiyaç ve yaklaşımın ilk taslağını verir.</p>
+            <p><strong>Güneş Burcu (Öz Benlik):</strong> Ruhunuzun özünü, iradesini, egonuzu ve hayattaki nihai amacınızı temsil eder. ("Ben kimim?" sorusunun yanıtı Güneş'tedir.)</p>
+            <p><strong>Ay Burcu (İç Dünya):</strong> Duygusal ihtiyaçlarınızı, iç dünyanızı, içgüdülerinizi ve kendinizi ne zaman güvende hissettiğinizi simgeler.</p>
+            <p><strong>Yükselen Burç (Dış Maske):</strong> Dış dünyaya sunduğunuz maskeyi, ilk izleniminizi, fiziksel görünüşünüzü ve hayata yaklaşım tarzınızı yönetir.</p>
+            <p><strong>Okuma Örneği:</strong> Güneş'iniz Aslan (parlama isteği), Ay'ınız Akrep (derin hisler) ve Yükseleniniz Başak (detaycı, mesafeli) ise: Dışarıdan sessiz ve titiz görünürken, içeride fırtınalı derinlikler yaşarsınız ve nihai amacınız takdir edilerek parlamaktır.</p>
+          </div>
+        </li>
+        <li onclick="toggleStep(1)">
+          <div class="step-header">
+            <span>02</span>
+            <h3>Element dengesine bak <span class="icon">+</span></h3>
+          </div>
+          <div class="step-body" id="step-body-1">
+            <p>Haritada Ateş, Toprak, Hava ve Su vurgusu; enerjinin doğal akışını gösteren sembolik bir özet sunar.</p>
+            <p>Haritanızdaki gezegenlerin element dağılımını analiz ederek baskın ve eksik enerjilerinizi görebilirsiniz:</p>
+            <p><strong>Ateş Ağırlığı:</strong> Coşku, cesaret ve hızlı eylem gücü getirirken; sabırsızlık ve fevrilik yapabilir.</p>
+            <p><strong>Toprak Ağırlığı:</strong> Gerçekçilik, pratik düzen ve maddi istikrar sağlar ama değişime direnç ve inatçılık yaratabilir.</p>
+            <p><strong>Hava Ağırlığı:</strong> Sosyal yetenek, entelektüel merak ve iletişim gücü verir fakat odaklanma sorunu ve kararsızlık yapabilir.</p>
+            <p><strong>Su Ağırlığı:</strong> Sezgi, empati ve derin duygusal bağ gücü katar lakin kurban psikolojisi ve alınganlık riski taşır.</p>
+            <p><strong>Eksik Elementler:</strong> Hayatta en çok zorlandığınız ve dengelenmesi gereken gelişim alanlarını gösterir.</p>
+          </div>
+        </li>
+        <li onclick="toggleStep(2)">
+          <div class="step-header">
+            <span>03</span>
+            <h3>Gezegen + burç + ev formülünü kur <span class="icon">+</span></h3>
+          </div>
+          <div class="step-body" id="step-body-2">
+            <p>Astrolojik okumaların temel denklemi: <strong>Gezegen (Ne?) + Burç (Nasıl?) + Ev (Nerede?)</strong> formülüne dayanır.</p>
+            <p><strong>Gezegen (Aktör):</strong> Hangi dürtünün devrede olduğunu belirtir (Örn: Venüs = sevgi, değer biçme).</p>
+            <p><strong>Burç (Kostüm):</strong> Bu dürtünün hangi tarzda çalışacağını anlatır (Örn: Koç = sabırsız, heyecanlı ve doğrudan).</p>
+            <p><strong>Ev (Sahne):</strong> Bu deneyimin hayatın hangi somut alanında (kariyer, aile, ortaklıklar) yaşanacağını gösterir (Örn: 10. Ev = kariyer).</p>
+            <p><strong>Birleşik Örnek:</strong> <em>Satürn (disiplin) + Akrep (derin, ketum) + 2. Ev (para):</em> Kişi kendi parasını kazanırken (2. ev) derin krizlerden geçerek (Akrep) zamanla Satürn disipliniyle sabredip ustalaşacaktır.</p>
+          </div>
+        </li>
+        <li onclick="toggleStep(3)">
+          <div class="step-header">
+            <span>04</span>
+            <h3>Açılarla hikâyeyi bağla <span class="icon">+</span></h3>
+          </div>
+          <div class="step-body" id="step-body-3">
+            <p>Kareler gelişim baskısı, üçgenler doğal akış, karşıtlıklar denge ihtiyacı olarak yorumlanır.</p>
+            <p>Gezegenler arasındaki geometrik ilişkiler içsel güçlerinizin birbiriyle nasıl konuştuğunu anlatır:</p>
+            <p><strong>Kavuşum (0°):</strong> İki gücün birleşmesidir. Oldukça yoğundur ve birlikte çalışırlar.</p>
+            <p><strong>Üçgen & Sekstil (120°/60°):</strong> Uyumlu ve pürüzsüz akıştır. Çaba harcamadan gelen yetenekleri ve şansı gösterir.</p>
+            <p><strong>Kare (90°):</strong> Kriz ve gerilim açısıdır. Ancak hayattaki en büyük başarılar bu krizleri aşarak elde edilir.</p>
+            <p><strong>Karşıt Açı (180°):</strong> Karşıtlık ve ayna açısıdır. İlişkiler yoluyla dengelenmesi gereken içsel zıtlıkları gösterir.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section truth-section">
+      <div><p class="eyebrow">Gökyüzü notu</p><h2>Astroloji ≠ astronomi</h2><p>Astronomi, evreni bilimsel yöntemle inceler. Astroloji ise gezegen ve burçları kültürel-sembolik bir yorum sistemi olarak kullanır; bilimsel bir öngörü yöntemi değildir.</p></div>
+      <div class="ophiuchus"><span>⛎</span><div><h3>"13. burç" meselesi</h3><p>Güneş astronomik olarak Yılancı (Ophiuchus) takımyıldızının önünden de geçer. Batı tropikal astrolojisindeki 12 burç ise takımyıldızların güncel sınırları değil, ekliptiğin 30'ar derecelik 12 eşit bölümüdür.</p></div></div>
+    </section>
+
+    <section class="section history-section">
+      <p class="eyebrow">Kısa tarih</p><h2>Tabletten teleskopa:<br><em>sembollerin yolculuğu.</em></h2>
+      <div class="timeline"><article><b>MÖ 2. binyıl</b><h3>Mezopotamya</h3><p>Göksel işaretlerin sistematik kayıtları ve kehanet geleneği gelişti.</p></article><article><b>MÖ 5.–1. yy</b><h3>Helenistik sentez</h3><p>Burçlar, gezegenler, evler ve geometrik açılar kişisel haritanın diline dönüştü.</p></article><article><b>8.–13. yy</b><h3>İslam dünyası</h3><p>Astronomi ve astroloji metinleri çevrildi, geliştirildi; zodyak imgeleri sanat ve araçlara işlendi.</p></article><article><b>Modern dönem</b><h3>Psikolojik astroloji</h3><p>20. yüzyılda kaderci dilden karakter, arketip ve öz-farkındalık diline güçlü bir geçiş yaşandı.</p></article></div>
+    </section>
+
+    <section class="section faq-section"><div><p class="eyebrow">Merak edilenler</p><h2>Sık sorulanlar.</h2></div><div class="faqs">
+      <details><summary>Burç tarihleri neden bazen bir gün değişiyor?<span>+</span></summary><p>Güneş'in burç değiştirme saati yıldan yıla ve saat dilimine göre küçük farklılıklar gösterebilir. Sınır günlerinde kesin doğum saatiyle harita hesaplamak en sağlıklısıdır.</p></details>
+      <details><summary>Retro ne demek?<span>+</span></summary><p>Dünya'dan bakıldığında bir gezegenin gökyüzünde geriye gidiyormuş gibi görünmesidir. Bu astronomik bir perspektif etkisidir; astrolojide içe dönüş ve gözden geçirme sembolü olarak yorumlanır.</p></details>
+      <details><summary>Yükselen burç neden önemli?<span>+</span></summary><p>Haritanın başlangıç noktasını ve evlerin yerleşimini belirler. Yaklaşık iki saatte bir değiştiği için doğum saatinin doğruluğu önemlidir.</p></details>
+      <details><summary>Uyum yalnızca Güneş burcuna bakılarak anlaşılır mı?<span>+</span></summary><p>Hayır. Astrolojik uyum yorumlarında iki haritanın Ay, Venüs, Mars, yükselen ve açı ilişkileri birlikte değerlendirilir.</p></details>
+    </div></section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><span>✦</span><h2>ZODYAK<br>ATLASI</h2><p>Gökyüzünün sembolik dilini merak edenler için çağdaş Türkçe rehber.</p></div>
+    <div><h3>KEŞFET</h3><a href="#burclar">12 Burç</a><a href="dogum-haritasi.html">Doğum Haritası</a><a href="uyum.html">Burç Uyumu</a><a href="#gezegenler">Gezegenler</a><a href="testler.html">Astroloji Testleri</a><a href="#rehber">Başlangıç Rehberi</a></div>
+    <div><h3>KAYNAKLAR</h3><a href="https://www.britannica.com/topic/zodiac" target="_blank" rel="noreferrer">Encyclopaedia Britannica</a><a href="https://nightsky.jpl.nasa.gov/media/documents/resources/0SolSysManual.pdf" target="_blank" rel="noreferrer">NASA / JPL</a><a href="https://www.metmuseum.org/essays/astronomy-and-astrology-in-the-medieval-islamic-world" target="_blank" rel="noreferrer">The Met Museum</a></div>
+    <div class="footer-note"><p>Bu site kültürel ve eğitsel amaçlıdır. Astroloji bilimsel bir tanı, tedavi, finansal karar veya kesin gelecek öngörüsü aracı değildir.</p><small>© <span id="year"></span> Zodyak Atlası</small></div>
+  </footer>
+</body>
+</html>

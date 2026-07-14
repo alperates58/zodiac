@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026 yılı kozmik gökyüzü olayları takvimi. Merkür retrosu, tutulmalar, meteor yağmurları ve gün dönümleri tarihleri.">
+  <title>2026 Gökyüzü Olayları & Retro Takvimi — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    .cal-container {
+      max-width: 950px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .cal-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    /* Category Filters */
+    .cal-filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .cal-btn {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      color: var(--ink);
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+    .cal-btn:hover, .cal-btn.active {
+      background: var(--gold);
+      color: var(--night-deep);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Timeline style */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+      border-left: 2px solid var(--glass-border);
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold) 0%, rgba(255,255,255,0.05) 100%);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      animation: fadeIn 0.4s ease;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.85rem;
+      top: 0.25rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      border: 3px solid var(--night-deep);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+    .timeline-date {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+      font-weight: 600;
+    }
+    .timeline-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: all 0.3s ease;
+    }
+    .timeline-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 5px 15px rgba(212,175,55,0.1);
+    }
+    .timeline-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .timeline-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .timeline-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--muted);
+    }
+
+    .no-events {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--muted);
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main class="cal-container">
+    <div class="star-field" aria-hidden="true"></div>
+    
+    <div class="cal-header">
+      <p class="eyebrow" style="justify-content: center;">2026 Gökyüzü Rehberi</p>
+      <h1 style="font-size: clamp(2.2rem, 5vw, 3.8rem); text-transform: uppercase;">Kozmik Zaman Çizelgesi</h1>
+      <p style="color: var(--muted); max-width: 600px; margin: 1rem auto 0; line-height: 1.7;">
+        2026 yılındaki tüm Güneş ve Ay tutulmalarını, Merkür/Mars retro dönemlerini, meteor yağmurlarını ve mevsimsel ekinoks zamanlarını takip edin.
+      </p>
+    </div>
+
+    <!-- Filtreler -->
+    <div class="cal-filters" id="calFilters">
+      <button class="cal-btn active" onclick="filterEvents('all')">Tüm Olaylar</button>
+      <button class="cal-btn" onclick="filterEvents('retro')">Gezegen Retroları</button>
+      <button class="cal-btn" onclick="filterEvents('eclipse')">Tutulmalar</button>
+      <button class="cal-btn" onclick="filterEvents('meteor')">Meteor Yağmurları</button>
+      <button class="cal-btn" onclick="filterEvents('solstice')">Ekinoks & Gün Dönümleri</button>
+    </div>
+
+    <!-- Zaman Çizelgesi -->
+    <div class="timeline" id="timelineList">
+      <!-- Olaylar dinamik yüklenecek -->
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <script>
+    // Mobil menü işleyicisi
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Menü';
+    });
+
+    // 2026 Astronomik Olay Verileri
+    const eventsData = [
+      {
+        date: "17 Şubat 2026",
+        title: "Kısmi Güneş Tutulması",
+        type: "eclipse",
+        badge: "Güneş Tutulması",
+        desc: "Kova burcunda gerçekleşecek olan bu tutulma, toplumsal uyanış, teknolojik atılımlar ve bireysel özgürlük temalarını tetikleyecek."
+      },
+      {
+        date: "26 Şubat - 20 Mart 2026",
+        title: "Merkür Retro Hareketi (Balık Burcu)",
+        type: "retro",
+        badge: "Merkür Retrosu",
+        desc: "Zihinsel karmaşa, iletişim aksaklıkları ve rasyonel düşünmede zorlanmalar. Bu dönemde önemli anlaşmalar imzalanmamalı, geçmiş kararlar gözden geçirilmelidir."
+      },
+      {
+        date: "3 Mart 2026",
+        title: "Tam Ay Tutulması",
+        type: "eclipse",
+        badge: "Ay Tutulması",
+        desc: "Başak burcundaki tam tutulma; sağlık sektörü, hizmet alanları, günlük rutinler ve analiz süreçlerinde kadersel tamamlanmalar getirecek."
+      },
+      {
+        date: "20 Mart 2026",
+        title: "İlkbahar Ekinoksu (Astrolog Yılbaşı)",
+        type: "solstice",
+        badge: "Ekinoks",
+        desc: "Güneş'in Koç burcuna geçişi. Gece ve gündüz eşitlenirken, kuzey yarımkürede doğa uyanıyor. Yeni hedefler ve cesur girişimler için mükemmel bir kozmik başlangıç."
+      },
+      {
+        date: "21 Haziran 2026",
+        title: "Yaz Gündönümü",
+        type: "solstice",
+        badge: "Gün Dönümü",
+        desc: "Güneş'in Yengeç burcuna girişi ile kuzey yarımkürede en uzun gün yaşanıyor. Enerji içe dönüyor, aile bağları ve köklenme ihtiyacı artıyor."
+      },
+      {
+        date: "29 Haziran - 23 Temmuz 2026",
+        title: "Merkür Retro Hareketi (Aslan Burcu)",
+        type: "retro",
+        badge: "Merkür Retrosu",
+        desc: "Kendini ifade etmede zorluklar, gurur kaynaklı yanlış anlaşılmalar ve yaratıcı projelerde ertelemeler. Eski sevgililerin dönme ihtimalinin en yüksek olduğu dönem."
+      },
+      {
+        date: "12 - 13 Ağustos 2026",
+        title: "Perseid Meteor Yağmuru Zirvesi",
+        type: "meteor",
+        badge: "Meteor Yağmuru",
+        desc: "Yılın en görkemli göktaşı yağmuru. Saatte 60 ila 100 kayan yıldız gözlemlenebilir. Ay ışığının minimum olması gözlem koşullarını harika kılıyor."
+      },
+      {
+        date: "12 Ağustos 2026",
+        title: "Halkalı Güneş Tutulması",
+        type: "eclipse",
+        badge: "Güneş Tutulması",
+        desc: "Aslan burcunda gerçekleşecek olan bu güçlü tutulma; liderler, sanat dünyası, çocuklar ve spekülatif piyasalar üzerinde ani ve sarsıcı etkiler yaratacak."
+      },
+      {
+        date: "28 Ağustos 2026",
+        title: "Parçalı Ay Tutulması",
+        type: "eclipse",
+        badge: "Ay Tutulması",
+        desc: "Kova burcundaki parçalı tutulma; arkadaşlıklar, sivil toplum örgütleri ve gelecek projeksiyonlarımızda bazı yolların ayrılacağını gösteriyor."
+      },
+      {
+        date: "23 Eylül 2026",
+        title: "Sonbahar Ekinoksu",
+        type: "solstice",
+        badge: "Ekinoks",
+        desc: "Güneş'in Terazi burcuna geçişi. Eşitlik ve adalet arayışı, ilişkilerde denge kurma çabası ve diplomatik yaklaşımlar ön plana çıkıyor."
+      },
+      {
+        date: "24 Ekim - 13 Kasım 2026",
+        title: "Merkür Retro Hareketi (Akrep Burcu)",
+        type: "retro",
+        badge: "Merkür Retrosu",
+        desc: "Derin sırlar, şüpheler, finansal ortaklık krizleri ve bilinçaltı blokajları. Sözlerin arkasındaki gizli niyetleri çözmek için sezgilere kulak verme zamanı."
+      },
+      {
+        date: "13 - 14 Aralık 2026",
+        title: "Geminid (İkizler) Meteor Yağmuru Zirvesi",
+        type: "meteor",
+        badge: "Meteor Yağmuru",
+        desc: "Aralık ayının dondurucu gecelerini aydınlatan zengin göktaşı yağmuru. Çok parlak ve yavaş hareket eden ışık izleri bırakmasıyla bilinir."
+      },
+      {
+        date: "21 Aralık 2026",
+        title: "Kış Gündönümü",
+        type: "solstice",
+        badge: "Gün Dönümü",
+        desc: "Güneş'in Oğlak burcuna geçişi ile en uzun gece yaşanıyor. Disiplin, sabır ve yeni yılın kariyer planlamalarını soğukkanlılıkla yapma dönemi."
+      }
+    ];
+
+    let activeFilter = 'all';
+
+    function renderEvents() {
+      const list = document.getElementById("timelineList");
+      
+      const filtered = activeFilter === 'all' 
+        ? eventsData 
+        : eventsData.filter(e => e.type === activeFilter);
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<div class="no-events">Bu kategoride planlanmış gökyüzü olayı bulunmamaktadır.</div>';
+        return;
+      }
+
+      list.innerHTML = filtered.map(e => `
+        <div class="timeline-item">
+          <span class="timeline-date">${e.date}</span>
+          <div class="timeline-card">
+            <span class="timeline-badge">${e.badge}</span>
+            <h3>${e.title}</h3>
+            <p>${e.desc}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterEvents(type) {
+      activeFilter = type;
+      
+      // Butonları güncelle
+      const btns = document.querySelectorAll(".cal-btn");
+      btns.forEach(btn => {
+        btn.classList.remove("active");
+      });
+      event.target.classList.add("active");
+
+      renderEvents();
+    }
+
+    // İlk Yükleme
+    renderEvents();
+  </script>
+</body>
+</html>

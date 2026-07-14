@@ -1,0 +1,605 @@
+{
+  "lastUpdated": "13 Temmuz 2026",
+  "comments": {
+    "Koç": {
+      "daily": {
+        "general": "Bugün Mars'ın dinamik açısı size büyük bir eylem gücü veriyor. İçinizdeki girişimci ruhu uyandırmak ve bekleyen işleri hızla tamamlamak için harika bir gün.",
+        "love": "İlişkinizde partnerinize karşı sabırsız veya talepkar davranabilirsiniz. Ona kendi kararlarını alabileceği bir alan tanımak uyumu artıracaktır.",
+        "career": "Kendi işinizi kurma veya yeni bir projeye öncülük etme fikri ön planda. Liderliğinizi göstereceğiniz toplantılarda öne çıkacaksınız.",
+        "money": "Yeni yatırım fırsatları kapıda ancak fevri kararlarla bütçenizi zorlamamalısınız. Harcamaları listeleyin.",
+        "social": "Sosyal çevrenizde neşeli ve cesur tavırlarınızla ilgi odağı olacaksınız. Yeni arkadaşlıklar kurulabilir.",
+        "energy": "Fiziksel enerjiniz zirvede. Bu gücü spor veya açık hava yürüyüşleriyle dengelemek uykunuzu düzenleyecektir.",
+        "advice": "İlk adımı atmaktan korkmayın ama hızınızı kontrol edin.",
+        "caution": "Acele hareketlerden kaynaklanabilecek ufak ev kazalarına karşı dikkatli olun.",
+        "color": "Ateş Kırmızısı",
+        "number": 9
+      },
+      "weekly": {
+        "general": "Bu hafta Güneş'in konumu kariyer evinizde parlıyor. İş hayatında sorumluluk alacağınız ve disiplinle çalışacağınız bir haftadasınız.",
+        "love": "Eski sevgililer veya geçmiş konular tekrar gündeme gelebilir. Karar vermeden önce sakin kafayla düşünmelisiniz.",
+        "career": "Yöneticilerinizle yapacağınız görüşmelerde net ve kendinden emin duruşunuz terfi veya yeni sorumluluklar getirebilir.",
+        "money": "Hafta ortasında elinize geçecek beklenmedik bir para veya alacak, bütçenizi rahatlatacaktır.",
+        "social": "Grup etkinlikleri ve organizasyonlar için hareketli bir hafta. Fikirlerinizi paylaşmaktan çekinmeyin.",
+        "energy": "Zihinsel yorgunluk hissedebilirsiniz; akşam saatlerinde dinlenmeye zaman ayırın.",
+        "advice": "Planlı ve ajandalı çalışmak stresinizi azaltacaktır.",
+        "caution": "Gereksiz polemiklerden ve ego savaşlarından uzak durun.",
+        "color": "Altın Sarısı",
+        "number": 18
+      },
+      "monthly": {
+        "general": "Temmuz ayı boyunca yörünge hareketleri sizi finansal ortaklıklar ve kariyer hedeflerinize odaklıyor. Uzun vadeli yatırımlar için stratejik kararlar alma zamanı.",
+        "love": "Aşkta tutku ve derin bağlar arıyorsunuz. Yüzeysel flörtler yerine ruhsal olarak bütünleşeceğiniz kişilere çekileceksiniz.",
+        "career": "Yeni iş teklifleri ve ortaklıklar gündeme gelebilir. Detayları incelemeden sözleşmelere imza atmayın.",
+        "money": "Gelir-gider dengesini kurmak bu ayın en önemli konusu. Harcamalarıinizi disipline sokun.",
+        "social": "Eski dostlarla bir araya gelerek nostaljik anlar yaşayabilirsiniz. Sosyal destekler size iyi gelecek.",
+        "energy": "Bağışıklık sisteminizi güçlü tutmak için vitamin ve beslenmenize dikkat edin.",
+        "advice": "Sabırlı olmayı ve acele etmeden köklenmeyi öğrenmelisiniz.",
+        "caution": "Ortaklı bütçelerde veya borç alışverişlerinde temkinli olun.",
+        "color": "Bordo",
+        "number": 27
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için adeta bir sıçrama ve dönüşüm yılı olacak. Satürn ve Jüpiter'in konumları hayattaki büyük hedeflerinize ulaşmak için size gerekli disiplini ve şansı aynı anda sunuyor.",
+        "love": "Evlilik veya kalıcı, ciddi bir ilişkiye adım atma potansiyeliniz çok yüksek. Geçici maceralardan ciddi hayat ortaklığına geçiş yapacaksınız.",
+        "career": "Mesleğinizde uzmanlaşacağınız, otorite konumuna geleceğiniz büyük fırsatlar yılı. Kendi markanızı yaratabilirsiniz.",
+        "money": "Maddi olarak kalıcı yatırımlar (ev, arsa vb.) yapabileceğiniz sağlam bir finansal inşa yılı sizi bekliyor.",
+        "social": "Sosyal çevreniz tamamen yenileniyor. Size vizyon katacak, olgun ve entelektüel insanlarla bağlar kuracaksınız.",
+        "energy": "Yıl genelinde kemik ve eklem sağlığınıza dikkat etmeli, düzenli kalsiyum almalısınız.",
+        "advice": "Disiplin ve sabrı en büyük yoldaşınız yapın; meyvelerini toplayacaksınız.",
+        "caution": "Aşırı çalışmaktan kaynaklanan tükenmişlik sendromuna karşı dinlenme molaları verin.",
+        "color": "Kraliyet Mavisi",
+        "number": 3
+      }
+    },
+    "Boğa": {
+      "daily": {
+        "general": "Bugün Ay'ın burcunuzdaki yerleşimi size derin bir huzur ve konfor isteği getiriyor. Beş duyunuzu besleyecek keyifli aktivitelere odaklanın.",
+        "love": "Partnerinizle birlikte lezzetli bir akşam yemeği yemek veya sakin bir ortamda vakit geçirmek aranızdaki sevgiyi tazeleyecektir.",
+        "career": "İş hayatınızda pratik çözümlerinizle takdir toplayacaksınız. Adım adım ilerlemek hata yapmanızı engelliyor.",
+        "money": "Maddi olarak kendinizi güvende hissetmek istiyorsunuz. Tasarruf yapmak için harika bir gün.",
+        "social": "Sakin ve samimi dostlarınızla vakit geçirmeyi tercih edeceksiniz. Gürültülü kalabalıklar sizi yorabilir.",
+        "energy": "Dengeli ve sakin. Bedeninizi dinlendirmek ve doğada vakit geçirmek auranızı güçlendirecektir.",
+        "advice": "Değişime direnmek yerine akışa güvenmeyi deneyin.",
+        "caution": "Boğaz hassasiyetine karşı soğuk içeceklere dikkat edin.",
+        "color": "Zümrüt Yeşili",
+        "number": 6
+      },
+      "weekly": {
+        "general": "Bu hafta yakın çevreniz ve kardeşlerinizle olan ilişkileriniz ön planda. İletişim trafiğiniz oldukça yoğun geçecek.",
+        "love": "Kararsız kaldığınız duygusal bir konuda netleşiyorsunuz. İç sesiniz size doğru yolu gösterecektir.",
+        "career": "Yaratıcı projeleriniz veya sanatsal yetenekleriniz iş yerinde görünür hale gelebilir. Fikirlerinizi sunun.",
+        "money": "Finansal konularda yeni bir düzenleme yapabilir, bekleyen alacaklarınızı tasfiye edebilirsiniz.",
+        "social": "Yeni eğitimler veya atölye çalışmaları yoluyla yeni arkadaş çevrelerine girebilirsiniz.",
+        "energy": "Zihinsel olarak oldukça aktifsiniz. Akşamları hafif müzik eşliğinde dinlenmek zihninizi boşaltacaktır.",
+        "advice": "Öğrenmeye ve yeni bilgilere açık olun.",
+        "caution": "İnatçılık yapıp fırsatları kaçırmamaya özen gösterin.",
+        "color": "Toz Pembe",
+        "number": 15
+      },
+      "monthly": {
+        "general": "Temmuz ayında eviniz, aileniz ve kökleriniz odak noktanız. Yaşam alanınızda yapacağınız değişiklikler veya dekorasyon yenilikleri ruhunuza iyi gelecek.",
+        "love": "Aile içinde eşinizle birlikte alacağınız kararlar geleceğinizi şekillendiriyor. Şefkat ve güven bağları güçleniyor.",
+        "career": "Evden çalışma veya kendi işini kurma modelleri ilginizi çekebilir. Gayrimenkul işlerinde şanslısınız.",
+        "money": "Ev veya aile için yapacağınız harcamalar artabilir ancak bu harcamalar geleceğe yatırım niteliğindedir.",
+        "social": "Evinizde dostlarınızı ağırlamak, samimi sofralar kurmak size büyük bir keyif verecektir.",
+        "energy": "Mide hassasiyetiniz artabilir; sağlıklı ve hafif beslenmeye özen gösterin.",
+        "advice": "Geçmişin yüklerini bırakıp şimdiki ana odaklanın.",
+        "caution": "Aile içi tartışmalarda inatçı tutumlardan kaçının.",
+        "color": "Krem Rengi",
+        "number": 24
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için finansal büyüme ve maddi değerlerinizi kalıcılaştırma yılı olacak. Venüs'ün koruyucu etkisi altındasınız.",
+        "love": "Hayatınızın aşkıyla tanışabilir veya mevcut ilişkinizi evlilikle taçlandırabilirsiniz. Mutluluk ve estetik dolu bir yıl.",
+        "career": "Sanat, tasarım, gıda veya lüks tüketim sektörlerinde çalışan Boğalar için kariyerde zirve yılı olacaktır.",
+        "money": "Gayrimenkul alımı, toprak yatırımı gibi somut ve büyük yatırımlar yaparak servetinizi büyüteceksiniz.",
+        "social": "Kültürel etkinlikler, sergiler ve şık davetlerde boy gösterecek, seçkin çevrelerle tanışacaksınız.",
+        "energy": "Boğaz ve tiroid sağlığınıza özen göstermeli, düzenli kontrolleri aksatmamalısınız.",
+        "advice": "Üretmekten ve yaratmaktan asla vazgeçmeyin; bolluk size akacaktır.",
+        "caution": "Aşırı konfor düşkünlüğü ve tembellikten kaçının.",
+        "color": "Lila",
+        "number": 8
+      }
+    },
+    "İkizler": {
+      "daily": {
+        "general": "Bugün zihniniz adeta ışık hızında çalışıyor. Yeni fikirler üretmek, yazmak ve insanlarla iletişim kurmak için harika bir gün.",
+        "love": "İlişkilerinizde entelektüel bağ kurmak ön planda. Partnerinizle derin felsefi konuları konuşmaktan keyif alacaksınız.",
+        "career": "Sunumlar, mailler ve sözlü anlaşmalar için çok yoğun bir gün. Zekanızla tüm pürüzleri çözeceksiniz.",
+        "money": "Küçük ama keyifli teknolojik aletler veya kitaplar için harcamalar yapabilirsiniz.",
+        "social": "Sosyal medyada veya arkadaş ortamlarında sohbetlerin aranan ismi siz olacaksınız. Bilgi paylaştıkça çoğalır.",
+        "energy": "Hızlı ama dağınık. Sinir sisteminizi sakinleştirmek için papatya çayı içebilirsiniz.",
+        "advice": "Aynı anda çok fazla işe odaklanmak yerine en önemlisini seçin.",
+        "caution": "Konuşurken veya yazarken yanlış anlaşılmalara karşı kelimelerinizi özenle seçin.",
+        "color": "Limon Sarısı",
+        "number": 5
+      },
+      "weekly": {
+        "general": "Bu hafta seyahatler, eğitimler ve anlaşmalar gündeminizde. Hareketli ve bol iletişimli bir haftadasınız.",
+        "love": "Partnerinizle birlikte yapacağınız kısa bir seyahat veya yeni bir eğitime katılmak aşkınızı tazeleyecektir.",
+        "career": "Yazılı projelerde, pazarlamada veya sosyal medya yönetiminde büyük başarılar elde edebilirsiniz.",
+        "money": "Gelirlerinizi artıracak ek iş teklifleri alabilirsiniz. Fırsatları değerlendirin.",
+        "social": "Çevrenizle sürekli iletişimde olacağınız, telefonların susmayacağı hareketli bir hafta sizi bekliyor.",
+        "energy": "Zihinsel hiperaktivite uykuya dalmanızı zorlaştırabilir; uykudan önce ekrandan uzak durun.",
+        "advice": "Zihninizi düzenli meditasyon veya nefes egzersizleriyle dinlendirin.",
+        "caution": "Dedikodulardan ve asılsız haberlerden uzak durmaya çalışın.",
+        "color": "Açık Mavi",
+        "number": 14
+      },
+      "monthly": {
+        "general": "Temmuz ayında kendinizi ifade etme ve iletişim gücünüz zirvede. Kendi markanızı veya projelerinizi kitlelere tanıtma zamanı.",
+        "love": "Aşkta neşe, oyunculuk ve zihinsel uyum arıyorsunuz. Karşılıklı konuşabildiğiniz sürece her sorunu aşabilirsiniz.",
+        "career": "Yayıncılık, akademi veya ticaret alanında çalışan İkizler için kariyer basamaklarını hızla tırmanma ayı.",
+        "money": "Gelirlerinizi artıracak akıllıca yatırımlar yapabilirsiniz. Harcamalarınızı mantık çerçevesinde tutun.",
+        "social": "Geniş arkadaş gruplarıyla festivallere veya seminerlere katılabilir, auranızı tazeleyebilirsiniz.",
+        "energy": "Akciğer sağlığınıza dikkat etmeli, bol bol temiz havada yürüyüş yapmalısınız.",
+        "advice": "Fikirlerinizi kağıda dökerek somut projelere dönüştürün.",
+        "caution": "Kararsızlığınız yüzünden önünüze gelen fırsatları kaçırmayın.",
+        "color": "Gümüş Grisi",
+        "number": 23
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için zihinsel uyanış, yeni diller öğrenme, akademik başarılar ve bolca seyahat yılı olacaktır. Jüpiter'in cömert desteği sizinle.",
+        "love": "Yabancı uyruklu veya farklı kültürden biriyle hayatınızı birleştirecek derin bir aşk yaşayabilirsiniz.",
+        "career": "Medya, iletişim, uluslararası ilişkiler veya teknoloji sektöründe global başarılar elde edeceğiniz bir yıl.",
+        "money": "Yurtdışı kaynaklı işlerden veya dijital projelerden büyük gelirler elde ederek bütçenizi katlayacaksınız.",
+        "social": "Uluslararası arkadaş çevreleri edinecek, vizyonunuzu ve sosyal çevrenizi dünya çapında genişleteceksiniz.",
+        "energy": "Sinir sisteminizi korumalı, aşırı stresten ve uykusuzluktan uzak durmalısınız.",
+        "advice": "Bilginin peşinden koşun ve öğrendiklerinizi insanlıkla paylaşın.",
+        "caution": "Yüzeysel bilgilerle yetinmeyip konuların derinliklerine inmeye odaklanın.",
+        "color": "Turkuaz",
+        "number": 7
+      }
+    },
+    "Yengeç": {
+      "daily": {
+        "general": "Bugün duygusal dünyanızda derin bir şefkat ve koruma isteği hakim. Sevdiklerinize sarılmak ve yuvayı hissetmek ruhunuza şifa verecektir.",
+        "love": "İlişkilerinizde empati ve şefkat rüzgarları esiyor. Partnerinizi ne kadar çok önemsediğinizi göstermek için harika bir gün.",
+        "career": "İş yerinde sezgilerinize güvenin. İnsanların niyetlerini hissetme gücünüz sizi yanlış kararlardan koruyacaktır.",
+        "money": "Ev ve aile güvenliğiniz için harcamalar yapabilir, tasarruflarınızı korumaya odaklanabilirsiniz.",
+        "social": "Gürültülü ortamlardan kaçıp, en güvendiğiniz aile üyeleri veya dostlarınızla evde vakit geçirmek isteyeceksiniz.",
+        "energy": "Hassas ve içe dönük. Sıcak su banyoları veya papatya çayı içmek bedeninizdeki gerilimi azaltacaktır.",
+        "advice": "Duygularınızı içinize atmak yerine güvendiğiniz insanlarla paylaşın.",
+        "caution": "Geçmişteki kırgınlıklara saplanıp bugünün neşesini kaçırmamaya dikkat edin.",
+        "color": "İnci Beyazı",
+        "number": 2
+      },
+      "weekly": {
+        "general": "Bu hafta duygusal bağlarınız ve aile içi ilişkileriniz ön planda. Sevdiklerinizi korumak için yoğun çaba harcayabilirsiniz.",
+        "love": "Aşkta aidiyet ve güven arayışınız yüksek. Partnerinizin sadakatini hissetmek sizi çok mutlu edecektir.",
+        "career": "Yaratıcı projelerinizde sezgilerinizi kullanarak fark yaratabilirsiniz. İnce detaylar başarıyı getirecek.",
+        "money": "Maddi olarak kendinizi güvenceye alacak yeni birikim hesapları açabilir veya gayrimenkul araştırabilirsiniz.",
+        "social": "Çocukluk arkadaşlarınız veya eski komşularınızla nostaljik buluşmalar gerçekleştirebilirsiniz.",
+        "energy": "Mide hassasiyetiniz artabilir; sağlıklı, ev yapımı ve taze yemekler tüketmeye özen gösterin.",
+        "advice": "Kendi sınırlarınızı çizmeyi ve gerektiğinde 'hayır' demeyi öğrenin.",
+        "caution": "Alınganlık ve melankoli eğilimlerine karşı dikkatli olun.",
+        "color": "Gümüş Grisi",
+        "number": 11
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri burcunuzu aydınlatıyor. Kendi ihtiyaçlarınızı fark etme ve kendinizi şımartma zamanı.",
+        "love": "Kalbini tamamen açma cesareti gösteriyorsunuz. Koşulsuz sevgi ve romantizm dolu bir ay sizi bekliyor.",
+        "career": "İş hayatında öne çıkacağınız, liderliğinizi ve şefkatli yönetim tarzınızı göstereceğiniz parlak bir dönem.",
+        "money": "Kendiniz ve kişisel gelişiminiz için harcamalar yapabilirsiniz. Auranızı tazelemek bereketi çekecektir.",
+        "social": "İlgi odağı olacağınız, girdiğiniz ortamlarda parlayacağınız keyifli bir sosyal dönemdesiniz.",
+        "energy": "Yaşam enerjiniz yükseliyor. Doğada yürüyüşler yapmak ve su kenarında olmak auranızı şifalandıracaktır.",
+        "advice": "Kendinizi sevmeyi ve kendi ihtiyaçlarınızı önceliklendirmeyi ihmal etmeyin.",
+        "caution": "Kurban psikolojisine girip başkalarının sorumluluklarını üstlenmeyin.",
+        "color": "Deniz Mavisi",
+        "number": 20
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için ruhsal yuva inşası, aile içi genişlemeler, ebeveynlik veya ev sahibi olma yılı olacaktır. Ay'ın koruyucu aurasındasınız.",
+        "love": "Ruh eşinizle tanışabilir, evlenebilir veya yuvanıza yeni bir üyenin (bebek) katılmasının mutluluğunu yaşayabilirsiniz.",
+        "career": "Sağlık, eğitim, gıda veya psikoloji sektöründe çalışan Yengeçler için mesleki olarak altın değerinde bir yıl.",
+        "money": "Maddi olarak sarsılmaz bir güvenceye ulaşarak kendi mülkünüzü alma veya kalıcı yatırımlar yapma yılı.",
+        "social": "Size aile sıcaklığı hissettirecek, ömür boyu sürecek dostluklar kuracağınız sağlam bir sosyal çevre inşası.",
+        "energy": "Göğüs ve sindirim sistemi sağlığınıza dikkat etmeli, düzenli kontrolleri yaptırmalısınız.",
+        "advice": "İçinizdeki çocuğu şefkatle sarın ve sezgilerinizin rehberliğine güvenin.",
+        "caution": "Geçmişin gölgesinde yaşayıp geleceğin fırsatlarını kaçırmamaya çalışın.",
+        "color": "Gece Mavisi",
+        "number": 4
+      }
+    },
+    "Aslan": {
+      "daily": {
+        "general": "Bugün Güneş'in parıltılı enerjisi auranızı aydınlatıyor. Özgüveniniz yüksek, yaratıcı gücünüzü gururla yansıtma zamanı.",
+        "love": "Aşkta cömert ve coşkulusunuz. Partnerinize yapacağınız sürprizler veya ona olan sevginizi ilan etmek aranızdaki ateşi parlatacaktır.",
+        "career": "Liderlik vasıflarınızı göstereceğiniz, sahnede olacağınız bir gün. Yöneticilerinizin takdirini kolayca kazanacaksınız.",
+        "money": "Lüks harcamalar veya şık hediyeler için cömertçe para harcayabilirsiniz; bütçeyi yine de dengede tutun.",
+        "social": "Girdiğiniz her ortamda spot ışıklarını üzerinize çekeceksiniz. Karizmanızla insanları etkileme gücünüz çok yüksek.",
+        "energy": "Çok yüksek ve canlı. Bedeninizi hareket ettirmek, dans etmek veya spor yapmak auranızı parlatacaktır.",
+        "advice": "Cömertliğinizi ve sevginizi çevrenizle paylaşarak parlayın.",
+        "caution": "Aşırı gurur veya kibirli tavırlarla ilişkileri germemeye özen gösterin.",
+        "color": "Altın Dore",
+        "number": 1
+      },
+      "weekly": {
+        "general": "Bu hafta kariyer hedefleriniz ve prestijiniz ön planda. Yaratıcı projelerinizle kitlelerin beğenisini toplayacaksınız.",
+        "love": "İlişkilerinizde eğlence, neşe ve coşku hakim. Partnerinizle birlikte sanatsal etkinliklere katılabilirsiniz.",
+        "career": "Kendi markanızı parlatacağınız veya terfi alacağınız çok şanslı iş fırsatları haftasındasınız.",
+        "money": "Gelirlerinizi artıracak yaratıcı iş ortaklıkları kurabilir, bütçenizi büyütebilirsiniz.",
+        "social": "Popülaritenizin zirvesinde olacağınız, davetlerin ve organizasyonların aranan ismi olacağınız bir hafta.",
+        "energy": "Kalp sağlığınıza dikkat etmeli, aşırı stresten kaçınmak için kendinize dinlenme zamanları ayırmalısınız.",
+        "advice": "Liderliğinizi alçakgönüllülükle birleştirerek sergileyin.",
+        "caution": "Övgülere fazla kapılıp gerçeklerden kopmamaya özen gösterin.",
+        "color": "Canlı Turuncu",
+        "number": 10
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri kariyer evinizde büyük fırsatlar yaratıyor. Hayat sahnesinde parıldama zamanınız geldi.",
+        "love": "Aşkta sadakat, gurur ve yoğun duygular ön planda. Partnerinizin sizi takdir etmesi ve saygı duyması sizin için çok önemli.",
+        "career": "Yaratıcı projelerinizi kitlelere tanıtacağınız, sahnede olacağınız şanslı bir dönem. Sanatçılar için altın ay.",
+        "money": "Yaratıcı girişimlerinizden veya sanatsal işlerinizden büyük gelirler elde edebilirsiniz. Kaliteye odaklanın.",
+        "social": "Seçkin davetlerde boy gösterecek, kariyerinizi destekleyecek güçlü otoritelerle bağlantılar kuracaksınız.",
+        "energy": "Sırt ve omurga sağlığınıza dikkat etmeli, dik duruş egzersizleri yapmalısınız.",
+        "advice": "İçinizdeki yaratıcı ateşi korkusuzca dışarı yansıtın.",
+        "caution": "Eleştirilere karşı aşırı alınganlık gösterip egonuzu zedelemeyin.",
+        "color": "Güneş Sarısı",
+        "number": 19
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için kişisel karizma artışı, büyük sanatsal başarılar, sahnede parlama ve kariyerde zirve yılı olacaktır.",
+        "love": "Tüm gözlerin üzerinizde olacağı, krallara/kraliçelere layık görkemli bir aşk ve evlilik yılı yaşayabilirsiniz.",
+        "career": "Liderlik statünüzün sarsılmaz hale geleceği, kendi işinizin patronu olabileceğiniz muazzam bir yükseliş yılı.",
+        "money": "Büyük finansal yatırımlar yapabileceğiniz, lüks standartlarınızı kalıcı olarak yükselteceğiniz bereketli bir yıl.",
+        "social": "Kozmopolit ve seçkin çevrelerin lideri haline geleceğiniz, geniş kitleleri peşinizden sürükleyeceğiniz bir dönem.",
+        "energy": "Kalp ritminizi korumalı, aşırı kafein ve yorucu stresten uzak durmalısınız.",
+        "advice": "Cömertliğiniz ve sıcak kalpliliğinizle dünyaya ışık saçmaya devam edin.",
+        "caution": "Kibir ve bencillik gölgelerine düşmemek için alçakgönüllülüğü elden bırakmayın.",
+        "color": "Amber Rengi",
+        "number": 5
+      }
+    },
+    "Başak": {
+      "daily": {
+        "general": "Bugün Merkür'ün analitik etkisi zihninizi keskinleştiriyor. Hayatınızdaki detayları düzenlemek ve sadeleşmek için harika bir gün.",
+        "love": "Partnerinize pratik yardımlarda bulunarak sevginizi göstereceksiniz. Sözler yerine eylemler konuşuyor.",
+        "career": "Hata kabul etmeyen titiz işleri, veri analizlerini ve raporlamaları yapmak için mükemmel bir gün. Detaycı gözünüz iş başında.",
+        "money": "Alışveriş yaparken fiyat-performans dengesini en iyi siz kuracaksınız. Akıllıca tasarruf yapabilirsiniz.",
+        "social": "Sessiz, düzenli ve entelektüel sohbetler edebileceğiniz yakın dostlarınızla bir araya gelmek isteyeceksiniz.",
+        "energy": "Zihinsel yorgunluğa dikkat. Bitki çayları içmek ve sakin yürüyüşler yapmak sinir sisteminizi rahatlatacaktır.",
+        "advice": "Mükemmeliyetçilik rüzgarına kapılıp kendinizi ve başkalarını aşırı eleştirmekten kaçının.",
+        "caution": "Detaylarda boğulup büyük resmi kaçırmamaya özen gösterin.",
+        "color": "Zeytin Yeşili",
+        "number": 5
+      },
+      "weekly": {
+        "general": "Bu hafta iş hayatınız, günlük rutinleriniz ve sağlığınız ön planda. Yaşamınızı düzene sokmak için çok çalışacaksınız.",
+        "love": "İlişkinizdeki ufak pürüzleri dürüstçe konuşarak çözebilirsiniz. Analitik yaklaşımınız fayda sağlayacaktır.",
+        "career": "Ekip çalışmalarında düzenleyici rol üstlenebilir, verimliliği artıracak yeni sistemler kurabilirsiniz.",
+        "money": "Bütçe planlaması yapmak, gelir-gider tablosu hazırlamak için harika bir hafta. Finansal netlik kazanacaksınız.",
+        "social": "Yardım kuruluşlarında veya sosyal sorumluluk projelerinde gönüllü olarak görev alabilirsiniz.",
+        "energy": "Bağırsak sağlığınıza dikkat etmeli, lifli gıdalar ve probiyotik tüketimine özen göstermelisiniz.",
+        "advice": "Sağlıklı yaşam rutinlerinizi disiplinle uygulayın.",
+        "caution": "Aşırı kaygı ve evham yapmaktan kaçınmaya çalışın.",
+        "color": "Açık Gri",
+        "number": 12
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri sağlığınız ve günlük rutinleriniz üzerinde yoğunlaşıyor. Bedeninize ve ruhunuza bakım yapma zamanı.",
+        "love": "İlişkilerde güvenli, huzurlu ve pratik bir dönem arıyorsunuz. Karmaşadan uzak, net bağlar kurmak size iyi gelecektir.",
+        "career": "Mesleğinizde uzmanlaşacağınız, detaylardaki başarınızla öne çıkacağınız verimli bir iş dönemi.",
+        "money": "Gereksiz harcamaları keserek birikimlerinizi artırabilirsiniz. Akıllı bütçe yönetimi bereket getirir.",
+        "social": "Benzer ilgi alanlarına sahip insanlarla kitap kulüplerinde veya atölyelerde bir araya gelebilirsiniz.",
+        "energy": "Bedeninizin uyarılarını dinleyin; aşırı yorulduğunuzda dinlenmeyi ihmal etmeyin.",
+        "advice": "Akışa güvenmeyi ve mükemmel olmayan şeyleri de kabul etmeyi öğrenin.",
+        "caution": "Detaycı eleştirilerinizle sevdiklerinizi kırmamaya özen gösterin.",
+        "color": "Toprak Kahvesi",
+        "number": 18
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için mesleki uzmanlaşma, büyük projeleri tamamlama, sağlığı düzene sokma ve sadeleşme yılı olacaktır.",
+        "love": "Hayatınızı paylaşacağınız, sizinle aynı pratik ve ahlaki değerleri taşıyan olgun biriyle kalıcı bir birliktelik kurabilirsiniz.",
+        "career": "Çalışkanlığınızın ve titizliğinizin karşılığını büyük kariyer başarıları, terfi veya yeni iş fırsatları ile alacağınız yıl.",
+        "money": "Finansal olarak sarsılmaz bir bütçe disiplini kurarak borçlarınızı kapatacak ve sağlam bir birikim altyapısı kuracaksınız.",
+        "social": "Sırdaş, dürüst ve entelektüel düzeyde anlaştığınız, az ama öz insandan oluşan kaliteli bir dost çevresi.",
+        "energy": "Sindirim sistemi ve sinir sistemi sağlığınıza yıl boyunca özen göstermeli, stresi azaltmalısınız.",
+        "advice": "Mükemmeliyetçilik hapishanesinden çıkın ve hayatın doğal kusurluluğundaki güzelliği görün.",
+        "caution": "Her şeyi kontrol etmeye çalışıp kendinizi zihinsel olarak tüketmeyin.",
+        "color": "Koyu Krem",
+        "number": 6
+      }
+    },
+    "Terazi": {
+      "daily": {
+        "general": "Bugün Venüs'şün estetik enerjisi ruhunuzu dengeliyor. Zarafet, adalet ve ilişkilerinizde uyumu yakalamak için harika bir gün.",
+        "love": "Aşkta romantizm ve zarafet ön planda. Partnerinizle birlikte sanatsal bir ortama gitmek veya şık bir kahve içmek aranızdaki bağı güçlendirecektir.",
+        "career": "Ortaklıklar ve ikili görüşmeler için mükemmel bir gün. Diplomatik yeteneklerinizle tüm anlaşmazlıkları çözeceksiniz.",
+        "money": "Güzellik, moda veya sanat için harcamalar yapmak isteyebilirsiniz; bütçenizi aşmamaya dikkat edin.",
+        "social": "Sosyal çevrenizde arabulucu ve dengeleyici rolünüzle ön plandasınız. İnsanlar tavsiyelerinizi dinlemek isteyecek.",
+        "energy": "Uyumlu ve estetik. Kendinize güzellik/bakım yapmak veya gardırobunuzu düzenlemek auranızı tazeleyecektir.",
+        "advice": "Karar alırken tarafsızlığınızı koruyun ama kendi isteklerinizi de unutmayın.",
+        "caution": "Yalnız kalma korkusuyla istemediğiniz durumlara 'evet' dememeye özen gösterin.",
+        "color": "Gül Pembesi",
+        "number": 6
+      },
+      "weekly": {
+        "general": "Bu hafta ikili ilişkileriniz, evliliğiniz ve ortaklıklarınız odak noktanız. Adaleti ve dengeyi kurmak için çaba harcayacaksınız.",
+        "love": "Partnerinizle olan iletişiminizde açık ve dürüst olmak aranızdaki tüm pürüzleri temizleyecektir.",
+        "career": "Yeni iş ortaklıkları veya sözleşmeler gündeme gelebilir. Karar vermeden önce tüm şartları dengeleyin.",
+        "money": "Finansal olarak ortaklı bütçelerden veya eşin gelirlerinden destek alabileceğiniz şanslı bir hafta.",
+        "social": "Sanatsal etkinlikler, konserler veya şık davetlerle dolu hareketli bir sosyal ajanda sizi bekliyor.",
+        "energy": "Böbrek sağlığınıza dikkat etmeli, gün boyunca bol bol su tüketmeye özen göstermelisiniz.",
+        "advice": "Kararsızlığınızı aşmak için iç sesinize ve mantığınıza güvenin.",
+        "caution": "Başkalarını memnun etmek adına kendi doğrularınızdan ödün vermeyin.",
+        "color": "Gök Mavisi",
+        "number": 15
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri evlilik ve ortaklık evinizi canlandırıyor. Hayatınızdaki önemli insanlarla ilişkileri yapılandırma zamanı.",
+        "love": "İlişkilerde romantizmin ve derin paylaşımların zirve yaptığı bir dönem. Bekler için evlilik kararları alınabilir.",
+        "career": "Diplomasi yeteneğiniz sayesinde zorlu iş sözleşmelerini kendi lehinize çevireceğiniz şanslı bir ay.",
+        "money": "Estetik yatırımlar veya kendiniz için yapacağınız harcamalar artabilir. Bütçe dengesini koruyun.",
+        "social": "Geniş ve entelektüel çevrelerle bir araya gelerek sosyal statünüzü güçlendirebilirsiniz.",
+        "energy": "Bel ve sırt ağrılarına karşı esneme egzersizleri ve hafif yürüyüşler yapmalısınız.",
+        "advice": "Kendi bireysel gücünün farkına varın ve sınırlarınızı cesurca çizin.",
+        "caution": "Gereksiz kararsızlıklarla zaman kaybetmemeye çalışın.",
+        "color": "Pastel Yeşil",
+        "number": 24
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için ciddi ortaklıklar, evlilik, adaletin yerini bulması ve sanatsal atılımlar yılı olacaktır. Venüs'ün koruyucu aurasındasınız.",
+        "love": "Ruh eşinizle tanışıp görkemli bir evlilik yapabileceğiniz veya mevcut evliliğinizi en yüksek uyum seviyesine taşıyacağınız yıl.",
+        "career": "Hukuk, sanat, diplomasi, halkla ilişkiler veya lüks marka yönetimi sektörlerinde zirve başarılar elde edeceğiniz bir dönem.",
+        "money": "Ortaklı girişimlerden veya hukuki süreçlerin lehinize sonuçlanmasıyla elde edeceğiniz büyük maddi kazançlar.",
+        "social": "Topluluklarda zarafetiniz ve adaletli duruşunuzla saygı görecek, seçkin sosyal kulüplere dahil olacaksınız.",
+        "energy": "Böbrekler ve bel bölgesi sağlığınıza özen göstermeli, su dengesini yıl boyunca korumalısınız.",
+        "advice": "Dürüstçe sınır çizmeyi ve 'hayır' demeyi öğrenerek özdeğerinizi yükseltin.",
+        "caution": "Yalnızlık korkusunun sizi toksik ilişkilere sürüklemesine izin vermeyin.",
+        "color": "Mavi Safir",
+        "number": 9
+      }
+    },
+    "Akrep": {
+      "daily": {
+        "general": "Bugün Plütonik enerjiler auranızı sarıyor. Gizemli, kararlı ve dönüştürücü gücünüz yüksek. Gerçekleri bulma isteğiniz ön planda.",
+        "love": "Aşkta yoğun ve tutkulusunuz. Partnerinizle aranızdaki telepatik bağ çok güçlü; gizli duygular açığa çıkabilir.",
+        "career": "Kriz anlarını yönetmek ve karmaşık sorunları çözmek için harika bir gün. Araştırmacı zekanızla herkesin kaçırdığı detayları bulacaksınız.",
+        "money": "Finansal olarak ortak bütçeleri kontrol etmek veya alacak-verecek hesaplarını düzenlemek için uygun bir gün.",
+        "social": "Yalnız kalıp araştırma yapmak veya sadece en güvendiğiniz sırdaşınızla derin sohbetler etmek isteyeceksiniz.",
+        "energy": "Yoğun ve manyetik. İçsel enerjinizi dönüştürmek için meditasyon yapmak veya su kenarında olmak faydalıdır.",
+        "advice": "Aşırı şüphecilik ve kıskançlık krizleriyle auranızı kirletmeyin.",
+        "caution": "Her şeyi kontrol etmeye çalışıp kendinizi yıpratmaktan kaçının.",
+        "color": "Koyu Bordo",
+        "number": 8
+      },
+      "weekly": {
+        "general": "Bu hafta derin krizleri fırsata çevirme ve küllerinizden yeniden doğma haftasındasınız. Gücünüzü hissedeceksiniz.",
+        "love": "İlişkilerinizde güven ve sadakat sınavları yaşanabilir. Dürüstlük en önemli rehberiniz olacaktır.",
+        "career": "İş hayatınızda perde arkasında dönen olayları sezgilerinizle fark edip stratejik adımlar atabilirsiniz.",
+        "money": "Miraslar, krediler veya bekleyen ortak paralar konusunda önemli gelişmeler yaşanabilir.",
+        "social": "Sosyal ilişkilerde ketum ve seçici olacağınız, sadece samimi bağlara değer vereceğiniz bir hafta.",
+        "energy": "Üreme sistemi hassasiyetiniz artabilir; hijyen ve kontrollerinize dikkat etmelisiniz.",
+        "advice": "Affetmenin ve geçmişi serbest bırakmanın iyileştirici gücünü kullanın.",
+        "caution": "İntikam veya kin tutma eğilimlerinden uzak durmaya çalışın.",
+        "color": "Gece Siyahı",
+        "number": 11
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri ortak bütçe, dönüşüm ve okült konular evinizi hareketlendiriyor. Bilinmeyenin kapısını aralama zamanı.",
+        "love": "Aşkta sınırları kaldıran, oldukça yoğun ve tutkulu bir dönem. Partnerinizle ruhsal bir simya yaşayabilirsiniz.",
+        "career": "Büyük krizleri ustalıkla yöneterek iş yerinde vazgeçilmez bir güç olduğunuzu kanıtlayacağınız verimli bir ay.",
+        "money": "Banka borçlarını kapatmak, yatırımları yeniden yapılandırmak için çok uygun finansal fırsatlar dönemi.",
+        "social": "Gizemli auranızla dikkat çekecek, ezoterik veya psikolojik topluluklarda yeni insanlarla tanışacaksınız.",
+        "energy": "Bedeninizi toksinlerden arındırmak için detokslar yapabilir ve bol su içebilirsiniz.",
+        "advice": "Kontrolü bırakıp ilahi akışa güvenmeyi deneyin.",
+        "caution": "Aşırı kıskançlık ve şüphecilikle kendinizi sabote etmeyin.",
+        "color": "Amber Kırmızısı",
+        "number": 22
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için ruhsal dönüşüm, büyük finansal yatırımlar, küllerinden doğma ve simya yılı olacaktır. Plüton'un dönüştürücü gücü sizinle.",
+        "love": "Kaderinizde derin izler bırakacak, krizlerden güçlenerek çıkacak son derece yoğun, tutkulu ve ruhsal bir evlilik yılı.",
+        "career": "Kriz yönetimi, psikoloji, tıp, finans veya dedektiflik/araştırma alanlarında en büyük başarılarınızı elde edeceğiniz bir yıl.",
+        "money": "Miras, tazminat veya büyük yatırımlar yoluyla hayatınızın en büyük finansal kazançlarını elde edebileceğiniz şanslı dönem.",
+        "social": "Auranıza saygı duyan, derinliği olan ve sırlar taşıyan seçkin sırdaşlardan oluşan sarsılmaz bir çevre.",
+        "energy": "Boşaltım ve üreme sistemi sağlığınıza yıl boyunca özen göstermeli, üşütmemelisiniz.",
+        "advice": "Affetmeyi en büyük gücünüz yapın; geçmişin zincirlerini kırdığınızda özgürleşeceksiniz.",
+        "caution": "Güç savaşları ve manipülatif ilişkiler içinde kendinizi tüketmeyin.",
+        "color": "Gece Mavisi",
+        "number": 4
+      }
+    },
+    "Yay": {
+      "daily": {
+        "general": "Bugün Jüpiter'in cömert enerjisi vizyonunuzu genişletiyor. İyimser, neşeli ve yeni maceralara atılmak için harika bir gün.",
+        "love": "Aşkta özgürlük ve eğlence ön planda. Partnerinizle birlikte yeni yerler keşfetmek veya uzun felsefi sohbetler etmek aranıza neşe katacaktır.",
+        "career": "Geleceğe yönelik vizyoner projeler üretmek ve büyük hedefler koymak için mükemmel bir gün. İyimserliğiniz kapıları açacaktır.",
+        "money": "Eğitim veya seyahat planları için bütçe ayırabilirsiniz; cömertçe harcamalar yaparken sınırları unutmayın.",
+        "social": "Neşeli ve espri dolu auranızla arkadaş ortamlarının neşe kaynağı siz olacaksınız. Bilgi paylaştıkça çoğalır.",
+        "energy": "Yüksek ve dinamik. Doğa yürüyüşleri yapmak veya sporla enerjinizi deşarj etmek ruhunuza çok iyi gelecektir.",
+        "advice": "Hayata iyimserlikle bakmaya devam edin ama gerçekleri de es geçmeyin.",
+        "caution": "Karşınızdaki insanlara konuşurken patavatsızlık yapıp onları kırmamaya özen gösterin.",
+        "color": "Kraliyet Moru",
+        "number": 3
+      },
+      "weekly": {
+        "general": "Bu hafta uluslararası ilişkiler, yabancı diller, eğitimler ve seyahatler gündeminizde. Ufkunuzu genişleten gelişmeler kapıda.",
+        "love": "Partnerinizle birlikte yeni kültürler keşfedeceğiniz vizyoner planlar yapabilirsiniz. Aşkınız büyüyecek.",
+        "career": "Yayıncılık, akademi, dış ticaret alanlarında çalışan Yaylar için şanslı teklifler ve büyüme fırsatları haftası.",
+        "money": "Yabancı para birimlerinden veya yatırımlarınızdan şanslı kazançlar elde edebilirsiniz. Bereketiniz artıyor.",
+        "social": "Sosyal çevrenizde felsefi duruşunuz ve neşenizle saygı görecek, vizyoner insanlarla bağlar kuracaksınız.",
+        "energy": "Karaciğer sağlığına dikkat etmeli, aşırı yağlı ve şekerli gıdalardan uzak durmalısınız.",
+        "advice": "Geleceğe olan inancınızı asla kaybetmeyin.",
+        "caution": "Sözlerinizde aşırı iyimser olup yapamayacağınız vaatler vermekten kaçının.",
+        "color": "Turkuaz",
+        "number": 12
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri seyahat, eğitim ve inançlar evinizi canlandırıyor. Kendinizi keşfetme ve yollara çıkma zamanı.",
+        "love": "Aşkta özgürce nefes almak, partnerinizle dünyayı gezmek istiyorsunuz. Kısıtlanmak bu dönemde sizi uzaklaştırabilir.",
+        "career": "Uluslararası projelerde veya akademik sunumlarda parlayacağınız, vizyonunuzu kitlelere kanıtlayacağınız şanslı bir dönem.",
+        "money": "Seyahat veya kişisel gelişim eğitimleri için yapacağınız harcamalar artabilir. Bu harcamalar size bilgelik olarak dönecektir.",
+        "social": "Yabancı uyruklu veya farklı vizyonlara sahip insanlarla tanışarak sosyal çevrenizi globalleştirebilirsiniz.",
+        "energy": "Kalça ve uyluk bölgesi hassasiyetine karşı spor yaparken ısınma hareketlerini ihmal etmeyin.",
+        "advice": "Öğrenme aşkınızı besleyin ve her deneyimi bir macera olarak görün.",
+        "caution": "Aşırı ölçüsüzlük ve savurganlık eğilimlerine karşı dikkatli olun.",
+        "color": "Koyu Lacivert",
+        "number": 30
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için global başarılar, büyük seyahatler, kitap yayınlama ve inançlarınızda aydınlanma yılı olacaktır. Yönetici gezegeniniz Jüpiter yanınızda.",
+        "love": "Yolculuklar esnasında tanışacağınız vizyoner biriyle hayatınızı birleştirecek derin bir aşk ve evlilik fırsatı.",
+        "career": "Akademi, dış ticaret, medya veya danışmanlık sektöründe uluslararası başarılar elde edeceğiniz altın bir yükseliş yılı.",
+        "money": "Global işlerden veya yurtdışı kaynaklı projelerden hayatınızın en büyük finansal gelirlerini elde edeceğiniz şanslı dönem.",
+        "social": "Dünyanın farklı ülkelerinden edineceğiniz entelektüel dostlar ve vizyoner sosyal kulüpler inşası.",
+        "energy": "Karaciğer ve siyatik sinirler sağlığınıza yıl boyunca dikkat etmeli, düzenli egzersiz yapmalısınız.",
+        "advice": "Bilginin ve gerçeğin peşinden koşun; vizyonunuz dünyayı aydınlatacaktır.",
+        "caution": "Fanatik inançlara kapılıp başkalarının fikirlerine kulaklarınızı kapatmayın.",
+        "color": "Mavi Topaz",
+        "number": 3
+      }
+    },
+    "Oğlak": {
+      "daily": {
+        "general": "Bugün Satürn'ün disiplinli enerjisi size sarsılmaz bir kararlılık veriyor. İşlerinizi planlamak, sorumluluk almak ve inşa etmek için harika bir gün.",
+        "love": "İlişkinizde sadakat ve güven ön planda. Partnerinize vereceğiniz somut güvenceler aranızdaki bağı sarsılmaz kılacaktır.",
+        "career": "Yarım kalan projeleri tamamlamak, yöneticilerle ciddi toplantılar yapmak için mükemmel bir gün. Ağırbaşlılığınız takdir görecek.",
+        "money": "Maddi olarak yatırımlarınızı uzun vadeli düşünüyorsunuz. Gereksiz harcamaları bloke edip tasarrufa odaklanın.",
+        "social": "Sosyal hayatta mesafeli ve seçicisiniz. Sadece gelecek hedeflerinizi paylaşabileceğiniz ciddi insanlarla görüşmek isteyeceksiniz.",
+        "energy": "Dengeli ve dayanıklı. Kemik ve eklem sağlığınızı destekleyecek gıdalar tüketmek bedeniniz için faydalıdır.",
+        "advice": "Hedeflerinize sabırla ve adım adım ilerlemeye devam edin.",
+        "caution": "Duygularınızı aşırı derecede gizleyip sevdiklerinize karşı soğuk duvarlar örmekten kaçının.",
+        "color": "Kömür Siyahı",
+        "number": 4
+      },
+      "weekly": {
+        "general": "Bu hafta iş sorumluluklarınız ve kariyeriniz ön planda. Disiplinli çalışmanızın meyvelerini almaya başlayacaksınız.",
+        "love": "İlişkilerinizde olgunluk ve ciddiyet arıyorsunuz. Partnerinizle geleceğe yönelik kalıcı ve resmi adımlar konuşulabilir.",
+        "career": "Kendi sınırlarınızı çizeceğiniz, iş yerinde yetkinliğinizi ve otoritenizi kanıtlayacağınız başarılı bir hafta.",
+        "money": "Gayrimenkul yatırımları veya uzun vadeli hisse/birikim kararları için çok uygun finansal fırsatlar.",
+        "social": "Kariyerinize ve sosyal statünüze katkı sağlayacak olgun ve tecrübeli insanlarla bağlantılar kurabilirsiniz.",
+        "energy": "Diş ve kemik hassasiyetlerine karşı kalsiyum alımına ve diş doktoru kontrollerine dikkat edin.",
+        "advice": "Sabır ve disiplinle çalışmanın sarsılmaz gücüne güvenin.",
+        "caution": "Aşırı işkoliklik yüzünden ailenizi ve duygusal dünyanızı ihmal etmeyin.",
+        "color": "Koyu Kurşuni",
+        "number": 8
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri kariyer ve toplumsal itibar evinizde parlıyor. İş hayatında zirveye tırmanma zamanı.",
+        "love": "Aşkta sadakat, saygı ve somut gelecek inşası arıyorsunuz. Karşılıklı saygının korunduğu ilişkiler köklenecektir.",
+        "career": "Mesleğinizde büyük bir otorite konumuna geleceğiniz, sorumluluklarınızın artacağı verimli bir kariyer ayı.",
+        "money": "Maddi olarak kalıcı değerler (ev, toprak yatırımı vb.) almak için stratejik planlar ve bütçe düzenlemeleri yapabilirsiniz.",
+        "social": "Resmi davetlerde, iş yemeklerinde ve prestijli organizasyonlarda boy göstereceğiniz bir dönem.",
+        "energy": "Diz ve eklemlerinize aşırı yüklenmekten kaçınmalı, dik duruşunuzu korumalısınız.",
+        "advice": "Zirveye tırmanırken duygusal dünyanızı şefkatle beslemeyi unutmayın.",
+        "caution": "Katı ve inatçı kurallarınızla sevdiklerinizi bunaltmamaya çalışın.",
+        "color": "Çikolata Kahvesi",
+        "number": 22
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için kariyerde zirveye tırmanma, kalıcı mülk edinme ve en büyük hayat sorumluluklarınızı başarıyla üstlenme yılı olacaktır.",
+        "love": "Geleceğe güvenle bakacağınız ciddi bir evlilik yapabileceğiniz veya mevcut evliliğinizi resmi olarak taçlandıracağınız olgun bir yıl.",
+        "career": "Mesleğinizde en büyük terfileri alacağınız, kendi şirketinizi kurabileceğiniz sarsılmaz bir kariyer yükselişi.",
+        "money": "Maddi dünyada ustalaşacağınız, uzun vadeli emlak ve gayrimenkul yatırımlarıyla servetinizi kalıcılaştıracağınız bereketli yıl.",
+        "social": "Toplumda saygı gören, olgun, iş dünyasında yetkin ve tecrübeli insanlardan oluşan sarsılmaz bir çevre.",
+        "energy": "İskelet sistemi ve cilt sağlığınıza yıl boyunca dikkat etmeli, düzenli egzersiz yapmalısınız.",
+        "advice": "Sabırla inşa ettiğiniz kalenin surlarını şefkat ve sevgiyle yumuşatın.",
+        "caution": "Başarısızlık korkusunun sizi hayattan ve risk almaktan alıkoymasına izin vermeyin.",
+        "color": "Dumanlı Kuvars",
+        "number": 8
+      }
+    },
+    "Kova": {
+      "daily": {
+        "general": "Bugün Uranüsyen uyanış enerjileri zihninizi açıyor. Özgürce düşünmek, toplumsal projelere odaklanmak ve tabuları yıkmak için harika bir gün.",
+        "love": "Aşkta arkadaşlık ve zihinsel bağ kurmak ön planda. Partnerinizle birlikte entelektüel ortamlarda bulunmak sizi yakınlaştıracaktır.",
+        "career": "Yenilikçi, sıra dışı ve teknolojik fikirler üretmek için mükemmel bir gün. Klasik yöntemler yerine geleceği tasarlayın.",
+        "money": "Teknolojik aletler, yazılımlar veya sosyal sorumluluk projeleri için harcamalar yapabilirsiniz.",
+        "social": "Dernekler, topluluklar veya sosyal gruplarla ortak projeler yapmak için çok uygun bir gün. Fikirlerinizi paylaşın.",
+        "energy": "Özgün ve enerjik. Dolaşım sisteminizi canlandırmak için hafif kardiyo veya açık havada yürüyüşler yapmalısınız.",
+        "advice": "Özgünlüğünüzü ve bağımsızlığınızı koruyarak dünyaya katkı sunun.",
+        "caution": "Entelektüel olarak mesafeli kalıp sevdiklerinizle aranıza aşırı soğukluk sokmamaya çalışın.",
+        "color": "Elektrik Mavisi",
+        "number": 7
+      },
+      "weekly": {
+        "general": "Bu hafta toplumsal projeler, dernekler ve sosyal çevre ilişkileriniz ön planda. İnsanlığın yararına işler yapmak isteyeceksiniz.",
+        "love": "Partnerinizle birlikte entelektüel tartışmalara katılarak zihinsel bağlarınızı güçlendirebilirsiniz. Özgürlük hissi önemli.",
+        "career": "Teknoloji, bilim, yapay zeka veya sosyal medya alanında büyük yenilikler ve teklifler alacağınız şanslı bir hafta.",
+        "money": "Geleceğe yönelik dijital yatırımlar veya yenilikçi projeler için bütçe planlaması yapabilirsiniz.",
+        "social": "Fikir ortaklığı kuracağınız vizyoner dostlarla bir araya geleceğiniz, entelektüel olarak besleneceğiniz bir dönem.",
+        "energy": "Ayak bilekleriniz ve baldır hassasiyetlerinize karşı uzun süre ayakta kalmamaya özen göstermelisiniz.",
+        "advice": "Kalıpları yıkan özgün düşüncelerinizden taviz vermeyin.",
+        "caution": "Aşırı inatçılık ve asilik yaparak ilişkileri çıkmaza sokmamaya çalışın.",
+        "color": "Metalik Gri",
+        "number": 11
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri idealler, umutlar ve sosyal çevre evinizi canlandırıyor. Geleceği tasarlama zamanınız geldi.",
+        "love": "Aşkta arkadaşça bağlar ve entelektüel saygı arıyorsunuz. Kıskançlık ve aşırı kontrol bu dönemde sizi kaçırabilir.",
+        "career": "Teknolojik projelerinizle veya vizyoner sunumlarınızla yöneticilerin dikkatini çekeceğiniz şanslı bir dönem.",
+        "money": "Dijital kazanç kapıları veya yenilikçi fikirlerinizden gelir elde edebileceğiniz şanslı mali fırsatlar.",
+        "social": "Geniş kitlelerle ortak vizyoner projelerde yer alabilir, sosyal statünüzü geleceğe taşıyabilirsiniz.",
+        "energy": "Beden dolaşım sisteminizi desteklemek için bol su içmeli ve tuz tüketimini azaltmalısınız.",
+        "advice": "Fikirlerinizi kitlelerle paylaşmaktan ve insanlığa rehberlik etmekten korkmayın.",
+        "caution": "Duygulardan tamamen koparak aşırı mesafeli ve soğuk davranmamaya çalışın.",
+        "color": "Turkuaz",
+        "number": 22
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için teknolojik devrimler, toplumsal uyanışlar, büyük sosyal projelerin liderliği ve zihinsel özgürlük yılı olacaktır.",
+        "love": "Fikir bazında mükemmel anlaştığınız, ruhunuza ilham veren vizyoner biriyle sıra dışı ve özgür bir evlilik yılı.",
+        "career": "Yazılım, yapay zeka, bilim, havacılık veya toplumsal derneklerde global başarılar elde edeceğiniz bir dönem.",
+        "money": "Yenilikçi dijital yatırımlardan veya patent/tasarım haklarından büyük mali kazançlar elde edeceğiniz şanslı bir yıl.",
+        "social": "İnsanlığın uyanışına katkı sunan vizyoner dostlar, bilim insanları ve entelektüellerden oluşan geniş bir çevre.",
+        "energy": "Baldırlar ve dolaşım sistemi sağlığınıza yıl boyunca dikkat etmeli, varis çorapları veya masajlar yapmalısınız.",
+        "advice": "Geleceğin vizyonunu dünyaya taşımaya cesaretle devam edin.",
+        "caution": "Her şeye muhalefet etme ve marjinal olma isteğinin sizi yalnızlaştırmasına izin vermeyin.",
+        "color": "Akuamarin",
+        "number": 29
+      }
+    },
+    "Balık": {
+      "daily": {
+        "general": "Bugün Neptün'ün mistik aurası ruhunuzu sarıyor. Sezgileriniz çok güçlü, rüyalarınızın ve iç sesinizin rehberliğine güvenme zamanı.",
+        "love": "Aşkta sınırları kaldıran bir şefkat ve empati içindesiniz. Partnerinizle ruhsal ve telepatik bir bağ kurmak ruhunuza şifa verecektir.",
+        "career": "Sanatsal yaratıcılık, resim, müzik veya psikolojik analiz gerektiren işler için mükemmel bir gün. Mantık yerine sezgilerinizle çözün.",
+        "money": "Yardıma ihtiyacı olanlara cömertçe destek olabilirsiniz; bereketiniz paylaştıkça artacaktır.",
+        "social": "Sakin, mistik ve derin paylaşımlar yapabileceğiniz, enerjinizi yükselten dostlarınızla bir araya gelmek isteyeceksiniz.",
+        "energy": "Hassas ve mistik. Ayak banyoları yapmak veya lavanta kokulu meditasyonlar uygulamak auranızı şifalandıracaktır.",
+        "advice": "Akışa teslim olun ve evrenin size fısıldadığı mesajları dinleyin.",
+        "caution": "Gerçeklerden kaçmak için hayal dünyasına veya zararlı bağımlılıklara kapılmamaya dikkat edin.",
+        "color": "Deniz Köpüğü Yeşili",
+        "number": 3
+      },
+      "weekly": {
+        "general": "Bu hafta bilinçaltınız, rüyalarınız ve manevi dünyanız ön planda. Ruhsal arınma ve şifa çalışmaları için harika bir haftadasınız.",
+        "love": "Aşkta koşulsuz kabul ve romantizm hakim. Partnerinizle olan ruhsal bağlarınızın derinleştiğini hissedeceksiniz.",
+        "career": "Yaratıcı tasarımlarda veya psikolojik danışmanlık rollerinde mesleki olarak büyük başarılar elde edebilirsiniz.",
+        "money": "Maneviyatı ve şifayı destekleyen harcamalar yapabilir, bütçenizdeki akışa teslim olabilirsiniz.",
+        "social": "Ruhsal konularla ilgilenen, meditasyon veya yoga gruplarında yeni ve manevi dostlar edinebilirsiniz.",
+        "energy": "Ayak ve lenf sistemi hassasiyetinize karşı dinlendirici masajlar yapmalı, tuzu azaltmalısınız.",
+        "advice": "Rüyalarınızı uyanır uyanmaz bir günlüğe yazın; mesajlar barındırıyor.",
+        "caution": "Kurban psikolojisine girip başkalarının dertlerini aşırı yüklenmekten kaçının.",
+        "color": "Eflatun",
+        "number": 12
+      },
+      "monthly": {
+        "general": "Temmuz ayında yörünge hareketleri rüyalar, maneviyat ve bilinçaltı evinizi canlandırıyor. Ruhunuzu dinlendirme ve şifalandırma zamanı.",
+        "love": "Aşkta sınırların eridiği, derin bir romantizm dönemi. Partnerinizle manevi olarak bütünleştiğinizi hissedeceksiniz.",
+        "career": "Sanatsal dehanızı veya yaratıcı fikirlerinizi sessizce olgunlaştıracağınız, perde arkasında çalışacağınız verimli bir ay.",
+        "money": "Maddi olarak kendinizi güvence altına alırken manevi harcamalarda cömert olacaksınız. Bolluk size akacaktır.",
+        "social": "Sakin ve huzurlu ortamlarda dinleneceğiniz, manevi dostluklar kuracağınız keyifli bir dönem.",
+        "energy": "Bağışıklık sisteminizi korumalı, bol sıvı tüketmeli ve lenf drenaj masajları yapmalısınız.",
+        "advice": "Kendi enerjinizi korumak için koruyucu kalkan çalışmaları yapın.",
+        "caution": "Gerçeklerden kaçma isteğiyle kendinizi melankoliye teslim etmeyin.",
+        "color": "Gümüşi Leylak",
+        "number": 16
+      },
+      "yearly": {
+        "general": "2026 yılı sizin için ruhsal uyanış, büyük sanatsal yaratımlar, manevi bilgelik ve derin şifa yılı olacaktır. Neptün'ün kozmik desteği sizinle.",
+        "love": "Manevi boyutu çok yüksek olan, adeta ruh ikizinizle birleşeceğiniz peri masalı tadında bir aşk ve evlilik yılı.",
+        "career": "Sanat, müzik, tıp, psikoloji, yoga/meditasyon veya denizcilik sektöründe en yüksek başarılarınızı elde edeceğiniz bir yıl.",
+        "money": "Sezgilerinizi kullanarak yapacağınız yatırımlardan veya sanatsal eserlerinizden hayatınızın en büyük mali bereketini elde edeceğiniz şanslı yıl.",
+        "social": "Size manevi yol gösterecek rehberler, şifacılar ve sanatçılardan oluşan derin ve kaliteli bir çevre.",
+        "energy": "Ayaklar ve bağışıklık sistemi sağlığınıza yıl boyunca dikkat etmeli, düzenli arınma seansları yapmalısınız.",
+        "advice": "Koşulsuz sevmeye devam edin ama kendi sağlıklı sınırlarınızı çizmeyi de unutmayın.",
+        "caution": "Hayal dünyasında kaybolup dünyevi sorumluluklarınızı tamamen ihmal etmeyin.",
+        "color": "Ametist",
+        "number": 7
+      }
+    }
+  }
+}

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detaylı burç uyum analiz aracı. İki burç arasındaki aşk, arkadaşlık ve iletişim uyumunu veya doğum bilgilerine dayalı Sinastri haritasını hesaplayın.">
+  <title>Kozmik Uyum & Sinastri Hesaplayıcı — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <style>
+    .comp-container {
+      max-width: 950px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .comp-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    
+    /* Mode Switcher Tabs */
+    .mode-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .mode-btn {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      color: var(--ink);
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    .mode-btn.active {
+      background: var(--gold);
+      color: var(--night-deep);
+      border-color: var(--gold);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .comp-selector {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .select-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .select-box label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .select-box select, .select-box input {
+      padding: 0.9rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .comp-heart {
+      font-size: 2.5rem;
+      color: var(--coral);
+      text-shadow: 0 0 15px var(--coral-glow);
+      animation: pulse 1.5s infinite alternate;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 1.1rem;
+      background: linear-gradient(135deg, #d4af37, #967012);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: #030610;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px var(--gold-glow);
+      margin-bottom: 3rem;
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--gold-glow);
+    }
+    
+    /* Result styling */
+    .comp-result, .synastry-result {
+      display: none;
+      animation: slideUp 0.5s ease;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .score-card {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 6px;
+    }
+    .score-val {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+    }
+    
+    .syn-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Sub-tabs for detailed compatibility report */
+    .sub-tab-btn {
+      padding: 0.6rem 1.2rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+    .sub-tab-btn:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--gold);
+    }
+    .sub-tab-btn.active {
+      background: var(--gold);
+      color: #030610;
+      border-color: var(--gold);
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+    }
+
+    @media(max-width: 768px) {
+      .comp-selector, .syn-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .comp-heart {
+        text-align: center;
+        margin: 1rem 0;
+      }
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+      .comp-card {
+        padding: 2rem 1.5rem;
+      }
+      .sub-tabs {
+        flex-direction: column;
+        width: 100%;
+      }
+      .sub-tab-btn {
+        width: 100%;
+        text-align: left;
+      }
+    }
+    @media(max-width: 480px) {
+      .comp-container {
+        padding: 0 1rem;
+      }
+      .comp-card {
+        padding: 1.5rem 1rem;
+      }
+      .mode-tabs {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .mode-btn {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main class="comp-container">
+    <div class="star-field" aria-hidden="true"></div>
+    <div class="comp-card">
+      <p class="eyebrow" style="justify-content: center;">Kozmik Çekim</p>
+      <h2 style="text-align: center; font-size: 2.5rem; text-transform: uppercase; margin-bottom: 1rem;">Kozmik Uyum Atlası</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        İki kişinin burçları veya detaylı doğum haritaları arasındaki açısal çekimleri ve element paslaşmalarını keşfedin.
+      </p>
+
+      <!-- Sekmeler -->
+      <div class="mode-tabs">
+        <button class="mode-btn active" id="tabSimple" onclick="switchMode('simple')">Basit Burç Uyumu</button>
+        <button class="mode-btn" id="tabSynastry" onclick="switchMode('synastry')">Derin Sinastri Analizi</button>
+      </div>
+
+      <!-- MODE 1: BASİT BURÇ UYUMU -->
+      <div id="simpleModeSection">
+        <div class="comp-selector">
+          <div class="select-box">
+            <label for="signA">Sizin Burcunuz</label>
+            <select id="signA">
+              <option value="Koç">Koç (Aries)</option>
+              <option value="Boğa">Boğa (Taurus)</option>
+              <option value="İkizler">İkizler (Gemini)</option>
+              <option value="Yengeç">Yengeç (Cancer)</option>
+              <option value="Aslan">Aslan (Leo)</option>
+              <option value="Başak">Başak (Virgo)</option>
+              <option value="Terazi">Terazi (Libra)</option>
+              <option value="Akrep">Akrep (Scorpio)</option>
+              <option value="Yay">Yay (Sagittarius)</option>
+              <option value="Oğlak">Oğlak (Capricorn)</option>
+              <option value="Kova">Kova (Aquarius)</option>
+              <option value="Balık">Balık (Pisces)</option>
+            </select>
+          </div>
+          <div class="comp-heart">♥</div>
+          <div class="select-box">
+            <label for="signB">Partnerin Burcu</label>
+            <select id="signB">
+              <option value="Koç">Koç (Aries)</option>
+              <option value="Boğa">Boğa (Taurus)</option>
+              <option value="İkizler">İkizler (Gemini)</option>
+              <option value="Yengeç">Yengeç (Cancer)</option>
+              <option value="Aslan">Aslan (Leo)</option>
+              <option value="Başak">Başak (Virgo)</option>
+              <option value="Terazi">Terazi (Libra)</option>
+              <option value="Akrep">Akrep (Scorpio)</option>
+              <option value="Yay">Yay (Sagittarius)</option>
+              <option value="Oğlak">Oğlak (Capricorn)</option>
+              <option value="Kova">Kova (Aquarius)</option>
+              <option value="Balık">Balık (Pisces)</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="calculateCompatibility()" class="calc-btn">Uyum Analizini Başlat</button>
+
+        <!-- Sonuç Ekranı -->
+        <div id="compResult" class="comp-result">
+          <div class="score-grid">
+            <div class="score-card">
+              <div id="loveScore" class="score-val">85%</div>
+              <label>AŞK UYUMU</label>
+            </div>
+            <div class="score-card">
+              <div id="friendScore" class="score-val">75%</div>
+              <label>ARKADAŞLIK UYUMU</label>
+            </div>
+            <div class="score-card">
+              <div id="commScore" class="score-val">90%</div>
+              <label>İLETİŞİM UYUMU</label>
+            </div>
+          </div>
+
+          <!-- Çok Sayfalı Detaylı Rapor Alt Sekmeleri -->
+          <div class="sub-tabs" style="display: flex; gap: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <button class="sub-tab-btn active" id="subTabBtn_overview" onclick="showSubTab('overview')">📊 Genel Uyum</button>
+            <button class="sub-tab-btn" id="subTabBtn_love" onclick="showSubTab('love')">💖 Aşk & Evlilik</button>
+            <button class="sub-tab-btn" id="subTabBtn_friend" onclick="showSubTab('friend')">🤝 Arkadaşlık & İletişim</button>
+            <button class="sub-tab-btn" id="subTabBtn_work" onclick="showSubTab('work')">💼 İş & Ortaklık</button>
+            <button class="sub-tab-btn" id="subTabBtn_conflict" onclick="showSubTab('conflict')">⚡ Çatışmalar & Tavsiyeler</button>
+          </div>
+
+          <div class="analysis-text" style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 2.5rem; border-radius: 6px; position: relative;">
+            <h3 id="analysisTitle" style="font-family: 'Cinzel', serif; color: var(--gold-bright); margin-bottom: 1.5rem; text-transform: uppercase; border-bottom: 1px solid var(--line); padding-bottom: 0.8rem;">Koç & Aslan Analizi</h3>
+            
+            <!-- Genel Analiz Sekmesi -->
+            <div id="subTabOverview" class="sub-tab-content">
+              <p id="elementAnalysis" style="line-height: 1.8; color: #cbd5e1; margin-bottom: 1.5rem;"></p>
+              <p id="generalAnalysis" style="line-height: 1.8; color: #cbd5e1;"></p>
+              <div id="polarityAnalysis" style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255,255,255,0.01); border-left: 3px solid var(--gold); border-radius: 4px; font-size: 0.95rem; color: #94a3b8; line-height: 1.6;"></div>
+            </div>
+
+            <!-- Aşk & Evlilik Sekmesi -->
+            <div id="subTabLove" class="sub-tab-content" style="display: none;">
+              <h4 style="color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Aşk ve Evlilik Uyum Potansiyeli</h4>
+              <p id="loveDetailText" style="line-height: 1.8; color: #cbd5e1;"></p>
+            </div>
+
+            <!-- Arkadaşlık & İletişim Sekmesi -->
+            <div id="subTabFriend" class="sub-tab-content" style="display: none;">
+              <h4 style="color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Arkadaşlık Paylaşımları ve İletişim Dili</h4>
+              <p id="friendDetailText" style="line-height: 1.8; color: #cbd5e1;"></p>
+            </div>
+
+            <!-- İş & Kariyer Sekmesi -->
+            <div id="subTabWork" class="sub-tab-content" style="display: none;">
+              <h4 style="color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">İş Ortaklığı ve Maddi İşbirlikleri</h4>
+              <p id="workDetailText" style="line-height: 1.8; color: #cbd5e1;"></p>
+            </div>
+
+            <!-- Çatışmalar & Tavsiyeler Sekmesi -->
+            <div id="subTabConflict" class="sub-tab-content" style="display: none;">
+              <h4 style="color: #f2a6a6; font-family: 'Cinzel', serif; margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Kozmik Çatışmalar ve Çözüm Tavsiyeleri</h4>
+              <p id="challengeAnalysis" style="color: #cbd5e1; line-height: 1.8; margin-bottom: 1.5rem;"></p>
+              <div id="conflictActionSteps" style="padding: 1.2rem; background: rgba(242,166,166,0.05); border: 1px solid rgba(242,166,166,0.15); border-radius: 4px; color: #f2a6a6; font-size: 0.95rem; line-height: 1.6;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODE 2: DERİN SİNASTRİ ANALİZİ -->
+      <div id="synastryModeSection" style="display: none;">
+        <div class="syn-form-grid">
+          <!-- Kişi A Form -->
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 6px;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase; font-size: 1.1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem;">Sizin Doğum Bilgileriniz</h3>
+            
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synDateA">Doğum Tarihi</label>
+              <input type="date" id="synDateA" value="2000-01-01">
+            </div>
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synTimeA">Doğum Saati</label>
+              <input type="time" id="synTimeA" value="12:00">
+            </div>
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synCityA">Doğum Yeri (Şehir)</label>
+              <select id="synCityA"><option value="">Yükleniyor...</option></select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem;">
+              <input type="checkbox" id="synDSTA" checked style="width:16px; height:16px; cursor:pointer;">
+              <label for="synDSTA" style="font-size:0.85rem; color: var(--muted); cursor:pointer;">Yaz Saati uygulansın (+1)</label>
+            </div>
+          </div>
+
+          <!-- Kişi B Form -->
+          <div style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 6px;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase; font-size: 1.1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.5rem;">Partnerin Doğum Bilgileri</h3>
+            
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synDateB">Doğum Tarihi</label>
+              <input type="date" id="synDateB" value="2000-01-01">
+            </div>
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synTimeB">Doğum Saati</label>
+              <input type="time" id="synTimeB" value="12:00">
+            </div>
+            <div class="select-box" style="margin-bottom: 1rem;">
+              <label for="synCityB">Doğum Yeri (Şehir)</label>
+              <select id="synCityB"><option value="">Yükleniyor...</option></select>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem;">
+              <input type="checkbox" id="synDSTB" checked style="width:16px; height:16px; cursor:pointer;">
+              <label for="synDSTB" style="font-size:0.85rem; color: var(--muted); cursor:pointer;">Yaz Saati uygulansın (+1)</label>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="calculateSynastry()" class="calc-btn">Kozmik Sinastri Analizini Başlat</button>
+
+        <!-- Sinastri Sonuç Ekranı -->
+        <div id="synastryResult" class="synastry-result">
+          <div class="score-grid">
+            <div class="score-card" style="border-left: 4px solid var(--gold);">
+              <div id="synLoveScore" class="score-val">--%</div>
+              <label>AŞK VE ÇEKİM</label>
+            </div>
+            <div class="score-card" style="border-left: 4px solid #8296c9;">
+              <div id="synHarmonyScore" class="score-val">--%</div>
+              <label>RUHSAL UYUM</label>
+            </div>
+            <div class="score-card" style="border-left: 4px solid var(--coral);">
+              <div id="synLongevityScore" class="score-val">--%</div>
+              <label>UZUN ÖMÜRLÜLÜK</label>
+            </div>
+          </div>
+
+          <!-- SVG Çift Harita Çemberi (Sinastri Çemberi) -->
+          <div style="margin: 2.5rem auto; max-width: 450px; text-align: center;">
+            <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 1.5rem; text-transform: uppercase;">✦ Sinastri Çift Harita Çemberi</h4>
+            <div style="position: relative; width: 100%; padding-bottom: 100%;">
+              <svg id="synastrySvg" viewBox="0 0 500 500" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #030610; border: 1px solid var(--glass-border); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.6);"></svg>
+            </div>
+          </div>
+
+          <!-- Detaylı Açı Etkileşim Raporu -->
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 6px; margin-top: 2rem;">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold-bright); margin-bottom: 1rem; text-transform: uppercase;">Gezegenler Arası Kozmik Açı Bağlantıları</h3>
+            <ul id="synAspectsList" style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+              <!-- Açılar buraya dinamik listelenecek -->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <script src="data/cities.js"></script>
+  <script src="data/compatibility-detail.js"></script>
+  <script src="uyum.js"></script>
+  <script src="astro-calc.js"></script>
+  <script>
+    // Mobil menü işleyicisi
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Menü';
+    });
+
+    // Şehirleri doldur (cities.js'den yüklenen global cityDatabase ile)
+    populateCitySelects();
+
+    function populateCitySelects() {
+      const selectA = document.getElementById("synCityA");
+      const selectB = document.getElementById("synCityB");
+      if (!selectA || !selectB || typeof cityDatabase === 'undefined') return;
+
+      const html = cityDatabase.map((c, idx) => 
+        `<option value="${idx}" ${c.name === 'İstanbul' ? 'selected' : ''}>${c.name} (${c.country})</option>`
+      ).join('');
+      
+      selectA.innerHTML = html;
+      selectB.innerHTML = html;
+    }
+
+    function switchMode(mode) {
+      document.getElementById("tabSimple").classList.toggle("active", mode === 'simple');
+      document.getElementById("tabSynastry").classList.toggle("active", mode === 'synastry');
+      
+      document.getElementById("simpleModeSection").style.display = mode === 'simple' ? 'block' : 'none';
+      document.getElementById("synastryModeSection").style.display = mode === 'synastry' ? 'block' : 'none';
+    }
+
+    // SINASTRI HARİTASI HESAPLAMA VE ÇİFT ÇEMBER ÇİZİMİ
+    function calculateSynastry() {
+      const dateA = document.getElementById("synDateA").value;
+      const timeA = document.getElementById("synTimeA").value;
+      const cityIdxA = document.getElementById("synCityA").value;
+      const dstA = document.getElementById("synDSTA").checked;
+
+      const dateB = document.getElementById("synDateB").value;
+      const timeB = document.getElementById("synTimeB").value;
+      const cityIdxB = document.getElementById("synCityB").value;
+      const dstB = document.getElementById("synDSTB").checked;
+
+      if (!dateA || !timeA || cityIdxA === "" || !dateB || !timeB || cityIdxB === "") return;
+
+      const partsDateA = dateA.split('-').map(Number);
+      const partsTimeA = timeA.split(':').map(Number);
+      const cityA = cityDatabase[Number(cityIdxA)];
+      let tzA = cityA.tz + (dstA ? 1.0 : 0);
+
+      const partsDateB = dateB.split('-').map(Number);
+      const partsTimeB = timeB.split(':').map(Number);
+      const cityB = cityDatabase[Number(cityIdxB)];
+      let tzB = cityB.tz + (dstB ? 1.0 : 0);
+
+      // Julian Dates
+      const jdA = AstroCalc.getJulianDate(partsDateA[0], partsDateA[1], partsDateA[2], partsTimeA[0], partsTimeA[1], tzA);
+      const jdB = AstroCalc.getJulianDate(partsDateB[0], partsDateB[1], partsDateB[2], partsTimeB[0], partsTimeB[1], tzB);
+
+      // Geocentric Longitudes Kişi A
+      const sunA = AstroCalc.getSunLongitude(jdA);
+      const moonA = AstroCalc.getMoonLongitude(jdA);
+      const ascA = AstroCalc.getAscendant(jdA, cityA.lat, cityA.lng);
+      const posA = AstroCalc.getPlanetaryPositions(jdA);
+
+      // Geocentric Longitudes Kişi B
+      const sunB = AstroCalc.getSunLongitude(jdB);
+      const moonB = AstroCalc.getMoonLongitude(jdB);
+      const ascB = AstroCalc.getAscendant(jdB, cityB.lat, cityB.lng);
+      const posB = AstroCalc.getPlanetaryPositions(jdB);
+
+      const planetsA = [
+        { name: 'Güneş', glyph: '☉', long: sunA },
+        { name: 'Ay', glyph: '☽', long: moonA },
+        { name: 'Merkür', glyph: '☿', long: posA.mercury },
+        { name: 'Venüs', glyph: '♀', long: posA.venus },
+        { name: 'Mars', glyph: '♂', long: posA.mars }
+      ];
+
+      const planetsB = [
+        { name: 'Güneş', glyph: '☉', long: sunB },
+        { name: 'Ay', glyph: '☽', long: moonB },
+        { name: 'Merkür', glyph: '☿', long: posB.mercury },
+        { name: 'Venüs', glyph: '♀', long: posB.venus },
+        { name: 'Mars', glyph: '♂', long: posB.mars }
+      ];
+
+      // Açı Etkileşimlerini Hesapla ve Puanla
+      let lovePoints = 50;
+      let harmonyPoints = 50;
+      let longevityPoints = 50;
+      const aspectsFound = [];
+
+      planetsA.forEach(pA => {
+        planetsB.forEach(pB => {
+          let diff = Math.abs(pA.long - pB.long);
+          if (diff > 180) diff = 360 - diff;
+
+          let aspectName = "";
+          let scoreMod = 0;
+          let category = ""; // love, harmony, longevity
+
+          // Açı kontrolü
+          if (diff <= 8) { aspectName = "Kavuşum (0°)"; scoreMod = 15; }
+          else if (Math.abs(diff - 60) <= 6) { aspectName = "Sekstil (60°)"; scoreMod = 10; }
+          else if (Math.abs(diff - 90) <= 8) { aspectName = "Kare (90°)"; scoreMod = -5; }
+          else if (Math.abs(diff - 120) <= 8) { aspectName = "Üçgen (120°)"; scoreMod = 12; }
+          else if (Math.abs(diff - 180) <= 8) { aspectName = "Karşıt (180°)"; scoreMod = -3; }
+
+          if (aspectName !== "") {
+            // Hangi gezegen çiftleri?
+            const pair = `${pA.name} - ${pB.name}`;
+            
+            // Aşk & Çekim: Venüs-Mars, Venüs-Venüs, Güneş-Venüs
+            if (pair.includes('Venüs') && pair.includes('Mars')) {
+              category = "love";
+              scoreMod = diff <= 8 || Math.abs(diff - 90) <= 8 ? 20 : 15; // Gerilim de çekim yaratır!
+            } else if (pair.includes('Venüs') && pair.includes('Venüs')) {
+              category = "love";
+              scoreMod = 15;
+            }
+            
+            // Ruhsal Uyum: Güneş-Ay, Ay-Ay, Ay-Venüs
+            else if (pair.includes('Güneş') && pair.includes('Ay')) {
+              category = "harmony";
+              scoreMod = 18;
+            } else if (pair.includes('Ay') && pair.includes('Ay')) {
+              category = "harmony";
+              scoreMod = 15;
+            }
+
+            // İletişim / Uzun ömürlülük
+            else {
+              category = "longevity";
+            }
+
+            // Puanları güncelle
+            if (category === "love") lovePoints += scoreMod;
+            else if (category === "harmony") harmonyPoints += scoreMod;
+            else longevityPoints += scoreMod;
+
+            const emoji = scoreMod > 0 ? "💚" : "⚡";
+            aspectsFound.push(`<li>${emoji} <strong>Sizin ${pA.name}</strong> - <strong>Partnerin ${pB.name}</strong>: ${aspectName} (Fark: ${diff.toFixed(1)}°)</li>`);
+          }
+        });
+      });
+
+      // Puanları 0-100 arasına sınırla
+      lovePoints = Math.max(10, Math.min(99, lovePoints));
+      harmonyPoints = Math.max(10, Math.min(99, harmonyPoints));
+      longevityPoints = Math.max(10, Math.min(99, longevityPoints));
+
+      // DOM güncelle
+      document.getElementById("synLoveScore").textContent = `${lovePoints}%`;
+      document.getElementById("synHarmonyScore").textContent = `${harmonyPoints}%`;
+      document.getElementById("synLongevityScore").textContent = `${longevityPoints}%`;
+
+      const aspectList = document.getElementById("synAspectsList");
+      if (aspectsFound.length > 0) {
+        aspectList.innerHTML = aspectsFound.join('');
+      } else {
+        aspectList.innerHTML = "<li>Kişisel gezegenler arasında majör bir açısal bağlantı bulunamadı. Genel element uyumu etkindir.</li>";
+      }
+
+      // Çift harita çemberini çiz
+      drawSynastryWheel(sunA, sunB, planetsA, planetsB, ascA);
+
+      document.getElementById("synastryResult").style.display = "block";
+      document.getElementById("synastryResult").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Çift Harita Çemberi Çizimi (Sinastri)
+    // ASC A (İç haritanın ASC'si) sol ufukta (180°) olacak şekilde hizalanır.
+    function drawSynastryWheel(sunA, sunB, planetsA, planetsB, ascA) {
+      const svg = document.getElementById("synastrySvg");
+      svg.innerHTML = ''; // Temizle
+
+      const cx = 250, cy = 250;
+      const rOuter = 230, rMid = 180, rInner = 120, rCenter = 70;
+
+      // 1. Daireler
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rOuter}" stroke="var(--gold)" stroke-width="2" fill="none" />`;
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rMid}" stroke="#1f2937" stroke-width="1.5" fill="none" />`;
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rInner}" stroke="#1f2937" stroke-width="1.5" fill="none" />`;
+      svg.innerHTML += `<circle cx="${cx}" cy="${cy}" r="${rCenter}" stroke="#1f2937" stroke-width="1" fill="none" />`;
+
+      // 2. Burç dilimlerini ve sembollerini çiz (ASC A'ya göre döndürülmüş)
+      const ascSignIdx = Math.floor(ascA / 30);
+      for (let i = 0; i < 12; i++) {
+        const cuspLong = (ascSignIdx + i) * 30;
+        const angleDeg = 180 - (cuspLong - ascA);
+        const angleRad = AstroCalc.rad(angleDeg);
+
+        // Dilim çizgileri
+        svg.innerHTML += `<line x1="${cx + rCenter * Math.cos(angleRad)}" y1="${cy + rCenter * Math.sin(angleRad)}" x2="${cx + rOuter * Math.cos(angleRad)}" y2="${cy + rOuter * Math.sin(angleRad)}" stroke="#1f2937" stroke-width="1" />`;
+
+        // Burç simgeleri
+        const midSignLong = cuspLong + 15;
+        const midAngleDeg = 180 - (midSignLong - ascA);
+        const midAngleRad = AstroCalc.rad(midAngleDeg);
+        svg.innerHTML += `<text x="${cx + 205 * Math.cos(midAngleRad)}" y="${cy + 205 * Math.sin(midAngleRad)}" text-anchor="middle" dominant-baseline="central" fill="var(--gold)" font-size="14" style="user-select:none;">${AstroCalc.zodiacs[(ascSignIdx + i)%12].glyph}</text>`;
+      }
+
+      // 3. İç Harita Gezegenleri (Kişi A - Radius = 100)
+      planetsA.forEach(p => {
+        const angleDeg = 180 - (p.long - ascA);
+        const angleRad = AstroCalc.rad(angleDeg);
+        const x = cx + 95 * Math.cos(angleRad);
+        const y = cy + 95 * Math.sin(angleRad);
+
+        svg.innerHTML += `<circle cx="${x}" cy="${y}" r="6" fill="#030610" stroke="#8296c9" stroke-width="1" />`;
+        svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="9">${p.glyph}</text>`;
+      });
+
+      // 4. Dış Harita Gezegenleri (Kişi B - Radius = 150)
+      planetsB.forEach(p => {
+        const angleDeg = 180 - (p.long - ascA);
+        const angleRad = AstroCalc.rad(angleDeg);
+        const x = cx + 150 * Math.cos(angleRad);
+        const y = cy + 150 * Math.sin(angleRad);
+
+        svg.innerHTML += `<circle cx="${x}" cy="${y}" r="6" fill="#030610" stroke="var(--coral)" stroke-width="1" />`;
+        svg.innerHTML += `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="9">${p.glyph}</text>`;
+      });
+
+      // 5. Kişiler arası açı çizgilerini çiz (İç dairenin içinde, r < 70)
+      planetsA.forEach(pA => {
+        planetsB.forEach(pB => {
+          let diff = Math.abs(pA.long - pB.long);
+          if (diff > 180) diff = 360 - diff;
+
+          let color = "";
+          if (diff <= 8) color = "var(--gold)";
+          else if (Math.abs(diff - 90) <= 8) color = "#ef476f"; // Kare (gergin)
+          else if (Math.abs(diff - 120) <= 8) color = "#8296c9"; // Üçgen (uyumlu)
+
+          if (color !== "") {
+            const angleA = 180 - (pA.long - ascA);
+            const angleB = 180 - (pB.long - ascA);
+
+            const xA = cx + rCenter * Math.cos(AstroCalc.rad(angleA));
+            const yA = cy + rCenter * Math.sin(AstroCalc.rad(angleA));
+            const xB = cx + rCenter * Math.cos(AstroCalc.rad(angleB));
+            const yB = cy + rCenter * Math.sin(AstroCalc.rad(angleB));
+
+            svg.innerHTML += `<line x1="${xA}" y1="${yA}" x2="${xB}" y2="${yB}" stroke="${color}" stroke-width="1" opacity="0.5" />`;
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

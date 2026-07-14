@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Zodyak Atlası site içi arama motoru. Astroloji rehberleri, burçlar ve gezegenleri arayın.">
+  <title>Arama Sonuçları — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  <style>
+    .search-container {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+      min-height: 500px;
+    }
+    .search-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .result-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+    }
+    .result-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+    }
+    .result-item h3 {
+      font-size: 1.4rem;
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
+      font-family: 'Cinzel', serif;
+    }
+    .result-item p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .result-url {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.8rem;
+      display: block;
+    }
+    .search-input-wrap {
+      position: relative;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 1.1rem 1.5rem 1.1rem 3.5rem;
+      background: var(--night-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .search-bar:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+    .search-bar-icon {
+      position: absolute;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    .no-results {
+      text-align: center;
+      padding: 4rem 0;
+    }
+    .no-results h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .no-results p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .suggested-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <a href="index.html#burclar">12 Burç</a>
+      <a href="dogum-haritasi.html">Doğum Haritası</a>
+      <a href="uyum.html">Burç Uyumu</a>
+      <a href="testler.html">Astroloji Testleri</a>
+      <a href="sozluk.html">Sözlük</a>
+      <a href="cin-burclari.html">Çin Burçları</a>
+      <a href="takvim.html">Kozmik Takvim</a>
+      <a href="search.html">Arama 🔍</a>
+    </nav>
+  </header>
+
+  <main class="search-container">
+    <div class="star-field" aria-hidden="true"></div>
+    
+    <div class="search-header">
+      <p class="eyebrow" style="justify-content: center;">Atlas Arama</p>
+      <h1 style="font-size: 2.5rem; text-transform: uppercase;">Arama Sonuçları</h1>
+      
+      <div class="search-input-wrap">
+        <span class="search-bar-icon">🔍</span>
+        <input type="text" id="liveSearchInput" class="search-bar" placeholder="Zodyak'ta arayın...">
+      </div>
+    </div>
+
+    <!-- Sonuç Listesi -->
+    <div class="results-list" id="searchResults">
+      <div class="no-results">Yükleniyor...</div>
+    </div>
+  </main>
+
+  <footer class="detail-footer" style="padding: 4rem 0;">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <script src="data/search-index.js"></script>
+  <script>
+    // Mobil menü işleyicisi
+    document.querySelector('#menuButton').addEventListener('click', () => {
+      const nav = document.querySelector('#mainNav');
+      const open = nav.classList.toggle('open');
+      const btn = document.querySelector('#menuButton');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Kapat' : 'Menü';
+    });
+
+    const searchResults = document.getElementById("searchResults");
+    const liveSearchInput = document.getElementById("liveSearchInput");
+
+    // URL'deki query parametresini oku (?q=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentQuery = urlParams.get('q') || '';
+    liveSearchInput.value = currentQuery;
+
+    // Arama Dizinini Başlat (Veri yerel yüklendiği için direkt çalışır)
+    if (typeof searchIndex !== 'undefined') {
+      performSearch();
+    } else {
+      searchResults.innerHTML = '<div class="no-results"><h3>Hata Oluştu</h3><p>Arama dizini yüklenemedi.</p></div>';
+    }
+
+    // Canlı Arama Girdisi Dinleyicisi
+    liveSearchInput.addEventListener('input', (e) => {
+      currentQuery = e.target.value;
+      performSearch();
+      // URL'yi güncelle (sayfa yenilenmeden)
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(currentQuery);
+      window.history.pushState({path:newUrl}, '', newUrl);
+    });
+
+    function turkishToLower(str) {
+      return str.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
+    }
+
+    function performSearch() {
+      const query = turkishToLower(currentQuery.trim());
+      
+      if (!query) {
+        searchResults.innerHTML = `
+          <div class="no-results">
+            <h3>Aramak için yazın...</h3>
+            <p>Burçları, gezegenleri, evleri ve astrolojik rehberleri bulmak için yukarıdaki arama barını kullanın.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Filtreleme mantığı
+      const results = searchIndex.filter(item => 
+        turkishToLower(item.title).includes(query) ||
+        turkishToLower(item.desc).includes(query) ||
+        turkishToLower(item.keywords).includes(query)
+      );
+
+      if (results.length === 0) {
+        searchResults.innerHTML = `
+          <div class="no-results">
+            <h3>Sonuç Bulunamadı</h3>
+            <p>"<strong>${currentQuery}</strong>" ile eşleşen bir içerik bulamadık. Diğer popüler alanlara göz atabilirsiniz:</p>
+            <div class="suggested-links">
+              <a href="dogum-haritasi.html" class="text-link" style="font-size:0.8rem; padding:0.6rem 1.2rem;">Yükselen Burç</a>
+              <a href="uyum.html" class="text-link" style="font-size:0.8rem; padding:0.6rem 1.2rem;">Burç Uyumu</a>
+              <a href="testler.html" class="text-link" style="font-size:0.8rem; padding:0.6rem 1.2rem;">Kozmik Testler</a>
+              <a href="sozluk.html" class="text-link" style="font-size:0.8rem; padding:0.6rem 1.2rem;">Astroloji Sözlüğü</a>
+            </div>
+          </div>
+        `;
+      } else {
+        searchResults.innerHTML = results.map(item => {
+          const pathDisplay = item.url.replace('.html', '').replace('burclar/', 'Burçlar › ').replace('gezegenler/', 'Gezegenler › ').replace('evler/', 'Evler › ');
+          return `
+            <a href="${item.url}" class="result-item">
+              <h3>${item.title}</h3>
+              <p>${item.desc}</p>
+              <span class="result-url">Zodyak Atlası › ${pathDisplay}</span>
+            </a>
+          `;
+        }).join('');
+      }
+    }
+  </script>
+</body>
+</html>
