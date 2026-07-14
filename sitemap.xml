@@ -104,4 +104,24 @@
     <loc>https://zodyakatlasi.com/dogum-haritasi-rehberi.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://zodyakatlasi.com/elementler.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/nitelikler.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegen-retrolari.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/ay-burclari.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/yukselen-burclar.html</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
