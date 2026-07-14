@@ -50,28 +50,48 @@ renderFilters();renderSigns();
 // Canlı Gökyüzü Transit Hesaplamaları
 if (document.getElementById("liveMoonPhaseName")) {
   const now = new Date();
-  const jd = AstroCalc.getJulianDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), 3.0);
-  
-  const sunLong = AstroCalc.getSunLongitude(jd);
-  const moonLong = AstroCalc.getMoonLongitude(jd);
-  
-  const moonSign = AstroCalc.getZodiacSign(moonLong);
-  const sunSign = AstroCalc.getZodiacSign(sunLong);
-  
+  let calculated = false;
+  let jdNew = null;
+  let sunLong = 0, moonLong = 0;
+  let moonSign = null;
+
+  // 1. AstroAdapter (Yeni Motor) ile hesaplamayı dene
+  if (typeof AstroAdapter !== 'undefined') {
+    try {
+      jdNew = AstroAdapter.getJulianDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), 3.0);
+      sunLong = AstroAdapter.getSunLongitude(jdNew);
+      moonLong = AstroAdapter.getMoonLongitude(jdNew);
+      moonSign = AstroAdapter.getZodiacSign(moonLong);
+      calculated = true;
+    } catch (e) {
+      console.warn("AstroAdapter live transit calculation failed, falling back to AstroCalc:", e);
+    }
+  }
+
+  // 2. Fallback: AstroCalc
+  if (!calculated) {
+    const jdOld = AstroCalc.getJulianDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), now.getHours(), now.getMinutes(), 3.0);
+    sunLong = AstroCalc.getSunLongitude(jdOld);
+    moonLong = AstroCalc.getMoonLongitude(jdOld);
+    moonSign = AstroCalc.getZodiacSign(moonLong);
+  }
+
+  // Derece ve Aydınlık Oranı Hesapla
   let angle = AstroCalc.norm360(moonLong - sunLong);
-  let illum = Math.round(50 * (1 - Math.cos(AstroCalc.rad(angle))));
+  let radAngle = angle * Math.PI / 180;
+  let illum = Math.round(50 * (1 - Math.cos(radAngle)));
   
   let phaseName = "";
   let icon = "☽";
   
-  if (angle >= 355 || angle < 5) { phaseName = "Yeniay"; icon = "🌑"; }
-  else if (angle >= 5 && angle < 85) { phaseName = "Hilal (Büyüyen)"; icon = "🌒"; }
-  else if (angle >= 85 && angle < 95) { phaseName = "İlk Dördün"; icon = "🌓"; }
-  else if (angle >= 95 && angle < 175) { phaseName = "Şişkin Ay"; icon = "🌔"; }
-  else if (angle >= 175 && angle < 185) { phaseName = "Dolunay"; icon = "🌕"; }
-  else if (angle >= 185 && angle < 265) { phaseName = "Küçülen Ay"; icon = "🌖"; }
-  else if (angle >= 265 && angle < 275) { phaseName = "Son Dördün"; icon = "🌗"; }
-  else { phaseName = "Hilal (Küçülen)"; icon = "🌘"; }
+  if (angle >= 355 || angle < 5) { phaseName = "Yeniay (Yaklaşık)"; icon = "🌑"; }
+  else if (angle >= 5 && angle < 85) { phaseName = "Hilal (Büyüyen - Yaklaşık)"; icon = "🌒"; }
+  else if (angle >= 85 && angle < 95) { phaseName = "İlk Dördün (Yaklaşık)"; icon = "🌓"; }
+  else if (angle >= 95 && angle < 175) { phaseName = "Şişkin Ay (Yaklaşık)"; icon = "🌔"; }
+  else if (angle >= 175 && angle < 185) { phaseName = "Dolunay (Yaklaşık)"; icon = "🌕"; }
+  else if (angle >= 185 && angle < 265) { phaseName = "Küçülen Ay (Yaklaşık)"; icon = "🌖"; }
+  else if (angle >= 265 && angle < 275) { phaseName = "Son Dördün (Yaklaşık)"; icon = "🌗"; }
+  else { phaseName = "Hilal (Küçülen - Yaklaşık)"; icon = "🌘"; }
   
   document.getElementById("liveMoonPhaseName").textContent = phaseName;
   document.getElementById("liveMoonIcon").textContent = icon;
@@ -95,6 +115,37 @@ if (document.getElementById("liveMoonPhaseName")) {
     'Balık': 'Hassas, hayalperest ve sezgisel hisler.'
   };
   document.getElementById("liveMoonSignMeaning").textContent = signMeanings[moonSign.name];
+
+  // Gezegen Retrolarını Güncelle
+  if (document.getElementById("liveRetroList")) {
+    if (calculated && jdNew !== null) {
+      try {
+        let mercRetro = AstroAdapter.isPlanetRetrograde("mercury", jdNew);
+        let marsRetro = AstroAdapter.isPlanetRetrograde("mars", jdNew);
+        
+        document.getElementById("retroMercury").innerHTML = `🔄 <strong>Merkür:</strong> ${mercRetro ? '<span style="color:var(--coral);">Retrograd (Geri Hareket)</span>' : 'Direkt Harekette'}`;
+        document.getElementById("retroMars").innerHTML = `🔥 <strong>Mars:</strong> ${marsRetro ? '<span style="color:var(--coral);">Retrograd (Geri Hareket)</span>' : 'Direkt Harekette'}`;
+        
+        let outerRetros = [];
+        const outers = { jupiter: "Jüpiter", saturn: "Satürn", uranus: "Uranüs", neptune: "Neptün", pluto: "Plüton" };
+        for (let key in outers) {
+          if (AstroAdapter.isPlanetRetrograde(key, jdNew)) {
+            outerRetros.push(outers[key]);
+          }
+        }
+        document.getElementById("retroOuter").innerHTML = `🌌 <strong>Geri Gidenler:</strong> ${outerRetros.length > 0 ? outerRetros.join(", ") : 'Tümü Direkt Harekette'}`;
+      } catch (retroErr) {
+        console.warn("Retro calculation failed:", retroErr);
+        document.getElementById("retroMercury").innerHTML = `🔄 <strong>Merkür:</strong> Direkt Harekette (Yaklaşık)`;
+        document.getElementById("retroMars").innerHTML = `🔥 <strong>Mars:</strong> Direkt Harekette (Yaklaşık)`;
+        document.getElementById("retroOuter").innerHTML = `🌌 <strong>Dış Gezegenler:</strong> Satürn R (Yaklaşık)`;
+      }
+    } else {
+      document.getElementById("retroMercury").innerHTML = `🔄 <strong>Merkür:</strong> Direkt Harekette (Yaklaşık)`;
+      document.getElementById("retroMars").innerHTML = `🔥 <strong>Mars:</strong> Direkt Harekette (Yaklaşık)`;
+      document.getElementById("retroOuter").innerHTML = `🌌 <strong>Dış Gezegenler:</strong> Satürn R (Yaklaşık)`;
+    }
+  }
 }
 
 

@@ -421,6 +421,18 @@
               <!-- Açılar buraya dinamik listelenecek -->
             </ul>
           </div>
+
+          <!-- Sistem Uyarıları ve Bilgilendirmeler -->
+          <div id="systemDisclaimers" style="margin-top: 1.5rem; font-size: 0.85rem; line-height: 1.5; color: var(--muted);">
+            <div id="timezoneDisclaimer" style="display: none; margin-bottom: 0.4rem;">* Tarihsel saat farkı hassasiyeti coğrafi ve tarihsel kısıtlar nedeniyle sınırlı olabilir (Geçici sayısal saat dilimleri: UTC <span id="debugTzOffsetA"></span> ve UTC <span id="debugTzOffsetB"></span>).</div>
+            <div id="latitudeDisclaimer" style="display: none; color: var(--coral);">* Yüksek enlem coğrafyası nedeniyle ev sistemi Whole Sign (Tüm Burç) olarak sınırlandırılmıştır.</div>
+          </div>
+
+          <!-- Kullanıcıya Görünmeyen/Arka Plan Debug/Validation Paneli -->
+          <div id="debugValidationPanel" style="display: none; margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #888;">
+            <div><strong>Hesaplama Motoru:</strong> <span id="debugEngineName">AstroCalc (Eski)</span></div>
+            <div id="debugFallbackContainer" style="display: none; color: var(--coral); margin-top: 0.3rem;"><strong>Hata / Fallback:</strong> <span id="debugErrorDetail">Yok</span></div>
+          </div>
         </div>
       </div>
 
@@ -435,6 +447,8 @@
   <script src="data/compatibility-detail.js"></script>
   <script src="uyum.js"></script>
   <script src="astro-calc.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-adapter.js"></script>
   <script>
     // Mobil menü işleyicisi
     document.querySelector('#menuButton').addEventListener('click', () => {
@@ -493,21 +507,110 @@
       const cityB = cityDatabase[Number(cityIdxB)];
       let tzB = cityB.tz + (dstB ? 1.0 : 0);
 
+      // Feature Flag: Yeni Astronomi motorunu kullan (AstroAdapter)
+      const USE_NEW_ENGINE = true;
+
       // Julian Dates
-      const jdA = AstroCalc.getJulianDate(partsDateA[0], partsDateA[1], partsDateA[2], partsTimeA[0], partsTimeA[1], tzA);
-      const jdB = AstroCalc.getJulianDate(partsDateB[0], partsDateB[1], partsDateB[2], partsTimeB[0], partsTimeB[1], tzB);
+      const jdAOld = AstroCalc.getJulianDate(partsDateA[0], partsDateA[1], partsDateA[2], partsTimeA[0], partsTimeA[1], tzA);
+      const jdBOld = AstroCalc.getJulianDate(partsDateB[0], partsDateB[1], partsDateB[2], partsTimeB[0], partsTimeB[1], tzB);
+      
+      let jdANew = null, jdBNew = null;
+      let sunA, moonA, ascA, posA;
+      let sunB, moonB, ascB, posB;
+      let calculatedWithNewEngine = false;
 
-      // Geocentric Longitudes Kişi A
-      const sunA = AstroCalc.getSunLongitude(jdA);
-      const moonA = AstroCalc.getMoonLongitude(jdA);
-      const ascA = AstroCalc.getAscendant(jdA, cityA.lat, cityA.lng);
-      const posA = AstroCalc.getPlanetaryPositions(jdA);
+      // Debug Paneli Sıfırlama
+      if (document.getElementById("debugEngineName")) {
+        document.getElementById("debugEngineName").textContent = "AstroCalc (Eski)";
+        document.getElementById("debugFallbackContainer").style.display = "none";
+        document.getElementById("debugErrorDetail").textContent = "";
+      }
 
-      // Geocentric Longitudes Kişi B
-      const sunB = AstroCalc.getSunLongitude(jdB);
-      const moonB = AstroCalc.getMoonLongitude(jdB);
-      const ascB = AstroCalc.getAscendant(jdB, cityB.lat, cityB.lng);
-      const posB = AstroCalc.getPlanetaryPositions(jdB);
+      // Disclaimers Sıfırlama
+      if (document.getElementById("timezoneDisclaimer")) {
+        document.getElementById("timezoneDisclaimer").style.display = "none";
+        document.getElementById("latitudeDisclaimer").style.display = "none";
+      }
+
+      if (typeof USE_NEW_ENGINE !== "undefined" && USE_NEW_ENGINE) {
+        try {
+          jdANew = AstroAdapter.getJulianDate(partsDateA[0], partsDateA[1], partsDateA[2], partsTimeA[0], partsTimeA[1], tzA);
+          jdBNew = AstroAdapter.getJulianDate(partsDateB[0], partsDateB[1], partsDateB[2], partsTimeB[0], partsTimeB[1], tzB);
+
+          sunA = AstroAdapter.getSunLongitude(jdANew);
+          moonA = AstroAdapter.getMoonLongitude(jdANew);
+          ascA = AstroAdapter.getAscendant(jdANew, cityA.lat, cityA.lng);
+          let rawPosA = AstroAdapter.getPlanetaryPositions(jdANew);
+          posA = {
+            mercury: rawPosA.mercury,
+            venus: rawPosA.venus,
+            mars: rawPosA.mars
+          };
+
+          sunB = AstroAdapter.getSunLongitude(jdBNew);
+          moonB = AstroAdapter.getMoonLongitude(jdBNew);
+          ascB = AstroAdapter.getAscendant(jdBNew, cityB.lat, cityB.lng);
+          let rawPosB = AstroAdapter.getPlanetaryPositions(jdBNew);
+          posB = {
+            mercury: rawPosB.mercury,
+            venus: rawPosB.venus,
+            mars: rawPosB.mars
+          };
+
+          calculatedWithNewEngine = true;
+          if (document.getElementById("debugEngineName")) {
+            document.getElementById("debugEngineName").textContent = "AstroAdapter (Yeni)";
+          }
+          console.log("Calculated synastry charts with new AstroAdapter engine successfully.");
+        } catch (e) {
+          console.warn("AstroAdapter compatibility calculation failed, falling back to AstroCalc:", e);
+          if (document.getElementById("debugFallbackContainer")) {
+            document.getElementById("debugFallbackContainer").style.display = "block";
+            document.getElementById("debugErrorDetail").textContent = e.message;
+          }
+        }
+      }
+
+      // Fallback
+      if (!calculatedWithNewEngine) {
+        sunA = AstroCalc.getSunLongitude(jdAOld);
+        moonA = AstroCalc.getMoonLongitude(jdAOld);
+        ascA = AstroCalc.getAscendant(jdAOld, cityA.lat, cityA.lng);
+        let rawPosA = AstroCalc.getPlanetaryPositions(jdAOld);
+        posA = {
+          mercury: rawPosA.mercury,
+          venus: rawPosA.venus,
+          mars: rawPosA.mars
+        };
+
+        sunB = AstroCalc.getSunLongitude(jdBOld);
+        moonB = AstroCalc.getMoonLongitude(jdBOld);
+        ascB = AstroCalc.getAscendant(jdBOld, cityB.lat, cityB.lng);
+        let rawPosB = AstroCalc.getPlanetaryPositions(jdBOld);
+        posB = {
+          mercury: rawPosB.mercury,
+          venus: rawPosB.venus,
+          mars: rawPosB.mars
+        };
+      }
+
+      // Disclaimers ve Debug Panel Değerleri Doldur
+      if (document.getElementById("timezoneDisclaimer")) {
+        document.getElementById("debugTzOffsetA").textContent = (tzA >= 0 ? "+" : "") + tzA;
+        document.getElementById("debugTzOffsetB").textContent = (tzB >= 0 ? "+" : "") + tzB;
+        document.getElementById("timezoneDisclaimer").style.display = "block";
+
+        if (Math.abs(cityA.lat) > 65.0 || Math.abs(cityB.lat) > 65.0) {
+          document.getElementById("latitudeDisclaimer").style.display = "block";
+        }
+      }
+
+      // Debug Paneli Görünürlük Kontrolü (?debug=1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const isDebug = urlParams.get('debug') === '1';
+      if (document.getElementById("debugValidationPanel")) {
+        document.getElementById("debugValidationPanel").style.display = isDebug ? "block" : "none";
+      }
 
       const planetsA = [
         { name: 'Güneş', glyph: '☉', long: sunA },

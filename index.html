@@ -11,6 +11,8 @@
   <title>Zodyak Atlası — Burçlar ve Astroloji Rehberi</title>
   <link rel="stylesheet" href="style.css?v=responsive-20260713b">
   <script src="astro-calc.js" defer></script>
+  <script src="astronomy.min.js" defer></script>
+  <script src="astro-adapter.js" defer></script>
   <script src="script.js" defer></script>
   <link rel="manifest" href="manifest.webmanifest">
 </head>
@@ -92,10 +94,10 @@
         <!-- Gökyüzü Takvimi & Retrolar -->
         <div class="trait-card" style="background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); text-align: left; padding: 2rem;">
           <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; text-align: center;">Kozmik Retro & Olaylar</h3>
-          <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.7; color: #cbd5e1;">
-            <li>🔄 <strong>Merkür:</strong> Direkt Harekette</li>
-            <li>🔥 <strong>Mars:</strong> Direkt Harekette</li>
-            <li>🌌 <strong>Satürn Retrosu:</strong> 13 Tem - 27 Kas 2026</li>
+          <ul id="liveRetroList" style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.7; color: #cbd5e1;">
+            <li id="retroMercury">🔄 <strong>Merkür:</strong> Yükleniyor...</li>
+            <li id="retroMars">🔥 <strong>Mars:</strong> Yükleniyor...</li>
+            <li id="retroOuter">🌌 <strong>Geri Gidenler:</strong> Yükleniyor...</li>
             <li>☄️ <strong>Yaklaşan Olay:</strong> 12 Ağu 2026 - Perseid Meteor Yağmuru</li>
           </ul>
         </div>
