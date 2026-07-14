@@ -88,4 +88,20 @@
     <loc>https://zodyakatlasi.com/burclar/balik.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://zodyakatlasi.com/transitler.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/ay-fazlari.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/retrolar.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/dogum-haritasi-rehberi.html</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>

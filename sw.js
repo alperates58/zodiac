@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zodiac-atlas-v1.1.0';
+const CACHE_NAME = 'zodiac-atlas-v1.2.0';
 const OFFLINE_URL = '/offline.html';
 
 const ASSETS = [
@@ -11,6 +11,12 @@ const ASSETS = [
   '/cin-burclari.html',
   '/search.html',
   '/takvim.html',
+  '/transitler.html',
+  '/ay-fazlari.html',
+  '/retrolar.html',
+  '/dogum-haritasi-rehberi.html',
+  '/astronomy.min.js',
+  '/astro-adapter.js',
   OFFLINE_URL,
   '/style.css',
   '/style-detail.css',
