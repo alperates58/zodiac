@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bugünkü gökyüzü transitlerini, retro gezegenleri, Ay fazını ve yaklaşan önemli gökyüzü olaylarını canlı olarak takip edebileceğiniz interaktif gökyüzü paneli.">
+  <meta property="og:title" content="Güncel Gökyüzü Paneli — Zodyak Atlası">
+  <meta property="og:description" content="Canlı gökyüzü transitleri, retro hareketler ve Ay fazı durumunu tek bir kozmik panelle inceleyin.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/guncel-gokyuzu.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/guncel-gokyuzu.html">
+  <title>Güncel Gökyüzü Paneli — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .sky-container {
+      max-width: 1000px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .sky-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(130, 150, 201, 0.08) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .sky-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+    }
+    .sky-hero p {
+      color: var(--muted);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .sky-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .sky-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .col-span-2 {
+        grid-column: span 2;
+      }
+      .col-span-3 {
+        grid-column: span 3;
+      }
+    }
+    .sky-card {
+      background: rgba(255,255,255,0.01);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sky-card h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding-bottom: 0.5rem;
+    }
+    .transit-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .transit-item:last-child {
+      border-bottom: 0;
+    }
+    .transit-icon {
+      font-size: 1.8rem;
+      margin-right: 1rem;
+    }
+    .retro-badge {
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .retro-badge.retro {
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+    }
+    .retro-badge.direct {
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+    }
+    .moon-phase-display {
+      text-align: center;
+      padding: 1.5rem 0;
+    }
+    .moon-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--gold-bright);
+    }
+    .moon-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .moon-pct {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .link-row {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .link-btn {
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: #fff;
+      background: rgba(255,255,255,0.01);
+      transition: all 0.3s;
+    }
+    .link-btn:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--gold);
+    }
+    .fallback-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Güncel Gökyüzü",
+      "item": "https://zodyakatlasi.com/guncel-gokyuzu.html"
+    }]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
+    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
+      <!-- Menü standardize_menus.ps1 ile doldurulacaktır -->
+    </nav>
+  </header>
+
+  <main class="sky-container">
+    <section class="sky-hero">
+      <h1>Güncel Gökyüzü Raporu</h1>
+      <p>Gezegenlerin ve ışıkların (Güneş & Ay) şu anki anlık boylam konumlarını, retro durumlarını ve yaklaşan önemli gökyüzü olaylarını canlı olarak takip edin.</p>
+    </section>
+
+    <div class="sky-grid">
+      <!-- 1. Bugünün Işıkları (Sun & Moon) -->
+      <div class="sky-card col-span-2">
+        <div>
+          <h2>☉ Işıklar ve Temel Transitler</h2>
+          
+          <div class="transit-item" style="padding: 1.2rem 0;">
+            <div style="display: flex; align-items: center;">
+              <span class="transit-icon">☉</span>
+              <div>
+                <strong style="color: #fff; font-size: 1.1rem;">Güneş Burcu (Güncel Transit)</strong>
+                <div style="font-size: 0.85rem; color: var(--muted); margin-top: 3px;">Benlik bilinci ve yaşamsal odak noktası</div>
+              </div>
+            </div>
+            <strong id="sunSignText" style="color: var(--gold-bright); font-size: 1.2rem;">Yükleniyor...</strong>
+          </div>
+
+          <div class="transit-item" style="padding: 1.2rem 0;">
+            <div style="display: flex; align-items: center;">
+              <span class="transit-icon">☽</span>
+              <div>
+                <strong style="color: #fff; font-size: 1.1rem;">Ay Burcu (Anlık Konum)</strong>
+                <div style="font-size: 0.85rem; color: var(--muted); margin-top: 3px;">Toplumsal ruh hali, sezgiler ve duygusal akış</div>
+              </div>
+            </div>
+            <strong id="moonSignText" style="color: #8296c9; font-size: 1.2rem;">Yükleniyor...</strong>
+          </div>
+        </div>
+        
+        <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 4px; font-size: 0.9rem; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.05);" id="skyIntroText">
+          Gezegenler zodyak kuşağında sürekli hareket halindedir. Güneş her burçta yaklaşık 30 gün, Ay ise 2.5 gün kalır.
+        </div>
+      </div>
+
+      <!-- 2. Ay Fazı Widget -->
+      <div class="sky-card">
+        <h2>🌙 Ay Fazı ve Aydınlık</h2>
+        <div class="moon-phase-display">
+          <span class="moon-emoji" id="moonEmoji">🌑</span>
+          <div class="moon-name" id="moonPhaseName">Yeniay</div>
+          <div class="moon-pct" id="moonIllumPct">%0 Aydınlık</div>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--muted); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+          Ay fazı, Ay ile Güneş arasındaki boylam farkıyla hesaplanır.
+        </div>
+      </div>
+
+      <!-- 3. Retro Durum Tablosu -->
+      <div class="sky-card col-span-2">
+        <div>
+          <h2>🔄 Gezegenlerin Retro/Geri Hareket Durumları</h2>
+          <div id="retroListContainer">
+            <div class="transit-item">
+              <span><strong>Merkür ☿</strong> (Zihinsel iletişim, ticaret, seyahat)</span>
+              <span class="retro-badge direct" id="retro_mercury">Direkt</span>
+            </div>
+            <div class="transit-item">
+              <span><strong>Venüs ♀</strong> (İlişkiler, değerler, estetik ve finans)</span>
+              <span class="retro-badge direct" id="retro_venus">Direkt</span>
+            </div>
+            <div class="transit-item">
+              <span><strong>Mars ♂</strong> (Eylem, tutku, mücadele enerjisi)</span>
+              <span class="retro-badge direct" id="retro_mars">Direkt</span>
+            </div>
+            <div class="transit-item">
+              <span><strong>Jüpiter ♃</strong> (Büyüme, şans, inançlar ve felsefe)</span>
+              <span class="retro-badge direct" id="retro_jupiter">Direkt</span>
+            </div>
+            <div class="transit-item">
+              <span><strong>Satürn ♄</strong> (Disiplin, kurallar, kariyer ve sorumluluk)</span>
+              <span class="retro-badge direct" id="retro_saturn">Direkt</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">
+          Dış gezegenlerin (Uranüs, Neptün, Plüton) retro durumları arka planda taranmaktadır. Geri gidenler: <span id="outerRetroList" style="color: #cbd5e1;">Yükleniyor...</span>
+        </div>
+      </div>
+
+      <!-- 4. Yaklaşan Kozmik Olaylar (Dynamic Crossing Engine) -->
+      <div class="sky-card">
+        <h2>☄️ Yaklaşan Kozmik Olaylar</h2>
+        <div style="line-height: 1.8; font-size: 0.95rem; display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <div style="color: var(--gold); font-size: 0.85rem; text-transform: uppercase; font-family: 'Cinzel', serif;">İlk Yeniay (Sıfır Fazı)</div>
+            <strong style="color: #fff;" id="nextNewMoon">Hesaplanıyor...</strong>
+          </div>
+          <div>
+            <div style="color: var(--gold); font-size: 0.85rem; text-transform: uppercase; font-family: 'Cinzel', serif;">İlk Dolunay (Karşıt Faz)</div>
+            <strong style="color: #fff;" id="nextFullMoon">Hesaplanıyor...</strong>
+          </div>
+          <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.8rem; font-size: 0.8rem; color: var(--muted);">
+            Yeniay başlangıçları, Dolunay ise olgunlaşma ve hasat zamanlarını temsil eder.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigasyon Yönlendirme Linkleri -->
+    <div class="link-row">
+      <a href="transitler.html" class="link-btn">🗺️ Günlük Transit Yorumları</a>
+      <a href="retrolar.html" class="link-btn">🔄 Retro Gezegen Takvimi</a>
+      <a href="ay-fazlari.html" class="link-btn">🌗 Ay Evreleri Kılavuzu</a>
+    </div>
+
+    <div class="fallback-note" id="debugEngineText">
+      Hesaplama motoru: AstroAdapter (Yeni)
+    </div>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateLiveSky();
+    });
+
+    function calculateLiveSky() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      
+      let jd = null;
+      let calculatedWithNewEngine = false;
+      let sunLong, moonLong;
+      let sunSign, moonSign;
+
+      // 1. AstroAdapter
+      try {
+        jd = AstroAdapter.getJulianDate(year, month, day, hour, minute, 3.0); // UTC+3 standart
+        sunLong = AstroAdapter.getSunLongitude(jd);
+        moonLong = AstroAdapter.getMoonLongitude(jd);
+        sunSign = AstroAdapter.getZodiacSign(sunLong);
+        moonSign = AstroAdapter.getZodiacSign(moonLong);
+        calculatedWithNewEngine = true;
+      } catch (e) {
+        console.warn("AstroAdapter live computation failed:", e);
+      }
+
+      // 2. Fallback to AstroCalc
+      if (!calculatedWithNewEngine) {
+        const jdOld = AstroCalc.getJulianDate(year, month, day, hour, minute, 3.0);
+        sunLong = AstroCalc.getSunLongitude(jdOld);
+        moonLong = AstroCalc.getMoonLongitude(jdOld);
+        sunSign = AstroCalc.getZodiacSign(sunLong);
+        moonSign = AstroCalc.getZodiacSign(moonLong);
+        document.getElementById("debugEngineText").textContent = "Hesaplama motoru: AstroCalc (Fallback)";
+      }
+
+      // Render lights
+      document.getElementById("sunSignText").textContent = `${sunSign.glyph} ${sunSign.name} (${sunSign.degree}° ${sunSign.minute}')`;
+      document.getElementById("moonSignText").textContent = `${moonSign.glyph} ${moonSign.name} (${moonSign.degree}° ${moonSign.minute}')`;
+
+      // Calculate phase and illumination
+      let angle = AstroCalc.norm360(moonLong - sunLong);
+      let radAngle = angle * Math.PI / 180;
+      let illum = Math.round(50 * (1 - Math.cos(radAngle)));
+      
+      let phaseName = "";
+      let emoji = "🌑";
+      
+      if (angle >= 355 || angle < 5) { phaseName = "Yeniay"; emoji = "🌑"; }
+      else if (angle >= 5 && angle < 85) { phaseName = "Büyüyen Hilal"; emoji = "🌒"; }
+      else if (angle >= 85 && angle < 95) { phaseName = "İlk Dördün"; emoji = "🌓"; }
+      else if (angle >= 95 && angle < 175) { phaseName = "Şişkin Ay"; emoji = "🌔"; }
+      else if (angle >= 175 && angle < 185) { phaseName = "Dolunay"; emoji = "🌕"; }
+      else if (angle >= 185 && angle < 265) { phaseName = "Küçülen Ay"; emoji = "🌖"; }
+      else if (angle >= 265 && angle < 275) { phaseName = "Son Dördün"; emoji = "🌗"; }
+      else { phaseName = "Balsamik Hilal"; emoji = "🌘"; }
+
+      document.getElementById("moonEmoji").textContent = emoji;
+      document.getElementById("moonPhaseName").textContent = phaseName;
+      document.getElementById("moonIllumPct").textContent = `%${illum} Aydınlık`;
+
+      // Render Retrogades
+      const updateBadge = (id, isRetro) => {
+        const badge = document.getElementById(id);
+        if (badge) {
+          if (isRetro) {
+            badge.textContent = "Retro";
+            badge.className = "retro-badge retro";
+          } else {
+            badge.textContent = "Direkt";
+            badge.className = "retro-badge direct";
+          }
+        }
+      };
+
+      if (calculatedWithNewEngine && jd !== null) {
+        try {
+          updateBadge("retro_mercury", AstroAdapter.isPlanetRetrograde("mercury", jd));
+          updateBadge("retro_venus", AstroAdapter.isPlanetRetrograde("venus", jd));
+          updateBadge("retro_mars", AstroAdapter.isPlanetRetrograde("mars", jd));
+          updateBadge("retro_jupiter", AstroAdapter.isPlanetRetrograde("jupiter", jd));
+          updateBadge("retro_saturn", AstroAdapter.isPlanetRetrograde("saturn", jd));
+          
+          let outerRetros = [];
+          const outers = { uranus: "Uranüs", neptune: "Neptün", pluto: "Plüton" };
+          for (let key in outers) {
+            if (AstroAdapter.isPlanetRetrograde(key, jd)) {
+              outerRetros.push(outers[key]);
+            }
+          }
+          document.getElementById("outerRetroList").textContent = outerRetros.length > 0 ? outerRetros.join(", ") : "Tümü Direkt Harekette";
+        } catch (err) {
+          console.warn(err);
+        }
+
+        // Calculate next crossings (New Moon / Full Moon)
+        try {
+          let nextNewJd = null;
+          let nextFullJd = null;
+          
+          // Scan for next 30 days in 0.1 day steps (2.4 hours resolution)
+          let prevAngle = angle;
+          for (let step = 1; step <= 300; step++) {
+            let scanJd = jd + (step * 0.1);
+            let sL = AstroAdapter.getSunLongitude(scanJd);
+            let mL = AstroAdapter.getMoonLongitude(scanJd);
+            let scanAngle = AstroCalc.norm360(mL - sL);
+            
+            // Check crossing 0 (New Moon)
+            if (nextNewJd === null) {
+              if (prevAngle > 350 && scanAngle < 10) {
+                nextNewJd = scanJd;
+              }
+            }
+            // Check crossing 180 (Full Moon)
+            if (nextFullJd === null) {
+              if (prevAngle < 180 && scanAngle >= 180) {
+                nextFullJd = scanJd;
+              }
+            }
+            
+            if (nextNewJd !== null && nextFullJd !== null) break;
+            prevAngle = scanAngle;
+          }
+
+          const formatJd = (targetJd) => {
+            if (!targetJd) return "Hesaplanamadı";
+            // AstroTime date gives the JS Date object in UTC. Convert to local.
+            const timeObj = new Astronomy.AstroTime(targetJd);
+            const dateObj = timeObj.date;
+            return dateObj.toLocaleDateString('tr-TR', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+          };
+
+          document.getElementById("nextNewMoon").textContent = formatJd(nextNewJd);
+          document.getElementById("nextFullMoon").textContent = formatJd(nextFullJd);
+
+        } catch (scanErr) {
+          console.warn("Lunar phase scan failed:", scanErr);
+          document.getElementById("nextNewMoon").textContent = "Yakında (Takvimi İnceleyin)";
+          document.getElementById("nextFullMoon").textContent = "Yakında (Takvimi İnceleyin)";
+        }
+
+      } else {
+        // Fallback warnings
+        document.getElementById("retro_mercury").textContent = "Direkt";
+        document.getElementById("retro_venus").textContent = "Direkt";
+        document.getElementById("retro_mars").textContent = "Direkt";
+        document.getElementById("retro_jupiter").textContent = "Direkt";
+        document.getElementById("retro_saturn").textContent = "Retro (Yaklaşık)";
+        document.getElementById("outerRetroList").textContent = "Plüton R";
+        document.getElementById("nextNewMoon").textContent = "Yüklenemedi (Desteklenmiyor)";
+        document.getElementById("nextFullMoon").textContent = "Yüklenemedi (Desteklenmiyor)";
+      }
+    }
+  </script>
+</body>
+</html>
