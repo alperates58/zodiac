@@ -166,6 +166,16 @@
       color: var(--coral);
       border: 1px solid rgba(239, 71, 111, 0.3);
     }
+    .status-badge.ref-missing {
+      background: rgba(100, 116, 139, 0.15);
+      color: var(--text-muted);
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+    .status-badge.not-independent {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
     .diff-val {
       font-family: monospace;
       font-size: 0.85rem;
@@ -199,7 +209,7 @@
     </div>
     <div class="summary-card">
       <h3>Yeni Motor Ba┼şar─▒ Oran─▒</h3>
-      <div class="value pass" id="successRate">%1.7</div>
+      <div class="value pass" id="successRate">%0.0</div>
     </div>
     <div class="summary-card">
       <h3>Eski Motor Ba┼şar─▒ Oran─▒</h3>
@@ -234,8 +244,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 24┬░ 20' (84.340┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖè ─░kizler 24┬░ 12' (84.215┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0118┬░)</td>
-              <td class="diff-val high-diff">0┬░ 08' (0.1255┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -244,8 +254,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 20┬░ 52' (50.883┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 19┬░ 27' (49.452┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1356┬░)</td>
-              <td class="diff-val high-diff">1┬░ 26' (1.4312┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -254,8 +264,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 3┬░ 52' (93.880┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 4┬░ 02' (94.041┬░) </td>
               <td class="diff-val high-diff">0┬░ 13' (0.2225┬░)</td>
-              <td class="diff-val high-diff">0┬░ 10' (0.1607┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -264,8 +274,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 8┬░ 37' (38.621┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 8┬░ 47' (38.789┬░) </td>
               <td class="diff-val high-diff">0┬░ 13' (0.2109┬░)</td>
-              <td class="diff-val high-diff">0┬░ 10' (0.1677┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -274,8 +284,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 4┬░ 02' (94.044┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 4┬░ 02' (94.041┬░) </td>
               <td class="diff-val high-diff">0┬░ 13' (0.2227┬░)</td>
-              <td class="diff-val ok-diff">0┬░ 00' (0.0033┬░)</td>
-              <td><span class="status-badge pass">GE├çT─░</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -284,8 +294,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 16┬░ 47' (316.784┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 16┬░ 37' (316.632┬░) </td>
               <td class="diff-val high-diff">0┬░ 15' (0.2528┬░)</td>
-              <td class="diff-val high-diff">0┬░ 09' (0.1519┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -294,8 +304,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 22┬░ 42' (232.707┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 23┬░ 04' (233.074┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 14' (0.2375┬░)</td>
-              <td class="diff-val high-diff">0┬░ 22' (0.3666┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -304,8 +314,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 15┬░ 37' (255.631┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 15┬░ 13' (255.221┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 11' (0.1833┬░)</td>
-              <td class="diff-val high-diff">0┬░ 25' (0.4099┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -314,8 +324,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 2┬░ 27' (272.460┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 2┬░ 09' (272.158┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 12' (0.2007┬░)</td>
-              <td class="diff-val high-diff">0┬░ 18' (0.3021┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -324,8 +334,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 2┬░ 07' (212.122┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 2┬░ 14' (212.241┬░) (R)</td>
               <td class="diff-val high-diff">147┬░ 53' (147.8783┬░)</td>
-              <td class="diff-val high-diff">0┬░ 07' (0.1193┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -334,8 +344,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 10┬░ 06' (10.117┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 12┬░ 44' (222.742┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0019┬░)</td>
-              <td class="diff-val high-diff">147┬░ 22' (147.3746┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -344,8 +354,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 18┬░ 38' (108.637┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖı Ba┼şak 2┬░ 45' (152.756┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0032┬░)</td>
-              <td class="diff-val high-diff">44┬░ 07' (44.1189┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             </tbody>
@@ -376,8 +386,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 29┬░ 26' (269.434┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 29┬░ 12' (269.215┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0072┬░)</td>
-              <td class="diff-val high-diff">0┬░ 13' (0.2193┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -386,8 +396,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖı Ba┼şak 1┬░ 16' (151.281┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 19┬░ 27' (139.451┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0047┬░)</td>
-              <td class="diff-val high-diff">11┬░ 50' (11.8301┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -396,8 +406,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 10┬░ 11' (250.188┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 11┬░ 07' (251.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 05' (0.0755┬░)</td>
-              <td class="diff-val high-diff">0┬░ 56' (0.9325┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -406,8 +416,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 1┬░ 15' (301.265┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 10┬░ 13' (310.231┬░) </td>
               <td class="diff-val high-diff">0┬░ 05' (0.0833┬░)</td>
-              <td class="diff-val high-diff">8┬░ 58' (8.9663┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -416,8 +426,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 9┬░ 00' (39.006┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 5┬░ 07' (35.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 03' (0.0488┬░)</td>
-              <td class="diff-val high-diff">3┬░ 53' (3.8850┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -426,8 +436,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 11┬░ 27' (221.466┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 14┬░ 13' (224.231┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0188┬░)</td>
-              <td class="diff-val high-diff">2┬░ 46' (2.7654┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -436,8 +446,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖî Aslan 10┬░ 33' (130.553┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 9┬░ 27' (129.451┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 15' (0.2505┬░)</td>
-              <td class="diff-val high-diff">1┬░ 06' (1.1023┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -446,8 +456,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 7┬░ 21' (337.364┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 7┬░ 53' (337.891┬░) </td>
               <td class="diff-val high-diff">0┬░ 05' (0.0751┬░)</td>
-              <td class="diff-val high-diff">0┬░ 32' (0.5266┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -456,8 +466,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 15┬░ 39' (315.654┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 16┬░ 07' (316.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 04' (0.0705┬░)</td>
-              <td class="diff-val high-diff">0┬░ 28' (0.4673┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -466,8 +476,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 24┬░ 29' (264.490┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 24┬░ 07' (264.121┬░) </td>
               <td class="diff-val high-diff">95┬░ 31' (95.5096┬░)</td>
-              <td class="diff-val high-diff">0┬░ 22' (0.3694┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -476,8 +486,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 27┬░ 53' (27.899┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 21┬░ 12' (201.211┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0032┬░)</td>
-              <td class="diff-val high-diff">173┬░ 19' (173.3124┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -486,8 +496,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 9┬░ 29' (99.493┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 20┬░ 07' (110.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0008┬░)</td>
-              <td class="diff-val high-diff">10┬░ 38' (10.6277┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             </tbody>
@@ -518,8 +528,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 0┬░ 28' (0.475┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 0┬░ 12' (0.215┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0028┬░)</td>
-              <td class="diff-val high-diff">0┬░ 16' (0.2598┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -528,8 +538,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 2┬░ 28' (62.477┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 28┬░ 07' (58.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 02' (0.0328┬░)</td>
-              <td class="diff-val high-diff">4┬░ 21' (4.3561┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -538,8 +548,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 7┬░ 04' (7.069┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 25┬░ 13' (355.231┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1331┬░)</td>
-              <td class="diff-val high-diff">11┬░ 50' (11.8375┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -548,8 +558,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 16┬░ 59' (16.996┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 15┬░ 07' (15.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1349┬░)</td>
-              <td class="diff-val high-diff">1┬░ 52' (1.8748┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -558,8 +568,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖî Aslan 0┬░ 56' (120.942┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 5┬░ 07' (125.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1376┬░)</td>
-              <td class="diff-val high-diff">4┬░ 11' (4.1792┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -568,8 +578,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 14┬░ 43' (344.720┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 12┬░ 07' (342.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 07' (0.1141┬░)</td>
-              <td class="diff-val high-diff">2┬░ 36' (2.5989┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -578,8 +588,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 1┬░ 20' (181.349┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖı Ba┼şak 29┬░ 27' (179.451┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 18' (0.2971┬░)</td>
-              <td class="diff-val high-diff">1┬░ 54' (1.8983┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -588,8 +598,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 26┬░ 47' (356.796┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 26┬░ 13' (356.231┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1360┬░)</td>
-              <td class="diff-val high-diff">0┬░ 34' (0.5649┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -598,8 +608,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 27┬░ 24' (327.409┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 26┬░ 07' (326.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 09' (0.1425┬░)</td>
-              <td class="diff-val high-diff">1┬░ 17' (1.2882┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -608,8 +618,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 5┬░ 20' (275.345┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 4┬░ 07' (274.121┬░) </td>
               <td class="diff-val high-diff">84┬░ 39' (84.6551┬░)</td>
-              <td class="diff-val high-diff">1┬░ 13' (1.2239┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -618,8 +628,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 2┬░ 42' (272.701┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖï Yenge├ğ 25┬░ 07' (115.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0038┬░)</td>
-              <td class="diff-val high-diff">157┬░ 35' (157.5798┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -628,8 +638,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 3┬░ 12' (3.207┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 25┬░ 07' (25.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0046┬░)</td>
-              <td class="diff-val high-diff">21┬░ 55' (21.9135┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             </tbody>
@@ -660,8 +670,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 6┬░ 50' (6.848┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 12' (7.215┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0113┬░)</td>
-              <td class="diff-val high-diff">0┬░ 22' (0.3674┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -670,8 +680,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖî Aslan 20┬░ 50' (140.849┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖî Aslan 25┬░ 07' (145.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 02' (0.0345┬░)</td>
-              <td class="diff-val high-diff">4┬░ 16' (4.2718┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -680,8 +690,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 22┬░ 16' (352.269┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 28┬░ 07' (358.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0156┬░)</td>
-              <td class="diff-val high-diff">5┬░ 51' (5.8515┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -690,8 +700,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 11┬░ 31' (41.517┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖë Bo─şa 18┬░ 07' (48.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0210┬░)</td>
-              <td class="diff-val high-diff">6┬░ 36' (6.6036┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -700,8 +710,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 11┬░ 39' (221.650┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 14┬░ 07' (224.121┬░) (R)</td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0048┬░)</td>
-              <td class="diff-val high-diff">2┬░ 28' (2.4708┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -710,8 +720,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 10┬░ 02' (10.041┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 13' (7.231┬░) </td>
               <td class="diff-val high-diff">0┬░ 07' (0.1102┬░)</td>
-              <td class="diff-val high-diff">2┬░ 49' (2.8096┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -720,8 +730,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖë Bo─şa 2┬░ 56' (32.942┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 7┬░ 53' (7.891┬░) </td>
               <td class="diff-val high-diff">0┬░ 08' (0.1364┬░)</td>
-              <td class="diff-val high-diff">25┬░ 03' (25.0511┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -730,8 +740,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 15┬░ 35' (315.593┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 15┬░ 07' (315.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0052┬░)</td>
-              <td class="diff-val high-diff">0┬░ 28' (0.4718┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -740,8 +750,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 3┬░ 56' (303.938┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 3┬░ 07' (303.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0043┬░)</td>
-              <td class="diff-val high-diff">0┬░ 49' (0.8167┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -750,8 +760,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 10┬░ 26' (250.441┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 9┬░ 07' (249.121┬░) (R)</td>
               <td class="diff-val high-diff">109┬░ 34' (109.5591┬░)</td>
-              <td class="diff-val high-diff">1┬░ 19' (1.3199┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -760,8 +770,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖï Yenge├ğ 3┬░ 58' (93.982┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 28┬░ 07' (298.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0007┬░)</td>
-              <td class="diff-val high-diff">155┬░ 52' (155.8609┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -770,8 +780,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 28┬░ 26' (208.435┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 5┬░ 07' (215.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0033┬░)</td>
-              <td class="diff-val high-diff">6┬░ 41' (6.6859┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             </tbody>
@@ -802,8 +812,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÅ Akrep 22┬░ 51' (232.856┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÅ Akrep 22┬░ 33' (232.551┬░) </td>
               <td class="diff-val ok-diff">0┬░ 01' (0.0098┬░)</td>
-              <td class="diff-val high-diff">0┬░ 18' (0.3048┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -812,8 +822,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 19┬░ 17' (319.296┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 20┬░ 07' (320.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 02' (0.0264┬░)</td>
-              <td class="diff-val high-diff">0┬░ 49' (0.8249┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -822,8 +832,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 13┬░ 15' (253.262┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 11┬░ 13' (251.221┬░) </td>
               <td class="diff-val high-diff">0┬░ 16' (0.2614┬░)</td>
-              <td class="diff-val high-diff">2┬░ 02' (2.0406┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -832,8 +842,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 25┬░ 16' (205.272┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 20┬░ 07' (200.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 16' (0.2655┬░)</td>
-              <td class="diff-val high-diff">5┬░ 09' (5.1509┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -842,8 +852,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÆ Kova 29┬░ 36' (329.609┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÆ Kova 29┬░ 07' (329.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 14' (0.2338┬░)</td>
-              <td class="diff-val high-diff">0┬░ 29' (0.4876┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -852,8 +862,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÉ Yay 1┬░ 29' (241.494┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÉ Yay 1┬░ 07' (241.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 12' (0.2046┬░)</td>
-              <td class="diff-val high-diff">0┬░ 22' (0.3728┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -862,8 +872,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 6┬░ 12' (276.211┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 6┬░ 07' (276.121┬░) </td>
               <td class="diff-val high-diff">0┬░ 19' (0.3249┬░)</td>
-              <td class="diff-val high-diff">0┬░ 05' (0.0899┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -872,8 +882,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖê Ko├ğ 29┬░ 40' (29.677┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖê Ko├ğ 29┬░ 07' (29.121┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 14' (0.2342┬░)</td>
-              <td class="diff-val high-diff">0┬░ 33' (0.5561┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -882,8 +892,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖô Bal─▒k 13┬░ 43' (343.725┬░) (R)</td>
               <td class="diff-val" style="color:var(--gold);">ÔÖô Bal─▒k 13┬░ 07' (343.121┬░) (R)</td>
               <td class="diff-val high-diff">0┬░ 15' (0.2477┬░)</td>
-              <td class="diff-val high-diff">0┬░ 36' (0.6044┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -892,8 +902,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖæ O─şlak 19┬░ 15' (289.255┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 19┬░ 07' (289.121┬░) </td>
               <td class="diff-val high-diff">70┬░ 45' (70.7449┬░)</td>
-              <td class="diff-val high-diff">0┬░ 08' (0.1341┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -902,8 +912,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖè ─░kizler 21┬░ 52' (81.878┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖæ O─şlak 1┬░ 07' (271.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0025┬░)</td>
-              <td class="diff-val high-diff">170┬░ 45' (170.7575┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             <tr>
@@ -912,8 +922,8 @@
               <td class="diff-val" style="color:#fff;">ÔÖÄ Terazi 13┬░ 13' (193.226┬░) </td>
               <td class="diff-val" style="color:var(--gold);">ÔÖÄ Terazi 18┬░ 07' (198.121┬░) </td>
               <td class="diff-val ok-diff">0┬░ 00' (0.0046┬░)</td>
-              <td class="diff-val high-diff">4┬░ 54' (4.8955┬░)</td>
-              <td><span class="status-badge fail">HATA</span></td>
+              <td class="diff-val ok-diff">BA─ŞIMSIZ DE─Ş─░L</td>
+              <td><span class="status-badge not-independent">BA─ŞIMSIZ DE─Ş─░L</span></td>
             </tr>
           
             </tbody>
@@ -1050,37 +1060,60 @@
           let tolerance = 0.02; // Planet ve ASC/MC i├ğin 0.02┬░
           if (pt.type === 'moon') tolerance = 0.03; // Ay i├ğin 0.03┬░
 
-          // Yeni Motor vs Referans Sapmas─▒
-          let newDiff = Math.abs(pt.newVal - pt.refVal);
-          if (newDiff > 180) newDiff = 360 - newDiff;
-          const isNewPass = newDiff <= tolerance;
-          if (isNewPass) newPassCount++;
-
-          // Eski Motor vs Referans Sapmas─▒
-          let oldDiff = Math.abs(pt.oldVal - pt.refVal);
-          if (oldDiff > 180) oldDiff = 360 - oldDiff;
-          const isOldPass = oldDiff <= tolerance;
-          if (isOldPass) oldPassCount++;
-
-          // Eski vs Yeni Fark─▒ (Eski motorun ne kadar kayd─▒─ş─▒n─▒ g├Âstermek i├ğin)
+          // Eski vs Yeni Fark─▒
           let deltaDiff = Math.abs(pt.oldVal - pt.newVal);
           if (deltaDiff > 180) deltaDiff = 360 - deltaDiff;
 
           // Retro Durumunu Kontrol Et
           let isNewRetro = AstroAdapter.isPlanetRetrograde(pt.key, jdNew);
-          let refRetro = profile.reference.retros.includes(pt.key);
+          let refRetro = profile.reference && profile.reference.retros ? profile.reference.retros.includes(pt.key) : false;
           let retroText = (isNewRetro ? "(R)" : "");
           let refRetroText = (refRetro ? "(R)" : "");
+
+          // Durum Kriterleri
+          let isRefMissing = (pt.refVal === null || pt.refVal === undefined || profile.verificationStatus === "missing_reference");
+          let isNotIndependent = (profile.isIndependent === false);
+
+          let statusText = "";
+          let statusClass = "";
+          let diffText = "";
+          let newDiff = 0;
+
+          if (isRefMissing) {
+            statusText = "REFERANS YOK";
+            statusClass = "ref-missing";
+            diffText = "DO─ŞRULANMADI";
+          } else if (isNotIndependent) {
+            statusText = "BA─ŞIMSIZ DE─Ş─░L";
+            statusClass = "not-independent";
+            diffText = "BA─ŞIMSIZ DE─Ş─░L";
+          } else {
+            // Yeni Motor vs Referans Sapmas─▒
+            newDiff = Math.abs(pt.newVal - pt.refVal);
+            if (newDiff > 180) newDiff = 360 - newDiff;
+            const isNewPass = newDiff <= tolerance;
+            if (isNewPass) newPassCount++;
+
+            // Eski Motor vs Referans Sapmas─▒
+            let oldDiff = Math.abs(pt.oldVal - pt.refVal);
+            if (oldDiff > 180) oldDiff = 360 - oldDiff;
+            const isOldPass = oldDiff <= tolerance;
+            if (isOldPass) oldPassCount++;
+
+            statusText = isNewPass ? "GE├çT─░" : "HATA";
+            statusClass = isNewPass ? "pass" : "fail";
+            diffText = getDiffString(pt.newVal, pt.refVal);
+          }
 
           rowsHtml += `
             <tr>
               <td style="font-weight:600;">${pt.name}</td>
               <td class="diff-val">${formatDegree(pt.oldVal)}</td>
               <td class="diff-val" style="color:#fff;">${formatDegree(pt.newVal)} ${retroText}</td>
-              <td class="diff-val" style="color:var(--gold);">${formatDegree(pt.refVal)} ${refRetroText}</td>
+              <td class="diff-val" style="color:var(--gold);">${isRefMissing ? "YOK" : formatDegree(pt.refVal) + " " + refRetroText}</td>
               <td class="diff-val ${deltaDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.oldVal, pt.newVal)}</td>
-              <td class="diff-val ${newDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.newVal, pt.refVal)}</td>
-              <td><span class="status-badge ${isNewPass ? 'pass' : 'fail'}">${isNewPass ? 'GE├çT─░' : 'HATA'}</span></td>
+              <td class="diff-val ${(!isRefMissing && !isNotIndependent && newDiff > 0.05) ? 'high-diff' : 'ok-diff'}">${diffText}</td>
+              <td><span class="status-badge ${statusClass}">${statusText}</span></td>
             </tr>
           `;
         });

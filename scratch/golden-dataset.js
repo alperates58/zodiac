@@ -1,5 +1,7 @@
 // Zodyak Atlası - Golden Dataset ve Test Profilleri
 // Bu dosya, astrolojik motor testleri için doğrulanmış girdi ve referans verilerini içerir.
+// DİKKAT: isIndependent: false bayrağı, bu verilerin henüz bağımsız Swiss Ephemeris 
+// doğrulaması yapılmamış geliştirme aşaması verileri olduğunu gösterir.
 
 const GoldenDataset = [
   {
@@ -17,7 +19,7 @@ const GoldenDataset = [
     ianaTimezone: "Europe/Oslo",
     utcTime: "1985-06-15T12:30:00Z",
     scenario: "Kutup dairesine yakın konum, ASC/MC ev sıkışmaları testi",
-    // Swiss Ephemeris / Astro-Seek Referans Sonuçları (Tropical, of-date)
+    isIndependent: false, // Bağımsız Swiss Ephemeris doğrulama bekliyor
     reference: {
       sun: 84.215,       // İkizler 24°13'
       moon: 49.452,      // Boğa 19°27'
@@ -49,6 +51,7 @@ const GoldenDataset = [
     ianaTimezone: "America/Argentina/Ushuaia",
     utcTime: "2005-12-21T05:15:00Z",
     scenario: "Güney yarımküre yüksek enlem ve ev başlangıcı yön tayini",
+    isIndependent: false,
     reference: {
       sun: 269.215,
       moon: 139.451,
@@ -80,6 +83,7 @@ const GoldenDataset = [
     ianaTimezone: "Asia/Jakarta",
     utcTime: "2010-03-21T05:00:00Z",
     scenario: "Tam ekvator çizgisi, ASC derecesi salınım testi",
+    isIndependent: false,
     reference: {
       sun: 0.215,
       moon: 58.121,
@@ -111,6 +115,7 @@ const GoldenDataset = [
     ianaTimezone: "Europe/Istanbul",
     utcTime: "1999-03-27T23:30:00Z",
     scenario: "Türkiye saat dilimi ileri alınma geçiş sınırı (DST)",
+    isIndependent: false,
     reference: {
       sun: 7.215,
       moon: 145.121,
@@ -142,6 +147,7 @@ const GoldenDataset = [
     ianaTimezone: "Europe/Istanbul",
     utcTime: "2018-11-15T07:00:00Z",
     scenario: "Türkiye'nin kalıcı UTC+3 uygulaması doğruluğu",
+    isIndependent: false,
     reference: {
       sun: 232.551,
       moon: 320.121,

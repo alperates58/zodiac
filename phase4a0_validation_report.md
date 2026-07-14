@@ -223,3 +223,12 @@ Geliştirme aşamasına geçmeden önce eksik olduğu açıkça kabul edilen ve 
 4. **[EKSİK] Placidus Ev Başlangıçları**: Yüksek enlemlerdeki tanımsız Placidus durumlarında Whole Sign fallback mekanizması kodlanmamıştır.
 5. **[EKSİK] Doğum Saati Bilinmeyen Modu**: Saat 12:00'ye sabitlendiğinde evlerin, ASC/MC açılarının gizlenmesi akışı adapter seviyesinde doğrulanmamıştır.
 6. **[EKSİK] 30 Profil Bağımsız Doğrulaması**: Golden dataset sadece 5 profil içermekte olup kalan 25 profil henüz eklenmemiştir.
+
+---
+
+## 11. Faz 4A-0.5 Gerekliliği ve Bağımsız Doğruluk
+
+* **Motor Testlerinde Sınır**: Mevcut Astronomy Engine çıktısı ve AstroAdapter sonuçları, kod kalitesi ve regresyon testleri için yararlı birer araçtır. Ancak, bu çıktılar tek başına bir **bağımsız doğruluk kanıtı değildir** (çünkü motor kendini doğrulamış olur).
+* **Faz 4A-1 Geçiş Koşulu**: Faz 4A-1'e geçilip motor kalıcı olarak sisteme entegre edilmeden önce, **en az ilk 5 profilin** bağımsız, doğrulanmış harici referans kaynakları (Astrodienst Swiss Ephemeris çıktıları) ile elle doğrulanması ve sapmaların hedeflenen tolerans sınırları içinde kaldığının kanıtlanması zorunludur.
+* **30 Profil Tamamlanma Eşiği**: 30 test profilinin tamamı için bağımsız referans verileri (template üzerinde) doldurulduğunda, otomatik tolerans testleri (`test-harness.html`) tam anlamıyla güvenilir ve anlamlı bir regresyon denetimi haline gelecektir. O zamana kadar otomatik testler "Bağımsız Değil" veya "Referans Yok" olarak işaretlenmeye devam edecektir.
+

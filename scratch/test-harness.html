@@ -167,6 +167,16 @@
       color: var(--coral);
       border: 1px solid rgba(239, 71, 111, 0.3);
     }
+    .status-badge.ref-missing {
+      background: rgba(100, 116, 139, 0.15);
+      color: var(--text-muted);
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+    .status-badge.not-independent {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
     .diff-val {
       font-family: monospace;
       font-size: 0.85rem;
@@ -341,37 +351,60 @@
           let tolerance = 0.02; // Planet ve ASC/MC için 0.02°
           if (pt.type === 'moon') tolerance = 0.03; // Ay için 0.03°
 
-          // Yeni Motor vs Referans Sapması
-          let newDiff = Math.abs(pt.newVal - pt.refVal);
-          if (newDiff > 180) newDiff = 360 - newDiff;
-          const isNewPass = newDiff <= tolerance;
-          if (isNewPass) newPassCount++;
-
-          // Eski Motor vs Referans Sapması
-          let oldDiff = Math.abs(pt.oldVal - pt.refVal);
-          if (oldDiff > 180) oldDiff = 360 - oldDiff;
-          const isOldPass = oldDiff <= tolerance;
-          if (isOldPass) oldPassCount++;
-
-          // Eski vs Yeni Farkı (Eski motorun ne kadar kaydığını göstermek için)
+          // Eski vs Yeni Farkı
           let deltaDiff = Math.abs(pt.oldVal - pt.newVal);
           if (deltaDiff > 180) deltaDiff = 360 - deltaDiff;
 
           // Retro Durumunu Kontrol Et
           let isNewRetro = AstroAdapter.isPlanetRetrograde(pt.key, jdNew);
-          let refRetro = profile.reference.retros.includes(pt.key);
+          let refRetro = profile.reference && profile.reference.retros ? profile.reference.retros.includes(pt.key) : false;
           let retroText = (isNewRetro ? "(R)" : "");
           let refRetroText = (refRetro ? "(R)" : "");
+
+          // Durum Kriterleri
+          let isRefMissing = (pt.refVal === null || pt.refVal === undefined || profile.verificationStatus === "missing_reference");
+          let isNotIndependent = (profile.isIndependent === false);
+
+          let statusText = "";
+          let statusClass = "";
+          let diffText = "";
+          let newDiff = 0;
+
+          if (isRefMissing) {
+            statusText = "REFERANS YOK";
+            statusClass = "ref-missing";
+            diffText = "DOĞRULANMADI";
+          } else if (isNotIndependent) {
+            statusText = "BAĞIMSIZ DEĞİL";
+            statusClass = "not-independent";
+            diffText = "BAĞIMSIZ DEĞİL";
+          } else {
+            // Yeni Motor vs Referans Sapması
+            newDiff = Math.abs(pt.newVal - pt.refVal);
+            if (newDiff > 180) newDiff = 360 - newDiff;
+            const isNewPass = newDiff <= tolerance;
+            if (isNewPass) newPassCount++;
+
+            // Eski Motor vs Referans Sapması
+            let oldDiff = Math.abs(pt.oldVal - pt.refVal);
+            if (oldDiff > 180) oldDiff = 360 - oldDiff;
+            const isOldPass = oldDiff <= tolerance;
+            if (isOldPass) oldPassCount++;
+
+            statusText = isNewPass ? "GEÇTİ" : "HATA";
+            statusClass = isNewPass ? "pass" : "fail";
+            diffText = getDiffString(pt.newVal, pt.refVal);
+          }
 
           rowsHtml += `
             <tr>
               <td style="font-weight:600;">${pt.name}</td>
               <td class="diff-val">${formatDegree(pt.oldVal)}</td>
               <td class="diff-val" style="color:#fff;">${formatDegree(pt.newVal)} ${retroText}</td>
-              <td class="diff-val" style="color:var(--gold);">${formatDegree(pt.refVal)} ${refRetroText}</td>
+              <td class="diff-val" style="color:var(--gold);">${isRefMissing ? "YOK" : formatDegree(pt.refVal) + " " + refRetroText}</td>
               <td class="diff-val ${deltaDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.oldVal, pt.newVal)}</td>
-              <td class="diff-val ${newDiff > 0.05 ? 'high-diff' : 'ok-diff'}">${getDiffString(pt.newVal, pt.refVal)}</td>
-              <td><span class="status-badge ${isNewPass ? 'pass' : 'fail'}">${isNewPass ? 'GEÇTİ' : 'HATA'}</span></td>
+              <td class="diff-val ${(!isRefMissing && !isNotIndependent && newDiff > 0.05) ? 'high-diff' : 'ok-diff'}">${diffText}</td>
+              <td><span class="status-badge ${statusClass}">${statusText}</span></td>
             </tr>
           `;
         });
