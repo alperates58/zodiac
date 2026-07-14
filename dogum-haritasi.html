@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
@@ -683,9 +683,21 @@
 
       // Gezegenler Tablosunu Doldur
       const tableBody = document.getElementById("planetsTableBody");
+      const planetSlugs = { sun: 'gunes', moon: 'ay', mercury: 'merkur', venus: 'venus', mars: 'mars', jupiter: 'jupiter', saturn: 'saturn', uranus: 'uranus', neptune: 'neptune', pluto: 'pluto' };
       tableBody.innerHTML = allPlanets.map(p => {
         const signInfo = AstroCalc.getZodiacSign(p.long);
         const houseNum = AstroCalc.getHouseOfPlanet(p.long, cusps);
+        const pSlug = planetSlugs[p.key];
+        const sSlug = signSlugs[signInfo.name];
+        
+        const signCell = (pSlug && sSlug) 
+          ? `<a href="yerlesimler/gezegen-burc/${pSlug}-${sSlug}.html" target="_blank" style="color:var(--gold-bright); text-decoration:none; border-bottom: 1px dashed rgba(212,175,55,0.3);">${signInfo.glyph} ${signInfo.name} ↗</a>`
+          : `${signInfo.glyph} ${signInfo.name}`;
+          
+        const houseCell = (pSlug && houseNum)
+          ? `<a href="yerlesimler/gezegen-ev/${pSlug}-${houseNum}-ev.html" target="_blank" style="color:var(--gold-bright); text-decoration:none; border-bottom: 1px dashed rgba(212,175,55,0.3);">${houseNum}. Ev ↗</a>`
+          : `${houseNum}. Ev`;
+
         return `
           <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
             <td style="padding: 0.6rem 0.5rem; font-weight: 500;">${p.glyph} ${p.name}</td>

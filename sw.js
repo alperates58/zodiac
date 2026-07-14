@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'zodiac-atlas-v1.6.0';
+﻿const CACHE_NAME = 'zodiac-atlas-v1.7.0';
 const OFFLINE_URL = '/offline.html';
 
 const ASSETS = [
@@ -30,6 +30,12 @@ const ASSETS = [
   '/retro-takvimi.html',
   '/burc-tarihleri.html',
   '/astrolojik-olaylar.html',
+  '/yerlesimler.html',
+  '/gezegen-burc-yerlesimleri.html',
+  '/gezegen-ev-yerlesimleri.html',
+  '/yerlesimler/gezegen-burc/index.html',
+  '/yerlesimler/gezegen-ev/index.html',
+  '/acilar/detay/index.html',
   '/element-nitelik-hesaplayici.html',
   '/ay-burcu-hesaplayici.html',
   '/yukselen-burc-hesaplayici.html',
