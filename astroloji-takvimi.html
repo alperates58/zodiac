@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Astrolojik takvim rehberi. Gökyüzündeki gezegen geçişleri, Ay döngüleri, retrolar ve kozmik zamanları verimli kullanma rehberi.">
+  <meta property="og:title" content="Astroloji Takvimi ve Zamanlama Rehberi — Zodyak Atlası">
+  <meta property="og:description" content="Astroloji takvimi nedir, transitler ve gezegen döngüleri nasıl takip edilir?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/astroloji-takvimi.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/astroloji-takvimi.html">
+  <title>Astroloji Takvimi ve Zamanlama Rehberi — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .calendar-container {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .calendar-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .calendar-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: var(--gold-bright);
+    }
+    .calendar-hero p {
+      color: var(--muted);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .widget-card {
+      background: rgba(255,255,255,0.01);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+    .widget-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 600px) {
+      .widget-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .widget-item {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 6px;
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .widget-item strong {
+      color: #fff;
+    }
+    .content-article {
+      line-height: 1.8;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+    }
+    .content-article h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+    .content-article p {
+      margin-bottom: 1.5rem;
+    }
+    .content-article ul, .content-article ol {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    .content-article li {
+      margin-bottom: 0.5rem;
+    }
+    .nav-box {
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      margin-top: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--gold-bright);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Rehberler",
+      "item": "https://zodyakatlasi.com/rehberler.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Astroloji Takvimi",
+      "item": "https://zodyakatlasi.com/astroloji-takvimi.html"
+    }]
+  }
+  </script>
+</head>
+<body>
+  <header class="detail-header">
+    <a href="rehberler.html" class="back-link">← Rehberlere Dön</a>
+    <a href="index.html" class="detail-logo">✦ Zodyak <span>Atlası</span></a>
+  </header>
+
+  <main class="calendar-container">
+    <section class="calendar-hero">
+      <h1>Astroloji Takvimi ve Zamanlama</h1>
+      <p>Gökyüzündeki kozmik saat kadranını okumayı öğrenin. Gezegen transitleri, Ay döngüleri ve retro dönemlerini takip ederek hayatınızı gökyüzünün ritmiyle uyumlu hale getirin.</p>
+    </section>
+
+    <!-- Canlı Takvim Widget Paneli -->
+    <div class="widget-card">
+      <h2 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; text-transform: uppercase; margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; letter-spacing: 0.05em;">⏰ Bugünün Kozmik Göstergeleri (Anlık)</h2>
+      <div class="widget-grid">
+        <div class="widget-item">
+          <span>Güneş Konumu:</span>
+          <strong id="widgetGunes">Yükleniyor...</strong>
+        </div>
+        <div class="widget-item">
+          <span>Ay Konumu:</span>
+          <strong id="widgetAy">Yükleniyor...</strong>
+        </div>
+        <div class="widget-item">
+          <span>Güncel Ay Fazı:</span>
+          <strong id="widgetAyFazi">Yükleniyor...</strong>
+        </div>
+        <div class="widget-item">
+          <span>Aktif Retro Sayısı:</span>
+          <strong id="widgetRetroSayisi">Yükleniyor...</strong>
+        </div>
+        <div class="widget-item" style="grid-column: span 2;">
+          <span>Sıradaki Kozmik Olay:</span>
+          <strong id="widgetKozmikOlay">Yeniay / Dolunay aranıyor...</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Makale Bölümü -->
+    <article class="content-article">
+      <h2>Astrolojik Takvim Nedir?</h2>
+      <p>Astrolojik takvim, Dünya'dan bakıldığında Güneş, Ay ve diğer gezegenlerin zodyak kuşağındaki (ekliptik) anlık konumlarını ve birbirleriyle yaptıkları geometrik açıları zaman çizelgesi üzerinde gösteren kozmik bir kılavuzdur. Gündelik hayattaki takvimlerden farklı olarak sadece "zamanı" saymaz; o zaman diliminin kalitesini, enerjisini ve getireceği temaları yorumlar.</p>
+      
+      <h2>Kozmik Zamanın Dört Ana Çarkı</h2>
+      <p>Bir astroloji takvimini takip ederken dört ana hareket mekanizmasını anlamak gerekir:</p>
+      <ul>
+        <li><strong>Güneş Geçişleri (Mevsimsel Çark):</strong> Güneş'in her burçta yaklaşık 30 gün kalmasıyla oluşur. Hayat enerjisinin o ay hangi burcun özelliklerine odaklanacağını gösterir.</li>
+        <li><strong>Ay Döngüleri (Duygusal Çark):</strong> Ay'ın zodyaktaki hızlı turudur (28 gün). Her burçta yaklaşık 2.5 gün kalarak kolektif duygu durumumuzu ve günlük motivasyonumuzu şekillendirir.</li>
+        <li><strong>Gezegen Retroları (Gözden Geçirme Çarkı):</strong> Gezegenlerin yörünge hız farklarından ötürü geri gidiyormuş gibi göründüğü dönemlerdir. Dış dünyada yeni atılımlar yapmak yerine geçmişi düzenleme ve içe dönme zamanlarıdır.</li>
+        <li><strong>Hızlı Gezegen Geçişleri (Merkür, Venüs, Mars):</strong> İletişim, ilişkiler ve fiziksel enerji seviyelerimizdeki haftalık/aylık değişimleri belirler.</li>
+      </ul>
+
+      <h2>Astrolojik Takvimi Hayatımıza Nasıl Entegre Ederiz?</h2>
+      <p>Gökyüzünün ritmini takip etmek, hayatı "akıntıya karşı kürek çekmek" yerine "rüzgarı arkaya almak" gibi yaşamamızı sağlar. Örneğin:</p>
+      <ol>
+        <li><strong>Yeniay Evresinde:</strong> Yeni projeleri planlayın, niyet tohumları ekin ve taze başlangıçlar yapın.</li>
+        <li><strong>Dolunay Evresinde:</strong> Sonuçları görün, tamamlanması gereken işleri bitirin ve artık size hizmet etmeyen duygusal yükleri serbest bırakın.</li>
+        <li><strong>Retro Dönemlerinde:</strong> Önemli sözleşmeler imzalamaktan veya büyük yatırımlar yapmaktan kaçının; bunun yerine analiz yapın, eksikleri tamamlayın.</li>
+      </ol>
+
+      <div class="nav-box">
+        <h3 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; text-transform: uppercase;">Astrolojik Zaman Kılavuzları:</h3>
+        <div class="nav-links">
+          <a href="ay-takvimi.html">🌗 Ay Takvimi Rehberi</a>
+          <a href="retro-takvimi.html">🔄 Retro Takvimi Kılavuzu</a>
+          <a href="burc-tarihleri.html">📅 12 Burç Tarih Aralıkları</a>
+          <a href="astrolojik-olaylar.html">☄️ Önemli Kozmik Olaylar</a>
+          <a href="guncel-gokyuzu.html">🌌 Güncel Gökyüzü Paneli (Canlı)</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports (JS widget mantığı bir sonraki adımda eklenecektir) -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

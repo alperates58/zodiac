@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ay takvimi ve faz döngüleri rehberi. Yeniay, Dolunay ve dördün evrelerinin duygusal hayatımıza ve niyetlerimize yansımaları.">
+  <meta property="og:title" content="Astrolojik Ay Takvimi ve Faz Döngüleri — Zodyak Atlası">
+  <meta property="og:description" content="Ay takvimi nedir, Yeniay ve Dolunay niyet ve bırakma ritimleri nasıl takip edilir?">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zodyakatlasi.com/ay-takvimi.html">
+  <meta property="og:image" content="og.png">
+  <link rel="canonical" href="https://zodyakatlasi.com/ay-takvimi.html">
+  <title>Astrolojik Ay Takvimi ve Faz Döngüleri — Zodyak Atlası</title>
+  <link rel="stylesheet" href="style.css?v=responsive-20260713b">
+  
+  <style>
+    .calendar-container {
+      max-width: 900px;
+      margin: 120px auto 80px;
+      padding: 0 1.5rem;
+    }
+    .calendar-hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      background: radial-gradient(circle at center, rgba(130, 150, 201, 0.08) 0%, transparent 70%);
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    .calendar-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      color: #8296c9;
+    }
+    .calendar-hero p {
+      color: var(--muted);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .widget-card {
+      background: rgba(255,255,255,0.01);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .content-article {
+      line-height: 1.8;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+    }
+    .content-article h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+    .content-article p {
+      margin-bottom: 1.5rem;
+    }
+    .content-article ul {
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+    }
+    .content-article li {
+      margin-bottom: 0.5rem;
+    }
+    .nav-box {
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      margin-top: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--gold-bright);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Ana Sayfa",
+      "item": "https://zodyakatlasi.com/index.html"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Rehberler",
+      "item": "https://zodyakatlasi.com/rehberler.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ay Takvimi",
+      "item": "https://zodyakatlasi.com/ay-takvimi.html"
+    }]
+  }
+  </script>
+</head>
+<body>
+  <header class="detail-header">
+    <a href="rehberler.html" class="back-link">← Rehberlere Dön</a>
+    <a href="index.html" class="detail-logo">✦ Zodyak <span>Atlası</span></a>
+  </header>
+
+  <main class="calendar-container">
+    <section class="calendar-hero">
+      <h1>Astrolojik Ay Takvimi</h1>
+      <p>Ay'ın evrelerini takip ederek duygusal dengenizi kurun ve niyetlerinizi göksel zamanlamayla filizlendirin.</p>
+    </section>
+
+    <!-- Canlı Ay Widget Paneli -->
+    <div class="widget-card">
+      <div style="font-size: 3rem; color: #8296c9; margin-bottom: 0.5rem;" id="widgetMoonEmoji">☽</div>
+      <h2 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.3rem; margin-top: 0; margin-bottom: 0.5rem;" id="widgetMoonPhase">Ay Fazı Yükleniyor...</h2>
+      <div style="font-size: 1rem; color: var(--gold-bright); margin-bottom: 1.5rem;" id="widgetMoonIllum">%0 Aydınlık</div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 500px; margin: 0 auto; text-align: left;">
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.03);">
+          <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">Sonraki Yeniay</div>
+          <strong id="widgetNextNew">Hesaplanıyor...</strong>
+        </div>
+        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.03);">
+          <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase;">Sonraki Dolunay</div>
+          <strong id="widgetNextFull">Hesaplanıyor...</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Makale Bölümü -->
+    <article class="content-article">
+      <h2>Ay Takvimi Nedir ve Neden Önemlidir?</h2>
+      <p>Ay, zodyaktaki en hızlı hareket eden gökcismidir ve yeryüzündeki sular, bitkiler, gelgitler ile insan bilinçaltı üzerinde doğrudan fiziksel ve enerjik bir etkiye sahiptir. Ay takvimi, Ay'ın Güneş'e göre yaptığı açısal farkları (evreleri) ve zodyaktaki burç geçişlerini takip ederek günlük rutinlerimizi planlama kılavuzudur.</p>
+
+      <h2>Ay'ın 4 Temel Evresi ve Kozmik Döngüleri</h2>
+      <p>Yaklaşık 29.5 gün süren bir Ay döngüsü, dört temel dönemeçten oluşur:</p>
+      <ul>
+        <li><strong>Yeniay (New Moon) 🌑:</strong> Ay ile Güneş'in gökyüzünde kavuştuğu ve Ay'ın tamamen karanlıkta kaldığı evredir. **Niyet etmek, plan yapmak ve sıfırdan başlamak** için en ideal zamandır.</li>
+        <li><strong>İlk Dördün (First Quarter) 🌓:</strong> Yeniay'dan 7 gün sonra gerçekleşir. Atılan niyet tohumlarının ilk engellerle karşılaştığı, **mücadele ve kararlılık** evresidir. Eyleme geçme zamanıdır.</li>
+        <li><strong>Dolunay (Full Moon) 🌕:</strong> Ay'ın Güneş'in tam karşısında parladığı evredir. **Tamamlanma, hasat ve görünür olma** zamanıdır. Duygular zirveye ulaşır; artık bize hizmet etmeyen durumları bırakmak için uygundur.</li>
+        <li><strong>Son Dördün (Last Quarter) 🌗:</strong> Dolunay'dan 7 gün sonra gerçekleşir. **Yol ayrımları, analiz ve eleme** evresidir. Gelecek Yeniay'a hazırlık için içsel temizlik yapılır.</li>
+      </ul>
+
+      <h2>Niyet, Bırakma ve Planlama Döngüsü</h2>
+      <p>Ay döngülerini hayatımıza dahil etmenin en pratik yolu **Yeniay - Dolunay** hattını kullanmaktır:</p>
+      <ul>
+        <li><strong>Büyüyen Ay Fazı (Yeniay'dan Dolunay'a):</strong> Enerji sürekli artar. Bu dönemde projeleri büyütün, sözleşmeler yapın, beslenmenizi zenginleştirin ve girişimleri destekleyin.</li>
+        <li><strong>Küçülen Ay Fazı (Dolunay'dan Yeniay'a):</strong> Enerji yavaş yavaş azalır ve içe döner. Vücuttaki toksinleri atmak, diyet yapmak, temizlik yapmak, ilişkilerdeki düğümleri çözüp vedalaşmak için en uygun dönemdir.</li>
+      </ul>
+
+      <div class="nav-box">
+        <h3 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; text-transform: uppercase;">Astrolojik Zaman Kılavuzları:</h3>
+        <div class="nav-links">
+          <a href="astroloji-takvimi.html">📅 Astroloji Takvimi</a>
+          <a href="retro-takvimi.html">🔄 Retro Takvimi Kılavuzu</a>
+          <a href="burc-tarihleri.html">📅 12 Burç Tarih Aralıkları</a>
+          <a href="ay-fazlari.html">🌗 Ay Evreleri Kılavuzu</a>
+          <a href="ay-burcu-hesaplayici.html">☽ Ay Burcunu Hesapla</a>
+          <a href="guncel-gokyuzu.html">🌌 Güncel Gökyüzü Paneli (Canlı)</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="detail-footer">
+    <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
+  </footer>
+
+  <!-- Script Imports -->
+  <script src="data/cities.js"></script>
+  <script src="astronomy.min.js"></script>
+  <script src="astro-calc.js"></script>
+  <script src="astro-adapter.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
