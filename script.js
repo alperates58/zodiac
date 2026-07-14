@@ -237,3 +237,192 @@ function toggleStep(index) {
     }
   });
 }
+
+// --- Calendar Widgets Entegrasyonu ---
+window.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('widgetGunes') || document.getElementById('widgetMoonPhase') || document.getElementById('widgetRetroList')) {
+    initCalendarWidgets();
+  }
+});
+
+function initCalendarWidgets() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+
+  let jd = null;
+  let calculated = false;
+  let sunLong = 0, moonLong = 0;
+  let sunSign = { name: "Koç", glyph: "♈" };
+  let moonSign = { name: "Koç", glyph: "♈" };
+
+  // 1. AstroAdapter ile Hesapla
+  if (typeof AstroAdapter !== 'undefined') {
+    try {
+      jd = AstroAdapter.getJulianDate(year, month, day, hour, minute, 3.0);
+      sunLong = AstroAdapter.getSunLongitude(jd);
+      moonLong = AstroAdapter.getMoonLongitude(jd);
+      sunSign = AstroAdapter.getZodiacSign(sunLong);
+      moonSign = AstroAdapter.getZodiacSign(moonLong);
+      calculated = true;
+    } catch (e) {
+      console.warn("AstroAdapter failed in widgets, falling back:", e);
+    }
+  }
+
+  // 2. Fallback: AstroCalc
+  if (!calculated) {
+    try {
+      const jdOld = AstroCalc.getJulianDate(year, month, day, hour, minute, 3.0);
+      sunLong = AstroCalc.getSunLongitude(jdOld);
+      moonLong = AstroCalc.getMoonLongitude(jdOld);
+      sunSign = AstroCalc.getZodiacSign(sunLong);
+      moonSign = AstroCalc.getZodiacSign(moonLong);
+    } catch (e) {
+      console.warn("AstroCalc fallback failed:", e);
+      sunLong = 120.0;
+      moonLong = 240.0;
+    }
+  }
+
+  // Ay Fazı ve Aydınlık
+  let angle = AstroCalc.norm360(moonLong - sunLong);
+  let radAngle = angle * Math.PI / 180;
+  let illum = Math.round(50 * (1 - Math.cos(radAngle)));
+  
+  let phaseName = "";
+  let emoji = "🌑";
+  if (angle >= 355 || angle < 5) { phaseName = "Yeniay"; emoji = "🌑"; }
+  else if (angle >= 5 && angle < 85) { phaseName = "Büyüyen Hilal"; emoji = "🌒"; }
+  else if (angle >= 85 && angle < 95) { phaseName = "İlk Dördün"; emoji = "🌓"; }
+  else if (angle >= 95 && angle < 175) { phaseName = "Şişkin Ay"; emoji = "🌔"; }
+  else if (angle >= 175 && angle < 185) { phaseName = "Dolunay"; emoji = "🌕"; }
+  else if (angle >= 185 && angle < 265) { phaseName = "Küçülen Ay"; emoji = "🌖"; }
+  else if (angle >= 265 && angle < 275) { phaseName = "Son Dördün"; emoji = "🌗"; }
+  else { phaseName = "Balsamik Hilal"; emoji = "🌘"; }
+
+  // --- WIDGET 1: astroloji-takvimi.html ---
+  if (document.getElementById('widgetGunes')) {
+    document.getElementById('widgetGunes').textContent = `${sunSign.glyph} ${sunSign.name}`;
+    document.getElementById('widgetAy').textContent = `${moonSign.glyph} ${moonSign.name}`;
+    document.getElementById('widgetAyFazi').textContent = `${emoji} ${phaseName} (%${illum})`;
+    
+    // Retro Sayısı
+    let retroCount = 0;
+    if (calculated && jd !== null) {
+      try {
+        const planets = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
+        planets.forEach(p => {
+          if (AstroAdapter.isPlanetRetrograde(p, jd)) retroCount++;
+        });
+      } catch (err) {
+        retroCount = 1;
+      }
+    }
+    document.getElementById('widgetRetroSayisi').textContent = `${retroCount} Gezegen`;
+  }
+
+  // --- WIDGET 2: ay-takvimi.html ---
+  if (document.getElementById('widgetMoonPhase')) {
+    document.getElementById('widgetMoonEmoji').textContent = emoji;
+    document.getElementById('widgetMoonPhase').textContent = `${phaseName} (Yaklaşık)`;
+    document.getElementById('widgetMoonIllum').textContent = `%${illum} Aydınlık`;
+  }
+
+  // --- Scan New/Full Crossing (for Widget 1 & Widget 2) ---
+  let nextNewJd = null;
+  let nextFullJd = null;
+  if (calculated && jd !== null) {
+    try {
+      let prevAngle = angle;
+      for (let step = 1; step <= 300; step++) {
+        let scanJd = jd + (step * 0.1);
+        let sL = AstroAdapter.getSunLongitude(scanJd);
+        let mL = AstroAdapter.getMoonLongitude(scanJd);
+        let scanAngle = AstroCalc.norm360(mL - sL);
+        
+        if (nextNewJd === null && prevAngle > 350 && scanAngle < 10) {
+          nextNewJd = scanJd;
+        }
+        if (nextFullJd === null && prevAngle < 180 && scanAngle >= 180) {
+          nextFullJd = scanJd;
+        }
+        if (nextNewJd !== null && nextFullJd !== null) break;
+        prevAngle = scanAngle;
+      }
+    } catch (scanErr) {
+      console.warn("Scan failed:", scanErr);
+    }
+  }
+
+  const formatJd = (targetJd) => {
+    if (!targetJd) return "Yakında (Yaklaşık)";
+    try {
+      const timeObj = new Astronomy.AstroTime(targetJd);
+      return timeObj.date.toLocaleDateString('tr-TR', {
+        day: 'numeric',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (e) {
+      return "Yakında (Yaklaşık)";
+    }
+  };
+
+  const nextNewStr = formatJd(nextNewJd);
+  const nextFullStr = formatJd(nextFullJd);
+
+  if (document.getElementById('widgetNextNew')) {
+    document.getElementById('widgetNextNew').textContent = nextNewStr;
+    document.getElementById('widgetNextFull').textContent = nextFullStr;
+  }
+
+  if (document.getElementById('widgetKozmikOlay')) {
+    if (nextNewJd && nextFullJd) {
+      if (nextNewJd < nextFullJd) {
+        document.getElementById('widgetKozmikOlay').textContent = `🌑 Yeniay: ${nextNewStr}`;
+      } else {
+        document.getElementById('widgetKozmikOlay').textContent = `🌕 Dolunay: ${nextFullStr}`;
+      }
+    } else {
+      document.getElementById('widgetKozmikOlay').textContent = "Yeniay veya Dolunay (Yaklaşıyor)";
+    }
+  }
+
+  // --- WIDGET 3: retro-takvimi.html ---
+  if (document.getElementById('widgetRetroList')) {
+    let retroList = [];
+    if (calculated && jd !== null) {
+      try {
+        const trPlanets = {
+          mercury: "Merkür ☿",
+          venus: "Venüs ♀",
+          mars: "Mars ♂",
+          jupiter: "Jüpiter ♃",
+          saturn: "Satürn ♄",
+          uranus: "Uranüs ♅",
+          neptune: "Neptün ♆",
+          pluto: "Plüton ♇"
+        };
+        for (let key in trPlanets) {
+          if (AstroAdapter.isPlanetRetrograde(key, jd)) {
+            retroList.push(trPlanets[key]);
+          }
+        }
+      } catch (err) {
+        retroList = ["Satürn ♄"];
+      }
+    }
+    
+    const displayList = document.getElementById('widgetRetroList');
+    if (retroList.length > 0) {
+      displayList.innerHTML = retroList.map(p => `<span class="badge" style="margin: 0.2rem; background: rgba(231,76,60,0.2); border: 1px solid #e74c3c; color: #fff; padding: 0.4rem 0.8rem; border-radius: 4px; display: inline-block;">${p} 🔄</span>`).join(' ');
+    } else {
+      displayList.textContent = "Şu an seçili gezegenlerde retro görünmüyor. Tüm gezegenler düz harekette.";
+    }
+  }
+}
