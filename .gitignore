@@ -1,0 +1,9 @@
+# Local scratch folder and developer scripts
+scratch/
+diagnose.ps1
+
+# Conversation logs and reports
+phase4*.md
+walkthrough.md
+*.log
+.gemini/
