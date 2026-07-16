@@ -84,7 +84,7 @@ if (document.querySelector('#filters') && document.querySelector('#signGrid')) {
 }
 
 // Canlı Gökyüzü Transit Hesaplamaları
-if (document.getElementById("liveMoonPhaseName")) {
+if (document.getElementById("liveMoonPhaseName") || document.getElementById("widgetRetroList") || document.getElementById("widgetNextNew") || document.getElementById("widgetKozmikOlay")) {
   const now = new Date();
   let calculated = false;
   let jdNew = null;
@@ -129,28 +129,30 @@ if (document.getElementById("liveMoonPhaseName")) {
   else if (angle >= 265 && angle < 275) { phaseName = "Son Dördün (Yaklaşık)"; icon = "🌗"; }
   else { phaseName = "Hilal (Küçülen - Yaklaşık)"; icon = "🌘"; }
   
-  document.getElementById("liveMoonPhaseName").textContent = phaseName;
-  document.getElementById("liveMoonIcon").textContent = icon;
-  document.getElementById("liveMoonIllum").textContent = `%${illum} Aydınlık`;
-  
-  document.getElementById("liveMoonSignName").textContent = moonSign.name;
-  document.getElementById("liveMoonSignGlyph").textContent = moonSign.glyph;
-  
-  const signMeanings = {
-    'Koç': 'Heyecanlı, cesur ve atılgan ruh hali.',
-    'Boğa': 'Sakin, huzurlu ve konfor arayışı.',
-    'İkizler': 'Meraklı, konuşkan ve aktif zihin.',
-    'Yengeç': 'Hassas, korumacı ve yuvaya yönelim.',
-    'Aslan': 'Gururlu, yaratıcı ve dikkat çekme isteği.',
-    'Başak': 'Düzenleyici, titiz ve detaylara odaklı.',
-    'Terazi': 'Zarif, uyumlu ve dengeli ilişkiler.',
-    'Akrep': 'Derin, ketum ve sezgisel atmosfer.',
-    'Yay': 'İyimser, özgür ve keşfetme arzusu.',
-    'Oğlak': 'Disiplinli, ciddi ve iş odaklı yaklaşım.',
-    'Kova': 'Özgün, arkadaş canlısı ve vizyoner.',
-    'Balık': 'Hassas, hayalperest ve sezgisel hisler.'
-  };
-  document.getElementById("liveMoonSignMeaning").textContent = signMeanings[moonSign.name];
+  if (document.getElementById("liveMoonPhaseName")) {
+    document.getElementById("liveMoonPhaseName").textContent = phaseName;
+    document.getElementById("liveMoonIcon").textContent = icon;
+    document.getElementById("liveMoonIllum").textContent = `%${illum} Aydınlık`;
+    
+    document.getElementById("liveMoonSignName").textContent = moonSign.name;
+    document.getElementById("liveMoonSignGlyph").textContent = moonSign.glyph;
+    
+    const signMeanings = {
+      'Koç': 'Heyecanlı, cesur ve atılgan ruh hali.',
+      'Boğa': 'Sakin, huzurlu ve konfor arayışı.',
+      'İkizler': 'Meraklı, konuşkan ve aktif zihin.',
+      'Yengeç': 'Hassas, korumacı ve yuvaya yönelim.',
+      'Aslan': 'Gururlu, yaratıcı ve dikkat çekme isteği.',
+      'Başak': 'Düzenleyici, titiz ve detaylara odaklı.',
+      'Terazi': 'Zarif, uyumlu ve dengeli ilişkiler.',
+      'Akrep': 'Derin, ketum ve sezgisel atmosfer.',
+      'Yay': 'İyimser, özgür ve keşfetme arzusu.',
+      'Oğlak': 'Disiplinli, ciddi ve iş odaklı yaklaşım.',
+      'Kova': 'Özgün, arkadaş canlısı ve vizyoner.',
+      'Balık': 'Hassas, hayalperest ve sezgisel hisler.'
+    };
+    document.getElementById("liveMoonSignMeaning").textContent = signMeanings[moonSign.name];
+  }
 
   // Gezegen Retrolarını Güncelle
   if (document.getElementById("liveRetroList")) {
