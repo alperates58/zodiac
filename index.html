@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
@@ -32,19 +32,19 @@
   <link rel="manifest" href="manifest.webmanifest">
   </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Zodyak Atlası ana sayfa"><span>✦</span> ZODYAK ATLASI</a>
-    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
-    <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
-      <a href="index.html">Ana Sayfa</a>
+    <header class="site-header">
+    <div class="logo"><a href="index.html">✦ ZODYAK ATLASI</a></div>
+    <button class="menu-toggle" id="menuButton" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav">
+      <a href="burclar.html">Burçlar</a>
       <a href="hesaplayicilar.html">Hesaplayıcılar</a>
-      <a href="yerlesimler.html">Gezegen & Evler</a>
       <a href="rehberler.html">Rehberler</a>
-      <a href="guncel-gokyuzu.html">Gökyüzü Paneli</a>
-      <a href="search.html" style="color: var(--gold-bright);">🔍 Keşfet</a>
+      <a href="yerlesimler.html">Yerleşimler</a>
+      <a href="guncel-gokyuzu.html">Güncel Gökyüzü</a>
+      <a href="search.html" style="color: var(--gold-bright);">⌕ Arama</a>
     </nav>
-
   </header>
+
 
   <main>
     <section class="hero" id="top">
@@ -72,6 +72,118 @@
       </div>
       <div class="hero-index"><span>01</span><div></div><span>05</span></div>
     </section>
+
+    <!-- Zodyak Atlası Kütüphanesi (AŞAMA 2) -->
+    <section class="section" id="kutuphane" style="background: radial-gradient(circle at top center, rgba(212, 175, 55, 0.05) 0%, transparent 80%); padding-top: 6rem; border-bottom: 1px solid var(--line);">
+      <div class="section-head compact" style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+        <p class="eyebrow" style="justify-content: center;">Keşif Portalı</p>
+        <h2 style="font-size: 2.5rem; text-transform: uppercase;">Zodyak Atlası Kütüphanesi</h2>
+        <p style="color: var(--muted); margin-top: 1rem; font-size: 1.1rem;">368 sayfalık devasa astroloji arşivinde aradığınız her bilgiye ulaşın. Öğrenmek istediğiniz konuyu seçin ve yıldızların dilini çözmeye başlayın.</p>
+      </div>
+
+      <div class="portal-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+        
+        <a href="burclar.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease; position: relative; overflow: hidden;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">✧</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Burçlar</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Aşk, kariyer, para, sağlık ve aile rehberleriyle burçların gizli dünyasını keşfedin.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">12 Burç • 60 Konu Sayfası</div>
+        </a>
+
+        <a href="hesaplayicilar.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">⚲</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Hesaplayıcılar</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Doğum haritası, Ay burcu, yükselen, Çin burcu, uyum ve element/nitelik oranları.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">6+ İleri Hesaplayıcı</div>
+        </a>
+
+        <a href="rehberler.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">✎</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Rehberler</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Gezegenler, evler, elementler ve astroloji temellerine dair kapsamlı okuma odası.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">Geniş Rehber Kütüphanesi</div>
+        </a>
+
+        <a href="yerlesimler.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">☍</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Yerleşimler Ansiklopedisi</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Gezegenlerin burçlardaki ve evlerdeki anlamlarını detaylı yorumlarıyla öğrenin.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">240 Yerleşim Yorumu</div>
+        </a>
+
+        <a href="acilar/index.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">◬</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Açı Rehberi</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Kavuşum, karşıt, kare, üçgen ve diğer majör/minör açılarla gezegenlerin diyalogları.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">6 Açı Detayı</div>
+        </a>
+
+        <a href="astroloji-takvimi.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">◷</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Astrolojik Takvim</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Ay takvimi, retro dönemleri, burç geçişleri ve göksel olaylar kataloğu.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">5 Kapsamlı Takvim</div>
+        </a>
+
+        <a href="guncel-gokyuzu.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">◎</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Güncel Gökyüzü</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Bugünün anlık gezegen konumları, ay fazı ve transit durumları ekranı.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">Canlı Veri</div>
+        </a>
+
+        <a href="search.html" class="portal-card" style="display: block; background: var(--night-light); border: 1px solid var(--gold); padding: 2rem; border-radius: 12px; text-decoration: none; transition: all 0.3s ease; box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.1);">
+          <span style="color: var(--gold-bright); font-size: 1.5rem; display: block; margin-bottom: 1rem;">⌕</span>
+          <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold-bright); margin-bottom: 0.5rem; text-transform: uppercase;">Site İçi Arama</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">Tüm içeriklerde burç, gezegen, ev veya spesifik bir yerleşim arayın.</p>
+          <div style="font-size: 0.8rem; font-weight: 600; color: var(--gold-dim); letter-spacing: 0.05em; text-transform: uppercase;">368 Sayfada Ara</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Popüler Başlangıçlar (AŞAMA 3) -->
+    <section class="section" id="populer" style="padding: 4rem 1.5rem;">
+      <div class="section-head compact" style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; text-transform: uppercase;">Popüler Başlangıçlar</h2>
+      </div>
+      <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <a href="dogum-haritasi.html" class="pill-link">Doğum Haritası Hesapla</a>
+        <a href="ay-burcu-hesaplayici.html" class="pill-link">Ay Burcunu Bul</a>
+        <a href="yukselen-burc-hesaplayici.html" class="pill-link">Yükselen Burcunu Bul</a>
+        <a href="guncel-gokyuzu.html" class="pill-link">Bugünün Gökyüzü</a>
+        <a href="uyum.html" class="pill-link">Burç Uyumunu İncele</a>
+        <a href="gezegenler/venus.html" class="pill-link">Venüs Burcunu Anla</a>
+        <a href="gezegenler/mars.html" class="pill-link">Mars Burcunu Anla</a>
+        <a href="yerlesimler/gezegen-ev/saturn-ev.html" class="pill-link">Satürn Ev Yerleşimini Oku</a>
+        <a href="ay-fazlari.html" class="pill-link">Ay Fazlarını Takip Et</a>
+        <a href="retro-takvimi.html" class="pill-link">Retro Takvimine Bak</a>
+      </div>
+    </section>
+
+    <style>
+      .portal-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--gold) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+      .pill-link {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+      .pill-link:hover {
+        background: var(--gold);
+        color: #000;
+        border-color: var(--gold);
+      }
+    </style>
 
     <section class="finder" id="burcunu-bul">
       <div><p class="eyebrow dark">Hızlı keşif</p><h2>Güneş burcun hangisi?</h2><p>Doğum tarihini seç; zodyaktaki temel arketipini anında bul.</p></div>
@@ -240,14 +352,13 @@
     </div></section>
   </main>
 
-  <footer>
+    <footer class="site-footer">
     <div class="footer-brand"><span>✦</span><h2>ZODYAK<br>ATLASI</h2><p>Gökyüzünün sembolik dilini merak edenler için çağdaş Türkçe rehber.</p></div>
-    <div><h3>HESAPLAYICILAR</h3><a href="dogum-haritasi.html">Doğum Haritası</a><a href="uyum.html">Burç Uyumu</a><a href="yukselen-burc-hesaplayici.html">Yükselen Burç</a><a href="ay-burcu-hesaplayici.html">Ay Burcu</a><a href="element-nitelik-hesaplayici.html">Element & Nitelik</a></div>
-    <div><h3>REHBERLER</h3><a href="rehberler.html">Astroloji Rehberleri</a><a href="yerlesimler.html">Astrolojik Yerleşimler</a><a href="elementler.html">Dört Element</a><a href="nitelikler.html">Burç Nitelikleri</a><a href="yukselen-burclar.html">Yükselen Burçlar</a><a href="ay-burclari.html">Ay Burçları</a></div>
-    <div><h3>POPÜLER KONULAR</h3><a href="burclar-ve-ask.html">Aşk & İlişkiler</a><a href="burclar-ve-kariyer.html">İş & Kariyer</a><a href="burclar-ve-para.html">Para & Finans</a><a href="burclar-ve-saglik.html">Sağlık & Beden</a><a href="burclar-ve-aile.html">Aile & Yuva</a></div>
-    <div><h3>ZAMANLAMA</h3><a href="astroloji-takvimi.html">Astroloji Takvimi</a><a href="ay-takvimi.html">Ay Takvimi</a><a href="retro-takvimi.html">Retro Takvimi</a><a href="burc-tarihleri.html">Burç Tarihleri</a><a href="astrolojik-olaylar.html">Astrolojik Olaylar</a></div>
-    <div><h3>KAYNAKLAR</h3><a href="https://www.britannica.com/topic/zodiac" target="_blank" rel="noreferrer">Encyclopaedia Britannica</a><a href="https://nightsky.jpl.nasa.gov/media/documents/resources/0SolSysManual.pdf" target="_blank" rel="noreferrer">NASA / JPL</a><a href="https://www.metmuseum.org/essays/astronomy-and-astrology-in-the-medieval-islamic-world" target="_blank" rel="noreferrer">The Met Museum</a></div>
-    <div class="footer-note"><p>Bu site kültürel ve eğitsel amaçlıdır. Astroloji bilimsel bir tanı, tedavi, finansal karar veya kesin gelecek öngörüsü aracı değildir.</p><small>© <span id="year"></span> Zodyak Atlası</small></div>
+    <div><h3>ANA BÖLÜMLER</h3><a href="burclar.html">Burçlar Kütüphanesi</a><a href="hesaplayicilar.html">Astroloji Hesaplayıcıları</a><a href="rehberler.html">Temel Rehberler</a><a href="yerlesimler.html">Yerleşimler Ansiklopedisi</a></div>
+    <div><h3>POPÜLER</h3><a href="dogum-haritasi.html">Doğum Haritası Hesapla</a><a href="guncel-gokyuzu.html">Güncel Gökyüzü Paneli</a><a href="uyum.html">Burç Uyumu Testi</a><a href="ay-burcu-hesaplayici.html">Ay Burcunu Bul</a></div>
+    <div><h3>ZAMANLAMA</h3><a href="astroloji-takvimi.html">Astroloji Takvimi</a><a href="ay-takvimi.html">Ay Takvimi</a><a href="retro-takvimi.html">Retro Takvimi</a><a href="burc-tarihleri.html">Burç Tarihleri</a></div>
+    <div class="footer-note"><p>Bu site kültürel ve eğitsel amaçlıdır. Astroloji bilimsel bir tanı, tedavi veya finansal karar aracı değildir.</p><small>© 2026 Zodyak Atlası</small></div>
   </footer>
+
 </body>
 </html>
