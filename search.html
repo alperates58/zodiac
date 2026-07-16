@@ -1,8 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://zodyakatlasi.com/search.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://zodyakatlasi.com/index.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Arama",
+        "item": "https://zodyakatlasi.com/search.html"
+      }
+    ]
+  }
+  </script>
   <meta name="description" content="Zodyak Atlası site içi arama motoru. Astroloji rehberleri, burçlar ve gezegenleri arayın.">
   <title>Arama Sonuçları — Zodyak Atlası</title>
   <link rel="stylesheet" href="style.css?v=responsive-20260713b">
@@ -31,6 +52,7 @@
       text-decoration: none;
       color: var(--ink);
       display: block;
+      position: relative;
     }
     .result-item:hover {
       transform: translateY(-2px);
@@ -48,6 +70,21 @@
       font-size: 0.95rem;
       line-height: 1.6;
       margin: 0;
+      padding-right: 120px; /* Space for the badge */
+    }
+    .result-category-badge {
+      position: absolute;
+      right: 2rem;
+      top: 2rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold-bright);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .result-url {
       font-size: 0.8rem;
@@ -104,9 +141,23 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
+    
+    @media (max-width: 600px) {
+      .result-item {
+        padding: 1.5rem;
+      }
+      .result-item p {
+        padding-right: 0;
+      }
+      .result-category-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 0.5rem;
+      }
+    }
   </style>
   <link rel="manifest" href="manifest.webmanifest">
-</head>
+    </head>
 <body>
   <header class="site-header">
     <a class="brand" href="index.html"><span>✦</span> ZODYAK ATLASI</a>
@@ -116,7 +167,6 @@
       <a href="rehberler.html">Rehberler</a>
       <a href="guncel-gokyuzu.html">Güncel Gökyüzü</a>
       <a href="search.html">Arama 🔍</a>
-
     </nav>
   </header>
 
@@ -131,6 +181,22 @@
         <span class="search-bar-icon">🔍</span>
         <input type="text" id="liveSearchInput" class="search-bar" placeholder="Zodyak'ta arayın...">
       </div>
+      
+      <!-- Kategori Filtreleri -->
+      <div class="category-filters" id="categoryFilters" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1.5rem auto 1rem; max-width: 800px;">
+        <button class="filter-btn active" data-category="all" style="background: rgba(255,255,255,0.03); border: 1px solid var(--gold); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--gold-bright); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Tümü</button>
+        <button class="filter-btn" data-category="Burçlar" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Burçlar</button>
+        <button class="filter-btn" data-category="Gezegenler" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Gezegenler</button>
+        <button class="filter-btn" data-category="Evler" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Evler</button>
+        <button class="filter-btn" data-category="Açılar" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Açılar</button>
+        <button class="filter-btn" data-category="Yerleşimler" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Yerleşimler</button>
+        <button class="filter-btn" data-category="Hesaplayıcılar" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Hesaplayıcılar</button>
+        <button class="filter-btn" data-category="Rehberler" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Rehberler</button>
+        <button class="filter-btn" data-category="Takvim" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 0.5rem 1.2rem; border-radius: 20px; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-family: 'Outfit', sans-serif; transition: all 0.3s; outline: none;">Takvim</button>
+      </div>
+      
+      <!-- Sonuç Sayısı Bildirimi -->
+      <div id="resultsCountNotice" style="font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; font-family: 'Outfit', sans-serif;"></div>
     </div>
 
     <!-- Sonuç Listesi -->
@@ -156,13 +222,15 @@
 
     const searchResults = document.getElementById("searchResults");
     const liveSearchInput = document.getElementById("liveSearchInput");
+    const resultsCountNotice = document.getElementById("resultsCountNotice");
+    let currentCategory = 'all';
 
     // URL'deki query parametresini oku (?q=...)
     const urlParams = new URLSearchParams(window.location.search);
     let currentQuery = urlParams.get('q') || '';
     liveSearchInput.value = currentQuery;
 
-    // Arama Dizinini Başlat (Veri yerel yüklendiği için direkt çalışır)
+    // Arama Dizinini Başlat
     if (typeof searchIndex !== 'undefined') {
       performSearch();
     } else {
@@ -173,17 +241,86 @@
     liveSearchInput.addEventListener('input', (e) => {
       currentQuery = e.target.value;
       performSearch();
-      // URL'yi güncelle (sayfa yenilenmeden)
       const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(currentQuery);
       window.history.pushState({path:newUrl}, '', newUrl);
     });
 
-    function turkishToLower(str) {
-      return str.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
+    // Kategori Filtreleme Dinleyicileri
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.style.borderColor = 'var(--glass-border)';
+          b.style.color = 'var(--muted)';
+          b.classList.remove('active');
+        });
+        btn.style.borderColor = 'var(--gold)';
+        btn.style.color = 'var(--gold-bright)';
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        performSearch();
+      });
+    });
+
+    // Kategori Sınıflandırma Mantığı
+    function getItemCategory(item) {
+      const url = item.url || '';
+      const category = item.category || '';
+      
+      if (url.includes('yerlesimler/') || url === 'yerlesimler.html' || url === 'gezegen-burc-yerlesimleri.html' || url === 'gezegen-ev-yerlesimleri.html') {
+        return 'Yerleşimler';
+      }
+      if (url.includes('burclar/')) {
+        return 'Burçlar';
+      }
+      if (url.includes('gezegenler/')) {
+        return 'Gezegenler';
+      }
+      if (url.includes('evler/')) {
+        return 'Evler';
+      }
+      if (url.includes('acilar/')) {
+        return 'Açılar';
+      }
+      if (url.includes('hesaplayici') || url === 'dogum-haritasi.html' || url === 'uyum.html' || url === 'testler.html' || url === 'hesaplayicilar.html') {
+        return 'Hesaplayıcılar';
+      }
+      if (url.includes('takvim') || url === 'guncel-gokyuzu.html' || url === 'astrolojik-olaylar.html') {
+        return 'Takvim';
+      }
+      if (url === 'ay-burclari.html' || url === 'yukselen-burclar.html' || url.startsWith('burclar-ve-')) {
+        return 'Burçlar';
+      }
+      if (url === 'gezegen-retrolari.html' || url === 'retrolar.html' || url === 'transitler.html' || url === 'ay-fazlari.html') {
+        return 'Gezegenler';
+      }
+      if (url === 'elementler.html' || url === 'nitelikler.html' || url === 'sozluk.html' || url === 'cin-burclari.html' || url === 'rehberler.html' || url === 'dogum-haritasi-rehberi.html') {
+        return 'Rehberler';
+      }
+      if (category === 'yerlesim' || category === 'dizin' || category === 'hub') return 'Yerleşimler';
+      if (category === 'aci') return 'Açılar';
+      return 'Rehberler';
+    }
+
+    // Türkçe karakter duyarsız normalizasyon
+    function normalizeText(str) {
+      if (!str) return '';
+      return str
+        .replace(/İ/g, 'i')
+        .replace(/I/g, 'ı')
+        .toLowerCase()
+        .replace(/ç/g, 'c')
+        .replace(/ğ/g, 'g')
+        .replace(/ı/g, 'i')
+        .replace(/ö/g, 'o')
+        .replace(/ş/g, 's')
+        .replace(/ü/g, 'u')
+        .replace(/â/g, 'a')
+        .replace(/î/g, 'i')
+        .replace(/û/g, 'u');
     }
 
     function performSearch() {
-      const query = turkishToLower(currentQuery.trim());
+      const query = normalizeText(currentQuery.trim());
       
       if (!query) {
         searchResults.innerHTML = `
@@ -192,17 +329,29 @@
             <p>Burçları, gezegenleri, evleri ve astrolojik rehberleri bulmak için yukarıdaki arama barını kullanın.</p>
           </div>
         `;
+        resultsCountNotice.textContent = '';
         return;
       }
 
       // Filtreleme mantığı
-      const results = searchIndex.filter(item => 
-        turkishToLower(item.title).includes(query) ||
-        turkishToLower(item.desc).includes(query) ||
-        turkishToLower(item.keywords).includes(query)
-      );
+      const results = searchIndex.filter(item => {
+        // Arama eşleşmesi
+        const matchQuery = normalizeText(item.title).includes(query) ||
+                           normalizeText(item.desc).includes(query) ||
+                           normalizeText(item.keywords).includes(query);
+                           
+        if (!matchQuery) return false;
+        
+        // Kategori filtresi
+        if (currentCategory === 'all') return true;
+        const itemCat = getItemCategory(item);
+        return itemCat === currentCategory;
+      });
 
-      if (results.length === 0) {
+      const totalMatches = results.length;
+
+      if (totalMatches === 0) {
+        resultsCountNotice.textContent = 'Eşleşen sonuç bulunamadı.';
         searchResults.innerHTML = `
           <div class="no-results">
             <h3>Sonuç Bulunamadı</h3>
@@ -216,16 +365,33 @@
           </div>
         `;
       } else {
-        searchResults.innerHTML = results.map(item => {
+        // Eşleşme sayısı bildirimi
+        const catLabel = currentCategory === 'all' ? '' : ` (${currentCategory} kategorisinde)`;
+        resultsCountNotice.textContent = `Toplam ${totalMatches} sonuç bulundu${catLabel}.`;
+
+        // Performans için ilk 40 sonucu render et
+        const visibleResults = results.slice(0, 40);
+        
+        searchResults.innerHTML = visibleResults.map(item => {
+          const cat = getItemCategory(item);
           const pathDisplay = item.url.replace('.html', '').replace('burclar/', 'Burçlar › ').replace('gezegenler/', 'Gezegenler › ').replace('evler/', 'Evler › ');
           return `
             <a href="${item.url}" class="result-item">
               <h3>${item.title}</h3>
               <p>${item.desc}</p>
+              <span class="result-category-badge">${cat}</span>
               <span class="result-url">Zodyak Atlası › ${pathDisplay}</span>
             </a>
           `;
         }).join('');
+        
+        if (totalMatches > 40) {
+          searchResults.innerHTML += `
+            <div style="text-align: center; padding: 2rem; color: var(--muted); font-size: 0.9rem; border-top: 1px dashed rgba(255,255,255,0.05); margin-top: 2rem;">
+              Daha fazla sonuç için lütfen aramanızı daraltın. İlk 40 sonuç gösterilmektedir.
+            </div>
+          `;
+        }
       }
     }
   </script>
