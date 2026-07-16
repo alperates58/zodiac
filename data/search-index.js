@@ -376,4 +376,15 @@ const searchIndex = [
   {"title": "Uranüs Gezegeni", "url": "gezegenler/uranus.html", "desc": "Astrolojide Uranüs'ün anlamı, uyanış, devrim ve bireysellik.", "keywords": "uranüs, gezegen, anlamı"},
   {"title": "Neptün Gezegeni", "url": "gezegenler/neptune.html", "desc": "Astrolojide Neptün'ün anlamı, hayaller, illüzyonlar ve sezgi.", "keywords": "neptün, gezegen, anlamı"},
   {"title": "Plüton Gezegeni", "url": "gezegenler/pluto.html", "desc": "Astrolojide Plüton'un anlamı, dönüşüm, güç ve kriz.", "keywords": "plüton, gezegen, anlamı"}
+,
+  {"title": "Astrolojik Evler KÃ¼tÃ¼phanesi", "url": "evler/index.html", "desc": "Astrolojide 12 evin anlamÄ±, doÄŸum haritasÄ±ndaki yaÅŸam alanlarÄ± ve gezegenlerin evlerdeki etkileri.", "keywords": "evler, 1. ev, 2. ev, 12 ev, astrolojik evler"},
+  {"title": "Astrolojide 3. Ev", "url": "evler/3-ev.html", "desc": "Astrolojide 3. Ev: Ä°letiÅŸim, Zihin, YakÄ±n Ã‡evre.", "keywords": "3. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 4. Ev", "url": "evler/4-ev.html", "desc": "Astrolojide 4. Ev: Yuva, KÃ¶kler ve Ä°Ã§ DÃ¼nya.", "keywords": "4. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 5. Ev", "url": "evler/5-ev.html", "desc": "Astrolojide 5. Ev: YaratÄ±cÄ±lÄ±k, AÅŸk ve Ã‡ocuklar.", "keywords": "5. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 6. Ev", "url": "evler/6-ev.html", "desc": "Astrolojide 6. Ev: GÃ¼nlÃ¼k Rutinler, SaÄŸlÄ±k ve Hizmet.", "keywords": "6. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 7. Ev", "url": "evler/7-ev.html", "desc": "Astrolojide 7. Ev: Ä°kili Ä°liÅŸkiler, Evlilik ve OrtaklÄ±klar.", "keywords": "7. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 8. Ev", "url": "evler/8-ev.html", "desc": "Astrolojide 8. Ev: DÃ¶nÃ¼ÅŸÃ¼m, Kriz, Ã–lÃ¼m ve Ortak Kaynaklar.", "keywords": "8. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 9. Ev", "url": "evler/9-ev.html", "desc": "Astrolojide 9. Ev: Felsefe, YÃ¼ksek Ã–ÄŸrenim ve Uzak Yolculuklar.", "keywords": "9. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 11. Ev", "url": "evler/11-ev.html", "desc": "Astrolojide 11. Ev: ArkadaÅŸlar, Umutlar ve Toplumsal AÄŸlar.", "keywords": "11. ev, evler, anlamÄ±"},
+  {"title": "Astrolojide 12. Ev", "url": "evler/12-ev.html", "desc": "Astrolojide 12. Ev: BilinÃ§altÄ±, Ä°zolasyon ve Ruhsal BÃ¼tÃ¼nlÃ¼k.", "keywords": "12. ev, evler, anlamÄ±"}
 ];
