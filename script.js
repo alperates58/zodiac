@@ -52,8 +52,11 @@ if (elBirthdate) {
   });
 }
 
-document.querySelector('#menuButton').addEventListener('click',()=>{const nav=document.querySelector('#mainNav'),open=nav.classList.toggle('open');document.querySelector('#menuButton').setAttribute('aria-expanded',String(open));document.querySelector('#menuButton').textContent=open?'Kapat':'Menü';});
-document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#mainNav').classList.remove('open');document.querySelector('#menuButton').setAttribute('aria-expanded','false');document.querySelector('#menuButton').textContent='Menü';}));
+const elMenuButton = document.querySelector('#menuButton');
+if (elMenuButton) {
+  elMenuButton.addEventListener('click',()=>{const nav=document.querySelector('#mainNav'),open=nav.classList.toggle('open');elMenuButton.setAttribute('aria-expanded',String(open));elMenuButton.textContent=open?'Kapat':'Menü';});
+  document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#mainNav').classList.remove('open');elMenuButton.setAttribute('aria-expanded','false');elMenuButton.textContent='Menü';}));
+}
 
 const elPlanetList = document.querySelector('#planetList');
 if (elPlanetList) {
