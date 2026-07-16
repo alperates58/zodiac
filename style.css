@@ -1414,6 +1414,22 @@ h1 em, h2 em, h3 em, .brand span, .hero h1, .chart-hero h1, .quiz-card h2 {
   animation: fadeIn 0.3s ease;
 }
 
+/* Disclaimers */
+.disclaimer-block {
+  background: rgba(212, 175, 55, 0.05);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem;
+  margin: 3rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.disclaimer-block strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
 /* Footer */
 footer {
   padding: 6rem 6vw 3rem;
