@@ -491,3 +491,78 @@ function initCalendarWidgets() {
     }
   }
 }
+// ==========================================
+// DİNAMİK UYARI / SORUMLULUK BEYANLARI (QA FIX)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname.toLowerCase();
+
+  // 1. Sağlık Sayfaları (burclar/*.html içindeki Sağlık bölümleri)
+  if (path.includes('/burclar/')) {
+    const allH2 = Array.from(document.querySelectorAll('h2'));
+    const allH3 = Array.from(document.querySelectorAll('h3'));
+    
+    // Sağlık
+    const healthH = allH2.find(h => h.textContent.includes("Sağlık")) || allH3.find(h => h.textContent.includes("Sağlık"));
+    if (healthH) {
+      const section = healthH.closest('.detail-section');
+      if (section && !section.innerHTML.includes("tıbbi bir tavsiye")) {
+        const div = document.createElement('div');
+        div.className = "disclaimer-block";
+        div.innerHTML = "<strong>Önemli Not:</strong> Bu bölümdeki astrolojik sağlık yorumları <strong>tıbbi bir tavsiye veya teşhis niteliği taşımaz.</strong> Sağlık sorunlarınız için daima uzman bir hekime başvurmalısınız.";
+        const target = section.querySelector('.section-content') || section;
+        target.appendChild(div);
+      }
+    }
+
+    // Kariyer / Finans
+    const financeH = allH2.find(h => h.textContent.includes("Kariyer")) || allH3.find(h => h.textContent.includes("Kariyer"));
+    if (financeH) {
+      const section = financeH.closest('.detail-section');
+      if (section && !section.innerHTML.includes("yatırım tavsiyesi")) {
+        const div = document.createElement('div');
+        div.className = "disclaimer-block";
+        div.innerHTML = "<strong>Önemli Not:</strong> Kariyer ve finans alanındaki astrolojik analizler <strong>yatırım tavsiyesi (YTD) değildir.</strong> Finansal kararlarınızda profesyonel danışmanlık almanız önerilir.";
+        const target = section.querySelector('.section-content') || section;
+        target.appendChild(div);
+      }
+    }
+  }
+
+  // 2. İlişki/Uyum (uyum.html)
+  if (path.includes('uyum.html')) {
+    const container = document.querySelector('.comp-card');
+    if (container && !container.innerHTML.includes("kesin bir ilişki hükmü")) {
+      const div = document.createElement('div');
+      div.className = "disclaimer-block";
+      div.innerHTML = "<strong>Önemli Not:</strong> Burç uyumu analizleri eğlence ve kişisel gelişim amaçlıdır. Hiçbir astrolojik gösterge <strong>kesin bir ilişki hükmü bildirmez.</strong>";
+      container.appendChild(div);
+    }
+  }
+
+  // 3. Hesaplayıcılar
+  if (path.includes('dogum-haritasi.html') || path.includes('ay-burcu-hesaplayici.html') || path.includes('yukselen-burc.html') || path.includes('hesaplayicilar.html')) {
+    const container = document.querySelector('.comp-card') || document.querySelector('main') || document.body;
+    if (container && !container.innerHTML.includes("saat ve konum bilgilerinin")) {
+      const div = document.createElement('div');
+      div.className = "disclaimer-block";
+      div.style.maxWidth = "800px";
+      div.style.margin = "3rem auto";
+      div.innerHTML = "<strong>Önemli Not:</strong> Bu hesaplayıcının sonuçları, girdiğiniz <strong>doğum saati ve konum bilgilerinin doğruluğuna</strong> doğrudan bağlıdır. Bilgilerdeki küçük sapmalar yerleşimleri değiştirebilir.";
+      container.appendChild(div);
+    }
+  }
+
+  // 4. Takvim ve Gökyüzü
+  if (path.includes('takvimi.html') || path.includes('guncel-gokyuzu.html')) {
+    const container = document.querySelector('main') || document.body;
+    if (container && !container.innerHTML.includes("yaklaşımsal astronomik hesaplamalar")) {
+      const div = document.createElement('div');
+      div.className = "disclaimer-block";
+      div.style.maxWidth = "800px";
+      div.style.margin = "3rem auto";
+      div.innerHTML = "<strong>Önemli Not:</strong> Tablolardaki göksel olay tarihleri ve saatleri <strong>yaklaşımsal astronomik hesaplamalar</strong> içerir. UTC ve yerel saat farklılıklarından dolayı ufak tolerans payı bırakılmalıdır.";
+      container.appendChild(div);
+    }
+  }
+});

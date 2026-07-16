@@ -1432,11 +1432,11 @@ h1 em, h2 em, h3 em, .brand span, .hero h1, .chart-hero h1, .quiz-card h2 {
 
 /* Footer */
 footer {
-  padding: 6rem 6vw 3rem;
+  padding: 5rem 6vw 2rem;
   background: #020409;
   display: grid;
-  grid-template-columns: 1.4fr 0.7fr 0.9fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  gap: 2.5rem;
   border-top: 1px solid rgba(212, 175, 55, 0.15);
 }
 
@@ -1448,10 +1448,10 @@ footer {
 }
 
 .footer-brand h2 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 1;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
@@ -1463,18 +1463,23 @@ footer {
 }
 
 .footer-note {
+  grid-column: 1 / -1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 .footer-note p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .footer-note small {
   color: #586175;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   letter-spacing: 0.05em;
 }
 
@@ -1650,6 +1655,9 @@ footer a:hover {
   }
   .nav.open {
     display: flex;
+  }
+  .next-reading-module {
+    padding: 1.5rem !important;
   }
   .nav a {
     min-height: 44px;
