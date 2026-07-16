@@ -67,6 +67,19 @@ h1, h2, h3, h4, h5, h6, .brand, .eyebrow, .found strong, .big-three h3, .planet-
   letter-spacing: 0.05em;
 }
 
+h1, h2, h3, h4 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Accessibility Focus States */
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 p {
   font-family: 'Outfit', sans-serif;
 }

@@ -222,13 +222,13 @@
 
   <script src="data/search-index.js"></script>
   <script>
-    // Mobil menü işleyicisi
+    // Mobil menÃ¼ iÅŸleyicisi
     document.querySelector('#menuButton').addEventListener('click', () => {
       const nav = document.querySelector('#mainNav');
       const open = nav.classList.toggle('open');
       const btn = document.querySelector('#menuButton');
       btn.setAttribute('aria-expanded', String(open));
-      btn.textContent = open ? 'Kapat' : 'Menü';
+      btn.textContent = open ? 'Kapat' : 'MenÃ¼';
     });
 
     const searchResults = document.getElementById("searchResults");
@@ -241,19 +241,23 @@
     let currentQuery = urlParams.get('q') || '';
     liveSearchInput.value = currentQuery;
 
-    // Arama Dizinini Başlat
+    // Arama Dizinini BaÅŸlat
     if (typeof searchIndex !== 'undefined') {
       performSearch();
     } else {
-      searchResults.innerHTML = '<div class="no-results"><h3>Hata Oluştu</h3><p>Arama dizini yüklenemedi.</p></div>';
+      searchResults.innerHTML = '<div class="no-results"><h3>Hata OluÅŸtu</h3><p>Arama dizini yÃ¼klenemedi.</p></div>';
     }
 
-    // Canlı Arama Girdisi Dinleyicisi
+    // CanlÄ± Arama Girdisi Dinleyicisi (Debounced)
+    let debounceTimer;
     liveSearchInput.addEventListener('input', (e) => {
-      currentQuery = e.target.value;
-      performSearch();
-      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(currentQuery);
-      window.history.pushState({path:newUrl}, '', newUrl);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        currentQuery = e.target.value;
+        performSearch();
+        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(currentQuery);
+        window.history.replaceState({path:newUrl}, '', newUrl);
+      }, 300);
     });
 
     // Kategori Filtreleme Dinleyicileri
@@ -271,8 +275,6 @@
         performSearch();
       });
     });
-
-    // Kategori Sınıflandırma Mantığı
     function getItemCategory(item) {
       const url = item.url || '';
       const category = item.category || '';
