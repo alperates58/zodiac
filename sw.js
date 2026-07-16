@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'zodiac-atlas-v1.7.0';
+const CACHE_NAME = 'zodiac-atlas-v1.8.0';
 const OFFLINE_URL = '/offline.html';
 
 const ASSETS = [

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zodyakatlasi.com/index.html</loc>
@@ -38,6 +38,38 @@
   </url>
   <url>
     <loc>https://zodyakatlasi.com/search.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/ay.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/gunes.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/mars.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/merkur.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/venus.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/evler/1-ev.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/evler/2-ev.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/evler/10-ev.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
