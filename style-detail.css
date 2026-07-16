@@ -602,3 +602,57 @@ h1, h2, h3, h4, h5, h6, .back-link, .eyebrow, .badge, .myth-card h3, .famous-car
     padding: 1.25rem;
   }
 }
+
+/* ==========================================
+   ZODIAC HUB SECTIONS
+   ========================================== */
+.zodiac-hub-section {
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--line);
+  background: rgba(3, 6, 16, 0.4);
+}
+.zodiac-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.zodiac-mini-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.zodiac-mini-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--gold-glow);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+  transform: translateY(-2px);
+}
+.zodiac-mini-card span.hub-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.zodiac-mini-card span.hub-title {
+  font-weight: 500;
+  font-size: 1.05rem;
+  font-family: 'Cinzel', serif;
+}
+.zodiac-cta-panel {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(135deg, rgba(3, 6, 16, 0.9) 0%, rgba(10, 15, 30, 0.95) 100%);
+  border: 1px solid var(--gold-glow);
+  border-radius: 12px;
+  margin: 3rem 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
