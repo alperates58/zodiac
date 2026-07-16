@@ -33,19 +33,52 @@ function findSign(value){
   return signs.find(s => s.start[0] <= s.end[0] ? (m>s.start[0]||m===s.start[0]&&d>=s.start[1])&&(m<s.end[0]||m===s.end[0]&&d<=s.end[1]) : (m>s.start[0]||m===s.start[0]&&d>=s.start[1])||(m<s.end[0]||m===s.end[0]&&d<=s.end[1]));
 }
 
-document.querySelector('#filters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;activeElement=b.dataset.element;renderFilters();renderSigns();});
-document.querySelector('#birthdate').addEventListener('change',e=>{
-  const s=findSign(e.target.value);
-  document.querySelector('#foundSign').innerHTML=s?`<div class="found"><span>${s.glyph}</span><div><small>GÜNEŞ BURCUN</small><strong>${s.name}</strong><p>${s.motto} · ${s.element} · ${s.ruler}</p><a href="burclar/${s.slug}.html" class="text-link" style="color: var(--gold-bright); margin-top: 10px; display: inline-block;">Detaylı Analizi Oku →</a></div></div>`:'<p class="date-hint">Takvimden bir tarih seç.</p>';
-});
+const elFilters = document.querySelector('#filters');
+if (elFilters) {
+  elFilters.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    activeElement = b.dataset.element;
+    renderFilters();
+    renderSigns();
+  });
+}
+
+const elBirthdate = document.querySelector('#birthdate');
+if (elBirthdate) {
+  elBirthdate.addEventListener('change', e => {
+    const s = findSign(e.target.value);
+    document.querySelector('#foundSign').innerHTML = s ? `<div class="found"><span>${s.glyph}</span><div><small>GÜNEŞ BURCUN</small><strong>${s.name}</strong><p>${s.motto} · ${s.element} · ${s.ruler}</p><a href="burclar/${s.slug}.html" class="text-link" style="color: var(--gold-bright); margin-top: 10px; display: inline-block;">Detaylı Analizi Oku →</a></div></div>` : '<p class="date-hint">Takvimden bir tarih seç.</p>';
+  });
+}
+
 document.querySelector('#menuButton').addEventListener('click',()=>{const nav=document.querySelector('#mainNav'),open=nav.classList.toggle('open');document.querySelector('#menuButton').setAttribute('aria-expanded',String(open));document.querySelector('#menuButton').textContent=open?'Kapat':'Menü';});
 document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#mainNav').classList.remove('open');document.querySelector('#menuButton').setAttribute('aria-expanded','false');document.querySelector('#menuButton').textContent='Menü';}));
 
-document.querySelector('#planetList').innerHTML=planets.map(p=>`<article><span>${p[0]}</span><div><h3>${p[1]}</h3><small>${p[2]}</small></div><p>${p[3]}</p></article>`).join('');
-document.querySelector('#housesGrid').innerHTML=houses.map((h,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><h3>${h}</h3></article>`).join('');
-document.querySelector('#aspectRow').innerHTML=aspects.map(a=>`<article><span>${a[0]}</span><h3>${a[1]}</h3><b>${a[2]}</b><p>${a[3]}</p></article>`).join('');
-document.querySelector('#year').textContent=new Date().getFullYear();
-renderFilters();renderSigns();
+const elPlanetList = document.querySelector('#planetList');
+if (elPlanetList) {
+  elPlanetList.innerHTML=planets.map(p=>`<article><span>${p[0]}</span><div><h3>${p[1]}</h3><small>${p[2]}</small></div><p>${p[3]}</p></article>`).join('');
+}
+
+const elHousesGrid = document.querySelector('#housesGrid');
+if (elHousesGrid) {
+  elHousesGrid.innerHTML=houses.map((h,i)=>`<article><span>${String(i+1).padStart(2,'0')}</span><h3>${h}</h3></article>`).join('');
+}
+
+const elAspectRow = document.querySelector('#aspectRow');
+if (elAspectRow) {
+  elAspectRow.innerHTML=aspects.map(a=>`<article><span>${a[0]}</span><h3>${a[1]}</h3><b>${a[2]}</b><p>${a[3]}</p></article>`).join('');
+}
+
+const elYear = document.querySelector('#year');
+if (elYear) {
+  elYear.textContent=new Date().getFullYear();
+}
+
+if (document.querySelector('#filters') && document.querySelector('#signGrid')) {
+  renderFilters();
+  renderSigns();
+}
 
 // Canlı Gökyüzü Transit Hesaplamaları
 if (document.getElementById("liveMoonPhaseName")) {
@@ -240,10 +273,39 @@ function toggleStep(index) {
 
 // --- Calendar Widgets Entegrasyonu ---
 window.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('widgetGunes') || document.getElementById('widgetMoonPhase') || document.getElementById('widgetRetroList')) {
-    initCalendarWidgets();
+  const hasWidgets = document.getElementById('widgetGunes') || document.getElementById('widgetMoonPhase') || document.getElementById('widgetRetroList');
+  if (hasWidgets) {
+    const fallbackTimer = setTimeout(() => {
+      showWidgetFallback();
+    }, 2000);
+
+    try {
+      initCalendarWidgets();
+      clearTimeout(fallbackTimer);
+    } catch (err) {
+      console.warn("Widget initialization error:", err);
+      clearTimeout(fallbackTimer);
+      showWidgetFallback();
+    }
   }
 });
+
+function showWidgetFallback() {
+  const fallbackHTML = '<div style="grid-column: 1 / -1; padding: 2rem; text-align: center; color: var(--muted); background: rgba(255,255,255,0.05); border-radius: 8px;">Canlı gökyüzü bilgisi şu anda hesaplanamadı. Aşağıdaki rehberlerden Ay fazları, retrolar ve transitleri okuyabilirsiniz.</div>';
+  
+  if (document.getElementById('widgetGunes')) {
+    const grid1 = document.getElementById('widgetGunes').closest('.widget-grid');
+    if (grid1) grid1.innerHTML = fallbackHTML;
+  }
+  if (document.getElementById('widgetMoonPhase')) {
+    const grid2 = document.getElementById('widgetMoonPhase').closest('.widget-grid');
+    if (grid2) grid2.innerHTML = fallbackHTML;
+  }
+  if (document.getElementById('widgetRetroList')) {
+    const grid3 = document.getElementById('widgetRetroList').closest('.widget-grid');
+    if (grid3) grid3.innerHTML = fallbackHTML;
+  }
+}
 
 function initCalendarWidgets() {
   const now = new Date();
