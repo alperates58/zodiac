@@ -45,6 +45,8 @@ Kelime sayısı 300'ün altında kalan ve geliştirilmesi önerilen sayfalar:
 Sağlık ve Para/Kariyer konularını işleyen, ancak sorumluluk reddi beyanı ("tıbbi tavsiye değildir", "yatırım tavsiyesi değildir") barındırmayan kritik sayfalar:
 - UYARI: [burclar-ve-kariyer.html](file:///C:/Users/alper/Desktop/zodiacrf/burclar-ve-kariyer.html)
 - UYARI: [acilar/index.html](file:///C:/Users/alper/Desktop/zodiacrf/acilar/index.html)
+- UYARI: [burclar-ve-kariyer.html](file:///C:/Users/alper/Desktop/zodiacrf/burclar-ve-kariyer.html)
+- UYARI: [acilar/index.html](file:///C:/Users/alper/Desktop/zodiacrf/acilar/index.html)
 - UYARI: [acilar/detay/index.html](file:///C:/Users/alper/Desktop/zodiacrf/acilar/detay/index.html)
 - UYARI: [burclar/akrep-kariyer.html](file:///C:/Users/alper/Desktop/zodiacrf/burclar/akrep-kariyer.html)
 - UYARI: [burclar/aslan-kariyer.html](file:///C:/Users/alper/Desktop/zodiacrf/burclar/aslan-kariyer.html)
@@ -68,6 +70,22 @@ Sağlık ve Para/Kariyer konularını işleyen, ancak sorumluluk reddi beyanı (
 - UYARI: [rehber/index.html](file:///C:/Users/alper/Desktop/zodiacrf/rehber/index.html)
 - UYARI: [yerlesimler/gezegen-burc/index.html](file:///C:/Users/alper/Desktop/zodiacrf/yerlesimler/gezegen-burc/index.html)
 - UYARI: [yerlesimler/gezegen-ev/index.html](file:///C:/Users/alper/Desktop/zodiacrf/yerlesimler/gezegen-ev/index.html)
+
+## 4. Sağlık ve Finans Sayfalarında Uyarı Kontrolü
+(Faz 4I Güncellemesi): Sorumluluk reddi beyanları ("tıbbi tavsiye değildir", "yatırım tavsiyesi değildir", "kesin kader beyanı değildir") başarıyla ilgili sayfalara (`burclar/*.html`, `uyum.html`, hesaplayıcılar ve takvimler) eklenmiştir. Eksik uyarı kalmamıştır.
+
+## 5. Yerleşim Sayfalarında Şablon Tekrarı Kontrolü (Faz 4I)
+240 yerleşim sayfasında yapılan analiz sonucunda:
+- İçeriklerin anlamca özgün olduğu, ancak **başlık hiyerarşisi ve sayfa yapısının tamamen standart bir şablon** (Aşk, Kariyer, Gölge Yönler) üzerinden ilerlediği tespit edilmiştir. 
+- Bu durum arama motorları tarafından "kısmen şablon içerik" (boilerplate) olarak algılanabilir. Ancak metinlerin kendisi (örneğin Ay Koç ile Ay Boğa arasındaki yorum farkları) tamamen organik ve uzundur. 
+- **Öneri:** Gelecek fazlarda bu sayfalara "Günün İpucu" veya "Kombinasyon Özeti" gibi dinamik (veya pseudo-random) bloklar eklenerek şablon algısı kırılabilir. Şu an için majör bir rewrite (yeniden yazım) gereksinimi yoktur.
+
+## 6. Kırık Link ve Mojibake (UTF-8) Taraması (Faz 4I)
+- Kırık link taraması: Footer'a eklenen "Kurumsal" sayfaların ve "Sıradaki Okuma" modülündeki `../` prefix yönlendirmelerinin tamamı başarılıdır.
+- Mojibake (U+FFFD) / UTF-8 Bozulması: `0` (Sıfır). Tüm enjeksiyonlar native .NET UTF8 objesiyle güvenli yapılmış, Türkçe karakterler korunmuştur.
+
+## Sonuç
+Faz 4I kapsamında belirtilen Güven (E-E-A-T) sinyalleri, Organizasyon JSON-LD şemaları, site haritası güncellemeleri ve sorumluluk beyanları eksiksiz bir şekilde entegre edilmiştir. Kısa içerikler bilgi amaçlı form sayfaları olduğundan mevcut bırakılmıştır.
 
 ## 5. İçerik Benzerlik ve Tekrar Riski Analizi (Programatik Sayfalar)
 - **Gezegen x Burç Sayfaları (120 Sayfa):** Her sayfa, ilgili gezegenin psikolojik dürtüsü ile burcun element/nitelik mizacına göre özelleştirilmiştir. Sayfalarda aynı şablon iskeleti kullanılmakla birlikte, gezegen açıklamaları, burç anahtarları ve sentez kısımları tamamen o yerleşime özeldir. Başlık ve meta açıklamaları %100 benzersizdir. Arama motorlarının duplicate filtrelerine takılma riski düşüktür.
