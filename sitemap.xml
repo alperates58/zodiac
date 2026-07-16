@@ -1424,4 +1424,34 @@
     <loc>https://zodyakatlasi.com/acilar/detay/ucgen.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/index.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/jupiter.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/saturn.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/uranus.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/neptune.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zodyakatlasi.com/gezegenler/pluto.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

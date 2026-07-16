@@ -369,5 +369,11 @@ const searchIndex = [
   {"title": "Karşıt Açı (180°) Detaylı Yorumu", "url": "acilar/detay/karsi-aci.html", "desc": "Doğum haritası, transit ve sinastride Karşıt Açı (180°) ne anlama gelir? Açı derecesi, orb payı ve örnekler.", "keywords": "karsi-aci, Karşıt Açı (180°) ne demek, astroloji açıları", "category": "aci"},
   {"title": "Kare Açı (90°) Detaylı Yorumu", "url": "acilar/detay/kare.html", "desc": "Doğum haritası, transit ve sinastride Kare Açı (90°) ne anlama gelir? Açı derecesi, orb payı ve örnekler.", "keywords": "kare, Kare Açı (90°) ne demek, astroloji açıları", "category": "aci"},
   {"title": "Üçgen Açı (120°) Detaylı Yorumu", "url": "acilar/detay/ucgen.html", "desc": "Doğum haritası, transit ve sinastride Üçgen Açı (120°) ne anlama gelir? Açı derecesi, orb payı ve örnekler.", "keywords": "ucgen, Üçgen Açı (120°) ne demek, astroloji açıları", "category": "aci"}
-]
-;
+,
+  {"title": "Gezegenler Kütüphanesi", "url": "gezegenler/index.html", "desc": "Astrolojide gezegenlerin anlamları, yönettikleri burçlar ve doğum haritasındaki işlevleri.", "keywords": "gezegenler, güneş, ay, merkür, venüs, mars, jüpiter, satürn, uranüs, neptün, plüton"},
+  {"title": "Jüpiter Gezegeni", "url": "gezegenler/jupiter.html", "desc": "Astrolojide Jüpiter'in anlamı, büyüme, felsefe ve şans.", "keywords": "jüpiter, gezegen, anlamı"},
+  {"title": "Satürn Gezegeni", "url": "gezegenler/saturn.html", "desc": "Astrolojide Satürn'ün anlamı, sınırlar, zaman ve disiplin.", "keywords": "satürn, gezegen, anlamı"},
+  {"title": "Uranüs Gezegeni", "url": "gezegenler/uranus.html", "desc": "Astrolojide Uranüs'ün anlamı, uyanış, devrim ve bireysellik.", "keywords": "uranüs, gezegen, anlamı"},
+  {"title": "Neptün Gezegeni", "url": "gezegenler/neptune.html", "desc": "Astrolojide Neptün'ün anlamı, hayaller, illüzyonlar ve sezgi.", "keywords": "neptün, gezegen, anlamı"},
+  {"title": "Plüton Gezegeni", "url": "gezegenler/pluto.html", "desc": "Astrolojide Plüton'un anlamı, dönüşüm, güç ve kriz.", "keywords": "plüton, gezegen, anlamı"}
+];
