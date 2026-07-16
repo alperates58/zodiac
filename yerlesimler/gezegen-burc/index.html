@@ -125,6 +125,50 @@
       <p>Aşağıda zodyaktaki 10 gezegenin 12 burçtaki yerleşim rehberleri listelenmiştir. Detaylı analiz, güçlü/gölge yanlar ve yaşam etkileri için ilgili bağlantıya tıklayın.</p>
     </section>
 
+    <!-- Filtre Kontrolleri -->
+    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; margin-bottom: 3rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center;">
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+        <label for="filterPlanet" style="font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.05em; text-transform: uppercase;">Gezegen Filtresi</label>
+        <select id="filterPlanet" style="background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; padding: 0.6rem 1.2rem; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; cursor: pointer;">
+          <option value="all">Tümü</option>
+          <option value="gunes">Güneş</option>
+          <option value="ay">Ay</option>
+          <option value="merkur">Merkür</option>
+          <option value="venus">Venüs</option>
+          <option value="mars">Mars</option>
+          <option value="jupiter">Jüpiter</option>
+          <option value="saturn">Satürn</option>
+          <option value="uranus">Uranüs</option>
+          <option value="neptun">Neptün</option>
+          <option value="pluto">Plüton</option>
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+        <label for="filterSign" style="font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.05em; text-transform: uppercase;">Burç Filtresi</label>
+        <select id="filterSign" style="background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; padding: 0.6rem 1.2rem; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; cursor: pointer;">
+          <option value="all">Tümü</option>
+          <option value="koc">Koç</option>
+          <option value="boga">Boğa</option>
+          <option value="ikizler">İkizler</option>
+          <option value="yengec">Yengeç</option>
+          <option value="aslan">Aslan</option>
+          <option value="basak">Başak</option>
+          <option value="terazi">Terazi</option>
+          <option value="akrep">Akrep</option>
+          <option value="yay">Yay</option>
+          <option value="oglak">Oğlak</option>
+          <option value="kova">Kova</option>
+          <option value="balik">Balık</option>
+        </select>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.4rem; flex-grow: 1; max-width: 300px;">
+        <label for="filterSearch" style="font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.05em; text-transform: uppercase;">Arama</label>
+        <input type="text" id="filterSearch" placeholder="Filtrele veya ara..." style="background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 4px; padding: 0.6rem 1.2rem; color: var(--ink); font-family: 'Outfit', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s;">
+      </div>
+    </div>
+
     <!-- 1. GÜNEŞ -->
     <section class="planet-group" id="gunes">
       <h2><span>☉</span> Güneş (Sun)</h2>
@@ -319,5 +363,67 @@
   <footer class="detail-footer">
     <p>© 2026 Zodyak Atlası — Gökyüzünün Kadim Bilgeliği</p>
   </footer>
+  <script>
+    const filterPlanet = document.getElementById('filterPlanet');
+    const filterSign = document.getElementById('filterSign');
+    const filterSearch = document.getElementById('filterSearch');
+    
+    // Read URL Parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pParam = urlParams.get('planet');
+    const sParam = urlParams.get('sign');
+    
+    if (pParam) filterPlanet.value = pParam;
+    if (sParam) filterSign.value = sParam;
+    
+    function filterPlacements() {
+      const selectedPlanet = filterPlanet.value;
+      const selectedSign = filterSign.value;
+      const searchQuery = filterSearch.value.toLowerCase().trim();
+      
+      const groups = document.querySelectorAll('.planet-group');
+      
+      groups.forEach(group => {
+        const planetId = group.id;
+        const showPlanet = (selectedPlanet === 'all' || planetId === selectedPlanet);
+        
+        const items = group.querySelectorAll('.sign-link-item');
+        let visibleCount = 0;
+        
+        items.forEach(item => {
+          const href = item.getAttribute('href');
+          const parts = href.replace('.html', '').split('-');
+          // pluton-koc.html parts are [pluton, koc]
+          // gunes-koc.html parts are [gunes, koc]
+          const itemPlanet = parts[0];
+          const itemSign = parts[1];
+          const text = item.textContent.toLowerCase();
+          
+          const matchSign = (selectedSign === 'all' || itemSign === selectedSign);
+          const matchSearch = (!searchQuery || text.includes(searchQuery) || itemPlanet.includes(searchQuery) || itemSign.includes(searchQuery));
+          
+          if (showPlanet && matchSign && matchSearch) {
+            item.style.display = 'flex';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        if (visibleCount > 0) {
+          group.style.display = 'block';
+        } else {
+          group.style.display = 'none';
+        }
+      });
+    }
+    
+    filterPlanet.addEventListener('change', filterPlacements);
+    filterSign.addEventListener('change', filterPlacements);
+    filterSearch.addEventListener('input', filterPlacements);
+    
+    // Initial run
+    filterPlacements();
+  </script>
 </body>
 </html>
