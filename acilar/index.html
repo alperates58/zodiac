@@ -4,233 +4,149 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://zodyakatlasi.com/acilar/index.html">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Ana Sayfa",
-        "item": "https://zodyakatlasi.com/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Açılar",
-        "item": "https://zodyakatlasi.com/acilar/index.html"
-      }
-    ]
-  }
-  </script>
-  <meta name="description" content="Astrolojik açılar, temel ve tali açılar, orblar, açı kalıpları (Stellium, T-Kare, Yod, Büyük Üçgen) rehberi.">
-  <title>Astrolojik Açılar ve Açı Kalıpları Rehberi — Zodyak Atlası</title>
-  <link rel="stylesheet" href="../style-detail.css?v=responsive-20260713b">
+  <title>Astrolojik Açılar (Görünümler) Kütüphanesi — Zodyak Atlası</title>
+  <meta name="description" content="Astrolojide gezegenlerin birbirleriyle yaptıkları açılar (kavuşum, kare, üçgen, karşıt), orblar ve açı kalıplarının yorumlanması.">
+  <link rel="stylesheet" href="../style-detail.css">
+  <link rel="stylesheet" href="../style.css">
   <style>
-    :root {
-      --accent-color: #c88dcc;
-      --accent-glow: rgba(200, 141, 204, 0.35);
+    .hub-hero {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.8) 0%, rgba(3, 6, 16, 0.95) 100%);
+      border-bottom: 1px solid var(--line);
     }
-    .aspect-grid {
+    .hub-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .pattern-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+    .hub-card {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
-    @media(max-width: 768px) {
-      .aspect-grid, .pattern-grid {
-        grid-template-columns: 1fr;
-      }
+    .hub-card:hover {
+      background: rgba(212, 175, 55, 0.05);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .hub-card .glyph {
+      font-size: 2.5rem;
+      color: var(--gold-bright);
+      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+    }
+    .hub-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .hub-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .info-box {
+      max-width: 1000px;
+      margin: 3rem auto;
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 4px solid var(--gold);
+      padding: 2rem;
+      border-radius: 4px;
+      color: var(--text-color);
+      line-height: 1.6;
     }
   </style>
-  
-  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-      <header class="site-header">
+  <header class="site-header">
     <a class="brand" href="../index.html"><span>✦</span> ZODYAK ATLASI</a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
     <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
       <a href="../burclar.html">Burçlar</a>
       <a href="../hesaplayicilar.html">Hesaplayıcılar</a>
-      <a href="../rehberler.html">Rehberler</a>
+      <a href="../rehberler.html" style="color: var(--gold-bright);">Rehberler</a>
       <a href="../yerlesimler.html">Yerleşimler</a>
       <a href="../guncel-gokyuzu.html">Güncel Gökyüzü</a>
-      <a href="../search.html" style="color: var(--gold-bright);">⌕ Arama</a>
+      <a href="../search.html">⌕ Arama</a>
     </nav>
   </header>
 
-
-
   <main>
-    <section class="detail-hero">
-      <div class="detail-starfield"></div>
-      <div class="hero-glyph">⚹</div>
-      <h1>Açılar ve Açı Kalıpları</h1>
-      <p class="hero-motto">“Gezegenlerin Geometrik İletişimi ve Enerji Akışları”</p>
-      <div class="badges">
-        <span class="badge accent-badge">5 Temel Açı</span>
-        <span class="badge">9 Büyük Açı Kalıbı</span>
-        <span class="badge">Tali Açılar</span>
-      </div>
-    </section>
-
-    <div class="detail-main">
-      <section class="detail-section">
-        <div class="section-sidebar">
-          <h2>Açılar Nedir?</h2>
-          <p>Haritadaki gezegenlerin ekliptik boylamları arasındaki geometrik mesafeler (açılar), bu güçlerin birbiriyle nasıl konuşacağını gösterir.</p>
-        </div>
-        <div class="section-content">
-          <h3>Dinamik İlişkiler</h3>
-          <p>Doğum haritasındaki gezegenler iç dünyamızın farklı karakterleridir. Açılar ise bu karakterlerin arasındaki diyaloglardır. Bazı karakterler birbiriyle uyum içinde paslaşırken (Üçgen, Sekstil), bazıları çatışarak bizi büyümeye zorlar (Kare, Karşıt). Bazıları ise güçlerini tamamen birleştirir (Kavuşum).</p>
-          <p>Açıların netleşmesi için kullanılan sapma payına <strong>Orb</strong> denir. Örneğin, 120 derecelik bir üçgen açı için 6-8 derecelik bir orb payı kullanılarak 112° ile 128° arasındaki tüm etkileşimler üçgen kabul edilir.</p>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <div class="section-sidebar">
-          <h2>5 Temel (Major) Açı</h2>
-          <p>Ptolemy (Batlamyus) tarafından tanımlanan en güçlü etkileşim açıları.</p>
-        </div>
-        <div class="section-content">
-          <div class="aspect-grid">
-            <div class="trait-card">
-              <h4 style="color: var(--gold-bright);">☌ Kavuşum (Conjunction) — 0°</h4>
-              <p><b>Orb:</b> 8° - 10°<br><b>Tema:</b> Güç Birliği. İki gezegenin enerjisi tamamen birleşir. Doğum haritasındaki en güçlü ve yoğun açıdır. Tarafsız çalışır (gezegenlerin doğasına göre iyi veya zorlayıcı olabilir).</p>
-              <a href="detay/kavusum.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-            <div class="trait-card">
-              <h4 style="color: #06d6a0;">△ Üçgen (Trine) — 120°</h4>
-              <p><b>Orb:</b> 8°<br><b>Tema:</b> Zahmetsiz Uyum. Genellikle aynı elementteki burçlar arasında gerçekleşir. Doğal yetenekleri, şansı, korumayı ve çaba harcamadan akan yaratıcı enerjileri simgeler.</p>
-              <a href="detay/ucgen.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-            <div class="trait-card">
-              <h4 style="color: #ef476f;">□ Kare (Square) — 90°</h4>
-              <p><b>Orb:</b> 8°<br><b>Tema:</b> Gelişim Baskısı. Aynı nitelikteki burçlar arasında olur. İçsel gerilim, kriz ve engeller yaratır. Ancak bu gerilim, hayatta eyleme geçmemizi ve engelleri aşarak usta olmamızı sağlayan ana motordur.</p>
-              <a href="detay/kare.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-            <div class="trait-card">
-              <h4 style="color: #ffd166;">⚹ Sekstil (Sextile) — 60°</h4>
-              <p><b>Orb:</b> 6°<br><b>Tema:</b> Uyumlu Fırsat. Dost elementler (Ateş-Hava, Toprak-Su) arasında olur. Üçgen açı kadar zahmetsiz değildir; ancak üzerine gidildiğinde ve çaba harcandığında büyük başarılar getiren fırsat kapılarını simgeler.</p>
-              <a href="detay/altmislik.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-            <div class="trait-card">
-              <h4 style="color: #e76f51;">☍ Karşıt (Opposition) — 180°</h4>
-              <p><b>Orb:</b> 8°<br><b>Tema:</b> Aynalama ve Denge. Zıt burçlar arasında olur. İçsel kutuplaşmayı ve bu kutupları ilişkiler vasıtasıyla dışarı yansıtmayı gösterir. 'Ben ve Öteki' dengesinin kurulması gereken alandır.</p>
-              <a href="detay/karsi-aci.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <div class="section-sidebar">
-          <h2>Tali (Minor) Açılar</h2>
-          <p>Modern ve klasik astrolojide kullanılan daha ince, psikolojik derinlik gösteren açılar.</p>
-        </div>
-        <div class="section-content">
-          <div class="aspect-grid">
-            <div class="trait-card">
-              <h4>Quincunx (Birleşmeyen) — 150°</h4>
-              <p><b>Orb:</b> 2°<br><b>Tema:</b> Uyumsuzluk. Birbiriyle hiçbir ortak paydası (element, nitelik, cinsiyet) olmayan burçlar arasındadır. Sürekli ayarlama ve adaptasyon gerektiren, çözümsüz gibi görünen kör noktaları gösterir.</p>
-              <a href="detay/quincunx.html" style="color: var(--gold-bright); font-size: 0.85rem; display: block; margin-top: 0.8rem; text-decoration: none; font-weight: 500;">Detaylı Analiz & Yorumlar →</a>
-            </div>
-            <div class="trait-card">
-              <h4>Semisextile (Yarım Sekstil) — 30°</h4>
-              <p><b>Orb:</b> 2°<br><b>Tema:</b> Yan yana duran burçlar arasındadır. Bir sonraki aşamaya geçişteki hafif uyumsuzluk veya öğrenilmesi gereken küçük adaptasyonlar.</p>
-            </div>
-            <div class="trait-card">
-              <h4>Quintile (Beşlik) — 72°</h4>
-              <p><b>Orb:</b> 2°<br><b>Tema:</b> Deha ve Yaratıcılık. Zihinsel yetenekler, sanatsal deha ve bireysel yaratıcılığın özgün dışa vurumlarını gösteren çok şanslı bir tali açıdır.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Açı Detay Sayfası CTA -->
-      <div style="background: rgba(212,175,55,0.03); border: 1px solid var(--gold); border-radius: 8px; padding: 2rem; margin: 3rem auto; max-width: 900px; text-align: center;">
-        <h3 style="font-family: 'Cinzel', serif; color: var(--gold-bright); font-size: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase;">Detaylı Açı Kütüphanesi İndeksi</h3>
-        <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1.2rem; line-height: 1.6;">
-          Her bir açının (Kavuşum, Karşıt, Üçgen, Kare vb.) gezegenler arası kombinasyonlardaki özel psikolojik yorumlarını okumak için Açı Detayları rehber sayfamızı inceleyin.
-        </p>
-        <a href="detay/index.html" style="background: var(--gold); color: #000; padding: 0.6rem 1.5rem; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-block; transition: all 0.3s; font-family: 'Outfit', sans-serif;" onmouseover="this.style.background='var(--gold-bright)';" onmouseout="this.style.background='var(--gold)';">Tüm Açı Detayları Rehberine Git →</a>
-      </div>
-
-      <section class="detail-section">
-        <div class="section-sidebar">
-          <h2>9 Büyük Açı Kalıbı</h2>
-          <p>Haritadaki birden fazla açının bir araya gelerek oluşturduğu karmaşık geometrik enerji desenleri.</p>
-        </div>
-        <div class="section-content">
-          <div class="pattern-grid">
-            <div class="trait-card">
-              <h4>1. Stellium (Kümelenme)</h4>
-              <p>Aynı burçta veya aynı evde en az 3 (bazen 4) gezegenin kavuşum halinde olmasıdır. Haritada o yaşam alanında aşırı bir enerji yoğunlaşması, odaklanma ve takıntı derecesinde bir uzmanlaşma potansiyeli yaratır.</p>
-            </div>
-            <div class="trait-card">
-              <h4>2. T-Kare (T-Square)</h4>
-              <p>İki gezegenin karşıt açı (180°) yaparken, üçüncü bir gezegenin her ikisine de kare açı (90°) yapmasıyla oluşan dinamik bir dik üçgen kalıbıdır. Odak noktası (apex) olan gezegen büyük bir stres altındadır ve eyleme geçme motivasyonu verir.</p>
-            </div>
-            <div class="trait-card">
-              <h4>3. Büyük Üçgen (Grand Trine)</h4>
-              <p>Aynı elementteki üç gezegenin birbirine üçgen açıyla (120°) bağlanarak haritada devasa bir eşkenar üçgen oluşturmasıdır. Muazzam bir şans, koruma ve yetenek akışıdır; ancak kişi mücadele etmediği için tembelliğe yol açabilir.</p>
-            </div>
-            <div class="trait-card">
-              <h4>4. Büyük Haç (Grand Cross)</h4>
-              <p>Aynı nitelikteki (öncü, sabit veya değişken) dört burçtaki gezegenlerin birbirine iki karşıt ve dört kare açıyla bağlanarak oluşturduğu büyük karedir. Hayatta sürekli mücadele, kriz ve sorumluluk getirir; ancak deha düzeyinde başarı yaratabilir.</p>
-            </div>
-            <div class="trait-card">
-              <h4>5. Yod (Tanrı'nın Parmağı)</h4>
-              <p>İki gezegenin birbirine sekstil (60°) yaparken, her ikisinin de üçüncü bir gezegene quincunx (150°) açı yapmasıyla oluşan ince, uzun üçgendir. Kadersel yönelimler, ani uyanışlar ve yaşamda kadersel yol ayrımlarıyla ilişkilidir.</p>
-            </div>
-            <div class="trait-card">
-              <h4>6. Uçurtma (Kite)</h4>
-              <p>Bir Büyük Üçgen kalıbının köşelerinden birine karşıt duran bir gezegenin, diğer iki köşeye sekstil açılarla bağlanmasıdır. Büyük Üçgen'in pasif şansını, eyleme ve somut başarıya dönüştüren çok güçlü bir kalıptır.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div class="hub-hero">
+      <p class="eyebrow" style="justify-content: center; margin-bottom: 1rem;">Gezegenlerin Diyaloğu</p>
+      <h1>Astrolojik Açılar (Görünümler)</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--muted); line-height: 1.6;">Astrolojide gezegenler arasındaki geometrik uzaklıklar, enerjilerin birbirleriyle nasıl bir iletişim kurduğunu gösterir. Açılar; gerilimleri, uyumları ve potansiyelleri açığa çıkarır.</p>
     </div>
-  
-<!-- NEXT_READING_START -->
-<div class="next-reading-module" style="margin: 4rem auto; max-width: 800px; padding: 2.5rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
-  <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 0.5rem; font-family: 'Cinzel', serif; font-size: 1.3rem;"><span style="font-size: 1.8rem; line-height: 1;">✦</span> Sıradaki Okuma</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-    <a href="../rehberler.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Kılavuz</span>
-      <span style="font-weight: 500;">Astroloji Rehberleri &rarr;</span>
-    </a>
-    <a href="../hesaplayicilar.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Araç</span>
-      <span style="font-weight: 500;">Hesaplayıcılar &rarr;</span>
-    </a>
-    <a href="../guncel-gokyuzu.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Takvim</span>
-      <span style="font-weight: 500;">Güncel Gökyüzü &rarr;</span>
-    </a>
-  </div>
-</div>
-<!-- NEXT_READING_END -->
 
-</main>
+    <div class="info-box">
+      <h3 style="color: var(--gold-bright); margin-bottom: 1rem; font-family: 'Cinzel', serif;">Açıları Nasıl Yorumlamalı?</h3>
+      <p style="margin-bottom: 1rem;">Açılar (Aspects), haritadaki aktörlerin (gezegenlerin) birbirleriyle konuşma biçimidir. "İyi" veya "kötü" açıdan ziyade, enerjinin akış hızına bakılır. <strong>Üçgen</strong> ve <strong>Altmışlık</strong> açılar zahmetsizce akan yetenekleri gösterirken; <strong>Kare</strong> ve <strong>Karşıt</strong> açılar gelişimi zorlayan ancak bizi eyleme geçiren dinamik gerilimlerdir. <strong>Kavuşum</strong> ise iki enerjinin tamamen birbirine karıştığı yoğun odak noktasıdır.</p>
+      <p>Bir açının gücünü <strong>Orb (Tolerans Payı)</strong> belirler. Orb daraldıkça (gezegenler tam dereceye yaklaştıkça) etki şiddetlenir.</p>
+    </div>
 
-      <footer class="site-footer">
-    <div class="footer-brand"><span>✦</span><h2>ZODYAK<br>ATLASI</h2><p>Gökyüzünün sembolik dilini merak edenler için çağdaş Türkçe rehber.</p></div>
-    <div><h3>ANA BÖLÜMLER</h3><a href="../burclar.html">Burçlar Kütüphanesi</a><a href="../hesaplayicilar.html">Astroloji Hesaplayıcıları</a><a href="../rehberler.html">Temel Rehberler</a><a href="../yerlesimler.html">Yerleşimler Ansiklopedisi</a></div>
-    <div><h3>POPÜLER</h3><a href="../dogum-haritasi.html">Doğum Haritası Hesapla</a><a href="../guncel-gokyuzu.html">Güncel Gökyüzü Paneli</a><a href="../uyum.html">Burç Uyumu Testi</a><a href="../ay-burcu-hesaplayici.html">Ay Burcunu Bul</a></div>
-    <div><h3>ZAMANLAMA</h3><a href="../astroloji-takvimi.html">Astroloji Takvimi</a><a href="../ay-takvimi.html">Ay Takvimi</a><a href="../retro-takvimi.html">Retro Takvimi</a><a href="../burc-tarihleri.html">Burç Tarihleri</a></div>
-    <div><h3>KURUMSAL</h3><a href="../hakkimizda.html">Hakkımızda</a><a href="../kaynakca.html">Kaynakça</a><a href="../kullanim-sartlari.html">Kullanım Şartları</a><a href="../gizlilik-politikasi.html">Gizlilik Politikası</a><a href="../iletisim.html">İletişim</a></div>
-    <div class="footer-note"><p>Bu site kültürel ve eğitsel amaçlıdır. Astroloji bilimsel bir tanı, tedavi veya finansal karar aracı değildir.</p><small>© 2026 Zodyak Atlası</small></div>
+    <div class="hub-grid">
+      <a href="detay/kavusum.html" class="hub-card">
+        <span class="glyph">☌</span>
+        <h3>Kavuşum (0°)</h3>
+        <p>İki gezegenin enerjisi iç içe geçer. Kör nokta yaratabilecek kadar yoğun, güçlü ve sübjektif bir odaklanma alanıdır.</p>
+      </a>
+      <a href="detay/karsi-aci.html" class="hub-card">
+        <span class="glyph">☍</span>
+        <h3>Karşıt (180°)</h3>
+        <p>Tahterevalli etkisi. İki zıt temanın denge arayışı, projeksiyon (başkaları üzerinden yaşama) ve farkındalık süreci.</p>
+      </a>
+      <a href="detay/kare.html" class="hub-card">
+        <span class="glyph">□</span>
+        <h3>Kare (90°)</h3>
+        <p>İçsel gerilim, çatışma ve eylem dürtüsü. Bizi konfor alanından çıkaran ve en çok geliştiren sürtünme enerjisi.</p>
+      </a>
+      <a href="detay/ucgen.html" class="hub-card">
+        <span class="glyph">△</span>
+        <h3>Üçgen (120°)</h3>
+        <p>Akıcı enerji, doğal yetenekler ve şans. Çaba gerektirmeden çalışan, ancak bazen tembellik verebilen destekleyici akış.</p>
+      </a>
+      <a href="detay/altmislik.html" class="hub-card">
+        <span class="glyph">⚹</span>
+        <h3>Altmışlık (60°)</h3>
+        <p>Fırsatlar ve iletişim. Kullanıldığında harika sonuçlar veren, ancak üstüne düşülmediğinde kaçabilen potansiyeller.</p>
+      </a>
+      <a href="detay/quincunx.html" class="hub-card">
+        <span class="glyph">⚻</span>
+        <h3>Quincunx (150°)</h3>
+        <p>Birbiriyle iletişim kuramayan, yabancı enerjiler. Sürekli bir adaptasyon, ayar yapma ve ince ayar ihtiyacı.</p>
+      </a>
+    </div>
+
+    <div class="zodiac-cta-panel" style="max-width: 1200px; margin: 2rem auto 5rem auto;">
+      <h3>Haritandaki Açıları Hesapla</h3>
+      <p>Doğum haritandaki gerilimleri ve yetenekleri (üçgen/kare) ücretsiz hesapla, ilişkilerdeki (sinastri) uyumuna göz at.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="../dogum-haritasi.html" class="btn" style="background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; font-weight: bold; border-radius: 4px; text-decoration: none;">Doğum Haritanı Hesapla</a>
+        <a href="../uyum.html" class="btn" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--glass-border); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none;">Uyum (Sinastri) Haritası</a>
+        <a href="detay/index.html" class="btn" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--glass-border); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none;">Açılar Ansiklopedisi</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Zodyak Atlası. Tüm hakları saklıdır.</p>
+    </div>
   </footer>
-
-
 </body>
 </html>

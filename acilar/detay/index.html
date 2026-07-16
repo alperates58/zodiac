@@ -3,212 +3,155 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Astrolojik açılar ve açı kalıplarının detaylı psikolojik ve öngörüsel anlamları rehber dizini.">
-  <meta property="og:title" content="Astrolojik Açı Detayları Dizini — Zodyak Atlası">
-  <meta property="og:description" content="Kavuşum, Karşıt, Kare, Üçgen, Altmışlık ve Quincunx açılarının detaylı açıklamaları.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zodyakatlasi.com/acilar/detay/index.html">
-  <meta property="og:image" content="../../og.png">
   <link rel="canonical" href="https://zodyakatlasi.com/acilar/detay/index.html">
-  <title>Açı Detayları Dizini — Zodyak Atlası</title>
-  <link rel="stylesheet" href="../../style.css?v=responsive-20260713b">
-  
+  <title>Astrolojide Açılar Ansiklopedisi — Zodyak Atlası</title>
+  <meta name="description" content="Astrolojide açıların (kavuşum, kare, üçgen, karşıt) harita, sinastri ve transitlerdeki detaylı yorumları, orb ve gezegen kombinasyonları.">
+  <link rel="stylesheet" href="../../style-detail.css">
+  <link rel="stylesheet" href="../../style.css">
   <style>
-    .index-container {
-      max-width: 900px;
-      margin: 120px auto 80px;
-      padding: 0 1.5rem;
-    }
-    .index-hero {
+    .hub-hero {
       text-align: center;
-      margin-bottom: 4rem;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, rgba(10, 15, 30, 0.8) 0%, rgba(3, 6, 16, 0.95) 100%);
+      border-bottom: 1px solid var(--line);
     }
-    .index-hero h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      text-transform: uppercase;
-      font-family: 'Cinzel', serif;
-      color: var(--gold-bright);
-      margin-bottom: 1rem;
-    }
-    .index-hero p {
-      color: var(--muted);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-    .aspects-grid {
+    .hub-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    @media (min-width: 600px) {
-      .aspects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    .aspect-card {
-      background: rgba(255,255,255,0.01);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 1.8rem;
-      transition: all 0.3s;
+    .hub-card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-    }
-    .aspect-card:hover {
-      border-color: var(--gold);
-      background: rgba(255,255,255,0.02);
-      transform: translateY(-2px);
-    }
-    .aspect-card h3 {
-      font-family: 'Cinzel', serif;
-      color: #fff;
-      font-size: 1.2rem;
-      margin-top: 0;
-      margin-bottom: 0.6rem;
-    }
-    .aspect-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 1.2rem;
-    }
-    .aspect-card-link {
-      color: var(--gold-bright);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 2rem;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+    .hub-card:hover {
+      background: rgba(212, 175, 55, 0.05);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .hub-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+    .hub-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .info-box {
+      max-width: 1000px;
+      margin: 3rem auto;
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 4px solid var(--gold);
+      padding: 2rem;
+      border-radius: 4px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .info-grid h4 {
+      color: var(--gold-bright);
+      margin-bottom: 0.5rem;
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": "https://zodyakatlasi.com/index.html"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Açılar",
-      "item": "https://zodyakatlasi.com/acilar/index.html"
-    },{
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Açı Detayları Dizini",
-      "item": "https://zodyakatlasi.com/acilar/detay/index.html"
-    }]
-  }
-  </script>
 </head>
 <body>
-      <header class="site-header">
+  <header class="site-header">
     <a class="brand" href="../../index.html"><span>✦</span> ZODYAK ATLASI</a>
     <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="mainNav">Menü</button>
     <nav class="nav" id="mainNav" aria-label="Ana navigasyon">
       <a href="../../burclar.html">Burçlar</a>
       <a href="../../hesaplayicilar.html">Hesaplayıcılar</a>
-      <a href="../../rehberler.html">Rehberler</a>
+      <a href="../../rehberler.html" style="color: var(--gold-bright);">Rehberler</a>
       <a href="../../yerlesimler.html">Yerleşimler</a>
       <a href="../../guncel-gokyuzu.html">Güncel Gökyüzü</a>
-      <a href="../../search.html" style="color: var(--gold-bright);">⌕ Arama</a>
+      <a href="../../search.html">⌕ Arama</a>
     </nav>
   </header>
 
+  <main>
+    <div class="hub-hero">
+      <p class="eyebrow" style="justify-content: center; margin-bottom: 1rem;">Görünümler Ansiklopedisi</p>
+      <h1>Açılar Detay Rehberi</h1>
+      <p style="max-width: 600px; margin: 0 auto; color: var(--muted); line-height: 1.6;">Haritadaki aktörlerin birbirleriyle olan diyaloglarının kalitesini, gücünü ve hayatınıza yansıma biçimlerini derinlemesine inceleyin.</p>
+    </div>
 
-
-  <main class="index-container">
-    <section class="index-hero">
-      <h1>Astrolojik Açılar Detay Dizini</h1>
-      <p>Gezegenlerin doğum haritasında kurduğu 5 temel büyük geometrik açı ile 150 derecelik Quincunx açısının psikolojik ve analitik detayları.</p>
-    </section>
-
-    <div class="aspects-grid">
-      <div class="aspect-card">
+    <div class="info-box">
+      <h3 style="color: var(--gold-bright); margin-bottom: 1.5rem; font-family: 'Cinzel', serif;">Açı Analizinin Temelleri</h3>
+      
+      <div class="info-grid">
         <div>
-          <h3>Kavuşum Açısı (0°)</h3>
-          <p>İki gezegen gücünün tek bir noktada birleşmesi, odaklanma, yoğunluk ve yeni başlangıç tohumları.</p>
+          <h4>Kullanım Alanına Göre Açı Farkı</h4>
+          <p style="font-size: 0.95rem; color: var(--muted);"><strong>Doğum Haritası:</strong> İçsel yapınızı, psikolojinizi ve yaşam boyu sürecek yetenek veya mücadele potansiyellerini gösterir.<br><br><strong>Sinastri (Uyum):</strong> İki kişinin haritası üst üste konduğunda gezegenlerin birbiriyle yaptığı açılardır. İlişkinin çekim gücünü, potansiyel çatışmalarını ve uyumunu belirler.<br><br><strong>Transitler:</strong> Gökyüzündeki anlık gezegenlerin, sizin doğum haritanıza yaptığı açılardır. Dönemsel olayları ve krizleri tetikler.</p>
         </div>
-        <a href="kavusum.html" class="aspect-card-link">Kavuşum Detayları →</a>
-      </div>
-
-      <div class="aspect-card">
         <div>
-          <h3>Karşıt Açı (180°)</h3>
-          <p>İki karşıt kutup arasındaki gerilim, projeksiyon, ilişkilerde farkındalık ve denge arayışı.</p>
+          <h4>Orb (Tolerans) ve Gezegenin Rolü</h4>
+          <p style="font-size: 0.95rem; color: var(--muted);">Bir açının tam (0 paylı) olması nadirdir. Genellikle birkaç derecelik bir <strong>Orb (tolerans payı)</strong> kabul edilir. Örneğin Güneş ve Ay açıları için 8-10 dereceye kadar Orb verilebilirken, Plüton için bu oran 3-4 dereceye düşer. Orb ne kadar darsa, açı o kadar güçlü ve kaçınılmaz çalışır.<br><br>Açının kendisi (Kare, Üçgen) enerjinin nasıl akacağını belirlese de, <strong>asıl olayı belirleyen şey açı yapan gezegenlerin doğasıdır.</strong> İki kötücül (Mars-Satürn) arasındaki üçgen açı bazen bir iyicil (Jüpiter) karesinden çok daha zorlayıcı olabilir.</p>
         </div>
-        <a href="karsi-aci.html" class="aspect-card-link">Karşıt Açı Detayları →</a>
-      </div>
-
-      <div class="aspect-card">
-        <div>
-          <h3>Kare Açı (90°)</h3>
-          <p>İçsel gerilim, krizler, eyleme geçiren dinamik motivasyon ve engelleri aşma iradesi.</p>
-        </div>
-        <a href="kare.html" class="aspect-card-link">Kare Açı Detayları →</a>
-      </div>
-
-      <div class="aspect-card">
-        <div>
-          <h3>Üçgen Açı (120°)</h3>
-          <p>Akışkan yetenekler, şans, koruma, çaba gerektirmeden gelen doğal uyum ve yaratıcı güç.</p>
-        </div>
-        <a href="ucgen.html" class="aspect-card-link">Üçgen Açı Detayları →</a>
-      </div>
-
-      <div class="aspect-card">
-        <div>
-          <h3>Altmışlık Açı (60°)</h3>
-          <p>Fırsatlar, öğrenmeye açık zeka, geliştirilebilir yetenekler ve iş birlikçi enerjiler.</p>
-        </div>
-        <a href="altmislik.html" class="aspect-card-link">Altmışlık Açı Detayları →</a>
-      </div>
-
-      <div class="aspect-card">
-        <div>
-          <h3>Quincunx / Birleşmeyen Açı (150°)</h3>
-          <p>Uyumsuzluk, sürekli ayarlama yapma ihtiyacı, sağlık ve psikolojik denge sınavları.</p>
-        </div>
-        <a href="quincunx.html" class="aspect-card-link">Quincunx Detayları →</a>
       </div>
     </div>
-  
-<!-- NEXT_READING_START -->
-<div class="next-reading-module" style="margin: 4rem auto; max-width: 800px; padding: 2.5rem; background: var(--night-light); border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
-  <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--gold); display: flex; align-items: center; gap: 0.5rem; font-family: 'Cinzel', serif; font-size: 1.3rem;"><span style="font-size: 1.8rem; line-height: 1;">✦</span> Sıradaki Okuma</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-    <a href="../../rehberler.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Kılavuz</span>
-      <span style="font-weight: 500;">Astroloji Rehberleri &rarr;</span>
-    </a>
-    <a href="../../hesaplayicilar.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Araç</span>
-      <span style="font-weight: 500;">Hesaplayıcılar &rarr;</span>
-    </a>
-    <a href="../../guncel-gokyuzu.html" style="text-align: left; padding: 1rem 1.5rem; border-radius: 8px; background: rgba(255,255,255,0.03); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; display: flex; flex-direction: column; justify-content: center;">
-      <span style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 1px;">Takvim</span>
-      <span style="font-weight: 500;">Güncel Gökyüzü &rarr;</span>
-    </a>
-  </div>
-</div>
-<!-- NEXT_READING_END -->
 
-</main>
+    <div class="hub-grid">
+      <a href="kavusum.html" class="hub-card">
+        <h3>Kavuşum (0°)</h3>
+        <p>İki gezegenin enerjisinin tek bir noktada birleşmesi. Büyük bir odaklanma yaratır ancak objektifliği ortadan kaldırabilir.</p>
+      </a>
+      <a href="karsi-aci.html" class="hub-card">
+        <h3>Karşıt Açı (180°)</h3>
+        <p>İki uçta yer alan gezegenlerin çatışması ve denge arayışı. İkili ilişkiler, projeksiyonlar ve "ya hep ya hiç" durumları.</p>
+      </a>
+      <a href="kare.html" class="hub-card">
+        <h3>Kare Açı (90°)</h3>
+        <p>Gelişimi zorlayan, sürtünme ve kriz yaratan dinamik enerji. Harekete geçmek ve engelleri aşmak için en büyük motivasyondur.</p>
+      </a>
+      <a href="ucgen.html" class="hub-card">
+        <h3>Üçgen Açı (120°)</h3>
+        <p>Element uyumu sayesinde çaba gerektirmeden akan yetenekler, şanslar ve fırsatlar. Ancak rehavet ve tembellik getirebilir.</p>
+      </a>
+      <a href="altmislik.html" class="hub-card">
+        <h3>Altmışlık Açı (60°)</h3>
+        <p>İki uyumlu elementin yardımlaşması. İletişim, öğrenme ve dışarıdan gelen desteklerle kullanılabilecek aktif fırsatlar.</p>
+      </a>
+      <a href="quincunx.html" class="hub-card">
+        <h3>Quincunx (150°)</h3>
+        <p>Ortak hiçbir noktası bulunmayan burçlardaki gezegenlerin iletişimsizliği. Sürekli bir adaptasyon ve sağlık krizleri verebilir.</p>
+      </a>
+    </div>
 
-      <footer class="site-footer">
-    <div class="footer-brand"><span>✦</span><h2>ZODYAK<br>ATLASI</h2><p>Gökyüzünün sembolik dilini merak edenler için çağdaş Türkçe rehber.</p></div>
-    <div><h3>ANA BÖLÜMLER</h3><a href="../../burclar.html">Burçlar Kütüphanesi</a><a href="../../hesaplayicilar.html">Astroloji Hesaplayıcıları</a><a href="../../rehberler.html">Temel Rehberler</a><a href="../../yerlesimler.html">Yerleşimler Ansiklopedisi</a></div>
-    <div><h3>POPÜLER</h3><a href="../../dogum-haritasi.html">Doğum Haritası Hesapla</a><a href="../../guncel-gokyuzu.html">Güncel Gökyüzü Paneli</a><a href="../../uyum.html">Burç Uyumu Testi</a><a href="../../ay-burcu-hesaplayici.html">Ay Burcunu Bul</a></div>
-    <div><h3>ZAMANLAMA</h3><a href="../../astroloji-takvimi.html">Astroloji Takvimi</a><a href="../../ay-takvimi.html">Ay Takvimi</a><a href="../../retro-takvimi.html">Retro Takvimi</a><a href="../../burc-tarihleri.html">Burç Tarihleri</a></div>
-    <div><h3>KURUMSAL</h3><a href="../../hakkimizda.html">Hakkımızda</a><a href="../../kaynakca.html">Kaynakça</a><a href="../../kullanim-sartlari.html">Kullanım Şartları</a><a href="../../gizlilik-politikasi.html">Gizlilik Politikası</a><a href="../../iletisim.html">İletişim</a></div>
-    <div class="footer-note"><p>Bu site kültürel ve eğitsel amaçlıdır. Astroloji bilimsel bir tanı, tedavi veya finansal karar aracı değildir.</p><small>© 2026 Zodyak Atlası</small></div>
+    <div class="zodiac-cta-panel" style="max-width: 1200px; margin: 2rem auto 5rem auto;">
+      <h3>Haritandaki Açıları Hesapla</h3>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="../../dogum-haritasi.html" class="btn" style="background: var(--gold); color: #000; border: none; padding: 0.8rem 1.5rem; font-weight: bold; border-radius: 4px; text-decoration: none;">Doğum Haritanı Hesapla</a>
+        <a href="../../uyum.html" class="btn" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--glass-border); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none;">Uyum Haritası</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Zodyak Atlası. Tüm hakları saklıdır.</p>
+    </div>
   </footer>
-
-
 </body>
 </html>
